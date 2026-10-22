@@ -1,0 +1,2 @@
+(33.58000000001244, 'COLLISION', 'kart footprint touched cone OB1-01')
+(88.30000000005757, 'STOP', 'mission reports stopped')

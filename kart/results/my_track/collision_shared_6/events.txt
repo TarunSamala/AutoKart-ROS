@@ -1,0 +1,4 @@
+(78.8400000000124, 'COLLISION', 'kart footprint touched cone OB2-02')
+(87.64000000005441, 'COLLISION', 'kart footprint touched cone OL-E06')
+(89.62000000006387, 'COLLISION', 'kart footprint touched cone OL-E07')
+(109.95000000016094, 'STOP', 'mission complete: vehicle stopped at finish')
