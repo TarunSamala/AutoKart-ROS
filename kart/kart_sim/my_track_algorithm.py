@@ -57,6 +57,14 @@ class AlgorithmConfig:
     fallback_gate_min_existing_dist_m: float = 0.8
     centreline_min_gates: int = 2
     cone_radius_m: float = 0.15
+    # NOTE: raising this (tried 0.35) does not reliably eliminate the
+    # residual collision rate below -- it just redistributes which seeds
+    # collide vs. abort, since the whole run is sensitive to early detour
+    # decisions. Left at the task's stated 0.20 m. See docs/MY_TRACK.md
+    # "Known failures" for the real root cause (Pure Pursuit tracking error
+    # against a once-computed, locked detour offset) and what a real fix
+    # needs (closed-loop re-validation of the executing detour, not a
+    # bigger static margin).
     footprint_margin_m: float = 0.20
     detour_ramp_lengths_m: tuple[float, ...] = (4.0, 3.0, 2.4, 2.0)
     detour_lead_step_m: float = 0.25

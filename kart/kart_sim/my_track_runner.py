@@ -27,6 +27,8 @@ from .vehicle import PlanarBicycleKart
 
 CONTROL_DT_S = 0.05  # 20 Hz
 CAMERA_X_OFFSET_FROM_FRONT_M = 0.15  # ASSUMED: camera sits 0.15 m behind the front bumper, per the draft
+LOG_DT_S = 0.1  # 10 Hz telemetry row rate
+DAC_MAX_V = 5.0  # ASSUMED, matches the draft's throttle-path convention
 
 
 @dataclass
@@ -124,6 +126,10 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
     command = VehicleCommand()
     stop_since_s: float | None = None
     outcome_state = "RUN"
+    current_clearance_m = 9.0
+    last_frame_age_ms = 0.0
+    last_log_steer_deg = 0.0
+    last_log_speed_mps = 0.0
 
     while t_s < config.max_duration_s:
         a_m, b_m = _axle_distances(kart_config)
@@ -140,6 +146,7 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
                 cone_map.update(pending)
                 frames_delivered += 1
                 detections_delivered += sum(1 for d in pending.detections if d.detected)
+                last_frame_age_ms = (pending.deliver_time_s - pending.capture_time_s) * 1000.0
             else:
                 still_pending.append(pending)
         pending_frames = still_pending
@@ -157,25 +164,32 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
             outcome_state = mission.state
 
             if next_log_s <= t_s:
-                next_log_s += 0.1
+                next_log_s += LOG_DT_S
                 section = "F"
                 for name, (a, b) in config.layout.sections.items():
                     if a <= odometry_m < b:
                         section = name
                         break
+                steer_actual_deg = degrees(kart._steer_actual_rad)
+                decel_mps2 = max(0.0, (last_log_speed_mps - kart.state.u_mps) / LOG_DT_S) if kart._brake_actual > 0.02 else 0.0
                 telemetry_rows.append({
                     "t": round(t_s, 2), "dist_m": round(odometry_m, 3),
                     "x": round(rear_axle_m[0], 3), "y": round(rear_axle_m[1], 3),
                     "heading_deg": round(degrees(kart.state.yaw_rad), 2),
                     "speed_mps": round(kart.state.u_mps, 3), "speed_kmh": round(kart.state.u_mps * 3.6, 2),
                     "speed_target_mps": round(mission_command.target_speed_mps, 3),
-                    "steer_cmd_deg": round(degrees(steering_rad), 2), "steer_deg": round(degrees(kart._steer_actual_rad), 2),
+                    "steer_cmd_deg": round(degrees(steering_rad), 2), "steer_deg": round(steer_actual_deg, 2),
+                    "steer_rate_dps": round((steer_actual_deg - last_log_steer_deg) / LOG_DT_S, 1),
                     "brake_cmd_pct": round(mission_command.brake * 100, 1), "brake_pct": round(kart._brake_actual * 100, 1),
-                    "throttle_pct": round(mission_command.drive * 100, 1),
+                    "decel_mps2": round(decel_mps2, 2),
+                    "throttle_pct": round(mission_command.drive * 100, 1), "dac_V": round(mission_command.drive * DAC_MAX_V, 2),
                     "section": section, "state": mission_command.state, "gates": mission_command.gates,
-                    "map_cones": len(cone_map.tracks), "centreline_offset_m": round(mission_command.centreline_offset_m, 3),
+                    "map_cones": len(cone_map.tracks), "frame_age_ms": round(last_frame_age_ms, 1),
+                    "centreline_offset_m": round(mission_command.centreline_offset_m, 3), "clearance_m": round(current_clearance_m, 3),
                     "obstacle": "yes" if mission_command.obstacle else "no", "detour_offset_m": round(mission_command.detour_offset_m, 2),
                 })
+                last_log_steer_deg = steer_actual_deg
+                last_log_speed_mps = kart.state.u_mps
 
         kart.step(command, dt_s)
         odometry_m += max(kart.state.u_mps, 0.0) * dt_s
@@ -183,9 +197,11 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
         max_steer_deg = max(max_steer_deg, abs(degrees(kart._steer_actual_rad)))
 
         if int(round(t_s / dt_s)) % 20 == 0:  # ~20 ms cadence: full-cone-set clearance is the dominant cost
+            current_clearance_m = 9.0
             for cone in cones:
                 clearance_m = footprint_clearance_m(cone.x_m, cone.y_m, rear_axle_m[0], rear_axle_m[1], kart.state.yaw_rad,
                                                      rear_overhang_m, front_extent_m, half_width_m) - cone.collision_radius_m
+                current_clearance_m = min(current_clearance_m, clearance_m)
                 min_clearance_m = min(min_clearance_m, clearance_m)
                 if clearance_m < 0.0 and cone.cone_id not in hit_cone_ids:
                     hit_cone_ids.add(cone.cone_id)
