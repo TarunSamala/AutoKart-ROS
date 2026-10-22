@@ -55,6 +55,11 @@ class MissionConfig:
     # LongitudinalPidController's gains (used by every other scenario too),
     # the target speed fed to it is slew-rate limited. ASSUMED.
     speed_command_ramp_mps2: float = 0.3
+    # Obstacle-classification hysteresis: once an orange cone is seen as part
+    # of an obstacle cluster, keep treating it as one for this long even if a
+    # later cycle's flood-fill doesn't reform the cluster. See the longer
+    # note by _obstacle_memory in MissionController.__init__.
+    obstacle_memory_s: float = 3.0
     algorithm: AlgorithmConfig = field(default_factory=AlgorithmConfig)
 
 
@@ -72,6 +77,8 @@ class MissionCommand:
     finish: bool
     target_speed_mps: float
     centreline_offset_m: float
+    steering_saturated: bool = False
+    active_lock_age_s: float | None = None
 
 
 def _stopping_distance_m(speed_mps: float, delay_s: float, decel_mps2: float, margin_m: float) -> float:
@@ -114,12 +121,24 @@ class MissionController:
         # make the kart swing between braking and cruising instead of
         # committing to a smooth stop.
         self._finish_world_xy_m: tuple[float, float] | None = None
+        # Obstacle-cluster memory: classify_obstacles() re-derives the
+        # cluster fresh every 0.05 s cycle via flood-fill on the *current*
+        # map-blended positions, with no temporal persistence. A link
+        # distance right at the 0.85 m threshold can flicker the whole
+        # cluster in and out of existence between consecutive cycles even
+        # though the same cones are still there (confirmed by tracing a real
+        # collision: classify_obstacles returned a 5-cone cluster, then an
+        # empty set 0.05 s later, and never recovered before contact). Once
+        # any orange cone is seen as part of an obstacle, its world position
+        # is remembered for obstacle_memory_s seconds so a momentary flicker
+        # doesn't make the kart drive straight through it.
+        self._obstacle_memory: dict[int, float] = {}  # track_id -> last_confirmed_s
 
     def reset_speed_ramp(self) -> None:
         self._ramped_target_mps = 0.0
         self.speed_pid.reset()
 
-    def _plan(self, tracks: list[TrackedCone], pose: tuple[float, float, float], speed_mps: float, odometry_m: float) -> PlanResult:
+    def _plan(self, tracks: list[TrackedCone], pose: tuple[float, float, float], speed_mps: float, odometry_m: float, timestamp_s: float) -> PlanResult:
         cfg = self.config.algorithm
         xe_m, ye_m, pe_rad = pose
         c, s = cos(pe_rad), sin(pe_rad)
@@ -156,6 +175,26 @@ class MissionController:
             return self._blind(odometry_m, gates=0)
 
         obstacle_indices = classify_obstacles(points, finish_indices, cfg)
+
+        # Hysteresis: remember which TRACK IDs were just confirmed as
+        # obstacles, then pull back in any orange cone whose track id is
+        # still fresh in memory, even if this cycle's flood-fill alone
+        # didn't flag it. Keyed by track id rather than a snapshotted world
+        # position: the cone map keeps refining a track's position as more
+        # detections arrive (especially soon after it's first confirmed),
+        # so a position snapshot can drift outside a fixed match radius
+        # before the memory itself expires -- confirmed by tracing a real
+        # collision where the memory was still non-empty and well within
+        # its time window, but no entry matched the drifted position.
+        for i in obstacle_indices:
+            self._obstacle_memory[points[i][3]] = timestamp_s
+        self._obstacle_memory = {tid: t for tid, t in self._obstacle_memory.items() if timestamp_s - t <= self.config.obstacle_memory_s}
+        for i, (x_m, y_m, colour, track_id) in enumerate(points):
+            if i in obstacle_indices or colour not in ("large_orange", "orange") or i in finish_indices:
+                continue
+            if track_id in self._obstacle_memory:
+                obstacle_indices = obstacle_indices | {i}
+
         boundary_indices = [i for i in range(len(points)) if i not in obstacle_indices and i not in finish_indices]
         if len(boundary_indices) < 3:
             return self._blind(odometry_m, gates=0)
@@ -183,6 +222,7 @@ class MissionController:
         stop_distance_m: float | None = None
         detour_active = False
         new_lock: DetourLock | None = None
+        active_lock_age_s: float | None = None
         for component in clusters:
             cx = np.array([points[i][0] for i in component])
             cy = np.array([points[i][1] for i in component])
@@ -208,6 +248,7 @@ class MissionController:
                 # (and the geometry gets less favourable) can flip admission
                 # off mid-maneuver and snap the path back toward the obstacle.
                 admitted, chosen_ramp_m, chosen_lead_m = True, existing_lock.ramp_length_m, existing_lock.lead_distance_m
+                active_lock_age_s = timestamp_s - existing_lock.created_at_s
             elif free_width_m >= self.half_width_m * 2 + 2 * 0.25:
                 for ramp_m in cfg.detour_ramp_lengths_m:
                     lead_m = 0.0
@@ -228,7 +269,7 @@ class MissionController:
                                 break
                         if swept_ok:
                             admitted, chosen_ramp_m, chosen_lead_m = True, ramp_m, lead_m
-                            new_lock = DetourLock(cluster_centre_world_xy, ramp_m, lead_m)
+                            new_lock = DetourLock(cluster_centre_world_xy, ramp_m, lead_m, timestamp_s)
                             break
                         lead_m += cfg.detour_lead_step_m
                     if admitted:
@@ -247,6 +288,7 @@ class MissionController:
             obstacle=bool(clusters), detour=detour_active, detour_offset0_m=float(offset[0]) if len(offset) else 0.0,
             finish_detected=finish_x is not None, finish_x_body_m=finish_x,
             blind=False, path_lost=False, stop_distance_m=stop_distance_m, new_lock=new_lock,
+            active_lock_age_s=active_lock_age_s,
         )
 
     @staticmethod
@@ -266,7 +308,7 @@ class MissionController:
 
     def step(self, *, tracks: list[TrackedCone], pose: tuple[float, float, float], speed_mps: float, odometry_m: float,
               dt_s: float, timestamp_s: float) -> MissionCommand:
-        plan = self._plan(tracks, pose, speed_mps, odometry_m)
+        plan = self._plan(tracks, pose, speed_mps, odometry_m, timestamp_s)
         if plan.new_lock is not None:
             self.locks.append(plan.new_lock)
 
@@ -335,9 +377,11 @@ class MissionController:
             if stop_gap_m < 0.1 and speed_mps < 0.06:
                 self.state = "STOPPED"
 
+        steering_saturated = abs(steering_rad) >= self.pure_pursuit.maximum_steering_rad - 1e-6
         return MissionCommand(
             self.state, steering_rad, longitudinal.drive, longitudinal.brake, plan.valid, plan.gates, plan.path_lost,
             bool(plan.obstacle), plan.detour_offset0_m, bool(plan.finish_detected), target_speed_mps, centreline_offset_m,
+            steering_saturated, plan.active_lock_age_s,
         )
 
     @staticmethod

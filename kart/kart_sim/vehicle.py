@@ -10,6 +10,16 @@ from .types import PlanarKartState, SimulationError, VehicleCommand
 
 GRAVITY_MPS2 = 9.80665
 LOW_SPEED_MPS = 0.05
+# Direction sign for brake/rolling-resistance force is ill-defined exactly at
+# zero speed, but using LOW_SPEED_MPS (0.05) itself as that gate (as this file
+# did previously) zeroes out BOTH forces for any nonzero speed below 0.05 m/s:
+# with zero drive, only negligible aerodynamic drag remains, so the vehicle
+# coasts indefinitely at whatever residual speed it had below 0.05 m/s instead
+# of decelerating to zero. Found via docs/MY_TRACK.md's collision
+# investigation (a kart in CONTROLLED_STOP never actually stopped, creeping
+# into the cone it was braking for). A much smaller epsilon avoids the
+# zero-speed sign ambiguity without this side effect.
+DIRECTION_EPSILON_MPS = 1e-4
 
 
 @dataclass(frozen=True)
@@ -89,7 +99,7 @@ class PlanarBicycleKart:
         fy_front = max(-max_front_n, min(max_front_n, -cfg.tires.cornering_stiffness_n_per_rad * alpha_front))
         fy_rear = max(-max_rear_n, min(max_rear_n, -cfg.tires.cornering_stiffness_n_per_rad * alpha_rear))
 
-        direction = copysign(1.0, s.u_mps) if abs(s.u_mps) >= LOW_SPEED_MPS else 0.0
+        direction = copysign(1.0, s.u_mps) if abs(s.u_mps) >= DIRECTION_EPSILON_MPS else 0.0
         drive_n = command.drive * cfg.motor.max_wheel_force_n
         brake_n = self._brake_actual * cfg.brake.max_brake_force_n * direction
         rolling_n = cfg.environment.rolling_resistance_coefficient * mass * GRAVITY_MPS2 * direction

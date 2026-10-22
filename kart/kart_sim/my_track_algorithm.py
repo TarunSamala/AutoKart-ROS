@@ -85,6 +85,7 @@ class DetourLock:
     cluster_centre_world_xy: tuple[float, float]
     ramp_length_m: float
     lead_distance_m: float
+    created_at_s: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -101,6 +102,7 @@ class PlanResult:
     path_lost: bool
     stop_distance_m: float | None
     new_lock: DetourLock | None
+    active_lock_age_s: float | None = None
 
 
 def body_frame_points(tracks: list[TrackedCone], pose: tuple[float, float, float], config: AlgorithmConfig) -> list[tuple[float, float, str, int]]:

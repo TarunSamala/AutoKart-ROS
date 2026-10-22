@@ -127,6 +127,8 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
     stop_since_s: float | None = None
     outcome_state = "RUN"
     current_clearance_m = 9.0
+    nearest_cone_id = ""
+    nearest_corner = ""
     last_frame_age_ms = 0.0
     last_log_steer_deg = 0.0
     last_log_speed_mps = 0.0
@@ -172,13 +174,20 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
                         break
                 steer_actual_deg = degrees(kart._steer_actual_rad)
                 decel_mps2 = max(0.0, (last_log_speed_mps - kart.state.u_mps) / LOG_DT_S) if kart._brake_actual > 0.02 else 0.0
+                cone_map_age_s = None
+                if nearest_cone_id:
+                    nearest_cone = next((c for c in cones if c.cone_id == nearest_cone_id), None)
+                    if nearest_cone is not None and cone_map.tracks:
+                        closest_track = min(cone_map.tracks, key=lambda tr: (tr.x_m - nearest_cone.x_m) ** 2 + (tr.y_m - nearest_cone.y_m) ** 2)
+                        cone_map_age_s = round(t_s - closest_track.last_seen_s, 3)
                 telemetry_rows.append({
                     "t": round(t_s, 2), "dist_m": round(odometry_m, 3),
                     "x": round(rear_axle_m[0], 3), "y": round(rear_axle_m[1], 3),
                     "heading_deg": round(degrees(kart.state.yaw_rad), 2),
                     "speed_mps": round(kart.state.u_mps, 3), "speed_kmh": round(kart.state.u_mps * 3.6, 2),
                     "speed_target_mps": round(mission_command.target_speed_mps, 3),
-                    "steer_cmd_deg": round(degrees(steering_rad), 2), "steer_deg": round(steer_actual_deg, 2),
+                    "steer_cmd_deg": round(degrees(steering_rad), 2), "steer_cmd_unclamped_deg": round(degrees(mission_command.steering_rad), 2),
+                    "steer_deg": round(steer_actual_deg, 2), "steer_saturated": "yes" if mission_command.steering_saturated else "no",
                     "steer_rate_dps": round((steer_actual_deg - last_log_steer_deg) / LOG_DT_S, 1),
                     "brake_cmd_pct": round(mission_command.brake * 100, 1), "brake_pct": round(kart._brake_actual * 100, 1),
                     "decel_mps2": round(decel_mps2, 2),
@@ -187,6 +196,9 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
                     "map_cones": len(cone_map.tracks), "frame_age_ms": round(last_frame_age_ms, 1),
                     "centreline_offset_m": round(mission_command.centreline_offset_m, 3), "clearance_m": round(current_clearance_m, 3),
                     "obstacle": "yes" if mission_command.obstacle else "no", "detour_offset_m": round(mission_command.detour_offset_m, 2),
+                    "nearest_cone_id": nearest_cone_id, "nearest_corner": nearest_corner,
+                    "detour_lock_age_s": None if mission_command.active_lock_age_s is None else round(mission_command.active_lock_age_s, 2),
+                    "cone_map_age_s": cone_map_age_s,
                 })
                 last_log_steer_deg = steer_actual_deg
                 last_log_speed_mps = kart.state.u_mps
@@ -198,19 +210,28 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
 
         if int(round(t_s / dt_s)) % 20 == 0:  # ~20 ms cadence: full-cone-set clearance is the dominant cost
             current_clearance_m = 9.0
+            nearest_cone_id = ""
+            nearest_corner = ""
             for cone in cones:
                 clearance_m = footprint_clearance_m(cone.x_m, cone.y_m, rear_axle_m[0], rear_axle_m[1], kart.state.yaw_rad,
                                                      rear_overhang_m, front_extent_m, half_width_m) - cone.collision_radius_m
-                current_clearance_m = min(current_clearance_m, clearance_m)
                 min_clearance_m = min(min_clearance_m, clearance_m)
+                if clearance_m < current_clearance_m:
+                    current_clearance_m = clearance_m
+                    nearest_cone_id = cone.cone_id
+                    dx, dy = cone.x_m - rear_axle_m[0], cone.y_m - rear_axle_m[1]
+                    c0, s0 = cos(kart.state.yaw_rad), sin(kart.state.yaw_rad)
+                    bx, by = c0 * dx + s0 * dy, -s0 * dx + c0 * dy
+                    nearest_corner = ("F" if bx > front_extent_m / 2 - rear_overhang_m / 2 else "R") + ("L" if by > 0 else "R")
                 if clearance_m < 0.0 and cone.cone_id not in hit_cone_ids:
                     hit_cone_ids.add(cone.cone_id)
                     events.append((t_s, "COLLISION", f"kart footprint touched cone {cone.cone_id}"))
 
+        front_bumper_x_m = rear_axle_m[0] + front_extent_m * cos(kart.state.yaw_rad)
         if outcome_state == "STOPPED":
             if stop_since_s is None:
                 stop_since_s = t_s
-                events.append((t_s, "STOP", "mission complete: vehicle stopped at finish"))
+                events.append((t_s, "STOP", "mission reports stopped"))
             if t_s - stop_since_s > 3.0:
                 break
         elif outcome_state == "CONTROLLED_STOP" and mission.fault is not None and kart.state.u_mps < 0.06:
@@ -226,18 +247,44 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
             if t_s - stop_since_s > 2.0:
                 events.append((t_s, "END", "controlled stop reached, run ended"))
                 break
+        elif front_bumper_x_m > finish_x_world_m + 3.0:
+            # Driven well past the finish without ever stopping there
+            # (overshoot) -- no point running to max_duration_s.
+            events.append((t_s, "END", "overshot the finish without stopping"))
+            break
         else:
             stop_since_s = None
 
         t_s += dt_s
 
+    # COMPLETE is a ground-truth check against the real finish line position,
+    # not whether the mission's own (fallible) finish detection fired --
+    # several early runs reported COMPLETE via a stale/mis-latched finish
+    # belief while the front bumper was actually 6-7 m short of the real
+    # line; see docs/MY_TRACK.md.
     front_bumper_x_m = rear_axle_m[0] + front_extent_m * cos(kart.state.yaw_rad)
-    stop_gap_to_finish_m = finish_x_world_m - front_bumper_x_m if outcome_state in ("STOPPED",) else None
-    outcome = "COMPLETE" if outcome_state == "STOPPED" else f"ABORTED: {mission.fault or outcome_state}"
+    stop_gap_to_finish_m = finish_x_world_m - front_bumper_x_m
+    stopped = kart.state.u_mps < 0.06
+    within_1_5m_before_finish = 0.0 <= stop_gap_to_finish_m <= 1.5
+    no_collision = len(hit_cone_ids) == 0
+    no_fault = mission.fault is None
+
+    if stopped and within_1_5m_before_finish and no_collision and no_fault:
+        outcome = "COMPLETE"
+    elif not no_collision:
+        outcome = f"ABORTED: collision ({len(hit_cone_ids)} cone(s))"
+    elif stop_gap_to_finish_m < 0.0:
+        outcome = f"ABORTED: overshot finish by {-stop_gap_to_finish_m:.2f} m"
+    elif not no_fault:
+        outcome = f"ABORTED: {mission.fault}"
+    elif not stopped:
+        outcome = f"ABORTED: did not stop (speed {kart.state.u_mps:.3f} m/s at run end, state {outcome_state})"
+    else:
+        outcome = f"ABORTED: stopped {stop_gap_to_finish_m:.2f} m short of the finish (state {outcome_state})"
 
     metrics = RunMetrics(
         "my_track", kart_config.kart.name, outcome, round(t_s, 1), len(hit_cone_ids), round(min_clearance_m, 3),
-        round(max_steer_deg, 1), round(max_speed_mps, 3), None if stop_gap_to_finish_m is None else round(stop_gap_to_finish_m, 3),
+        round(max_steer_deg, 1), round(max_speed_mps, 3), round(stop_gap_to_finish_m, 3),
         frames_captured, frames_delivered, round(detections_delivered / max(truth_visible, 1), 3),
     )
     return RunResult(metrics, telemetry_rows, events)
