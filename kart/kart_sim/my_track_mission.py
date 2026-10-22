@@ -107,6 +107,13 @@ class MissionController:
         self._path_lost_s = 0.0
         self._ramped_target_mps = 0.0
         self._sequence = 0
+        # Latched once the finish line is first detected, same anti-flicker
+        # principle as the detour lock: the map's noisy, partially-merged
+        # finish-cone positions can cause detect_finish() to intermittently
+        # pass/fail frame to frame right at the finish, which would otherwise
+        # make the kart swing between braking and cruising instead of
+        # committing to a smooth stop.
+        self._finish_world_xy_m: tuple[float, float] | None = None
 
     def reset_speed_ramp(self) -> None:
         self._ramped_target_mps = 0.0
@@ -121,10 +128,33 @@ class MissionController:
             return xe_m + c * x_body_m - s * y_body_m, ye_m + s * x_body_m + c * y_body_m
 
         points = body_frame_points(tracks, pose, cfg)
+
+        finish_x, finish_indices = (None, set())
+        if len(points) >= 3:
+            finish_x, finish_indices = detect_finish(points, odometry_m, cfg)
+        if finish_x is not None and self._finish_world_xy_m is None:
+            self._finish_world_xy_m = to_world(finish_x, 0.0)
+        if self._finish_world_xy_m is not None:
+            # Recompute the body-frame forward distance to the latched world
+            # point every cycle, rather than re-detecting (and risking the
+            # same flicker the detour lock avoids) or reusing a stale
+            # body-frame value as the kart moves.
+            wx_m, wy_m = self._finish_world_xy_m
+            finish_x = c * (wx_m - xe_m) + s * (wy_m - ye_m)
+            # Once the finish is latched, commit to a straight final approach
+            # rather than falling back to blind/PATH_LOST if the boundary
+            # thins out in the last few metres (fewer cones remain ahead
+            # that close to the track's end) -- the lane-following gates are
+            # no longer the limiting factor this close to a known stop point.
+            approach_path = tuple((x, 0.0) for x in np.linspace(0.0, max(finish_x, 0.5), 20))
+            return PlanResult(
+                valid=True, gates=len(points), path_xy=approach_path, obstacle=False, detour=False,
+                detour_offset0_m=0.0, finish_detected=True, finish_x_body_m=finish_x,
+                blind=False, path_lost=False, stop_distance_m=None, new_lock=None,
+            )
         if len(points) < 3:
             return self._blind(odometry_m, gates=0)
 
-        finish_x, finish_indices = detect_finish(points, odometry_m, cfg)
         obstacle_indices = classify_obstacles(points, finish_indices, cfg)
         boundary_indices = [i for i in range(len(points)) if i not in obstacle_indices and i not in finish_indices]
         if len(boundary_indices) < 3:
@@ -298,7 +328,11 @@ class MissionController:
 
         if plan.valid and plan.finish_detected and plan.finish_x_body_m is not None:
             stop_gap_m = plan.finish_x_body_m - self.front_extent_m - self.config.finish_stop_margin_m
-            if stop_gap_m < 0.1 and speed_mps < 0.03:
+            # PlanarBicycleKart disables brake force below LOW_SPEED_MPS
+            # (0.05 m/s, see vehicle.py) and coasts there indefinitely rather
+            # than reaching exactly zero; 0.03 never fires. 0.06 is just above
+            # that floor.
+            if stop_gap_m < 0.1 and speed_mps < 0.06:
                 self.state = "STOPPED"
 
         return MissionCommand(

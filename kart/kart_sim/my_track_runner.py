@@ -197,7 +197,14 @@ def run_my_track_scenario(config: RunConfig) -> RunResult:
                 events.append((t_s, "STOP", "mission complete: vehicle stopped at finish"))
             if t_s - stop_since_s > 3.0:
                 break
-        elif outcome_state == "CONTROLLED_STOP" and kart.state.u_mps < 0.02:
+        elif outcome_state == "CONTROLLED_STOP" and mission.fault is not None and kart.state.u_mps < 0.06:
+            # Only a genuine fault (PATH_LOST timeout) ends the run here.
+            # CONTROLLED_STOP can also mean "temporarily stopped in front of
+            # an obstacle while detour admission keeps retrying" (no fault
+            # set) -- that can still resolve on a later cycle (see the
+            # detour-lock fix), so it must not be cut off just because speed
+            # dipped low during a retry. See the matching note in
+            # my_track_mission.py for the 0.06 vs. the model's 0.05 floor.
             if stop_since_s is None:
                 stop_since_s = t_s
             if t_s - stop_since_s > 2.0:

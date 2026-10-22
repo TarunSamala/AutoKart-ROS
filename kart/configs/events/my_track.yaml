@@ -1,0 +1,9 @@
+# Documentation/discovery entry only -- NOT loaded via kart_sim.formula_student.load_event().
+# my_track is a single point-to-point run (not a timed-lap event), so it has
+# its own runner and config shape instead of EventConfiguration's. See:
+#   - layout:     docs/my_track_spec/my_track_layout.json
+#   - camera:     kart/configs/sensors/hp60c.yaml
+#   - profiles:   kart/configs/karts/{shared,built}.yaml
+#   - run it:     python -m kart_sim.cli my_track --profile shared --seed 1
+#   - or:         kart/scripts/run_formula_student_event.sh my_track
+event: {type: my_track}

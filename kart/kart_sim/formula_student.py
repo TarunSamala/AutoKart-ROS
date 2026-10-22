@@ -18,6 +18,14 @@ class EventType(str, Enum):
     AUTOCROSS = "autocross"
     TRACKDRIVE = "trackdrive"
     EMERGENCY_BRAKE_TEST = "emergency_brake_test"
+    # Registered here for identity/discovery alongside the others, but NOT
+    # driven through EventEvaluator below: that class times laps around a
+    # closed track, while my_track is a single point-to-point run with its
+    # own mission FSM (kart_sim.my_track_mission) and a dedicated runner
+    # (kart_sim.my_track_runner) -- forcing it through the lap-timing model
+    # would be a worse fit than a second, explicit run path. See
+    # docs/MY_TRACK.md for the full rationale.
+    MY_TRACK = "my_track"
 
 
 @dataclass(frozen=True)
@@ -35,6 +43,11 @@ def load_event(path: str | Path) -> EventConfiguration:
     payload: dict[str, Any] = yaml.safe_load(Path(path).read_text(encoding="utf-8"))
     event = payload["event"]
     event_type = EventType(event["type"])
+    if event_type == EventType.MY_TRACK:
+        raise SimulationError(
+            "my_track is not driven through load_event()/EventEvaluator (lap-timing doesn't fit a "
+            "point-to-point mission); use kart_sim.my_track_runner.run_my_track_scenario() instead."
+        )
     laps = int(event.get("laps", event.get("timed_laps", 1)))
     configuration = EventConfiguration(
         event_type,
