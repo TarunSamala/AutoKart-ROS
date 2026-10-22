@@ -1,0 +1,113 @@
+{
+  "groups": {
+    "body": {
+      "source_dir": "Body",
+      "parts": 5,
+      "triangles_raw": 374228,
+      "triangles_exported": 55013,
+      "output_file": "viewer/assets/kart/body.glb",
+      "bbox_size_m_forward_left_up": [
+        2.03090362613301,
+        1.4575505669913627,
+        0.20341240832360974
+      ]
+    },
+    "chassis": {
+      "source_dir": "Chassis",
+      "parts": 14,
+      "triangles_raw": 246754,
+      "triangles_exported": 36274,
+      "output_file": "viewer/assets/kart/chassis.glb",
+      "bbox_size_m_forward_left_up": [
+        1.723201890056784,
+        1.0332880233068833,
+        0.43833247773211725
+      ]
+    },
+    "rear_axle": {
+      "source_dir": "Rear Axle",
+      "parts": 9,
+      "triangles_raw": 301867,
+      "triangles_exported": 44376,
+      "output_file": "viewer/assets/kart/rear_axle.glb",
+      "bbox_size_m_forward_left_up": [
+        2.1242225710629117,
+        1.1103234898696164,
+        0.273113775766222
+      ]
+    },
+    "steering": {
+      "source_dir": "Steering",
+      "parts": 14,
+      "triangles_raw": 97518,
+      "triangles_exported": 14335,
+      "output_file": "viewer/assets/kart/steering.glb",
+      "bbox_size_m_forward_left_up": [
+        1.1121715314458451,
+        2.1485859145948547,
+        0.592543527244186
+      ]
+    }
+  },
+  "excluded": {
+    "Engine": {
+      "reason": "would blow the triangle budget by >50x alone; not visible from outside the kart silhouette",
+      "triangles_raw": 8108552,
+      "file_count": 10
+    }
+  },
+  "axis_mapping": "native(x,y,z) -> output(forward,left,up) = (z,x,y)",
+  "source_bounding_box_mm": {
+    "min": [
+      -300.57989501953125,
+      -24.5,
+      -54.29999923706055
+    ],
+    "max": [
+      133.01336669921875,
+      108.95632934570312,
+      387.0096740722656
+    ],
+    "size": [
+      433.59326171875,
+      133.45632934570312,
+      441.3096733093262
+    ]
+  },
+  "scale_factor": 5.438358017404648,
+  "scale_calibrated_on": "forward (length) extent, assumed native units = mm",
+  "triangles_exported_total": 149998,
+  "triangle_budget_total": 150000,
+  "within_budget": true,
+  "residuals_vs_dimension_sheet_m": {
+    "length_m": {
+      "scaled": 2.4000000000000004,
+      "target": 2.4,
+      "residual": 4.440892098500626e-16
+    },
+    "width_m": {
+      "scaled": 2.3580353911607963,
+      "target": 1.181,
+      "residual": 1.1770353911607963
+    },
+    "height_m": {
+      "scaled": 0.7257832986705999,
+      "target": 1.118,
+      "residual": -0.39221670132940023
+    }
+  },
+  "front_wheels": {
+    "shared": {
+      "radius_m": 0.14,
+      "width_m": 0.1,
+      "half_track_m": 0.5324,
+      "note": "proxy cylinder (ASSUMED tyre radius/width from kart_sim config, not measured); no separable wheel/tyre mesh exists in the source STL parts"
+    },
+    "built": {
+      "radius_m": 0.14,
+      "width_m": 0.1,
+      "half_track_m": 0.5334,
+      "note": "proxy cylinder (ASSUMED tyre radius/width from kart_sim config, not measured); no separable wheel/tyre mesh exists in the source STL parts"
+    }
+  }
+}
