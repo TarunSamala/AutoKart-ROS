@@ -1,0 +1,6 @@
+name: vcu_battery_undervoltage
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 0.8
+control: {mode: vcu, inject_fault: "battery:undervoltage"}
+initial_state: {u_mps: 1.0}
+command: {drive: 0.7, brake: 0.0, steering_rad: 0.0}

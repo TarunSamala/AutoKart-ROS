@@ -1,0 +1,10 @@
+string sensor_id
+uint32 sequence
+builtin_interfaces/Time capture_start
+builtin_interfaces/Time capture_end
+builtin_interfaces/Time measurement_time
+builtin_interfaces/Time processing_complete
+builtin_interfaces/Time delivery_time
+string frame_id
+uint8 quality
+string[] fault_flags

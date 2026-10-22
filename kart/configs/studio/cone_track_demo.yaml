@@ -1,0 +1,16 @@
+name: cone_track_demo
+preset: configs/presets/formula_student_autocross.yaml
+track: configs/tracks/cone_track.yaml
+kart: configs/karts/prototype_dynamic.yaml
+controller: configs/controllers/baseline_racing.yaml
+sensor_suite: configs/sensors/planned_kart.yaml
+seed: 20260729
+duration_s: 60
+start: {s_m: 0, lateral_m: 0, grid_spacing_m: 1.5}
+target_speed_mps: 3.0
+weather: {condition: clear, temperature_c: 25}
+obstacles: []
+faults: []
+agents: 1
+session_rules: {laps: 1, cone_penalty_s: 2.0}
+logging: {telemetry: true, sensors: false}

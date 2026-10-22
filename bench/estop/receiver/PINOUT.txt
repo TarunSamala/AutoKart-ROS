@@ -1,0 +1,14 @@
+E-STOP RECEIVER PINOUT
+======================
+
+ESP32-S3 GPIO14  -> RA-02 SCK
+ESP32-S3 GPIO13  -> RA-02 MOSI
+ESP32-S3 GPIO15  -> RA-02 MISO
+ESP32-S3 GPIO16  -> RA-02 NSS/CS
+ESP32-S3 GPIO17  -> RA-02 RESET
+ESP32-S3 GPIO18  -> RA-02 DIO0
+ESP32-S3 3.3 V   -> RA-02 VCC
+ESP32-S3 GND     -> RA-02 GND
+
+Frequency is 433 MHz. Connect a correct 433 MHz antenna before transmitting or
+receiving. Verify that these GPIOs are exposed on the exact ESP32-S3 board.

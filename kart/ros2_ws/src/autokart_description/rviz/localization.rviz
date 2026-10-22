@@ -1,0 +1,7 @@
+Visualization Manager:
+  Fixed Frame: map
+  Displays:
+    - {Class: rviz_default_plugins/Map, Name: Map, Enabled: true, Topic: /map}
+    - {Class: rviz_default_plugins/TF, Name: TF, Enabled: true}
+    - {Class: rviz_default_plugins/Odometry, Name: Odometry, Enabled: true, Topic: /localization/odometry}
+    - {Class: rviz_default_plugins/Path, Name: History, Enabled: true, Topic: /localization/path}

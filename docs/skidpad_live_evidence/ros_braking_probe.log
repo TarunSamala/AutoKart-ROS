@@ -1,0 +1,1 @@
+{"gateway_diagnostics_valid": true, "gateway_status_valid": true, "mapping_valid_samples": 2, "mission": "BRAKING_TEST", "paired_camera_jpeg_valid": true, "perception_valid_samples": 2, "planner_hold_samples": 2, "planner_reasons": ["CORRIDOR_BLOCKED"], "planner_valid_samples": 0, "source": "SIMULATED", "vehicle_authorized": false}

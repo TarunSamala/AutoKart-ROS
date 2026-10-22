@@ -1,0 +1,6 @@
+name: vcu_brake_propulsion_conflict
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 0.9
+control: {mode: vcu, inject_fault: "brake:not_releasing", command_brake_release_time_s: 0.3, command_drive_start_time_s: 0.32}
+initial_state: {u_mps: 1.0}
+command: {drive: 0.7, brake: 0.7, steering_rad: 0.0}

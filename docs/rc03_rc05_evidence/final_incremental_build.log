@@ -1,0 +1,10 @@
+Starting >>> autokart_perception
+Finished <<< autokart_perception [0.51s]
+Starting >>> autokart_mapping
+Finished <<< autokart_mapping [0.45s]
+Starting >>> autokart_planner
+Finished <<< autokart_planner [0.45s]
+Starting >>> autokart_bringup
+Finished <<< autokart_bringup [0.26s]
+
+Summary: 4 packages finished [1.85s]

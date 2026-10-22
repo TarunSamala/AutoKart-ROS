@@ -1,0 +1,29 @@
+
+> live-delaunay-kart-lab@1.0.0 build
+> tsc -b && vite build
+
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                     0.45 kB │ gzip:   0.29 kB
+dist/assets/jetbrains-mono-vietnamese-wght-normal-Bt-aOZkq.woff2    7.50 kB
+dist/assets/manrope-vietnamese-wght-normal-usUDDRr7.woff2           8.52 kB
+dist/assets/jetbrains-mono-greek-wght-normal-Bw9x6K1M.woff2         9.00 kB
+dist/assets/manrope-greek-wght-normal-DL7QRZyv.woff2                9.44 kB
+dist/assets/jetbrains-mono-cyrillic-wght-normal-D73BlboJ.woff2     12.10 kB
+dist/assets/manrope-cyrillic-wght-normal-Dvxsihut.woff2            14.50 kB
+dist/assets/manrope-latin-ext-wght-normal-Ch3YOpNY.woff2           15.12 kB
+dist/assets/jetbrains-mono-latin-ext-wght-normal-DBQx-q_a.woff2    15.19 kB
+dist/assets/manrope-latin-wght-normal-DHIcAJRg.woff2               24.83 kB
+dist/assets/jetbrains-mono-latin-wght-normal-B9CIFXIH.woff2        40.40 kB
+dist/assets/index-BGYaK6_Y.css                                     47.01 kB │ gzip:  14.87 kB
+dist/assets/index-CE7M9yCi.js                                     917.32 kB │ gzip: 250.67 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.22s

@@ -1,0 +1,23 @@
+# SIMULATION USE ONLY — MEASUREMENT/RULE VERIFICATION REQUIRED.
+track:
+  name: skidpad_event_provisional
+  type: closed
+  closed_loop: true
+  coordinate_system: local_enu
+  centreline:
+    representation: polyline
+    control_points: [[9.125, 0, 0], [6.452, 6.452, 0], [0, 9.125, 0], [-6.452, 6.452, 0], [-9.125, 0, 0], [-6.452, -6.452, 0], [0, -9.125, 0], [6.452, -6.452, 0]]
+  width: {default_left_m: 1.5, default_right_m: 1.5}
+  elevation: {source: centreline_z}
+  banking: {default_rad: 0.0}
+  surfaces: [dry_asphalt]
+  kerbs: []
+  run_off: {radial_m: 5}
+  barriers: []
+  cones: {generation: boundaries, spacing_m: 2.5}
+  sectors: [{id: circle, start_s_m: 0, end_s_m: 57.3}]
+  corners: [{id: skidpad_circle, type: constant_radius}]
+  spawn_points: [{id: timing_line, s_m: 0, lateral_m: 0}]
+  obstacles: []
+materials:
+  dry_asphalt: {friction_longitudinal: 1.0, friction_lateral: 0.95, rolling_resistance: 0.018}

@@ -1,0 +1,19 @@
+# SIMULATION USE ONLY — dashboard demonstration, not a validated racing line.
+name: dashboard_research_lap
+kart_config: karts/prototype_dynamic.yaml
+track_config: tracks/research_circle.yaml
+duration_s: 6.0
+initial_state:
+  x_m: 10.0
+  y_m: 0.0
+  yaw_rad: 1.5707963267948966
+  u_mps: 3.0
+control:
+  mode: vcu
+  vcu_rate_hz: 250.0
+  command_timeout_s: 0.15
+  clear_distance_m: 40.0
+command:
+  drive: 0.16
+  brake: 0.0
+  steering_rad: 0.20

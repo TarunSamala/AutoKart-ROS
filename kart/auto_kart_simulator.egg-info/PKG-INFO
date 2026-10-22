@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: auto-kart-simulator
+Version: 0.1.0
+Summary: Deterministic, headless autonomous electric go-kart simulation foundation
+Requires-Python: >=3.10
+Requires-Dist: PyYAML>=6.0
+Requires-Dist: pydantic<3,>=1.10
+Provides-Extra: dashboard
+Requires-Dist: aiohttp>=3.8; extra == "dashboard"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: numpy>=1.23; extra == "dev"
+Requires-Dist: matplotlib>=3.5; extra == "dev"
+Requires-Dist: aiohttp>=3.8; extra == "dev"

@@ -1,0 +1,12 @@
+Starting >>> autokart_perception
+Starting >>> autokart_dashboard_gateway
+Finished <<< autokart_perception [0.60s]
+Starting >>> autokart_mapping
+Finished <<< autokart_mapping [0.52s]
+Starting >>> autokart_planner
+Finished <<< autokart_dashboard_gateway [1.44s]
+Finished <<< autokart_planner [0.48s]
+Starting >>> autokart_bringup
+Finished <<< autokart_bringup [0.28s]
+
+Summary: 5 packages finished [2.07s]

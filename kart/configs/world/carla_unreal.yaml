@@ -1,0 +1,6 @@
+# SIMULATION USE ONLY
+authority: simulator_physics
+fixed_delta_s: 0.001
+coordinate_mapping: sim_x_forward_y_left_z_up_to_unreal_y_right
+render_sensor_backend: headless_mock
+allow_engine_physics_on_kart: false

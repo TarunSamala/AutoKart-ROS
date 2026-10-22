@@ -1,0 +1,59 @@
+== ros2 node info /front_safety_envelope_monitor ==
+/front_safety_envelope_monitor
+  Subscribers:
+    /perception/obstacles: autokart_msgs/msg/ConeArray
+    /vehicle/odometry: nav_msgs/msg/Odometry
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /safety/envelope: autokart_msgs/msg/SafetyEnvelope
+  Service Servers:
+    /front_safety_envelope_monitor/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /front_safety_envelope_monitor/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /front_safety_envelope_monitor/get_parameters: rcl_interfaces/srv/GetParameters
+    /front_safety_envelope_monitor/list_parameters: rcl_interfaces/srv/ListParameters
+    /front_safety_envelope_monitor/set_parameters: rcl_interfaces/srv/SetParameters
+    /front_safety_envelope_monitor/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+
+  Action Clients:
+
+== ros2 param get vehicle_authority / safety_monitor_mode ==
+String value is: OFF
+String value is: DIAGNOSTIC_ONLY
+2026-10-18T10:04:37Z
+== runtime param-override probe (audit finding, not a fix) ==
+Set parameter successful
+String value is: ARMED
+The message type 'autokart_msgs/msg/SafetyEnvelope' is invalid
+-- reverting test override --
+Setting parameter failed: Wrong parameter type, expected 'Type.STRING' got 'Type.BOOL'
+Set parameter successful
+String value is: OFF
+== re-confirm topic still healthy and node still has no actuation publishers after the probe ==
+The message type 'autokart_msgs/msg/SafetyEnvelope' is invalid
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /safety/envelope: autokart_msgs/msg/SafetyEnvelope
+  Service Servers:
+    /front_safety_envelope_monitor/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /front_safety_envelope_monitor/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+2026-10-18T10:05:18Z
+timestamp:
+  sec: 1792317943
+  nanosec: 579068403
+frame_id: base_link
+maximum_speed_mps: 0.0
+maximum_acceleration_mps2: 0.0
+guaranteed_deceleration_mps2: 2.0
+clear_distance_m: 1.9999999999999998
+stopping_distance_m: 2.8
+lateral_limit_mps2: 0.0
+allowed_region:
+  points: []
+limiting_reason: BRAKING:OBSTACLE_WITHIN_BRAKING_ENVELOPE:CALIBRATION_UNVERIFIED
+valid: true
+---

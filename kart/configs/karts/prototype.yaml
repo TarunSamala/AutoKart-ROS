@@ -1,0 +1,44 @@
+# SIMULATION USE ONLY — NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT.
+# Every numerical value in this file is provisional pending physical measurement.
+kart:
+  name: prototype_kart_provisional
+  mass_kg: 145.0
+  wheelbase_m: 1.15
+  front_track_m: 0.95
+  rear_track_m: 0.92
+  cg:
+    x_m: 0.05
+    y_m: 0.0
+    z_m: 0.30
+  inertia:
+    yaw_kg_m2: 35.0
+  max_road_wheel_angle_rad: 0.5585053606 # 32 degrees; configuration boundary expressed in radians
+tires:
+  model: linear_friction_circle
+  radius_m: 0.14
+  width_m: 0.10
+  friction_peak: 1.0
+  cornering_stiffness_n_per_rad: 8500.0
+  longitudinal_stiffness_n: 9000.0
+motor:
+  max_wheel_force_n: 850.0
+brake:
+  max_brake_force_n: 1300.0
+rear_axle:
+  type: solid
+  inertia_kg_m2: 0.12
+  torsional_stiffness_nm_per_rad: 5000.0
+  bearing_loss_nm: 0.2
+chassis:
+  torsional_stiffness_nm_per_rad: 1500.0
+  torsional_damping_nms_per_rad: 80.0
+environment:
+  rolling_resistance_coefficient: 0.015
+  air_density_kg_per_m3: 1.225
+  drag_coefficient_area_m2: 0.55
+  grade_rad: 0.0
+  surface_friction_scale: 1.0
+simulation:
+  physics_dt_s: 0.001
+  seed: 20260729
+  vehicle_backend: planar_bicycle

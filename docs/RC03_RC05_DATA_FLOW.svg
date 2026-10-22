@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1520 510" role="img" aria-labelledby="title desc">
+  <title id="title">AutoKart RC-03 to RC-05 disarmed data flow</title>
+  <desc id="desc">Qualified source data passes through ROS perception, mapping and planner adapters to a read-only dashboard. Odometry and brake data are external inputs. No VCU command is published.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#58768e"/>
+    </marker>
+    <style>
+      .background { fill: #f6f9fc; }
+      .title { font: 700 30px system-ui, sans-serif; fill: #12283b; }
+      .subtitle { font: 17px system-ui, sans-serif; fill: #405669; }
+      .label { font: 700 19px system-ui, sans-serif; fill: #102c41; }
+      .detail { font: 15px system-ui, sans-serif; fill: #3a5366; }
+      .small { font: 14px system-ui, sans-serif; fill: #405669; }
+      .line { fill: none; stroke: #58768e; stroke-width: 3; marker-end: url(#arrow); }
+      .box { stroke-width: 2; rx: 15; }
+    </style>
+  </defs>
+  <rect class="background" width="1520" height="510"/>
+  <text class="title" x="42" y="53">AutoKart RC-03–05: diagnostic ROS data flow</text>
+  <text class="subtitle" x="42" y="83">Simulation and replay evidence only • vehicle authorization false • no command publisher</text>
+
+  <rect class="box" x="40" y="140" width="235" height="120" fill="#e8f2ff" stroke="#77a6d3"/>
+  <text class="label" x="60" y="174">Input source</text>
+  <text class="detail" x="60" y="202">Synthetic / replay</text>
+  <text class="detail" x="60" y="225">LIVE guarded by calibration</text>
+
+  <rect class="box" x="325" y="140" width="235" height="120" fill="#e7f8f4" stroke="#5aa993"/>
+  <text class="label" x="345" y="174">RC-03 Perception</text>
+  <text class="detail" x="345" y="202">Qualified cones</text>
+  <text class="detail" x="345" y="225">RGB, depth, status</text>
+
+  <rect class="box" x="610" y="140" width="235" height="120" fill="#e7f8f4" stroke="#5aa993"/>
+  <text class="label" x="630" y="174">RC-04 Mapping</text>
+  <text class="detail" x="630" y="202">Observed map in odom</text>
+  <text class="detail" x="630" y="225">Topology, validity</text>
+
+  <rect class="box" x="895" y="140" width="235" height="120" fill="#e7f8f4" stroke="#5aa993"/>
+  <text class="label" x="915" y="174">RC-05 Planner</text>
+  <text class="detail" x="915" y="202">Expiring path candidate</text>
+  <text class="detail" x="915" y="225">Mission / HOLD reason</text>
+
+  <rect class="box" x="1180" y="140" width="300" height="120" fill="#fff1dc" stroke="#d29d43"/>
+  <text class="label" x="1200" y="174">Read-only dashboard</text>
+  <text class="detail" x="1200" y="202">Source, frame, timestamps</text>
+  <text class="detail" x="1200" y="225">Valid state and reasons</text>
+
+  <path class="line" d="M275 200 H320"/>
+  <path class="line" d="M560 200 H605"/>
+  <path class="line" d="M845 200 H890"/>
+  <path class="line" d="M1130 200 H1175"/>
+
+  <rect class="box" x="580" y="327" width="250" height="86" fill="#edf2fa" stroke="#93a5bd"/>
+  <text class="label" x="600" y="360">External odometry</text>
+  <text class="detail" x="600" y="386">Required; no estimator added</text>
+  <path class="line" d="M705 327 V270 H725 V263"/>
+  <path class="line" d="M830 371 H1012 V263"/>
+
+  <rect class="box" x="870" y="327" width="260" height="86" fill="#edf2fa" stroke="#93a5bd"/>
+  <text class="label" x="890" y="360">Brake / obstacle input</text>
+  <text class="detail" x="890" y="386">Qualified separately</text>
+  <path class="line" d="M1000 327 V266"/>
+
+  <rect class="box" x="1180" y="327" width="300" height="86" fill="#fbe9e8" stroke="#cc6b65"/>
+  <text class="label" x="1200" y="360">VCU / actuation</text>
+  <text class="detail" x="1200" y="386">No path from these adapters</text>
+  <path d="M1180 370 H1153" stroke="#cc6b65" stroke-width="3" stroke-dasharray="8 7"/>
+  <path d="M1140 357 L1160 383 M1160 357 L1140 383" stroke="#b13c3c" stroke-width="4"/>
+
+  <text class="small" x="42" y="471">Software probes: replay withheld; incomplete loops held; corridor blocked; simulated 2R/2L reached feedback-gated STOP.</text>
+</svg>

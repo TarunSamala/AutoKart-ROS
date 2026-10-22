@@ -1,0 +1,17 @@
+# SIMULATION USE ONLY
+# NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+ros2:
+  use_sim_time: true
+  planning_frame: map
+  base_frame: base_link
+  production_ground_truth_topics_enabled: false
+  clock_epoch_on_reset: true
+controller:
+  lateral: pure_pursuit
+  lookahead_m: 1.5
+  speed_lookahead_gain_s: 0.15
+  longitudinal: pid
+  command_validity_s: 0.10
+sil:
+  deterministic: true
+  replay_preserves_measurement_timestamps: true

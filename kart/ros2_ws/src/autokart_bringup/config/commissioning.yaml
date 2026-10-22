@@ -1,0 +1,14 @@
+# Operator-paste commissioning parameters. Values below are conservative defaults, not qualification.
+#
+# config_schema_version: 1 -- bump in this comment whenever a parameter below is added, removed, or
+# changes meaning/units. Owner: autokart_planner / autokart_localization. Kept as a comment, not a
+# ros__parameters key, so this file's ROS parameter-loading behaviour is not changed by adding it;
+# tools/validate_config_schema.py reads this comment and reports a mismatch read-only.
+autokart_planner:
+  ros__parameters:
+    stop_gap_from_bumper_m: 1.0  # m; owner: operator decision (docs/TEST_RUNBOOK.md); tighten toward 0.15 m only after measured evidence permits it
+    t_latency: 0.0  # s; VERIFY from tools/latency_report.py; zero is not a measured latency; owner: operator (pastes tools/latency_report.py's output)
+autokart_localization:
+  ros__parameters:
+    counts_per_m: 0.0  # counts/m; No axle encoder installed; no calibrated odometry. CPR x tyre radius is VERIFY fallback only if hardware is added. Owner: operator (tools/encoder_calibration.py, not executable on this kart)
+    encoder_forward_sign: 1  # unitless (+1/-1); VERIFY only if an axle encoder is installed and hand-push calibrated; owner: operator

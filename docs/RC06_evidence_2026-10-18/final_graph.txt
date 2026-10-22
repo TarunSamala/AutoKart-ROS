@@ -1,0 +1,21 @@
+== final ros2 node list ==
+/dashboard_gateway
+/front_safety_envelope_monitor
+/rc06_synthetic_sensor
+== final ros2 topic list -t ==
+/autokart/mapping/cones [autokart_msgs/msg/ConeArray]
+/autokart/perception/depth [sensor_msgs/msg/Image]
+/autokart/perception/rgb [sensor_msgs/msg/Image]
+/autokart/planner/path_candidate [nav_msgs/msg/Path]
+/control/motion_command [autokart_msgs/msg/MotionCommand]
+/dashboard/debug [autokart_msgs/msg/MissionDebug]
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/perception/cones [autokart_msgs/msg/ConeArray]
+/perception/obstacles [autokart_msgs/msg/ConeArray]
+/planning/path [nav_msgs/msg/Path]
+/rosout [rcl_interfaces/msg/Log]
+/safety/envelope [autokart_msgs/msg/SafetyEnvelope]
+/vcu/state [autokart_msgs/msg/VcuState]
+/vehicle/actuator_feedback [autokart_msgs/msg/ActuatorFeedback]
+/vehicle/odometry [nav_msgs/msg/Odometry]
+2026-10-18T10:10:18Z

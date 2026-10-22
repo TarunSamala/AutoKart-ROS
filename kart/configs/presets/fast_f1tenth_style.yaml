@@ -1,0 +1,6 @@
+name: fast_f1tenth_style
+mode: fast
+simulation: {physics_backend: internal, gazebo_role: disabled, fidelity_tier: 1}
+features: {sensor_suite: fast_2d, vcu_enabled: true, independent_safety_enabled: true, rendering_enabled: false, ros_enabled: false, dashboard_enabled: false, real_actuator_outputs_enabled: false}
+expected_performance: "Real-time factor greater than one where host load permits."
+dependencies: [python3, pyyaml, pydantic]

@@ -1,0 +1,6 @@
+name: vcu_brake_partial_nominal
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 1.2
+control: {mode: vcu, clear_distance_m: 8.0}
+initial_state: {u_mps: 3.0}
+command: {drive: 0.0, brake: 0.8, steering_rad: 0.0}

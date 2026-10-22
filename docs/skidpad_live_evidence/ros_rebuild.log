@@ -1,0 +1,146 @@
+Starting >>> autokart_mapping
+Starting >>> autokart_dashboard_gateway
+Built target ament_cmake_python_copy_autokart_mapping
+running egg_info
+writing autokart_mapping.egg-info/PKG-INFO
+writing dependency_links to autokart_mapping.egg-info/dependency_links.txt
+writing top-level names to autokart_mapping.egg-info/top_level.txt
+reading manifest file 'autokart_mapping.egg-info/SOURCES.txt'
+writing manifest file 'autokart_mapping.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_autokart_mapping_egg
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/pythonpath.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/pythonpath.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping/__init__.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping/node.py
+Listing '/tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping/node.py'...
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/lib/autokart_mapping/mapping_node
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/ament_index/resource_index/package_run_dependencies/autokart_mapping
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/ament_index/resource_index/parent_prefix_path/autokart_mapping
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/path.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/path.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/local_setup.bash
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/local_setup.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/local_setup.zsh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/local_setup.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/package.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/ament_index/resource_index/packages/autokart_mapping
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/cmake/autokart_mappingConfig.cmake
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/cmake/autokart_mappingConfig-version.cmake
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/package.xml
+Finished <<< autokart_mapping [1.20s]
+Starting >>> autokart_planner
+Built target ament_cmake_python_copy_autokart_planner
+running egg_info
+writing autokart_planner.egg-info/PKG-INFO
+writing dependency_links to autokart_planner.egg-info/dependency_links.txt
+writing top-level names to autokart_planner.egg-info/top_level.txt
+reading manifest file 'autokart_planner.egg-info/SOURCES.txt'
+writing manifest file 'autokart_planner.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_autokart_planner_egg
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/pythonpath.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/pythonpath.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/__init__.py
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/mission.py
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/node.py
+Listing '/tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner'...
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/lib/autokart_planner/planner_node
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/ament_index/resource_index/package_run_dependencies/autokart_planner
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/ament_index/resource_index/parent_prefix_path/autokart_planner
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/path.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/path.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/local_setup.bash
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/local_setup.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/local_setup.zsh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/local_setup.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/package.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/ament_index/resource_index/packages/autokart_planner
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/cmake/autokart_plannerConfig.cmake
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/cmake/autokart_plannerConfig-version.cmake
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/package.xml
+Finished <<< autokart_planner [1.15s]
+running egg_info
+writing ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/PKG-INFO
+writing dependency_links to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/dependency_links.txt
+writing entry points to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/entry_points.txt
+writing requirements to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/requires.txt
+writing top-level names to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/top_level.txt
+reading manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+writing manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+running build
+running build_py
+copying autokart_dashboard_gateway/core.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/camera_feed.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/__init__.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/gateway.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+running install
+running install_lib
+copying /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway/core.py -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway
+copying /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway/camera_feed.py -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway
+copying /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway/gateway.py -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway/core.py to core.cpython-310.pyc
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway/camera_feed.py to camera_feed.cpython-310.pyc
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway/gateway.py to gateway.cpython-310.pyc
+running install_data
+copying resource/autokart_dashboard_gateway -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/share/ament_index/resource_index/packages
+copying package.xml -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/share/autokart_dashboard_gateway
+running install_egg_info
+removing '/tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway-0.1.0-py3.10.egg-info' (and everything under it)
+Copying ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info to /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway-0.1.0-py3.10.egg-info
+running install_scripts
+Installing dashboard_gateway script to /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/autokart_dashboard_gateway
+writing list of installed files to '/tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/install.log'
+Finished <<< autokart_dashboard_gateway [3.20s]
+Starting >>> autokart_bringup
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/gazebo_sim.launch.py
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/cone_track.launch.py
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/fast_sim.launch.py
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/cone_track.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/full_stack.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/skidpad.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/gazebo_sim.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/fast_sim.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/skidpad.launch.py
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/full_stack.launch.py
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/rc03_rc05_diagnostics.launch.py
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/config
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/config/topics.yaml
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/ament_index/resource_index/package_run_dependencies/autokart_bringup
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/ament_index/resource_index/parent_prefix_path/autokart_bringup
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/environment/path.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/environment/path.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/local_setup.bash
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/local_setup.sh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/local_setup.zsh
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/local_setup.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/package.dsv
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/ament_index/resource_index/packages/autokart_bringup
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/cmake/autokart_bringupConfig.cmake
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/cmake/autokart_bringupConfig-version.cmake
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/package.xml
+Finished <<< autokart_bringup [0.15s]
+
+Summary: 4 packages finished [3.84s]

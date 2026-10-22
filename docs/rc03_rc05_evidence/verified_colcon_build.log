@@ -1,0 +1,41 @@
+Starting >>> autokart_perception
+--- stderr: autokart_perception
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:16 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_perception [1.51s]
+Starting >>> autokart_mapping
+--- stderr: autokart_mapping
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_mapping [1.28s]
+Starting >>> autokart_planner
+--- stderr: autokart_planner
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_planner [1.12s]
+Starting >>> autokart_bringup
+Finished <<< autokart_bringup [0.08s]
+
+Summary: 4 packages finished [4.20s]
+  3 packages had stderr output: autokart_mapping autokart_perception autokart_planner

@@ -1,0 +1,6 @@
+Visualization Manager:
+  Fixed Frame: camera_link
+  Displays:
+    - {Class: rviz_default_plugins/Image, Name: RGB, Enabled: true, Topic: /sensors/camera/image}
+    - {Class: rviz_default_plugins/Image, Name: Depth, Enabled: true, Topic: /sensors/depth/image}
+    - {Class: rviz_default_plugins/PointCloud2, Name: Depth Cloud, Enabled: true, Topic: /sensors/depth/points}

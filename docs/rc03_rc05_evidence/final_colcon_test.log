@@ -1,0 +1,55 @@
+Starting >>> autokart_msgs
+Starting >>> autokart_description
+Starting >>> autokart_diagnostics
+Starting >>> autokart_localization
+Starting >>> autokart_planning
+Starting >>> autokart_safety_bridge
+Starting >>> autokart_scenarios
+Finished <<< autokart_msgs [0.08s]
+Starting >>> autokart_perception
+Starting >>> autokart_dashboard_gateway
+Starting >>> autokart_sim_bridge
+Starting >>> autokart_control
+Finished <<< autokart_description [0.08s]
+Starting >>> autokart_gazebo
+Finished <<< autokart_localization [0.08s]
+Finished <<< autokart_diagnostics [0.09s]
+Finished <<< autokart_planning [0.07s]
+Finished <<< autokart_safety_bridge [0.06s]
+Finished <<< autokart_scenarios [0.06s]
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+--- stderr: autokart_dashboard_gateway
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.000s
+
+OK
+---
+Finished <<< autokart_dashboard_gateway [0.43s]
+Finished <<< autokart_control [0.43s]
+Finished <<< autokart_gazebo [0.42s]
+--- stderr: autokart_sim_bridge
+test_motion_commands_remain_vcu_gated (test.test_bridge_contract.BridgeContractTest) ... ok
+test_native_runner_publishes_immutable_snapshots (test.test_bridge_contract.BridgeContractTest) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+---
+Finished <<< autokart_sim_bridge [0.47s]
+Finished <<< autokart_perception [1.42s]
+Starting >>> autokart_mapping
+Finished <<< autokart_mapping [0.77s]
+Starting >>> autokart_planner
+Finished <<< autokart_planner [0.63s]
+Starting >>> autokart_bringup
+Starting >>> autokart_controller
+Finished <<< autokart_bringup [0.03s]
+Finished <<< autokart_controller [0.02s]
+
+Summary: 16 packages finished [3.11s]
+  2 packages had stderr output: autokart_dashboard_gateway autokart_sim_bridge

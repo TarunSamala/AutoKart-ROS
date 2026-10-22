@@ -1,0 +1,13 @@
+LORA DIAGNOSTIC PINOUT
+======================
+
+Receiver test (ESP32-S3):
+  GPIO14 SCK, GPIO13 MOSI, GPIO15 MISO, GPIO16 NSS/CS,
+  GPIO17 RESET, GPIO18 DIO0.
+
+Transmitter test (Raspberry Pi Pico):
+  GPIO18 SCK, GPIO19 MOSI, GPIO16 MISO, GPIO17 NSS/CS,
+  GPIO20 RESET, GPIO21 DIO0.
+
+Both RA-02 modules require 3.3 V power/logic, common ground, and an appropriate
+433 MHz antenna.

@@ -1,0 +1,885 @@
+Starting >>> autokart_msgs
+Starting >>> autokart_description
+Starting >>> autokart_diagnostics
+Starting >>> autokart_localization
+Starting >>> autokart_planning
+Starting >>> autokart_safety_bridge
+Starting >>> autokart_scenarios
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_generator_c
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/urdf
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/urdf/autokart.urdf
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/urdf/autokart.urdf.xacro
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz/tf.rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz/safety.rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz/camera_depth.rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz/lidar.rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz/planning.rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz/vehicle_state.rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz/cone_perception.rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz/localization.rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/rviz/full_autonomy.rviz
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/ament_index/resource_index/package_run_dependencies/autokart_description
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/ament_index/resource_index/parent_prefix_path/autokart_description
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/local_setup.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/ament_index/resource_index/packages/autokart_description
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/cmake/autokart_descriptionConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/cmake/autokart_descriptionConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_description/share/autokart_description/package.xml
+[  0%] Built target autokart_msgs__cpp
+[  1%] Built target autokart_msgs__rs
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/ament_index/resource_index/package_run_dependencies/autokart_diagnostics
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/ament_index/resource_index/parent_prefix_path/autokart_diagnostics
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/local_setup.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/ament_index/resource_index/packages/autokart_diagnostics
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/cmake/autokart_diagnosticsConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/cmake/autokart_diagnosticsConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_diagnostics/share/autokart_diagnostics/package.xml
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/ament_index/resource_index/package_run_dependencies/autokart_localization
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/ament_index/resource_index/parent_prefix_path/autokart_localization
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/local_setup.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/ament_index/resource_index/packages/autokart_localization
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/cmake/autokart_localizationConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/cmake/autokart_localizationConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_localization/share/autokart_localization/package.xml
+Finished <<< autokart_description [0.14s]
+Finished <<< autokart_diagnostics [0.15s]
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/ament_index/resource_index/package_run_dependencies/autokart_planning
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/ament_index/resource_index/parent_prefix_path/autokart_planning
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/local_setup.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/ament_index/resource_index/packages/autokart_planning
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/cmake/autokart_planningConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/cmake/autokart_planningConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planning/share/autokart_planning/package.xml
+[ 13%] Built target autokart_msgs__rosidl_generator_c
+[ 13%] Built target ament_cmake_python_copy_autokart_msgs
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_typesupport_cpp
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_typesupport_fastrtps_cpp
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_typesupport_c
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_typesupport_introspection_cpp
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_typesupport_introspection_c
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_typesupport_fastrtps_c
+[ 25%] Built target autokart_msgs__rosidl_typesupport_cpp
+[ 38%] Built target autokart_msgs__rosidl_typesupport_c
+[ 47%] Built target autokart_msgs__rosidl_typesupport_introspection_c
+[ 59%] Built target autokart_msgs__rosidl_typesupport_introspection_cpp
+[ 71%] Built target autokart_msgs__rosidl_typesupport_fastrtps_cpp
+[ 82%] Built target autokart_msgs__rosidl_typesupport_fastrtps_c
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/ament_index/resource_index/package_run_dependencies/autokart_safety_bridge
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/ament_index/resource_index/parent_prefix_path/autokart_safety_bridge
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/local_setup.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/ament_index/resource_index/packages/autokart_safety_bridge
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/cmake/autokart_safety_bridgeConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/cmake/autokart_safety_bridgeConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_safety_bridge/share/autokart_safety_bridge/package.xml
+Finished <<< autokart_localization [0.17s]
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/config
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/config/scenario_contract.yaml
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/ament_index/resource_index/package_run_dependencies/autokart_scenarios
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/ament_index/resource_index/parent_prefix_path/autokart_scenarios
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/local_setup.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/ament_index/resource_index/packages/autokart_scenarios
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/cmake/autokart_scenariosConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/cmake/autokart_scenariosConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_scenarios/share/autokart_scenarios/package.xml
+Finished <<< autokart_planning [0.18s]
+Finished <<< autokart_safety_bridge [0.19s]
+[ 82%] Built target autokart_msgs
+Finished <<< autokart_scenarios [0.20s]
+[ 83%] Built target autokart_msgs__py
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_generator_py
+[ 94%] Built target autokart_msgs__rosidl_generator_py
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_typesupport_introspection_c__pyext
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_typesupport_fastrtps_c__pyext
+Consolidate compiler generated dependencies of target autokart_msgs__rosidl_typesupport_c__pyext
+[100%] Built target autokart_msgs__rosidl_typesupport_fastrtps_c__pyext
+[100%] Built target autokart_msgs__rosidl_typesupport_introspection_c__pyext
+[100%] Built target autokart_msgs__rosidl_typesupport_c__pyext
+running egg_info
+writing autokart_msgs.egg-info/PKG-INFO
+writing dependency_links to autokart_msgs.egg-info/dependency_links.txt
+writing top-level names to autokart_msgs.egg-info/top_level.txt
+reading manifest file 'autokart_msgs.egg-info/SOURCES.txt'
+writing manifest file 'autokart_msgs.egg-info/SOURCES.txt'
+[100%] Built target ament_cmake_python_build_autokart_msgs_egg
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/ament_index/resource_index/rosidl_interfaces/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vehicle_state.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_generator_c__visibility_control.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_states.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vcu_state.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/mission_debug.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/sensor_delivery_metadata.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/safety_envelope.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/motion_command.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_state.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/authoritative_vehicle_snapshot.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone_array.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/actuator_feedback.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__functions.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__functions.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__struct.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/gazebo_follower_state.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/environment/library_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/environment/library_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_c.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_fastrtps_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_c.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vehicle_state.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/safety_envelope.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_states.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/mission_debug.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_state.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/actuator_feedback.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone_array.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/gazebo_follower_state.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vcu_state.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/sensor_delivery_metadata.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/authoritative_vehicle_snapshot.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__traits.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__struct.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__builder.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/motion_command.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/dds_fastrtps
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_fastrtps_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_cpp.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_introspection_c.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_c.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_c.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_introspection_cpp.hpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.cpp
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_cpp.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_cpp.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/environment/pythonpath.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/environment/pythonpath.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_introspection_c.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/libautokart_msgs__rosidl_generator_py.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/__init__.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_c.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_mission_debug_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_state.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_safety_envelope.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/__init__.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_array.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_motion_command_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_actuator_feedback_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_safety_envelope_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vcu_state_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vcu_state.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_sensor_delivery_metadata_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_sensor_delivery_metadata.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_authoritative_vehicle_snapshot.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_gazebo_follower_state_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_motion_command.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_array_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vehicle_state_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_states_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_authoritative_vehicle_snapshot_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_mission_debug.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_gazebo_follower_state.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vehicle_state.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_state_s.c
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_actuator_feedback.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_states.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+Listing '/tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs'...
+Listing '/tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg'...
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_py.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/rust
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/rust/Cargo.toml
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/rust/build.rs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/rust/src
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/rust/src/msg.rs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/rust/src/msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/rust/src/msg/rmw.rs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/rust/src/lib.rs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/MotionCommand.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/VehicleState.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/WheelState.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/WheelStates.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/ActuatorFeedback.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/VcuState.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/SafetyEnvelope.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/Cone.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/ConeArray.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/AuthoritativeVehicleSnapshot.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/GazeboFollowerState.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/SensorDeliveryMetadata.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/MissionDebug.idl
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/MotionCommand.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/VehicleState.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/WheelState.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/WheelStates.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/ActuatorFeedback.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/VcuState.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/SafetyEnvelope.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/Cone.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/ConeArray.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/AuthoritativeVehicleSnapshot.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/GazeboFollowerState.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/SensorDeliveryMetadata.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/msg/MissionDebug.msg
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/ament_index/resource_index/package_run_dependencies/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/ament_index/resource_index/parent_prefix_path/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/local_setup.dsv
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/ament_index/resource_index/packages/autokart_msgs
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_cExport.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_cExport-noconfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_cppExport.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cExport.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cExport.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cExport-noconfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cppExport.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cppExport.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_pyExport.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_pyExport-noconfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake-extras.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_targets-extras.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake_aggregate_target-extras.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgsConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgsConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_msgs/share/autokart_msgs/package.xml
+Finished <<< autokart_msgs [0.57s]
+Starting >>> autokart_perception
+Starting >>> autokart_dashboard_gateway
+Starting >>> autokart_sim_bridge
+Starting >>> autokart_control
+Starting >>> autokart_gazebo
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+Built target ament_cmake_python_copy_autokart_perception_ros
+Built target ament_cmake_python_copy_autokart_perception
+running egg_info
+running egg_info
+writing autokart_perception_ros.egg-info/PKG-INFO
+writing dependency_links to autokart_perception_ros.egg-info/dependency_links.txt
+writing top-level names to autokart_perception_ros.egg-info/top_level.txt
+writing autokart_perception.egg-info/PKG-INFO
+writing dependency_links to autokart_perception.egg-info/dependency_links.txt
+writing top-level names to autokart_perception.egg-info/top_level.txt
+reading manifest file 'autokart_perception_ros.egg-info/SOURCES.txt'
+writing manifest file 'autokart_perception_ros.egg-info/SOURCES.txt'
+reading manifest file 'autokart_perception.egg-info/SOURCES.txt'
+writing manifest file 'autokart_perception.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_autokart_perception_ros_egg
+Built target ament_cmake_python_build_autokart_perception_egg
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/environment/pythonpath.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/environment/pythonpath.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/boundaries.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/interfaces.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/centerline.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/training.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/lab_api.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/__init__.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/webui.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/mount.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/__main__.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/live_mission.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/evaluation.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/gates.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/application.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/temporal.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/recording.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/calibration.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/depth.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/pipeline.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/safety.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/curvature.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/gabriel.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/detector.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/synthetic.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/types.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/data
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/data/perception.yaml
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/data/coneslayer_manifest.json
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/sdk.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/release_audit.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/shared_core.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/camera.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/visualization.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/live_render.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/geometry.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/dataset_sources.py
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/config
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/config/controllers.yaml
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/ament_index/resource_index/package_run_dependencies/autokart_control
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/ament_index/resource_index/parent_prefix_path/autokart_control
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/local_setup.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/ament_index/resource_index/packages/autokart_control
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/cmake/autokart_controlConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/cmake/autokart_controlConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_control/share/autokart_control/package.xml
+Finished <<< autokart_control [0.53s]
+Listing '/tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception'...
+Listing '/tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/data'...
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros/__init__.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros/node.py
+Consolidate compiler generated dependencies of target autokart_gazebo_follower
+Consolidate compiler generated dependencies of target autokart_gazebo_sensor_delivery
+[ 50%] Built target autokart_gazebo_follower
+Listing '/tmp/autokart_rc03_clean_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros'...
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/lib/autokart_perception/perception_node
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/launch
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/launch/perception_replay.launch.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/ament_index/resource_index/package_run_dependencies/autokart_perception
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/ament_index/resource_index/parent_prefix_path/autokart_perception
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/local_setup.dsv
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/ament_index/resource_index/packages/autokart_perception
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/cmake/autokart_perceptionConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/cmake/autokart_perceptionConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_perception/share/autokart_perception/package.xml
+Finished <<< autokart_perception [0.60s]
+Starting >>> autokart_mapping
+[100%] Built target autokart_gazebo_sensor_delivery
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/lib/libautokart_gazebo_follower.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/lib/libautokart_gazebo_sensor_delivery.so
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/worlds
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/worlds/README.md
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/models
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/models/README.md
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/config
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/config/bridge.yaml
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/ament_index/resource_index/package_run_dependencies/autokart_gazebo
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/ament_index/resource_index/parent_prefix_path/autokart_gazebo
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/local_setup.dsv
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/ament_index/resource_index/packages/autokart_gazebo
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/cmake/autokart_gazeboConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/cmake/autokart_gazeboConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_gazebo/share/autokart_gazebo/package.xml
+Finished <<< autokart_gazebo [0.63s]
+Built target ament_cmake_python_copy_autokart_mapping
+running egg_info
+writing autokart_mapping.egg-info/PKG-INFO
+writing dependency_links to autokart_mapping.egg-info/dependency_links.txt
+writing top-level names to autokart_mapping.egg-info/top_level.txt
+reading manifest file 'autokart_mapping.egg-info/SOURCES.txt'
+writing manifest file 'autokart_mapping.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_autokart_mapping_egg
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/environment/pythonpath.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/environment/pythonpath.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping/__init__.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping/node.py
+Listing '/tmp/autokart_rc03_clean_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping'...
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/lib/autokart_mapping/mapping_node
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/ament_index/resource_index/package_run_dependencies/autokart_mapping
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/ament_index/resource_index/parent_prefix_path/autokart_mapping
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/local_setup.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/ament_index/resource_index/packages/autokart_mapping
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/cmake/autokart_mappingConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/cmake/autokart_mappingConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_mapping/share/autokart_mapping/package.xml
+Finished <<< autokart_mapping [0.51s]
+Starting >>> autokart_planner
+Built target ament_cmake_python_copy_autokart_planner
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+running egg_info
+writing ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/PKG-INFO
+writing dependency_links to ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/dependency_links.txt
+writing entry points to ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/entry_points.txt
+writing requirements to ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/requires.txt
+writing top-level names to ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/top_level.txt
+running egg_info
+running egg_info
+writing ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/PKG-INFO
+writing dependency_links to ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/dependency_links.txt
+writing entry points to ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/entry_points.txt
+writing requirements to ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/requires.txt
+writing top-level names to ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/top_level.txt
+reading manifest file '../../../../../../../../tmp/autokart_rc03_clean_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/SOURCES.txt'
+writing manifest file '../../../../../../../../tmp/autokart_rc03_clean_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/SOURCES.txt'
+writing autokart_planner.egg-info/PKG-INFO
+running build
+running build_py
+writing dependency_links to autokart_planner.egg-info/dependency_links.txt
+copying autokart_sim_bridge/__init__.py -> /tmp/autokart_rc03_clean_build/autokart_sim_bridge/build/lib/autokart_sim_bridge
+writing top-level names to autokart_planner.egg-info/top_level.txt
+copying autokart_sim_bridge/gazebo_full_lap.py -> /tmp/autokart_rc03_clean_build/autokart_sim_bridge/build/lib/autokart_sim_bridge
+copying autokart_sim_bridge/vcu_bridge.py -> /tmp/autokart_rc03_clean_build/autokart_sim_bridge/build/lib/autokart_sim_bridge
+copying autokart_sim_bridge/gazebo_sync_probe.py -> /tmp/autokart_rc03_clean_build/autokart_sim_bridge/build/lib/autokart_sim_bridge
+running install
+running install_lib
+running install_data
+copying resource/autokart_sim_bridge -> /tmp/autokart_rc03_clean_install/autokart_sim_bridge/share/ament_index/resource_index/packages
+copying package.xml -> /tmp/autokart_rc03_clean_install/autokart_sim_bridge/share/autokart_sim_bridge
+running install_egg_info
+reading manifest file '../../../../../../../../tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+writing manifest file '../../../../../../../../tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+running build
+running build_py
+copying autokart_dashboard_gateway/core.py -> /tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/__init__.py -> /tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/gateway.py -> /tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+running install
+running install_lib
+removing '/tmp/autokart_rc03_clean_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge-0.1.0-py3.10.egg-info' (and everything under it)
+Copying ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_sim_bridge/autokart_sim_bridge.egg-info to /tmp/autokart_rc03_clean_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge-0.1.0-py3.10.egg-info
+running install_scripts
+running install_data
+copying resource/autokart_dashboard_gateway -> /tmp/autokart_rc03_clean_install/autokart_dashboard_gateway/share/ament_index/resource_index/packages
+copying package.xml -> /tmp/autokart_rc03_clean_install/autokart_dashboard_gateway/share/autokart_dashboard_gateway
+running install_egg_info
+reading manifest file 'autokart_planner.egg-info/SOURCES.txt'
+writing manifest file 'autokart_planner.egg-info/SOURCES.txt'
+removing '/tmp/autokart_rc03_clean_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway-0.1.0-py3.10.egg-info' (and everything under it)
+Copying ../../../../../../../../tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info to /tmp/autokart_rc03_clean_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway-0.1.0-py3.10.egg-info
+running install_scripts
+Built target ament_cmake_python_build_autokart_planner_egg
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/environment/pythonpath.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/environment/pythonpath.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/__init__.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/mission.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/node.py
+Listing '/tmp/autokart_rc03_clean_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner'...
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/lib/autokart_planner/planner_node
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/ament_index/resource_index/package_run_dependencies/autokart_planner
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/ament_index/resource_index/parent_prefix_path/autokart_planner
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/local_setup.dsv
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/ament_index/resource_index/packages/autokart_planner
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/cmake/autokart_plannerConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/cmake/autokart_plannerConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_planner/share/autokart_planner/package.xml
+Finished <<< autokart_planner [0.53s]
+Starting >>> autokart_controller
+Installing gazebo_full_lap script to /tmp/autokart_rc03_clean_install/autokart_sim_bridge/lib/autokart_sim_bridge
+Installing gazebo_sync_probe script to /tmp/autokart_rc03_clean_install/autokart_sim_bridge/lib/autokart_sim_bridge
+Installing vcu_bridge script to /tmp/autokart_rc03_clean_install/autokart_sim_bridge/lib/autokart_sim_bridge
+writing list of installed files to '/tmp/autokart_rc03_clean_build/autokart_sim_bridge/install.log'
+--- stderr: autokart_sim_bridge
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+---
+Finished <<< autokart_sim_bridge [1.69s]
+Installing dashboard_gateway script to /tmp/autokart_rc03_clean_install/autokart_dashboard_gateway/lib/autokart_dashboard_gateway
+writing list of installed files to '/tmp/autokart_rc03_clean_build/autokart_dashboard_gateway/install.log'
+Built target ament_cmake_python_copy_autokart_controller
+Finished <<< autokart_dashboard_gateway [1.73s]
+Starting >>> autokart_bringup
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/gazebo_sim.launch.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/cone_track.launch.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/fast_sim.launch.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/__pycache__
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/cone_track.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/full_stack.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/skidpad.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/gazebo_sim.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/fast_sim.launch.cpython-310.pyc
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/skidpad.launch.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/full_stack.launch.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/launch/rc03_rc05_diagnostics.launch.py
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/config
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/config/topics.yaml
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/ament_index/resource_index/package_run_dependencies/autokart_bringup
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/ament_index/resource_index/parent_prefix_path/autokart_bringup
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/local_setup.dsv
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/ament_index/resource_index/packages/autokart_bringup
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/cmake/autokart_bringupConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/cmake/autokart_bringupConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_bringup/share/autokart_bringup/package.xml
+Finished <<< autokart_bringup [0.09s]
+running egg_info
+writing autokart_controller.egg-info/PKG-INFO
+writing dependency_links to autokart_controller.egg-info/dependency_links.txt
+writing top-level names to autokart_controller.egg-info/top_level.txt
+reading manifest file 'autokart_controller.egg-info/SOURCES.txt'
+writing manifest file 'autokart_controller.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_autokart_controller_egg
+-- Install configuration: ""
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/environment/pythonpath.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/environment/pythonpath.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_rc03_clean_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller/__init__.py
+Listing '/tmp/autokart_rc03_clean_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller'...
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/ament_index/resource_index/package_run_dependencies/autokart_controller
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/ament_index/resource_index/parent_prefix_path/autokart_controller
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/environment/ament_prefix_path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/environment/ament_prefix_path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/environment/path.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/environment/path.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/local_setup.bash
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/local_setup.sh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/local_setup.zsh
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/local_setup.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/package.dsv
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/ament_index/resource_index/packages/autokart_controller
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/cmake/autokart_controllerConfig.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/cmake/autokart_controllerConfig-version.cmake
+-- Up-to-date: /tmp/autokart_rc03_clean_install/autokart_controller/share/autokart_controller/package.xml
+Finished <<< autokart_controller [0.46s]
+
+Summary: 16 packages finished [2.82s]
+  1 package had stderr output: autokart_sim_bridge

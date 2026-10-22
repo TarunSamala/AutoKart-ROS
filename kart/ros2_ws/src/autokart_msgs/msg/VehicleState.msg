@@ -1,0 +1,9 @@
+builtin_interfaces/Time measurement_time
+builtin_interfaces/Time delivery_time
+string frame_id
+geometry_msgs/Pose pose
+geometry_msgs/Twist twist
+geometry_msgs/Accel acceleration
+uint64 reset_epoch
+string physics_authority
+bool valid

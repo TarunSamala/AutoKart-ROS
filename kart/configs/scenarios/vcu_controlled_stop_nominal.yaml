@@ -1,0 +1,7 @@
+# SIMULATION USE ONLY — measured controlled-stop acceptance.
+name: vcu_controlled_stop_nominal
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 1.2
+control: {mode: vcu, command_timeout_s: 0.05, command_stop_time_s: 0.20}
+initial_state: {u_mps: 2.0}
+command: {drive: 0.6, brake: 0.0, steering_rad: 0.0}

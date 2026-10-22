@@ -1,0 +1,1 @@
+{"samples": 40, "backend": "OpenCV DNN default CPU", "latched_values": ["None"], "frame_too_old_share": 0.93, "capture_to_gateway_ms": {"p50": 218.3, "p95": 278.1}, "processing_ms": {"p50": 145.0, "p95": 187.7}, "inference_ms": {"p50": 133.9, "p95": 175.4}, "frame_age_ms": {"p50": 194.2, "p95": 253.0}, "receive_fps": {"p50": 6.5, "p95": 6.9}}

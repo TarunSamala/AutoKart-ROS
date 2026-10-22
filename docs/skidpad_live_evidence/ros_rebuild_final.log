@@ -1,0 +1,76 @@
+[0.318s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'autokart_planner' is in: /tmp/autokart_skidpad_live_install/autokart_planner
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding autokart_planner
+
+This may be promoted to an error in a future release of colcon-override-check.
+Starting >>> autokart_mapping
+[0.330s] WARNING:colcon.colcon_core.shell:The following packages are in the workspace but haven't been built:
+- autokart_msgs
+- autokart_perception
+They are being used from the following locations instead:
+- /tmp/autokart_skidpad_live_install/autokart_msgs
+- /tmp/autokart_skidpad_live_install/autokart_perception
+To suppress this warning ignore these packages in the workspace:
+--packages-ignore autokart_msgs autokart_perception
+Starting >>> autokart_dashboard_gateway
+[0.337s] WARNING:colcon.colcon_core.shell:The following packages are in the workspace but haven't been built:
+- autokart_msgs
+- autokart_perception
+They are being used from the following locations instead:
+- /tmp/autokart_skidpad_live_install/autokart_msgs
+- /tmp/autokart_skidpad_live_install/autokart_perception
+To suppress this warning ignore these packages in the workspace:
+--packages-ignore autokart_msgs autokart_perception
+Finished <<< autokart_dashboard_gateway [1.66s]
+--- stderr: autokart_mapping
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_mapping [2.19s]
+Starting >>> autokart_planner
+[2.515s] WARNING:colcon.colcon_core.shell:The following packages are in the workspace but haven't been built:
+- autokart_msgs
+- autokart_perception
+They are being used from the following locations instead:
+- /tmp/autokart_skidpad_live_install/autokart_msgs
+- /tmp/autokart_skidpad_live_install/autokart_perception
+To suppress this warning ignore these packages in the workspace:
+--packages-ignore autokart_msgs autokart_perception
+--- stderr: autokart_planner
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_planner [2.21s]
+Starting >>> autokart_bringup
+[4.726s] WARNING:colcon.colcon_core.shell:The following packages are in the workspace but haven't been built:
+- autokart_description
+- autokart_msgs
+- autokart_perception
+- autokart_sim_bridge
+They are being used from the following locations instead:
+- /tmp/autokart_skidpad_live_install/autokart_description
+- /tmp/autokart_skidpad_live_install/autokart_msgs
+- /tmp/autokart_skidpad_live_install/autokart_perception
+- /tmp/autokart_skidpad_live_install/autokart_sim_bridge
+To suppress this warning ignore these packages in the workspace:
+--packages-ignore autokart_description autokart_msgs autokart_perception autokart_sim_bridge
+Finished <<< autokart_bringup [1.10s]
+
+Summary: 4 packages finished [5.71s]
+  2 packages had stderr output: autokart_mapping autokart_planner

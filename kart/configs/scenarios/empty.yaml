@@ -1,0 +1,8 @@
+# Deterministic stationary smoke scenario; simulation use only.
+name: empty_stationary
+kart_config: karts/prototype.yaml
+duration_s: 0.1
+command:
+  drive: 0.0
+  brake: 0.0
+  steering_rad: 0.0

@@ -1,0 +1,49 @@
+# SIMULATION USE ONLY — deterministic follower acceptance scenario.
+name: gazebo_follower_full_lap
+preset: configs/presets/gazebo_sensor_development.yaml
+track: configs/tracks/research_circle.yaml
+kart: configs/karts/prototype_dynamic.yaml
+controller: configs/controllers/baseline_racing.yaml
+sensor_suite: configs/sensors/planned_kart.yaml
+seed: 20260729
+duration_s: 35.0
+start: {s_m: 0.0, lateral_m: 0.0}
+target_speed_mps: 4.0
+agents: 1
+weather: {condition: clear, temperature_c: 25.0}
+obstacles: []
+faults: []
+session_rules:
+  laps: 1
+  controlled_stop_after_finish: true
+simulation:
+  physics_backend: internal
+gazebo:
+  role: visual_sensor_follower
+  vehicle_dynamics_authority: false
+  actuation_authority: false
+  world: simulation/worlds/autokart_gazebo_follower_world.sdf
+rates:
+  physics_hz: 1000
+  vcu_hz: 250
+  gazebo_follow_hz: 100
+  camera_hz: 30
+  depth_hz: 30
+  lidar_hz: 20
+  imu_hz: 200
+timing:
+  maximum_interpolation_s: 0.020
+  maximum_state_age_s: 0.020
+  camera_processing_latency_s: 0.008
+  depth_processing_latency_s: 0.010
+  lidar_processing_latency_s: 0.004
+  imu_processing_latency_s: 0.001
+  transport_latency_s: 0.002
+  jitter_s: 0.0005
+imu:
+  source: internal
+logging:
+  telemetry: true
+  sensors: true
+  ros_recording: true
+  artifacts: artifacts/gazebo_follower/full_lap

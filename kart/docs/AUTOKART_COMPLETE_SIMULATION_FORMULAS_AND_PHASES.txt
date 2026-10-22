@@ -1,0 +1,2797 @@
+AUTONOMOUS ELECTRIC GO-KART SIMULATOR
+COMPLETE SIMULATION, FORMULA, AND PHASE REFERENCE
+=================================================
+
+Document date: 2026-07-29
+Repository: /home/mark1/Desktop/kart
+Primary implementation package: kart_sim/
+
+PURPOSE
+-------
+
+This document explains how the simulator is assembled, the principal formula
+used by every implemented subsystem, why each formula is used, the units and
+sign conventions, how data flows between phases, and what each project phase
+adds.
+
+This is an engineering explanation of the repository as it exists. It is not a
+claim that the model is a validated digital twin or that the kart is safe for
+real-vehicle deployment.
+
+Evidence status at the time of writing:
+
+  * Local test suite: 107 passed, 0 failed, 0 skipped.
+  * Phase 7 software/simulation gate: 79/79 mandatory items PASS.
+  * Native ROS 2 graph: NOT EXECUTED because rclpy is unavailable.
+  * Project Chrono: NOT EXECUTED because the bindings are unavailable.
+  * CARLA/Unreal: NOT EXECUTED because the engines/APIs are unavailable.
+  * Real CAN/HIL hardware: NOT EXECUTED.
+  * Real-kart calibration and validation: NOT EXECUTED because no measured
+    dataset is present.
+  * Real-vehicle readiness: REJECTED.
+
+The terms used below are:
+
+  IMPLEMENTED
+      The equation is present in the current executable Python model.
+
+  IMPLEMENTED, REDUCED ORDER
+      The equation runs, but deliberately omits physical effects that require a
+      higher-fidelity backend or measured parameters.
+
+  INTERFACE ONLY
+      A typed/tested boundary exists, but the native external engine or
+      hardware has not been executed.
+
+  DESIGN TARGET
+      The equation is part of the phase specification and future architecture,
+      but is not fully represented in the current reduced-order implementation.
+
+
+1. HOW THE WHOLE SIMULATION IS BUILT
+====================================
+
+1.1 Main software layers
+------------------------
+
+The complete data path is:
+
+  YAML configuration
+    -> schema validation
+    -> deterministic fixed-step scheduler
+    -> scenario/fault event source
+    -> high-level motion command
+    -> VCU integrity, freshness, state, and safety checks
+    -> independent safety override
+    -> dynamic steering, brake, motor, battery, and power models
+    -> four-wheel tire and vehicle dynamics
+    -> track projection and per-wheel surface lookup
+    -> feedback and sensor messages
+    -> telemetry/log/replay
+    -> read-only engineering dashboard and optional adapters
+
+The important safety property is that an integrated VCU scenario does not
+write directly to steering, brake, or motor actuators. The VCU is the final
+normal software authority, and the independent safety layer can override it.
+
+1.2 Source map
+--------------
+
+  kart_sim/config.py
+      SI-unit configuration schema and validation.
+
+  kart_sim/scheduler.py
+      Deterministic fixed-step execution.
+
+  kart_sim/vehicle.py
+      Planar bicycle model.
+
+  kart_sim/tires.py
+      Linear tire stiffness and friction-circle saturation.
+
+  kart_sim/four_wheel.py
+      Four contact patches, load transfer, Ackermann geometry, solid rear axle,
+      chassis twist proxy, and planar body integration.
+
+  kart_sim/actuators.py
+      Steering and brake command-to-mechanical-response dynamics.
+
+  kart_sim/powertrain.py
+      Reduced-order BLDC, controller, chain, current, power, and thermal model.
+
+  kart_sim/electrical.py
+      Battery, pre-charge, contactor, DC bus, and power domains.
+
+  kart_sim/thermal.py
+      First-order thermal masses, derating, shutdown, and restart hysteresis.
+
+  kart_sim/dynamic_kart.py
+      Couples achieved actuator outputs to four-wheel dynamics.
+
+  kart_sim/track.py
+      Arc-length track, projection, elevation, banking metadata, corners, and
+      spatial surface lookup.
+
+  kart_sim/sensors.py
+      Deterministic asynchronous sensor timing, simple IMU, and wheel encoder.
+
+  kart_sim/vcu.py
+      VCU state machine, command validation, safety envelope, plausibility,
+      controlled stop, emergency stop, and reset guards.
+
+  kart_sim/autonomy.py
+      Transport-neutral trajectory contracts, Pure Pursuit, Stanley, and
+      longitudinal PID.
+
+  kart_sim/ros2_sil.py and kart_sim/ros2_wire.py
+      ROS-independent SIL contracts and optional ROS 2 boundary.
+
+  kart_sim/benchmark.py
+      Deterministic fault campaign generation and reduction.
+
+  kart_sim/backends.py
+      Analytical/Chrono physics backend boundary.
+
+  kart_sim/world_adapter.py
+      CARLA/Unreal coordinate and synchronization boundary.
+
+  kart_sim/can_hil.py
+      CAN codec, counters, CRC, timeout, and simulated plant bridge.
+
+  kart_sim/calibration.py
+      Data governance, parameter registry, simple fitting, and bounded search.
+
+  kart_sim/dashboard.py and kart_sim/dashboard_server.py
+      Read-only normalized telemetry, decimation, replay, comparison, live
+      streaming, and track/kart visualization.
+
+1.3 Sign and frame conventions
+------------------------------
+
+Unless a module says otherwise:
+
+  x or u       forward / longitudinal
+  y or v       left / lateral
+  z            upward
+  yaw          positive counter-clockwise viewed from above
+  yaw rate r   positive left turn
+  steering     positive left
+  lateral tire force Fy  positive left in the body frame
+  battery current        positive for discharge, negative for regeneration
+  brake input            0 to 1
+  drive input            normally 0 to 1 at the vehicle boundary
+  angles                 radians
+  time                   seconds
+  distance               metres
+  speed                  metres per second
+  acceleration           metres per second squared
+  force                  newtons
+  torque                 newton-metres
+  pressure               pascals
+  current                amperes
+  voltage                volts
+  energy                 joules
+  temperature            degrees Celsius
+
+1.4 Fixed-step numerical execution
+----------------------------------
+
+IMPLEMENTED in kart_sim/scheduler.py.
+
+The authoritative simulation time is:
+
+  t_k = k * dt
+
+where:
+
+  k   integer step count
+  dt  configured physics step in seconds
+
+Why:
+
+  Computing time from an integer step avoids accumulating floating-point error
+  by repeatedly performing t = t + dt. It also makes identical configurations,
+  events, and seeds reproduce the same schedule.
+
+The scheduler calls registered callbacks in insertion order. It forbids a
+negative number of steps, backward time, dt <= 0, and dt > 0.02 s.
+
+The vehicle state is mostly advanced with semi-implicit Euler:
+
+  velocity_(k+1) = velocity_k + acceleration_k * dt
+  position_(k+1) = position_k + velocity_(k+1) * dt
+
+Why:
+
+  Semi-implicit Euler is deterministic, inexpensive, and generally more stable
+  for force-driven motion than explicit Euler. It is still only a first-order
+  method, so convergence with timestep and comparison with a higher-fidelity
+  backend remain required.
+
+1.5 Multi-rate scheduling
+-------------------------
+
+IMPLEMENTED for sensors and VCU scheduling.
+
+For a component with nominal frequency f:
+
+  period T = 1 / f
+  next_due_(n+1) = next_due_n + T
+
+The due test is:
+
+  current_time + numerical_epsilon >= next_due
+
+Why:
+
+  An explicit next-due time preserves independent rates and phases. Testing
+  whether simulation time is approximately divisible by T would synchronize
+  components unintentionally and could lose samples.
+
+The scenario VCU task uses a configured period and sample-and-holds the last
+valid VCU output between VCU cycles. A frozen VCU stops generating watchdog
+pulses while the separately evaluated independent layer continues.
+
+
+2. CONFIGURATION AND VALIDATION FORMULAS
+========================================
+
+2.1 Centre-of-gravity geometry
+------------------------------
+
+IMPLEMENTED.
+
+The configuration measures cg.x from the wheelbase midpoint. The distances
+from the CG to the front and rear axles are:
+
+  a = L / 2 - x_cg
+  b = L - a
+
+where:
+
+  L     wheelbase
+  x_cg  configured CG longitudinal position
+  a     CG-to-front-axle distance
+  b     CG-to-rear-axle distance
+
+Why:
+
+  Tire slip, yaw moment, and static normal loads need axle lever arms measured
+  from the CG.
+
+Validation requires the CG to lie within:
+
+  -L/2 <= x_cg <= L/2
+
+2.2 Range clamps
+----------------
+
+The repository repeatedly uses:
+
+  clamp(x, low, high) = max(low, min(high, x))
+
+Why:
+
+  A command, current, torque, pressure, rate, or state must not exceed a
+  physical/configured range. A clamp represents saturation; it does not prove
+  the hardware actually reaches the saturated request.
+
+Configuration rejects non-finite values and uses positive, nonnegative, unit
+interval, and enumerated constraints. These checks prevent a plausible-looking
+simulation from starting with impossible parameters.
+
+
+3. PHASE 1 — FOUNDATION, SCHEDULER, CONFIGURATION, AND LOGGING
+=============================================================
+
+Purpose:
+
+  Establish a deterministic, headless, inspectable simulator with validated
+  YAML, a CLI, structured telemetry, and repeatable tests.
+
+Key equations:
+
+  t_k = k dt
+  number_of_steps approximately equals duration / dt
+
+Why:
+
+  All later physical and safety timing depends on a single authoritative clock.
+
+Build contribution:
+
+  * Python package and CLI.
+  * Pydantic-backed SI configuration.
+  * Fixed-step scheduler.
+  * JSON Lines telemetry and metadata.
+  * Seed field for deterministic random sources.
+
+Status:
+
+  COMPLETE BASELINE locally. This is deterministic software execution, not a
+  real-time operating-system timing guarantee.
+
+
+4. PHASE 2 — PLANAR BICYCLE VEHICLE MODEL
+=========================================
+
+IMPLEMENTED, REDUCED ORDER in kart_sim/vehicle.py.
+
+4.1 State
+---------
+
+The state is:
+
+  x, y       world position
+  psi        yaw angle
+  u, v       body longitudinal and lateral velocity
+  r          yaw rate
+  ax, ay     body accelerations
+
+Roll, pitch, wheel hop, compliance, and individual contact patches are not
+dynamic states in this Phase 2 backend.
+
+4.2 Axle slip angles
+--------------------
+
+  alpha_f = atan2(v + a r, max(|u|, u_epsilon)) - delta
+  alpha_r = atan2(v - b r, max(|u|, u_epsilon))
+
+where:
+
+  alpha_f, alpha_r  front and rear slip angles
+  delta             road-wheel steering angle
+  a, b              CG-to-axle distances
+  u_epsilon         low-speed denominator guard
+
+Why:
+
+  A tire develops lateral force according to the difference between the
+  direction the wheel points and the direction its contact patch travels.
+  atan2 handles large ratios and signs; the low-speed floor prevents division
+  by zero. At very low speed this is a numerical approximation, not a complete
+  static-contact model.
+
+4.3 Static axle loads
+---------------------
+
+  Fz_front = m g b / L
+  Fz_rear  = m g a / L
+
+Why:
+
+  Moment balance about each axle distributes weight according to the CG
+  position. Phase 2 omits dynamic longitudinal and lateral load transfer.
+
+4.4 Linear lateral tire force with saturation
+---------------------------------------------
+
+Before saturation:
+
+  Fy_front_raw = -C_alpha * alpha_f
+  Fy_rear_raw  = -C_alpha * alpha_r
+
+Available friction:
+
+  Fy_limit = mu_peak * surface_scale * Fz
+
+Final force:
+
+  Fy = clamp(Fy_raw, -Fy_limit, +Fy_limit)
+
+Why:
+
+  The linear region approximates tire cornering stiffness. The friction cap
+  prevents unbounded lateral force. It is simpler than Pacejka, brush, or
+  thermo-mechanical tire models.
+
+4.5 Longitudinal forces
+-----------------------
+
+  F_drive = drive_command * maximum_wheel_force
+
+  F_brake = brake_command * maximum_brake_force * sign(u)
+
+  F_roll = C_rr * m g * sign(u)
+
+  F_aero = 0.5 * rho * CdA * u |u|
+
+  F_grade = m g sin(theta_grade)
+
+Why:
+
+  * Drive maps normalized demand to a configured force boundary.
+  * Brake opposes existing motion.
+  * Rolling resistance approximates tire/bearing losses.
+  * Aerodynamic drag grows quadratically and opposes motion.
+  * Grade force is the gravity component along the track.
+
+The signed aerodynamic form u|u| works in forward and reverse.
+
+4.6 Body forces and yaw moment
+------------------------------
+
+  Fx = F_drive - F_brake - F_roll - F_aero - F_grade
+       - Fy_front sin(delta)
+
+  Fy = Fy_rear + Fy_front cos(delta)
+
+  Mz = a Fy_front cos(delta) - b Fy_rear
+
+Why:
+
+  The steered front force is rotated into the body frame. The axle lever arms
+  turn lateral forces into yaw moment.
+
+4.7 Body accelerations
+----------------------
+
+  u_dot = Fx / m + r v
+  v_dot = Fy / m - r u
+  r_dot = Mz / Iz
+
+where Iz is yaw inertia.
+
+Why:
+
+  Newton's second law supplies Fx/m and Fy/m. The +/- rotational coupling terms
+  arise because u and v are expressed in a rotating body frame.
+
+4.8 World-coordinate kinematics
+-------------------------------
+
+  x_dot = u cos(psi) - v sin(psi)
+  y_dot = u sin(psi) + v cos(psi)
+  psi_dot = r
+
+Why:
+
+  This is the 2-D rotation from body velocity to world velocity.
+
+Limitations:
+
+  This model is intended for mathematical baseline tests, not final kart
+  dynamics fidelity.
+
+
+5. PHASE 3 — FOUR-WHEEL DYNAMICS, SOLID AXLE, AND CHASSIS TWIST
+===============================================================
+
+IMPLEMENTED, REDUCED ORDER in kart_sim/four_wheel.py and kart_sim/tires.py.
+
+5.1 Ackermann steering approximation
+------------------------------------
+
+For nonzero average steering delta:
+
+  R = L / |tan(delta)|
+  delta_inner = atan2(L, R - track_front/2)
+  delta_outer = atan2(L, R + track_front/2)
+
+The sign is restored for left or right turning.
+
+Why:
+
+  The inside front wheel follows a smaller turn radius and therefore needs a
+  larger steer angle. This reduces geometric scrub relative to giving both
+  front wheels the same angle.
+
+5.2 Quasi-static longitudinal load transfer
+-------------------------------------------
+
+  Fz_front_total = m g b/L - m ax h/L
+  Fz_rear_total  = m g a/L + m ax h/L
+
+where h is CG height.
+
+Why:
+
+  Longitudinal acceleration creates a pitch moment m ax h. Acceleration moves
+  load rearward; braking moves load forward. This is algebraic load transfer,
+  not a pitch suspension dynamic.
+
+5.3 Quasi-static lateral load transfer
+--------------------------------------
+
+  DeltaFz_front = m ay h (b/L) / track_front
+  DeltaFz_rear  = m ay h (a/L) / track_rear
+
+Each axle total is split:
+
+  Fz_left  = Fz_axle/2 - DeltaFz_axle/2
+  Fz_right = Fz_axle/2 + DeltaFz_axle/2
+
+with nonnegative clamping.
+
+Why:
+
+  Lateral acceleration transfers load from the inside to the outside wheels.
+  The front/rear split is a reduced-order lever-arm approximation.
+
+5.4 Chassis torsion proxy
+-------------------------
+
+  theta_twist = Delta_load_lateral * h / K_chassis
+
+where:
+
+  Delta_load_lateral  left-right load difference
+  K_chassis           torsional stiffness in N m/rad
+
+Why:
+
+  A kart has no conventional suspension and uses chassis flexibility to keep
+  contact loads viable. The current equation is only a quasi-static twist
+  proxy; it is not a finite-element or multibody chassis model.
+
+5.5 Wheel-centre velocity
+-------------------------
+
+For a wheel at body coordinates (x_w, y_w):
+
+  vx_body_at_wheel = u - r y_w
+  vy_body_at_wheel = v + r x_w
+
+Rotate into a wheel steered by delta_w:
+
+  vx_wheel =  vx_body cos(delta_w) + vy_body sin(delta_w)
+  vy_wheel = -vx_body sin(delta_w) + vy_body cos(delta_w)
+
+Why:
+
+  Rigid-body rotation changes the local velocity at each contact patch, and
+  tire slip must be computed in each wheel's own frame.
+
+5.6 Wheel slip ratio and slip angle
+-----------------------------------
+
+  kappa = (omega R_tire - vx_wheel)
+          / max(|vx_wheel|, low_speed)
+
+  alpha = atan2(vy_wheel, max(|vx_wheel|, low_speed))
+
+Why:
+
+  Slip ratio compares tread speed with road-relative speed. Slip angle compares
+  lateral and longitudinal contact-patch velocity. A finite low-speed
+  denominator prevents singular results near rest.
+
+5.7 Combined-slip friction circle
+---------------------------------
+
+Raw forces:
+
+  Fx_raw = C_kappa * kappa
+  Fy_raw = -C_alpha * alpha
+
+Friction limit:
+
+  F_limit = mu_peak * surface_scale * Fz
+
+Raw magnitude:
+
+  F_raw = sqrt(Fx_raw^2 + Fy_raw^2)
+
+Scaling:
+
+  scale = min(1, F_limit / F_raw), when F_raw > 0
+
+Final forces:
+
+  Fx = scale * Fx_raw
+  Fy = scale * Fy_raw
+
+Utilization:
+
+  utilization = sqrt(Fx^2 + Fy^2) / F_limit
+
+Why:
+
+  A tire cannot independently produce maximum longitudinal and lateral force.
+  The circle shares finite friction capacity between braking/drive and
+  cornering. Real tire envelopes are not perfect circles and are load,
+  temperature, pressure, and history dependent.
+
+5.8 Solid rear axle angular dynamics
+------------------------------------
+
+  T_drive = drive * maximum_wheel_force * R_tire
+  T_brake = brake * maximum_brake_force * R_tire * sign(omega_axle)
+  T_tire  = (Fx_rear_left + Fx_rear_right) * R_tire
+  T_loss  = bearing_loss * sign(omega_axle)
+
+  omega_dot_axle =
+      (T_drive - 0.5 T_brake - T_tire - T_loss) / I_axle
+
+  omega_axle_(k+1) = omega_axle_k + omega_dot_axle dt
+
+Why:
+
+  Both rear wheels share one shaft speed, matching a rigid solid axle. Different
+  path speeds therefore appear as rear tire slip/scrub rather than independent
+  wheel speeds. The 0.5 brake factor is an established implementation boundary
+  and must be calibrated rather than treated as a universal physical law.
+
+5.9 Wheel force to body force
+-----------------------------
+
+  Fx_body = Fx_wheel cos(delta_w) - Fy_wheel sin(delta_w)
+  Fy_body = Fx_wheel sin(delta_w) + Fy_wheel cos(delta_w)
+
+  Mz_wheel = x_w Fy_body - y_w Fx_body
+
+The four contributions are summed, resistance forces are added, and the same
+body equations and semi-implicit integration from Phase 2 are applied.
+
+5.10 Static brake handling
+--------------------------
+
+The numerical model prevents a braking-only command from reversing the vehicle
+through zero speed and applies a low-speed hold.
+
+Why:
+
+  A dissipative brake should stop motion, not become a propulsion source
+  because a finite timestep overshoots zero.
+
+
+6. PHASE 4 — ACTUATORS, MOTOR, BATTERY, POWER, AND THERMAL MODELS
+================================================================
+
+6.1 Steering actuator
+---------------------
+
+IMPLEMENTED, REDUCED ORDER in kart_sim/actuators.py.
+
+Validated road-wheel target:
+
+  delta_valid = clamp(delta_requested, right_limit, left_limit)
+
+Shaft target:
+
+  theta_target = clamp(delta_valid * linkage_ratio,
+                       -theta_max, +theta_max)
+
+Voltage scale:
+
+  s_V = min(1, V_supply / 24), or zero when the domain is disabled
+
+Speed-torque envelope:
+
+  T_available = T_stall * s_V
+                * max(0, 1 - |omega|/omega_no_load)
+                * thermal_derating
+
+Why:
+
+  A reduced-order DC/servo actuator has maximum torque at stall and decreasing
+  torque toward no-load speed. Voltage and temperature reduce availability.
+
+PD torque request:
+
+  error = theta_target - theta_shaft
+  T_command = clamp(8 error - 0.8 omega,
+                    -T_available, +T_available)
+
+Why:
+
+  Proportional action closes position error and derivative/velocity action
+  damps the motion. Gains are provisional simulation values.
+
+Friction:
+
+  T_friction = T_coulomb tanh(omega/0.02) + B omega
+
+Why:
+
+  tanh smoothly approximates the sign function near zero, avoiding a hard
+  discontinuity; B omega represents viscous damping.
+
+Shaft dynamics:
+
+  omega_dot =
+      (T_command - T_tire_load - T_friction) / J_reflected
+
+  omega_(k+1) = clamp(omega_k + omega_dot dt, -omega_max, +omega_max)
+  theta_(k+1) = theta_k + omega_(k+1) dt
+
+Backlash:
+
+  The linkage reference changes only when the shaft/ratio difference exceeds
+  the configured backlash. This creates a dead zone.
+
+Linkage first-order response:
+
+  delta_linkage_(k+1) = delta_linkage_k
+      + (delta_reference - delta_linkage_k)
+        * min(1, K_linkage dt / 30)
+
+Why:
+
+  This is a stable proxy for elastic linkage convergence, not a full
+  mass-spring-damper derivation.
+
+Current and heating:
+
+  I = min(I_peak, |T_command| / K_t)
+  P_copper = I^2 R_winding
+
+Faults change physical behavior:
+
+  power_loss -> zero available drive
+  jam -> zero shaft acceleration while current/torque demand may remain
+  runaway -> forced positive shaft acceleration
+  linkage_break -> actuator moves but linkage does not follow
+  road_wheel_jam -> linkage/actuator may move but road wheels do not
+
+6.2 Brake actuator, cable, hydraulics, and brake torque
+-------------------------------------------------------
+
+IMPLEMENTED, REDUCED ORDER.
+
+Commanded linear position:
+
+  x_command = clamp(brake_effort, 0, 1) * maximum_travel
+
+Maximum cable speed:
+
+  v_cable = omega_stepper_max * pulley_radius
+            * min(1, V_supply/V_nominal)
+
+Position is rate limited:
+
+  Delta x = clamp(x_command - x_actual,
+                  -v_cable dt, +v_cable dt)
+  x_actual_(k+1) = x_actual_k + Delta x
+
+Cable displacement after slack:
+
+  x_cable = max(0, x_actual - cable_slack)
+
+Cable tension:
+
+  F_cable = transmission_scale * K_cable * x_cable
+
+  transmission_scale = 1.0 nominal
+  transmission_scale = 0.25 for the partial cable fault
+  F_cable = 0 for a complete cable break
+
+Why:
+
+  The distinction between actuator-side movement and transmitted cable force is
+  essential for detecting a cable break.
+
+Hydraulic pressure target:
+
+  P_target = transmission_scale
+             * min(P_max, pressure_gain * x_cable)
+
+For cable_break or hydraulic_leak:
+
+  P_target = 0
+
+Pressure slew and leakage:
+
+  P_(k+1/temporary) = P_k
+      + clamp(P_target - P_k,
+              -pressure_rate dt, +pressure_rate dt)
+
+  P_(k+1) = P_(temporary) * max(0, 1 - leakage_rate dt)
+
+Why:
+
+  Pressure cannot appear instantaneously, and a hydraulic circuit loses some
+  pressure through leakage. The current model is lumped rather than resolving
+  fluid compressibility, hose expansion, individual calipers, and line volumes.
+
+Wheel brake torque:
+
+  T_brake = P * A_piston * mu_pad * R_effective * friction_scale
+
+Why:
+
+  Pressure times piston area gives clamp-force scale; friction and effective
+  disc radius convert it to torque.
+
+For pad_friction_reduced or fade:
+
+  friction_scale = 0.25
+
+Disc heating input:
+
+  P_disc_heat = |T_brake * omega_wheel|
+
+Why:
+
+  Braking mechanical power becomes heat. The thermal mass then removes heat
+  through its cooling model.
+
+6.3 BLDC powertrain
+-------------------
+
+IMPLEMENTED, REDUCED ORDER in kart_sim/powertrain.py.
+
+Requested torque:
+
+  T_requested = clamp(request_fraction, -1, 1) * I_peak * K_t
+
+Motor speed:
+
+  omega_motor = gear_ratio * omega_axle
+
+Back-EMF/current limit:
+
+  I_voltage = max(0, (V_bus - K_e |omega_motor|) / R_phase)
+  I_limit = min(I_peak, I_voltage)
+
+Available torque:
+
+  T_available = I_limit * K_t
+                * motor_thermal_derating
+                * controller_thermal_derating
+
+Target torque:
+
+  T_target = clamp(T_requested, -T_available, +T_available)
+
+Why:
+
+  Motor torque is current limited. At increasing speed, back EMF consumes more
+  bus voltage and reduces current headroom. Thermal factors reduce safe torque.
+
+Torque slew:
+
+  rate = rise_rate if |T_target| > |T_actual| else fall_rate
+
+  T_actual_(k+1) = T_actual_k
+      + clamp(T_target - T_actual_k, -rate dt, +rate dt)
+
+Why:
+
+  Actual torque cannot change infinitely fast. Different rise and fall rates
+  support realistic enable/disable response tests.
+
+Current and power:
+
+  I_motor = |T_actual| / K_t
+  P_mechanical = T_actual * omega_motor
+  P_copper = I_motor^2 R_phase
+  P_electrical = max(0, P_mechanical/efficiency) + P_copper
+  I_bus = P_electrical / max(V_bus, 1 V)
+
+Why:
+
+  These relations support battery loading, energy accounting, and plausibility
+  monitoring. Regeneration is simplified because electrical power is clipped
+  nonnegative in the current motor implementation.
+
+Chain:
+
+  T_chain = T_actual * gear_ratio * efficiency
+  F_chain = |T_chain| / sprocket_radius
+
+The current sprocket radius is 0.04 m.
+
+Fault behavior includes:
+
+  torque_loss/controller_disabled -> target zero
+  chain_break -> motor target zero in the current implementation and chain
+                 torque zero
+  torque_stuck_positive -> positive available torque while enabled
+  wrong_sign -> sign-reversed target
+  overtemperature -> thermal shutdown
+
+6.4 Dynamic actuator-to-tire coupling
+-------------------------------------
+
+IMPLEMENTED in kart_sim/dynamic_kart.py.
+
+The achieved motor chain torque and achieved brake torque are converted back to
+the normalized established Phase 3 boundaries:
+
+  drive_fraction =
+      T_chain / (maximum_wheel_force * R_tire)
+
+  brake_fraction =
+      T_brake / (maximum_brake_force * R_tire)
+
+Why:
+
+  Scenario/VCU commands do not directly become tire forces. They first pass
+  through power, actuator, and drivetrain dynamics; only achieved mechanical
+  outputs drive the vehicle backend.
+
+6.5 Battery open-circuit voltage
+--------------------------------
+
+IMPLEMENTED PROVISIONAL FALLBACK in kart_sim/electrical.py.
+
+  V_oc = voltage_scale * V_nominal * (0.90 + 0.10 SOC)
+
+Why:
+
+  This supplies a monotone state-of-charge dependence without measured cell
+  data. It must be replaced by measured OCV-versus-SOC/temperature tables.
+
+6.6 Pre-charge
+--------------
+
+  tau = R_precharge * C_bus
+
+  V_bus_(k+1) = V_bus_k + (V_oc - V_bus_k) dt/tau
+
+The contactor closes when:
+
+  V_bus >= 0.90 V_oc
+
+Why:
+
+  This is the forward-Euler form of first-order RC capacitor charging. It
+  represents inrush-current management at reduced order.
+
+6.7 Battery current, voltage, state of charge, and energy
+---------------------------------------------------------
+
+Requested current:
+
+  I_requested = P_requested / max(V_bus, 1 V)
+
+Limited current:
+
+  I = clamp(I_requested, -I_charge_max, +I_discharge_peak)
+
+Terminal voltage:
+
+  V_terminal = max(0, V_oc - I R_internal)
+
+State of charge:
+
+  SOC_(k+1) = clamp(
+      SOC_k - I dt/(3600 capacity_Ah), 0, 1)
+
+Power and energy:
+
+  P_battery = V_terminal I
+  E_discharged_(k+1) = E_discharged_k + max(P_battery, 0) dt
+  E_regenerated_(k+1) = E_regenerated_k + max(-P_battery, 0) dt
+
+Why:
+
+  One ampere-hour equals 3600 coulombs. Integrating electrical power produces
+  energy. Positive current is discharge.
+
+The provisional BMS shuts down if:
+
+  V_terminal < 0.75 V_nominal and I > 0
+
+6.8 Power-domain conversion
+---------------------------
+
+  bus_ratio = min(1, V_bus/48)
+  V_domain = V_domain_nominal * bus_ratio
+  I_domain = min(I_domain_max, load_power/max(V_domain, 0.1))
+
+  brownout = V_domain < V_brownout
+
+Why:
+
+  This approximates downstream supply collapse as the traction bus falls.
+  It is not a switched-converter efficiency/transient model.
+
+6.9 First-order thermal model
+-----------------------------
+
+IMPLEMENTED in kart_sim/thermal.py.
+
+Cooling:
+
+  P_cooling = (T - T_ambient) / R_thermal
+
+Temperature update:
+
+  T_(k+1) = T_k
+      + (P_loss - P_cooling) dt / C_thermal
+
+where:
+
+  R_thermal  K/W
+  C_thermal  J/K
+
+Why:
+
+  Energy balance says stored thermal energy changes by heat input minus heat
+  rejection.
+
+Shutdown hysteresis:
+
+  shutdown becomes true when T >= T_shutdown
+  shutdown clears only when T <= T_restart
+
+Derating:
+
+  derating = 0 during shutdown
+
+  otherwise:
+
+  derating = clamp(
+      (T_shutdown - T) / (T_shutdown - T_derate), 0, 1)
+
+Why:
+
+  Output decreases continuously in the derating band and hysteresis prevents
+  rapid shutdown/restart chatter.
+
+
+7. PHASE 5 — TRACK GEOMETRY, SURFACES, AND CORNERS
+==================================================
+
+IMPLEMENTED, REDUCED ORDER in kart_sim/track.py and scenario integration.
+
+7.1 Arc length
+--------------
+
+For centreline segment i from point a to b:
+
+  length_i = sqrt((b_x-a_x)^2 + (b_y-a_y)^2)
+  s_(i+1) = s_i + length_i
+
+Why:
+
+  Track-relative distance s gives a monotone coordinate for surface regions,
+  corners, plots, lap analysis, and run comparison.
+
+Current length ignores vertical distance in the segment length calculation.
+Elevation is retained separately, so steep-track arc length is approximate.
+
+7.2 Linear interpolation on a segment
+-------------------------------------
+
+For query s in segment i:
+
+  q = (s - s_i) / length_i
+  p(s) = a + q (b-a)
+
+Why:
+
+  This produces deterministic track position from a polyline without a spline
+  dependency.
+
+7.3 Heading, wrapped heading difference, curvature, and grade
+--------------------------------------------------------------
+
+  heading = atan2(Delta y, Delta x)
+
+  Delta heading =
+      wrap_to_pi(heading_i - heading_(i-1))
+
+  curvature =
+      Delta heading /
+      max(epsilon, (length_(i-1)+length_i)/2)
+
+  grade = Delta z / length_i
+
+Angle wrapping:
+
+  wrap_to_pi(theta) = (theta + pi) mod (2 pi) - pi
+
+Why:
+
+  Curvature is heading change per path distance. Wrapping prevents a false
+  jump of nearly 2 pi at the -pi/pi boundary. Grade is rise per horizontal
+  centreline length in the current model.
+
+7.4 Track-to-world coordinates
+------------------------------
+
+  x_world = x_center - lateral sin(heading)
+  y_world = y_center + lateral cos(heading)
+  z_world = z_center + vertical
+
+Why:
+
+  The left normal to the centreline is (-sin heading, cos heading), so positive
+  lateral offset means left of the track direction.
+
+7.5 World-to-track projection
+-----------------------------
+
+For each segment:
+
+  q_unclamped =
+      ((x-a_x) Delta x + (y-a_y) Delta y)
+      / (Delta x^2 + Delta y^2)
+
+  q = clamp(q_unclamped, 0, 1)
+  p_projected = a + q (b-a)
+
+The closest segment is selected by Euclidean distance. Signed lateral offset:
+
+  lateral =
+      -(x-p_x) sin(heading)
+      +(y-p_y) cos(heading)
+
+Margins:
+
+  left_margin  = left_width - lateral
+  right_margin = right_width + lateral
+
+Why:
+
+  Orthogonal projection provides track s, lateral error, boundary margin, and
+  surface-region lookup. Closed tracks use previous s as a tie-breaker near
+  ambiguous geometry.
+
+7.6 Spatial surface lookup
+--------------------------
+
+Surface regions are sorted by descending priority and stable identifier. A
+region matches when:
+
+  start_s <= wrapped_s <= end_s
+  and min_lateral <= lateral <= max_lateral
+
+Each wheel contact is transformed to world space, projected independently, and
+uses its matching longitudinal/lateral friction and rolling resistance data.
+
+Why:
+
+  Split-friction braking and individual wheel behavior require per-contact
+  surface assignment, not one surface value for the whole vehicle.
+
+7.7 Corner segmentation
+-----------------------
+
+Samples with:
+
+  |curvature| >= curvature_threshold
+
+are grouped into contiguous regions. A valid group has at least three samples.
+The geometric apex is:
+
+  s_apex = arg max_s |curvature(s)|
+
+Why:
+
+  This provides deterministic automatic corner boundaries and apex markers.
+  Expert-authored segmentation can later replace or augment it.
+
+Limitations:
+
+  The Phase 5 geometry retains elevation/bank metadata and drives pose/surface
+  lookup, but the internal analytical vehicle remains principally planar. It
+  is not a full 3-D road-contact multibody model.
+
+
+8. PHASE 6 — MULTI-RATE SENSORS, TIMING, NOISE, AND FAULTS
+==========================================================
+
+8.1 Current executable sensor foundation
+----------------------------------------
+
+IMPLEMENTED, REDUCED ORDER in kart_sim/sensors.py.
+
+Sensor period:
+
+  T_sensor = 1 / rate_hz
+
+Capture timing:
+
+  t_capture_end = t_capture_start + acquisition_duration
+  t_measurement = t_capture_end
+
+Delivery delay:
+
+  delay = max(0,
+      processing_delay + transport_delay + N(0, jitter_std))
+
+  t_delivery = t_capture_end + delay
+
+Why:
+
+  Measurement time and delivery time are distinct. A consumer can calculate
+  data age without pretending delayed data was measured at receipt.
+
+Sensor clock:
+
+  drift_fraction = drift_ppm * 10^-6
+
+  t_sensor = (1 + drift_fraction) t_sim + clock_offset
+
+Why:
+
+  Each device clock can differ in origin and frequency from authoritative
+  simulation time.
+
+Consumer age:
+
+  age = t_consumer - t_measurement
+
+Fault behavior currently includes dropout/power-loss invalidation and a simple
+frozen-payload mode. Randomness uses a per-sensor seeded Random instance.
+
+8.2 Current planar IMU
+----------------------
+
+IMPLEMENTED, SIMPLIFIED.
+
+  accelerometer =
+      [ax + bias_ax + noise_x,
+       ay + noise_y,
+       g + noise_z]
+
+  gyroscope =
+      [0, 0, yaw_rate + bias_gyro + noise_gyro]
+
+Each noise sample is Gaussian:
+
+  noise ~ N(0, configured_noise_std^2)
+
+Why:
+
+  A level accelerometer measures specific force including the support reaction
+  against gravity; the current planar convention reports +g on its z channel
+  at rest.
+
+Important limitation:
+
+  The current implementation does not yet implement the full 3-D specific-force
+  equation, lever arm, bias random walk, sample-rate density conversion,
+  vibration spectrum, or covariance model.
+
+The DESIGN TARGET is:
+
+  f_measured =
+      R_WI^T (a_IMU_world - g_world)
+      + bias_accel
+      + scale/misalignment terms
+      + noise
+      + vibration
+
+IMU lever-arm acceleration target:
+
+  a_IMU =
+      a_origin
+      + angular_acceleration cross r
+      + angular_velocity cross
+        (angular_velocity cross r)
+
+Bias random walk target:
+
+  b_(k+1) = b_k + sigma_b sqrt(dt) eta_k
+  eta_k ~ N(0,1)
+
+Temperature bias target:
+
+  b(T) = b_0 + k_T (T - T_0)
+
+Why:
+
+  These are the physical equations needed when full 3-D motion and measured IMU
+  noise parameters become available.
+
+8.3 Wheel encoder
+-----------------
+
+IMPLEMENTED, SIMPLE SAMPLED COUNT MODEL.
+
+Count angle:
+
+  Delta theta_count = 2 pi / CPR
+
+Absolute count:
+
+  count = floor(theta_wheel / Delta theta_count)
+
+Delta count:
+
+  delta_count = count_current - count_previous
+
+Why:
+
+  An encoder measures angular crossings, not ground speed. Wheel slip therefore
+  naturally separates encoder-derived speed from vehicle translation.
+
+Limitation:
+
+  The current class samples absolute angle into a floor count. The complete
+  design calls for explicit edge event timestamps and quadrature fault detail.
+
+8.4 Camera equations retained as Phase 6 design targets
+--------------------------------------------------------
+
+DESIGN TARGET; no native photorealistic renderer is present.
+
+Pinhole intrinsics:
+
+      [fx  skew cx]
+  K = [0   fy   cy]
+      [0   0    1 ]
+
+For camera-frame point (Xc,Yc,Zc), Zc > 0:
+
+  x_n = Xc / Zc
+  y_n = Yc / Zc
+
+Radial-tangential distortion:
+
+  r^2 = x_n^2 + y_n^2
+  radial = 1 + k1 r^2 + k2 r^4 + k3 r^6
+
+  x_d = x_n radial
+        + 2 p1 x_n y_n
+        + p2 (r^2 + 2 x_n^2)
+
+  y_d = y_n radial
+        + p1 (r^2 + 2 y_n^2)
+        + 2 p2 x_n y_n
+
+Pixel:
+
+  u = fx x_d + skew y_d + cx
+  v = fy y_d + cy
+
+Why:
+
+  These equations convert an actual 3-D optical ray into an image coordinate
+  while representing lens distortion. Points with Zc <= 0 are behind the
+  camera and must be rejected.
+
+Exposure:
+
+  E_pixel proportional to
+      (1/t_exposure) integral_[t0 to t0+t_exposure] L(t) dt
+
+Rolling-shutter row time:
+
+  t(row) = t_start + row/(height-1) * readout_duration
+
+Why:
+
+  Cameras integrate light over time, and a rolling shutter observes different
+  rows at different vehicle/object poses.
+
+Simplified image noise target:
+
+  I_measured = quantize(
+      clip(gain*I
+           + shot_noise
+           + read_noise
+           + black_level))
+
+The current dashboard does not fabricate such images. It labels missing sensor
+media and debug truth rather than calling analytical graphics photorealistic.
+
+8.5 Stereo/RGB-D equations retained as design targets
+------------------------------------------------------
+
+DESIGN TARGET; no complete RGB-D image formation exists in the current core.
+
+  disparity d = f B / Z
+  depth Z = f B / d
+
+Range-dependent uncertainty:
+
+  sigma_Z approximately equals
+      Z^2 sigma_d / (f B)
+
+Why:
+
+  A fixed disparity error becomes a quadratically increasing depth error with
+  range. Constant depth noise would be physically misleading.
+
+Quantized disparity:
+
+  d_q = round(d / Delta d) * Delta d
+  Z_measured = f B / d_q
+
+Invalid values must use one explicit policy such as zero, NaN, or a mask; the
+policies must not be mixed.
+
+8.6 Scanning LiDAR equations retained as design targets
+--------------------------------------------------------
+
+DESIGN TARGET; no full geometry ray scanner is implemented in sensors.py.
+
+Beam acquisition:
+
+  t_i = t_scan_start + Delta t_i
+
+Ray:
+
+  p_i = origin_i + range_i * direction_unit_i
+
+Range-noise example:
+
+  sigma_range =
+      sigma_0 + k_range range + k_angle f(incidence)
+
+  range_measured = range_true + N(0, sigma_range^2)
+
+Why:
+
+  A scan is sequential, so every beam must use the sensor/object pose at its own
+  acquisition time. A single end-of-scan pose cannot reproduce motion
+  distortion.
+
+8.7 Sensor calibration transforms
+---------------------------------
+
+DESIGN TARGET from the Phase 6 architecture:
+
+  T_parent_sensor_true =
+      T_parent_sensor_nominal * DeltaT_mount
+
+  T_parent_sensor_reported =
+      T_parent_sensor_true * DeltaT_calibration
+
+Why:
+
+  Physical mounting error and reported calibration error are different. A
+  calibration fault must not move the physical device.
+
+
+9. PHASE 7 — VCU, SAFETY, PLAUSIBILITY, STOPPING, AND RESET
+===========================================================
+
+IMPLEMENTED and locally software-tested in kart_sim/vcu.py plus the scenario
+campaigns. Real hardware timing and safety evidence remain absent.
+
+9.1 Command CRC
+---------------
+
+A MotionCommand CRC protects a deterministic byte representation containing:
+
+  source string, sequence, generation timestamp, validity timestamp,
+  requested speed, steering, brake, and E-stop flag.
+
+The implementation uses CRC-16/CCITT in kart_sim/communication.py.
+
+Generic bit update:
+
+  crc starts from 0xFFFF
+  for each byte:
+      crc = crc XOR (byte << 8)
+      repeat 8 times:
+          if top bit set:
+              crc = (crc << 1) XOR 0x1021
+          else:
+              crc = crc << 1
+          retain 16 bits
+
+Why:
+
+  A CRC detects many transmission/serialization errors. It is not
+  authentication and is not cryptographically secure.
+
+9.2 Command age, expiry, and sequence
+-------------------------------------
+
+  command_age = t_VCU - t_command_generation
+
+Command validity requires:
+
+  0 <= command_age <= maximum_age
+  and t_VCU <= valid_until
+
+A future timestamp beyond tolerance is rejected.
+
+For an n-bit counter:
+
+  modulus = 2^n
+  sequence_delta =
+      (sequence_current - sequence_previous) mod modulus
+
+Accepted:
+
+  1 <= sequence_delta <= maximum_sequence_gap
+
+Why:
+
+  This accepts normal counter wrap while detecting duplicates, reversals, and
+  excessive missing messages.
+
+9.3 Dynamic stopping distance
+-----------------------------
+
+Safety-envelope parameters:
+
+  D_clear   available clear distance
+  t_delay   total sensing/control/actuator delay
+  a_g       guaranteed deceleration magnitude
+  d_u       uncertainty allowance
+  d_m       fixed margin
+
+Stopping distance:
+
+  d_stop = v t_delay + v^2/(2 a_g) + d_u + d_m
+
+Why:
+
+  The first term is distance traveled before braking develops. The second is
+  constant-deceleration braking distance from v^2 = u^2 + 2as. The remaining
+  terms retain uncertainty and a fixed safety margin explicitly.
+
+This formula assumes positive a_g. Configuration must reject zero or negative
+guaranteed deceleration.
+
+9.4 Safe speed from clear distance
+----------------------------------
+
+Required:
+
+  D_clear >= v t_delay + v^2/(2 a_g) + d_u + d_m
+
+Define:
+
+  D_useful = D_clear - d_u - d_m
+
+If D_useful <= 0:
+
+  v_clearance = 0
+
+Otherwise the positive quadratic root is:
+
+  v_clearance =
+      -a_g t_delay
+      + sqrt((a_g t_delay)^2 + 2 a_g D_useful)
+
+Why:
+
+  This is the maximum speed whose delay plus braking distance fits inside the
+  observable free space.
+
+9.5 Curvature speed
+-------------------
+
+Lateral acceleration relation:
+
+  a_y = v^2 |curvature|
+
+Therefore:
+
+  v_curve = sqrt(a_y_allowed / |curvature|)
+
+For near-zero curvature, the configured maximum speed is used.
+
+Why:
+
+  Curvature converts a lateral-acceleration limit into a speed limit.
+
+9.6 Final safety speed limit and hysteresis
+-------------------------------------------
+
+Conceptually:
+
+  v_limit = min(
+      state_limit,
+      clearance_limit,
+      curvature_limit,
+      brake_limit,
+      steering_limit,
+      surface_limit,
+      thermal_limit,
+      localization_limit,
+      perception_limit)
+
+The current compact SafetyEnvelope directly returns the minimum of configured
+maximum, clearance, and curvature limits. Scenario telemetry publishes
+additional named candidate values.
+
+Speed reductions can be applied faster than increases; cautious recovery avoids
+limit chatter after a hazard disappears.
+
+9.7 Steering plausibility
+-------------------------
+
+Following error:
+
+  e_steering = target_road_wheel - measured_road_wheel
+
+The monitor combines:
+
+  * command magnitude,
+  * following error magnitude,
+  * duration,
+  * actuator movement,
+  * linkage/road-wheel movement,
+  * primary-secondary disagreement,
+  * uncommanded motion,
+  * vehicle speed.
+
+Current implemented examples:
+
+  command |steering| > 0.12 rad
+  and |command - measured| > 0.18 rad
+  for 0.10 s
+
+then:
+
+  actuator movement < 0.005 rad -> steering response fault
+
+Broken-linkage evidence:
+
+  actuator angle > 0.1 rad
+  road-wheel angle < 0.01 rad
+  under a command > 0.12 rad
+  for 0.15 s
+
+Dual-sensor disagreement:
+
+  |primary - secondary| > 0.052 rad
+
+Why:
+
+  Command transmission is not proof of mechanical road-wheel response. The
+  staged evidence distinguishes actuator jam, linkage break, sensor
+  disagreement, and runaway at reduced order.
+
+9.8 Brake feedback-chain plausibility
+--------------------------------------
+
+Expected pressure used by the monitor:
+
+  P_expected = min(
+      8,000,000 Pa,
+      2.0e9 Pa/m * max(0, actuator_position - 0.002 m))
+
+Complete mechanical-transmission failure evidence:
+
+  brake command > 0.1
+  actuator position > 0.001 m
+  measured pressure < 250,000 Pa
+  persists for 0.15 s
+
+Interpretation:
+
+  actuator moved but pressure did not develop.
+
+If brake torque or vehicle deceleration still supports braking, the code can
+classify pressure sensing as suspect. If torque/deceleration also fail, it
+confirms a critical mechanical/hydraulic chain failure and reports insufficient
+stopping capability.
+
+Partial transmission evidence:
+
+  pressure >= 250,000 Pa
+  and pressure < 0.4 * expected_pressure
+  with sufficient actuator position
+
+Why:
+
+  The operational monitor uses observable actuator position, pressure, brake
+  torque, and acceleration. It does not use the hidden injected-fault identity.
+  Wet-surface low deceleration alone is therefore not labeled a cable break.
+
+9.9 Traction plausibility
+-------------------------
+
+Uncommanded positive torque evidence:
+
+  final drive command <= 0.01
+  and actual motor torque > 0.5 N m
+  for at least 0.05 s
+
+Response:
+
+  EMERGENCY_STOP, motor command zero, motor enable removed, contactor opening
+  requested, emergency braking, fault latching, and feedback monitoring.
+
+Wrong-sign evidence:
+
+  drive command > 0.1
+  and actual torque < -0.5 N m
+
+Traction-loss evidence:
+
+  drive command > 0.1
+  and either:
+      |actual torque| < 0.1 and motor current < 1 A
+  or:
+      actual torque > 0.5 and |chain torque| < 0.1
+
+Why:
+
+  Requested torque, electrical response, mechanical shaft torque, transmitted
+  chain torque, wheel response, and vehicle response are different stages.
+
+Contactor mismatch:
+
+  emergency isolation is commanded
+  but contactor feedback remains closed for at least 0.05 s
+
+This escalates to FAULT_LOCKOUT with POWER-004.
+
+9.10 Controlled-stop state machine
+----------------------------------
+
+Phases:
+
+  INITIATE
+  REMOVE_PROPULSION
+  STABILIZE
+  DECELERATE
+  FINAL_STOP
+  HOLD
+  COMPLETE
+  FAILED
+
+Current time gates:
+
+  INITIATE -> REMOVE_PROPULSION immediately on update
+  REMOVE_PROPULSION -> STABILIZE after 0.02 s from start
+  STABILIZE -> DECELERATE after 0.05 s from start
+
+During controlled stopping:
+
+  drive = 0
+  brake = 0.7
+  steering holds the measured road-wheel angle
+
+Why:
+
+  Positive propulsion is prohibited, mechanical brakes physically act through
+  the dynamic brake model, and holding current steering avoids an abrupt
+  neutralization during a corner.
+
+Measured stop completion requires:
+
+  |vehicle_speed| < 0.05 m/s
+  every valid |wheel_speed| < 0.05 m/s
+  |actual_motor_torque| < 0.1 N m
+  |motor_current| < 1 A
+  hydraulic_pressure >= 100,000 Pa
+  feedback age <= 0.1 s
+  wheel, motor, and brake feedback valid
+
+All conditions must remain true for the configured confirmation duration.
+
+Why:
+
+  Commanded zero is not proof of a stop. Redundant physical feedback prevents a
+  frozen zero wheel sensor or persistent motor torque from falsely completing
+  the stop.
+
+If motion returns during FINAL_STOP/HOLD:
+
+  phase -> DECELERATE
+  hold timer resets
+  rolling_restart_count increments
+
+If elapsed time exceeds the stop timeout:
+
+  phase -> FAILED
+  state -> EMERGENCY_STOP
+  CONTROLLED_STOP_FAILED and STOPPING_CAPABILITY_INSUFFICIENT are recorded
+
+9.11 Emergency stop and independent safety
+-------------------------------------------
+
+Emergency output:
+
+  drive = 0
+  brake = 1
+  motor_enable = false
+  contactor_open = true
+
+The independent layer permits operation only when:
+
+  not latched
+  and physical E-stop inactive
+  and t_now - t_last_watchdog_pulse <= watchdog_timeout
+
+Otherwise it requests motor isolation and brake fallback.
+
+Why:
+
+  A frozen VCU cannot be allowed to validate its own continued operation. The
+  independent task continues after VCU cycles stop.
+
+The simulation cannot prove physical electrical independence; that requires
+hardware architecture and bench testing.
+
+9.12 Reset guards
+-----------------
+
+A reset is accepted only when every required guard is true. The implemented
+rejection conditions include:
+
+  |vehicle_speed| > 0.05
+  any wheel speed > 0.05 or invalid wheel feedback
+  |motor_torque| > 0.1
+  |motor_current| > 1
+  motor enable not removed
+  commanded-open contactor still reports closed
+  physical or remote E-stop active
+  independent layer or watchdog unhealthy
+  steering feedback invalid
+  |primary-secondary steering| > 0.052
+  brake feedback invalid
+  brake pressure < 100,000 Pa
+  power or thermal state invalid
+  cooldown incomplete
+  unauthorized or stale reset
+  required repair not acknowledged
+
+Accepted critical recovery path:
+
+  EMERGENCY_STOP or FAULT_LOCKOUT
+    -> SELF_TEST
+    -> SAFE
+    -> READY
+
+It never returns directly to AUTONOMOUS, and the old command sequence is
+cleared.
+
+9.13 Runtime safety invariants
+------------------------------
+
+Examples:
+
+  EMERGENCY_STOP implies drive = 0 and motor_enable = false
+  FAULT_LOCKOUT implies drive = 0 and motor_enable = false
+  CONTROLLED_STOP implies drive = 0
+
+If an invariant is violated:
+
+  * a critical diagnostic is recorded,
+  * the state becomes EMERGENCY_STOP,
+  * drive is zero,
+  * brake is maximum request,
+  * motor enable is removed,
+  * contactor opening is requested,
+  * a fault snapshot is captured.
+
+
+10. PHASE 8 — ROS 2 AUTONOMY AND SOFTWARE-IN-LOOP
+=================================================
+
+SOFTWARE FRAMEWORK IMPLEMENTED; NATIVE ROS RUNTIME NOT EXECUTED.
+
+10.1 Time conversion
+--------------------
+
+ROS time from seconds:
+
+  sec = integer_part(t)
+  nanosec = round((t - sec) * 10^9)
+
+If nanosec equals 10^9 after rounding:
+
+  sec = sec + 1
+  nanosec = 0
+
+Back to seconds:
+
+  t = sec + nanosec * 10^-9
+
+Why:
+
+  ROS separates whole seconds and nanoseconds. Carry handling prevents an
+  invalid 1,000,000,000 nanosecond field.
+
+10.2 Simulation clock
+---------------------
+
+  t_(k+1) = t_k + step_count * dt
+
+Pause freezes advancement. Reset sets time to zero and increments an epoch so a
+consumer can distinguish a new time domain from time moving backward.
+
+10.3 Quaternion validation
+--------------------------
+
+For quaternion q=(x,y,z,w):
+
+  norm = sqrt(x^2+y^2+z^2+w^2)
+  q_normalized = q / norm
+
+A near-zero norm is rejected.
+
+Why:
+
+  Rotation quaternions must be unit length. Normalization prevents scaling from
+  corrupting transforms.
+
+10.4 Frame and message-time contracts
+-------------------------------------
+
+Sensor messages require:
+
+  capture_start <= measurement_time <= capture_end
+  delivery_time >= measurement_time
+
+Frame trees reject duplicate children and cycles.
+
+QoS is explicit by topic: sensor topics are typically best effort with bounded
+depth; motion command and state/diagnostics use reliable policies.
+
+10.5 Pure Pursuit
+-----------------
+
+IMPLEMENTED baseline controller.
+
+Dynamic lookahead:
+
+  L_d = max(0.1, base_lookahead + speed_gain * max(0,u))
+
+Map target displacement is rotated to vehicle coordinates:
+
+  x_local = cos(psi) dx + sin(psi) dy
+  y_local = -sin(psi) dx + cos(psi) dy
+
+  distance = max(0.1, sqrt(x_local^2+y_local^2))
+
+Current compact steering request:
+
+  delta_request = atan2(2 y_local, distance^2)
+
+Then:
+
+  |delta_k - delta_(k-1)| <= maximum_steering_rate * dt
+  |delta_k| <= maximum_steering
+
+Why:
+
+  Look farther ahead at higher speed to reduce aggressive corrections. The
+  current equation behaves like a curvature-derived steering proxy and omits
+  an explicit wheelbase term, so its gains must not be assumed transferable to
+  the real kart.
+
+10.6 Stanley controller
+-----------------------
+
+Cross-track error:
+
+  e_ct = sin(path_heading) dx - cos(path_heading) dy
+
+Heading error:
+
+  e_heading = wrap_to_pi(path_heading - vehicle_heading)
+
+Steering request:
+
+  delta_request =
+      e_heading
+      + atan2(k_stanley e_ct, |u| + low_speed_softening)
+
+Why:
+
+  The first term aligns heading; the second drives the vehicle back to the
+  path. Softening avoids excessive correction near zero speed.
+
+10.7 Longitudinal PID
+---------------------
+
+Safety-clipped target:
+
+  target = clamp(requested_target, 0, safety_speed_limit)
+
+Error, integral, derivative:
+
+  e_k = target - measured_speed
+  integral_candidate =
+      clamp(integral_k + e_k dt, -I_limit, +I_limit)
+  derivative = (e_k - e_(k-1)) / dt
+
+Raw output:
+
+  u_raw = Kp e + Ki integral_candidate + Kd derivative
+  u = clamp(u_raw, -1, +1)
+
+Mapping:
+
+  drive = max(0, u)
+  brake = max(0, -u)
+
+Why:
+
+  PID converts speed error to normalized propulsion/braking. Conditional
+  integration prevents windup while saturated. The result is still a
+  high-level MotionCommand and cannot bypass VCU validation.
+
+
+11. PHASE 9 — ENGINEERING DASHBOARD
+===================================
+
+IMPLEMENTED LOCALLY as a read-only visualization. It has no actuator authority.
+
+11.1 Normalized vehicle values
+------------------------------
+
+Displayed planar speed:
+
+  speed = sqrt(u^2 + v^2)
+
+Displayed sideslip estimate:
+
+  beta = atan2(v, max(|u|, 10^-9))
+
+Why:
+
+  Speed is the body velocity magnitude. Sideslip is the angle between body
+  heading and velocity direction.
+
+11.2 Track display
+------------------
+
+The dashboard samples the actual Phase 5 track at:
+
+  s_i = i * track_length/(N-1)
+
+It renders centreline, independent left/right boundaries, elevation, surface
+regions, start/finish, corners, and the simulated kart pose. Surface colors are
+visual metadata only; physics remains authoritative in the simulator.
+
+11.3 Replay interpolation
+-------------------------
+
+For a scalar at display time between samples t0 and t1:
+
+  q = clamp((t-t0)/(t1-t0), 0, 1)
+  value(t) = value0 + q(value1-value0)
+
+Angles use the shortest wrapped angular difference before interpolation.
+
+Why:
+
+  Browser rendering can be smoother than telemetry delivery without changing
+  recorded measurements. Missing/stale data is not extrapolated indefinitely.
+
+11.4 Deterministic decimation
+-----------------------------
+
+For N input points and M retained points:
+
+  source_index_i =
+      round(i (N-1)/(M-1)), i=0..M-1
+
+Why:
+
+  It preserves endpoints and distributes retained points across the run while
+  bounding browser memory and rendering work.
+
+11.5 Live timing and backpressure
+---------------------------------
+
+  telemetry_period = 1 / telemetry_rate
+
+Per-client WebSocket queues are bounded. Slow consumers drop/replace display
+work rather than blocking physics or growing memory without limit.
+
+The browser separately displays:
+
+  measured simulation timestamp,
+  delivery/receipt timing where available,
+  interpolated display time,
+  stale state.
+
+
+12. PHASE 10 — FAULT-INJECTION BENCHMARK
+========================================
+
+IMPLEMENTED deterministic campaign framework.
+
+12.1 Parameter sweep size
+-------------------------
+
+For independent parameter value sets S1...Sn, the exhaustive Cartesian grid is:
+
+  number_of_cases = product_i |Si|
+
+Why:
+
+  Every configured combination is tested. Because this grows exponentially,
+  the framework also supports limited/pairwise-like selection.
+
+12.2 Deterministic seeds
+------------------------
+
+Each case stores its seed and stable ordering. Identical scenario, parameters,
+and seed reproduce the same injected timing/noise in locally deterministic
+models.
+
+12.3 Safety timing metrics
+--------------------------
+
+  detection_time =
+      t_fault_confirmed - t_fault_started
+
+  response_time =
+      t_safety_action - t_fault_confirmed
+
+  safe_time =
+      t_final_safe_state - t_fault_started
+
+Distance after a fault is taken from telemetry:
+
+  distance_after_fault =
+      x_stop - x_fault
+
+for straight campaigns; a general curved-track metric should integrate traveled
+path length or use track s.
+
+Why:
+
+  Safety is evaluated by observable timing and physical response, not only by a
+  state flag.
+
+12.4 Case minimization
+----------------------
+
+The framework performs deterministic one-minimal reduction: remove one active
+fault/parameter at a time; retain a removal if the failure remains.
+
+Why:
+
+  It finds a smaller reproducing case for diagnosis. It does not prove the
+  globally smallest failure-inducing set.
+
+
+13. PHASE 11 — PROJECT CHRONO INTEGRATION
+=========================================
+
+BACKEND INTERFACE IMPLEMENTED; NATIVE CHRONO NOT EXECUTED.
+
+The physics backend contract accepts:
+
+  command, dt, motor_enable, contactor_open
+
+and returns:
+
+  vehicle state plus per-wheel load, longitudinal/lateral force, and angular
+  speed.
+
+Why:
+
+  The same VCU, scenarios, telemetry, and tests can drive either the internal
+  analytical backend or a future Chrono multibody backend.
+
+No Chrono-specific contact, suspension, collision, or tire formula is claimed
+as validated because the Chrono bindings are unavailable. Configuration that
+explicitly asks for Chrono must fail clearly rather than silently use the
+analytical model.
+
+
+14. PHASE 12 — CARLA / UNREAL WORLD AND SENSOR INTEGRATION
+==========================================================
+
+ADAPTER CONTRACT IMPLEMENTED; NATIVE ENGINES NOT EXECUTED.
+
+14.1 Coordinate conversion
+--------------------------
+
+The current simulator-to-Unreal convention is:
+
+  x_unreal = x_sim
+  y_unreal = -y_sim
+  z_unreal = z_sim
+  yaw_unreal = -yaw_sim
+
+Applying the same conversion again returns the original values.
+
+Why:
+
+  The y and yaw sign changes bridge opposite handedness conventions while
+  preserving distance.
+
+14.2 Synchronization rules
+--------------------------
+
+The adapter validates:
+
+  track s is strictly increasing
+  sensor delivery_time >= sensor measurement_time
+  visual poses follow authoritative simulation state
+
+Why:
+
+  Rendering is not allowed to become a second physics authority, and late
+  sensor delivery must not change capture time.
+
+No rendered-sensor fidelity or native engine synchronization is claimed.
+
+
+15. PHASE 13 — SIL/HIL, JETSON, VCU, AND CAN
+============================================
+
+PROTOCOL FRAMEWORK IMPLEMENTED; REAL HIL NOT EXECUTED.
+
+15.1 CAN physical-unit encoding
+-------------------------------
+
+  speed_cms = speed_mps * 100
+  steering_millirad = steering_rad * 1000
+  brake_permille = brake_fraction * 1000
+
+Decoding reverses these scales.
+
+Why:
+
+  Fixed-width integer fields give deterministic byte layouts and explicit
+  resolution without floating-point wire ambiguity.
+
+15.2 CRC-8/SAE-J1850
+--------------------
+
+Parameters:
+
+  polynomial = 0x1D
+  initial value = 0xFF
+  final XOR = 0xFF
+
+For each bit, the implementation left-shifts and conditionally XORs the
+polynomial when the top bit is set, retaining eight bits.
+
+Why:
+
+  It detects common frame corruption. Like the command CRC16, it is not
+  cryptographic authentication.
+
+15.3 CAN counter
+----------------
+
+For uint8 sequence:
+
+  delta = (current - previous) mod 256
+
+Accepted:
+
+  1 <= delta <= maximum_gap
+
+Why:
+
+  The modulo relation supports 255 -> 0 wrap and rejects duplicates/reversal.
+
+15.4 CAN timeout safe response
+------------------------------
+
+  stale = no frame received
+          or now - last_receive > timeout
+
+When stale, the simulated plant bridge returns:
+
+  drive = 0
+  brake = 0.7
+
+Why:
+
+  The last command must not remain active indefinitely.
+
+15.5 Decode latency
+-------------------
+
+  decode_latency = decode_complete_time - receive_time
+
+Negative latency is rejected.
+
+15.6 Approximate CAN bus load
+-----------------------------
+
+  bus_load_fraction =
+      frame_rate
+      * (47 + 10 * payload_bytes)
+      / bitrate
+
+Why:
+
+  This is a coarse classic-CAN bit budget including fixed overhead and
+  approximate per-byte bits/stuffing. It is useful for configuration checks,
+  not a bit-exact arbitration/stuffing simulation.
+
+No real actuator is enabled by this software. vCAN and physical CAN evidence
+remain unavailable in the current environment.
+
+
+16. PHASE 14 — REAL-KART CALIBRATION AND VALIDATION FRAMEWORK
+=============================================================
+
+FRAMEWORK IMPLEMENTED; REAL DATA VALIDATION NOT EXECUTED.
+
+16.1 Data integrity
+-------------------
+
+  raw_checksum = SHA-256(file_bytes)
+
+Why:
+
+  Calibration records must refer to immutable raw data. A checksum reveals an
+  accidental or untracked file change.
+
+Datasets receive one frozen split:
+
+  CALIBRATION, VALIDATION, or HOLDOUT
+
+A dataset cannot move between splits.
+
+Why:
+
+  Fitting and judging a model on the same data gives optimistic validation.
+
+16.2 Bounded linear gain fit
+----------------------------
+
+For model:
+
+  y approximately equals gain * x
+
+Least-squares gain through the origin:
+
+  gain_unbounded =
+      sum_i(x_i y_i) / sum_i(x_i^2)
+
+Bounded result:
+
+  gain = clamp(gain_unbounded, lower, upper)
+
+Why:
+
+  This is the analytic least-squares solution for a zero-intercept model. The
+  physical bounds prevent an impossible fitted value. A zero denominator means
+  the experiment cannot identify the parameter and is rejected.
+
+16.3 Bounded grid optimizer
+---------------------------
+
+Candidate i:
+
+  p_i = lower + (upper-lower) i/(N-1)
+
+Select:
+
+  p_best = arg min_i objective(p_i)
+
+Ties select the lower parameter deterministically.
+
+Why:
+
+  A grid search is transparent, bounded, reproducible, and dependency-light.
+  It is not efficient for many parameters and provides no automatic uncertainty
+  quantification.
+
+16.4 Required validation statistics
+-----------------------------------
+
+The framework is prepared for metrics such as:
+
+  error_i = prediction_i - measurement_i
+
+  mean_error = (1/N) sum_i error_i
+
+  MAE = (1/N) sum_i |error_i|
+
+  RMSE = sqrt((1/N) sum_i error_i^2)
+
+  maximum_absolute_error = max_i |error_i|
+
+  R^2 = 1 -
+      sum_i(prediction_i-measurement_i)^2
+      / sum_i(measurement_i-mean_measurement)^2
+
+Why:
+
+  Bias, typical magnitude, large errors, and explained variance describe
+  different aspects of model fit.
+
+These metrics are not currently evidence of sim-to-real validity because no
+real-kart dataset is supplied.
+
+
+17. PHASE 15 — FINAL RESEARCH DEMONSTRATION AND RELEASE
+=======================================================
+
+Phase 15 packages the locally executable research prototype:
+
+  * reproducible configurations and scenarios,
+  * deterministic analytical physics,
+  * Phase 7 safety campaigns,
+  * ROS-independent SIL interfaces,
+  * engineering dashboard,
+  * fault benchmark,
+  * optional-backend boundaries,
+  * CAN/HIL protocol framework,
+  * calibration framework,
+  * phase reports and release documentation.
+
+It introduces no new law of physics. Its job is traceability, reproduction,
+packaging, evidence separation, and an honest release verdict.
+
+Overall status:
+
+  PROTOTYPE RESEARCH SOFTWARE.
+
+Not established:
+
+  * validated digital-twin accuracy,
+  * real-time deadline compliance,
+  * physical E-stop performance,
+  * steering or brake bench response,
+  * contactor isolation timing,
+  * real sensor error behavior,
+  * HIL timing,
+  * safe real-vehicle operation,
+  * ISO 26262 or any other safety certification.
+
+
+18. EXECUTION ORDER INSIDE AN INTEGRATED VCU SCENARIO
+=====================================================
+
+The effective scenario loop is:
+
+  1. Read authoritative fixed-step simulation time.
+  2. Activate due declarative faults.
+  3. Obtain track projection and per-wheel surface properties.
+  4. Construct the high-level MotionCommand with source, sequence, timestamps,
+     values, and CRC.
+  5. On a due VCU cycle, build VcuInputs from measured actuator/vehicle
+     feedback.
+  6. Validate authorization, CRC, finiteness, sequence, freshness, and state.
+  7. Evaluate steering, brake, traction, sensor, power, and watchdog
+     plausibility.
+  8. Compute the safety speed envelope.
+  9. Arbitrate normal, controlled-stop, emergency, and lockout outputs.
+ 10. Apply the independent safety override.
+ 11. Update dynamic steering, brake, and motor subsystems.
+ 12. Convert achieved chain/brake torques to the vehicle backend.
+ 13. Compute wheel slips, tire forces, body forces, and moments.
+ 14. Advance vehicle state by one fixed physics step.
+ 15. Reproject wheel contacts and body pose onto track metadata.
+ 16. Capture feedback and asynchronous sensor messages.
+ 17. Record telemetry, fault events, safety limits, and timing.
+ 18. Feed read-only normalized records to replay/dashboard tools.
+
+Why this order matters:
+
+  * Safety sees previous achieved feedback before issuing the next command.
+  * Actuator dynamics mediate commands before physics.
+  * Faults alter physical subsystem behavior rather than directly forcing
+    acceleration.
+  * The dashboard never becomes a control source.
+
+
+19. DETERMINISM, RANDOMNESS, AND REPLAY
+=======================================
+
+19.1 Controlled randomness
+--------------------------
+
+Every current stochastic sensor has a local pseudo-random generator initialized
+from a configured seed.
+
+For Gaussian jitter/noise:
+
+  sample = mean + standard_deviation * seeded_standard_normal
+
+Why:
+
+  Global uncontrolled randomness would make a fault or sensor run impossible to
+  reproduce.
+
+19.2 Exact replay principle
+---------------------------
+
+Replay uses recorded payloads, timestamps, sequences, state transitions, and
+faults. It does not regenerate sensor noise.
+
+Why:
+
+  Regeneration—even with nominally equal settings—could change ordering or
+  values and would not be an exact replay.
+
+19.3 Floating-point guards
+--------------------------
+
+Small epsilons are used for:
+
+  * low-speed slip denominators,
+  * zero vector/quaternion checks,
+  * due-time comparisons,
+  * division by bus voltage,
+  * track segment and curvature denominators.
+
+Why:
+
+  The simulator must reject or explicitly regularize singular operations rather
+  than produce NaN or infinity that looks like valid telemetry.
+
+
+20. FAULT INJECTION PHILOSOPHY
+==============================
+
+A physically meaningful simulated fault changes a component in the relevant
+chain:
+
+  command -> electrical response -> mechanical response -> mechanism response
+          -> tire/vehicle response -> measured feedback -> diagnosis
+
+Examples:
+
+  Brake cable break:
+      actuator position can increase,
+      cable tension becomes zero,
+      pressure target becomes zero,
+      brake torque disappears,
+      deceleration falls,
+      VCU compares actuator position with pressure/torque/deceleration.
+
+  Steering linkage break:
+      shaft moves,
+      linkage/road-wheel angle does not,
+      VCU detects disagreement.
+
+  Stuck motor torque:
+      actual torque remains positive while enabled even after the normal
+      command is zero,
+      VCU detects command/torque mismatch and requests isolation/braking.
+
+  Welded contactor:
+      open command changes,
+      feedback remains closed,
+      VCU diagnoses isolation failure.
+
+Fault-injector identity is allowed in the test oracle to prove the intended
+fault activated. Operational diagnosis must use observable feedback and cannot
+read hidden fault truth.
+
+
+21. WHAT IS MEASURED, ESTIMATED, OR HIDDEN
+==========================================
+
+Operationally realistic feedback:
+
+  * steering encoders,
+  * brake actuator position,
+  * hydraulic pressure,
+  * motor current/speed/status,
+  * wheel encoders,
+  * IMU,
+  * contactor feedback,
+  * power/temperature status.
+
+Simulation-internal diagnostic quantities:
+
+  * exact cable tension when no load cell is installed,
+  * exact tire force/contact load,
+  * exact injected fault identity,
+  * exact ground-truth pose and acceleration,
+  * exact surface friction coefficient.
+
+These internal quantities may be logged for engineering/test oracles but must
+not silently become normal autonomy sensor data.
+
+
+22. WHY THE MODELS ARE REDUCED ORDER
+====================================
+
+The repository deliberately uses simple equations where they provide a
+testable, deterministic engineering boundary:
+
+  * linear tires instead of a measured nonlinear tire model,
+  * quasi-static load transfer instead of suspension/chassis multibody motion,
+  * first-order actuator and thermal dynamics,
+  * lumped hydraulics,
+  * simple BLDC voltage/current limits,
+  * linear battery OCV,
+  * polyline track geometry,
+  * simplified sensor payloads,
+  * analytical safety envelope.
+
+This allows:
+
+  * fast headless tests,
+  * deterministic fault campaigns,
+  * clear failure diagnosis,
+  * interface development without native external engines.
+
+It does not allow:
+
+  * certification claims,
+  * quantitative real stopping-distance guarantees,
+  * tire-limit prediction without measurement,
+  * thermal endurance claims,
+  * camera/LiDAR fidelity claims,
+  * direct transfer of controller gains or safety timeouts to hardware.
+
+
+23. REAL MEASUREMENTS REQUIRED BEFORE CALIBRATED DIGITAL-TWIN CLAIMS
+===================================================================
+
+Vehicle and tires:
+
+  mass and corner weights; CG in x/y/z; yaw inertia; effective tire radius;
+  cornering and longitudinal stiffness; friction versus slip/load/temperature;
+  rolling resistance; chassis torsional stiffness; axle inertia/losses.
+
+Steering:
+
+  command-to-motion delay; shaft and road-wheel response; ratio; backlash;
+  compliance; current/torque; jam current; mechanical limits; power-loss
+  behavior; sensor accuracy and latency.
+
+Brakes:
+
+  actuator travel/rate; cable slack/stiffness; force transmission; pressure
+  build/release; pressure-to-wheel-torque relation; pad friction/fade;
+  temperature; worst-case stopping force; power-loss and fallback behavior.
+
+Motor and electrical:
+
+  torque constant; back EMF; phase resistance; efficiency map; torque slew;
+  controller latency; disable decay; gear ratio/efficiency; contactor opening
+  time; battery OCV/internal resistance/current limits/thermal behavior.
+
+Sensors:
+
+  rates, clock drift, capture timing, latency, jitter, noise density, bias,
+  temperature drift, mounting/calibration, dropout/freeze/brownout behavior.
+
+Track:
+
+  surveyed centreline/elevation/bank/width; surface friction under temperature
+  and moisture; roughness; boundaries and obstacle geometry.
+
+Safety hardware:
+
+  independent watchdog response; physical and remote E-stop paths; motor-enable
+  interruption; contactor feedback; brake fallback; fault reset behavior.
+
+Validation:
+
+  separate calibration, validation, and holdout datasets; uncertainty bounds;
+  repeated experiments; independent review; progressive low-speed testing.
+
+
+24. HOW TO RUN AND INSPECT THE PROJECT
+======================================
+
+Run all locally executable tests:
+
+  ./scripts/test.sh
+
+Equivalent direct test command:
+
+  python3 -m pytest
+
+Run a basic scenario:
+
+  PYTHONPATH=. python3 -m kart_sim.cli run \
+    configs/scenarios/straight_acceleration.yaml \
+    --output-dir /tmp/kart-run
+
+Run an integrated VCU safety scenario:
+
+  PYTHONPATH=. python3 -m kart_sim.cli run \
+    configs/scenarios/vcu_command_timeout.yaml \
+    --output-dir /tmp/kart-vcu-run
+
+Run the critical safety benchmark:
+
+  PYTHONPATH=. python3 -m kart_sim.cli safety campaign \
+    configs/benchmarks/critical_smoke.yaml
+
+Run the dashboard against a telemetry log:
+
+  PYTHONPATH=. python3 -m kart_sim.cli dashboard serve \
+    /path/to/telemetry.jsonl \
+    --track configs/tracks/research_circle.yaml \
+    --kart configs/karts/prototype_dynamic.yaml \
+    --host 0.0.0.0 \
+    --port 8000 \
+    --rate-hz 30
+
+Open:
+
+  http://localhost:8000/dashboard.html
+
+The dashboard is explicitly:
+
+  ENGINEERING VISUALIZATION ONLY
+  NO ACTUATOR AUTHORITY
+
+
+25. PHASE-BY-PHASE SUMMARY
+==========================
+
+Phase 0 — Audit and engineering records
+  Built repository/environment inventory, assumptions, status, risks, and plan.
+
+Phase 1 — Foundation
+  Built deterministic scheduling, configuration, CLI, logging, and smoke tests.
+
+Phase 2 — Basic mathematical kart
+  Built planar bicycle dynamics, tire saturation, forces, yaw, and integration.
+
+Phase 3 — Four-wheel kart
+  Built four contact patches, per-wheel slip/force, load transfer, solid rear
+  axle, Ackermann geometry, chassis twist proxy, and wheel telemetry.
+
+Phase 4 — Actuators and electrical
+  Built steering/linkage, brake/cable/hydraulics, BLDC/chain, battery,
+  pre-charge, contactor, power domains, thermal dynamics, and physical faults.
+
+Phase 5 — Track and surfaces
+  Built track-relative/world conversion, projection, boundaries, elevation,
+  bank metadata, per-wheel surface lookup, and corner segmentation.
+
+Phase 6 — Sensors
+  Built deterministic asynchronous timing, local clocks, latency/jitter queue,
+  simplified IMU and encoder, and sensor fault foundation. Full camera, RGB-D,
+  LiDAR, and comprehensive sensor fidelity remain design targets.
+
+Phase 7 — VCU and safety
+  Built VCU routing, command integrity/freshness, states, independent watchdog,
+  plausibility monitors, dynamic stopping envelope, physical controlled/E-stop
+  behavior, latching/reset guards, invariants, and integrated campaigns.
+
+Phase 8 — ROS 2 autonomy and SIL
+  Built transport-neutral contracts, frames/time/QoS, mock bridge, trajectory
+  validation, Pure Pursuit, Stanley, and longitudinal PID. Native ROS graph was
+  not executed.
+
+Phase 9 — Dashboard
+  Built read-only live/replay engineering UI, actual track/kart movement,
+  subsystem/safety panels, plots, fault timeline, and run comparison.
+
+Phase 10 — Fault benchmark
+  Built deterministic campaign catalogs, sweeps, resume, coverage records,
+  timing metrics, and reproducing-case minimization.
+
+Phase 11 — Chrono
+  Built physics backend interface and dependency detection. Native Chrono was
+  not executed.
+
+Phase 12 — CARLA/Unreal
+  Built world/render adapter contracts, coordinate conversion, track export,
+  sensor callback timing rules, and headless tests. Native engines were not
+  executed.
+
+Phase 13 — SIL/HIL
+  Built safe CAN protocol, units, CRC/counter/timeout validation, timing
+  instrumentation, and simulated plant bridge. Real Jetson/RP2350/CAN hardware
+  was not executed.
+
+Phase 14 — Calibration and validation
+  Built dataset schema, immutable checksums, frozen splits, parameter registry,
+  bounded fitting/optimization, synthetic tests, and report templates. No real
+  kart data was validated.
+
+Phase 15 — Research demonstration and release
+  Packaged locally reproducible artifacts and reports while preserving all
+  external-evidence gaps and the rejected real-vehicle-readiness verdict.
+
+
+26. FINAL ENGINEERING INTERPRETATION
+====================================
+
+The simulator is best understood as:
+
+  a deterministic, reduced-order, safety-oriented research simulator with
+  explicit interfaces for higher-fidelity physics, rendering, ROS, HIL, and
+  calibration.
+
+Its strongest current evidence is:
+
+  * deterministic local execution,
+  * transparent analytical equations,
+  * physical command-to-actuator-to-vehicle chains,
+  * VCU and independent-safety software behavior,
+  * fault campaigns and safety invariants,
+  * traceable telemetry and replay,
+  * read-only engineering visualization.
+
+Its largest evidence gaps are:
+
+  * unmeasured physical parameters,
+  * incomplete high-fidelity Phase 6 sensors,
+  * no native Chrono or CARLA/Unreal execution,
+  * no native ROS 2 Python graph execution,
+  * no real CAN/HIL bench,
+  * no real-kart calibration/validation,
+  * no physical safety validation.
+
+Therefore, use this project for software research, deterministic scenario
+testing, architecture development, and experiment planning. Do not use its
+provisional formulas or thresholds directly as real-kart control or safety
+limits without measured calibration, independent validation, hardware testing,
+and an appropriate safety engineering process.
+
+END OF DOCUMENT

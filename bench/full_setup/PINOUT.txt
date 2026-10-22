@@ -1,0 +1,37 @@
+INTEGRATED FULL SETUP PINOUT
+============================
+
+BLD-750 interface
+  GPIO1   -> EN transistor driver
+  GPIO2   -> BRK transistor driver
+  GPIO7   -> F/R transistor driver
+
+Steering TB6600
+  GPIO4   -> PUL+
+  GPIO5   -> DIR+
+  GPIO6   -> ENA+
+  GND     -> PUL-, DIR-, ENA-
+
+GP8630N
+  GPIO8   -> SDA
+  GPIO9   -> SCL
+  OUT     -> BLD-750 SV
+  GND     -> BLD-750 COM
+
+Mechanical brake TB6600
+  GPIO10  -> PUL+
+  GPIO11  -> DIR+
+  GPIO12  -> ENA+
+  GND     -> PUL-, DIR-, ENA-
+
+RA-02 / SX1278 receiver
+  GPIO14  -> SCK
+  GPIO13  -> MOSI
+  GPIO15  -> MISO
+  GPIO16  -> NSS/CS
+  GPIO17  -> RESET
+  GPIO18  -> DIO0
+
+All 17 configured GPIO assignments are unique. Verify board exposure, voltage
+levels, common references, transistor inversion, antennas, motor phase/hall
+wiring, and hardwired traction isolation before energizing the system.

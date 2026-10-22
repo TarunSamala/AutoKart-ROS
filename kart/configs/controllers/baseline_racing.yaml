@@ -1,0 +1,13 @@
+controller:
+  lateral: pure_pursuit
+  alternatives: [stanley, follow_the_gap, external]
+  lookahead_m: 1.5
+  speed_lookahead_gain_s: 0.15
+  maximum_steering_rad: 0.5585053606
+  maximum_steering_rate_radps: 2.0
+  longitudinal: pid
+  kp: 0.35
+  ki: 0.12
+  kd: 0.0
+  command_validity_s: 0.10
+  command_output: high_level_motion_command_to_vcu

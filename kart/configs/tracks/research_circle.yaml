@@ -1,0 +1,23 @@
+# SIMULATION USE ONLY — NOT SURVEY OR CONSTRUCTION DATA.
+track:
+  name: research_circle_provisional
+  type: closed
+  coordinate_system: local_enu
+  centreline:
+    representation: polyline
+    control_points:
+      - [10.0, 0.0, 0.0]
+      - [7.0710678, 7.0710678, 0.0]
+      - [0.0, 10.0, 0.0]
+      - [-7.0710678, 7.0710678, 0.0]
+      - [-10.0, 0.0, 0.0]
+      - [-7.0710678, -7.0710678, 0.0]
+      - [0.0, -10.0, 0.0]
+      - [7.0710678, -7.0710678, 0.0]
+  width: {default_left_m: 2.0, default_right_m: 2.0}
+  banking: {default_rad: 0.03}
+materials:
+  dry_asphalt: {friction_longitudinal: 1.0, friction_lateral: 0.95, rolling_resistance: 0.018}
+  wet_asphalt: {friction_longitudinal: 0.60, friction_lateral: 0.55, rolling_resistance: 0.020}
+surface_regions:
+  - {id: wet_patch, coordinates: track, start_s_m: 5.0, end_s_m: 12.0, min_lateral_m: -2.0, max_lateral_m: 0.0, material: wet_asphalt, priority: 20}

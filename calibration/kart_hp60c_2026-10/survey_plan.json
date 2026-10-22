@@ -1,0 +1,81 @@
+{
+  "intrinsics": {
+    "fx": 585.27,
+    "fy": 585.02,
+    "cx": 335.98,
+    "cy": 239.96
+  },
+  "measured_mount": {
+    "x_forward_m": 0,
+    "y_left_m": 0,
+    "height_m": 0.8382,
+    "pitch_down_deg": 17.8,
+    "roll_deg": 0,
+    "yaw_left_deg": 0
+  },
+  "visible_cells": [
+    {
+      "distance_m": 1.5,
+      "region": "left",
+      "y_left_m": 0.68
+    },
+    {
+      "distance_m": 1.5,
+      "region": "center",
+      "y_left_m": 0.06
+    },
+    {
+      "distance_m": 1.5,
+      "region": "right",
+      "y_left_m": -0.55
+    },
+    {
+      "distance_m": 2.0,
+      "region": "left",
+      "y_left_m": 0.87
+    },
+    {
+      "distance_m": 2.0,
+      "region": "center",
+      "y_left_m": 0.08
+    },
+    {
+      "distance_m": 2.0,
+      "region": "right",
+      "y_left_m": -0.7
+    },
+    {
+      "distance_m": 2.5,
+      "region": "left",
+      "y_left_m": 1.06
+    },
+    {
+      "distance_m": 2.5,
+      "region": "center",
+      "y_left_m": 0.1
+    },
+    {
+      "distance_m": 2.5,
+      "region": "right",
+      "y_left_m": -0.86
+    },
+    {
+      "distance_m": 3.0,
+      "region": "left",
+      "y_left_m": 1.26
+    },
+    {
+      "distance_m": 3.0,
+      "region": "center",
+      "y_left_m": 0.12
+    },
+    {
+      "distance_m": 3.0,
+      "region": "right",
+      "y_left_m": -1.01
+    }
+  ],
+  "out_of_view_cells": [],
+  "proposed_alternatives": [],
+  "note": "Visibility uses the measured (unverified) mount; confirm on the live preview."
+}

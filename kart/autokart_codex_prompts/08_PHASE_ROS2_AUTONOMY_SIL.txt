@@ -1,0 +1,609 @@
+AUTONOMOUS ELECTRIC GO-KART SIMULATOR
+CODEX EXECUTION RULES
+
+You are acting as the lead vehicle-dynamics, robotics, embedded, controls, safety, reliability, simulation, and software engineer.
+
+This is not a game-only project. It is a research-grade, deterministic, configurable autonomous electric go-kart simulator that must eventually support software-in-loop, hardware-in-loop, real-kart calibration, and safety fault injection.
+
+ENGINEERING PRIORITY
+1. Human safety
+2. Emergency stopping
+3. Prevention of uncontrolled propulsion or steering
+4. Predictable behaviour
+5. Fault detection
+6. Determinism and timing correctness
+7. Physics and sensor correctness
+8. Testability
+9. Maintainability
+10. Performance
+11. Visual quality
+
+MANDATORY ENGINEERING BEHAVIOUR
+- Inspect the repository and run the complete existing test suite before modifying code.
+- Preserve existing validated work.
+- Do not perform destructive Git operations.
+- Do not silently weaken tests, thresholds, or safety logic to make tests pass.
+- Do not claim success because code compiles.
+- Do not invent hardware specifications.
+- Put provisional values in schema-validated configuration files.
+- Record every assumption in docs/ASSUMPTIONS.md.
+- Record important decisions in docs/ADR/.
+- Use SI units internally.
+- Keep world, vehicle, track, sensor, camera optical, and actuator frames explicit.
+- Use deterministic fixed-step simulation and seeded random streams.
+- Keep measurement time, processing completion time, delivery time, and consumer time separate.
+- Keep operational sensor data separate from debug ground truth.
+- Keep high-level computer, VCU, and independent safety layer separate.
+- No actuator command may remain active indefinitely after communication loss.
+- Every critical fault must have detection, safe response, latching/reset policy, and automated verification.
+- Never claim ISO 26262, ASIL, automotive certification, or real-vehicle safety compliance.
+- Mark example configurations:
+  SIMULATION USE ONLY
+  NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+
+VERDICTS
+Use only:
+- APPROVED
+- APPROVED_WITH_CONDITIONS
+- REJECTED
+- MORE_DATA_REQUIRED
+- PROTOTYPE_TEST_REQUIRED
+
+WORKFLOW
+1. Audit repository and environment.
+2. Run baseline tests and record exact results.
+3. Identify interfaces affected by this phase.
+4. Create a phase implementation plan.
+5. Implement in small, testable increments.
+6. Run unit, integration, regression, fault, determinism, and performance tests.
+7. Update documentation and requirements traceability.
+8. Produce the required final report.
+9. Do not begin the next phase automatically.
+
+EXTERNAL DEPENDENCIES
+When a dependency is unavailable:
+- Do not stop the whole phase.
+- Implement clean interfaces and optional build flags.
+- Add a deterministic fallback or mock where meaningful.
+- Add installation and validation instructions.
+- Mark tests requiring the dependency as explicit optional/integration tests.
+- Never mark an unexecuted integration as passed.
+PHASE 8
+ROS 2 AUTONOMY INTERFACES, TIME SYNCHRONIZATION, TRAJECTORY CONTRACTS,
+BASELINE CONTROLLERS, SOFTWARE-IN-LOOP, AND DETERMINISTIC REPLAY
+
+PREREQUISITE GATE
+Begin only after Phase 7 has implemented and tested:
+- VCU state machine
+- command source identity, counters, CRC/integrity, freshness, and timeouts
+- watchdogs
+- steering, brake, traction, and vehicle-response plausibility
+- dynamic safety envelope
+- controlled stop
+- emergency stop
+- independent safety-layer abstraction
+- critical fault latching and reset policy
+
+If these are missing, report BLOCKED or PARTIAL and implement only interfaces that do not bypass them.
+
+OBJECTIVE
+Create a ROS 2 integration layer that exposes the simulator to real autonomy software while preserving deterministic timing, safety boundaries, message age, and replayability.
+
+The ROS 2 layer must not replace the internal simulator API. The simulator must continue to run headlessly without ROS 2.
+
+REQUIRED DATA FLOW
+simulator ground truth and sensor models
+→ ROS 2 sensor publishers
+→ perception/localization/planning software
+→ trajectory or high-level motion command
+→ ROS 2 command subscriber
+→ command integrity/freshness adapter
+→ VCU validation and dynamic safety envelope
+→ actuator commands
+→ simulated vehicle
+
+1. INITIAL AUDIT
+Inspect:
+- ROS 2 availability and distribution
+- current Python/C++ build systems
+- message definitions
+- scheduler and simulation clock
+- sensor message structures
+- frame tree
+- VCU command protocol
+- replay/log formats
+- existing controller code
+- CI environment
+Run all tests and record baseline.
+
+Do not hard-code a ROS 2 distribution unless the repository already requires one. Detect supported versions and document the compatibility matrix.
+
+2. ARCHITECTURE
+Create optional modules similar to:
+adapters/ros2/
+  package.xml
+  CMakeLists.txt or setup.py
+  launch/
+  config/
+  msg/
+  srv/
+  action/
+  src/
+    clock_bridge
+    tf_bridge
+    sensor_publishers
+    diagnostics_publisher
+    command_subscriber
+    trajectory_subscriber
+    vehicle_state_publisher
+    safety_state_publisher
+    replay_bridge
+    controller_nodes
+
+Keep:
+- simulator core independent of ROS 2
+- ROS messages independent of internal class memory layout
+- conversion functions explicit and tested
+- safety validation inside VCU, not in ROS only
+
+3. SIMULATION CLOCK AND TIME
+Implement:
+- /clock publication
+- use_sim_time support
+- deterministic simulated time
+- pause, resume, step, and reset behaviour
+- measurement timestamps preserved from Phase 6
+- delivery timestamps not substituted for capture timestamps
+- replay with original timestamps
+- time-jump detection
+- reset/epoch policy
+- no wall-clock dependence in deterministic mode
+
+Define how ROS time maps to:
+- simulation time
+- sensor-local time
+- capture time
+- delivery time
+- replay time
+
+Tests:
+- clock monotonicity
+- pause freezes simulation time
+- single-step advances exact fixed steps
+- reset behaviour
+- time jump rejected or explicitly handled
+- replay produces identical timing
+
+4. FRAME TREE
+Publish and validate a frame hierarchy similar to:
+map
+→ odom
+→ base_link or vehicle_body
+→ sensor frames
+→ optical frames
+→ wheel frames
+→ steering linkage frames
+
+Requirements:
+- explicit REP-compatible camera optical frame conversion where applicable
+- static versus dynamic transforms separated
+- no duplicate frame IDs
+- quaternion normalization
+- transform timestamps correct
+- physical mounting transform separate from reported calibration transform
+- frame graph validation command and tests
+
+5. MESSAGE CONTRACTS
+Prefer standard ROS messages where semantically correct:
+- sensor_msgs/Image
+- sensor_msgs/CameraInfo
+- sensor_msgs/Imu
+- sensor_msgs/LaserScan or PointCloud2
+- sensor_msgs/JointState where appropriate
+- nav_msgs/Odometry
+- nav_msgs/Path
+- geometry_msgs/PoseStamped
+- geometry_msgs/TwistStamped
+- diagnostic_msgs/DiagnosticArray
+- rosgraph_msgs/Clock
+
+Create custom messages only when needed.
+
+Required custom contracts may include:
+- VehicleCommand
+- Trajectory
+- TrajectoryPoint
+- VcuState
+- SafetyState
+- ActuatorFeedback
+- PowerState
+- SensorHealth
+- FaultEvent
+- CornerState
+- TrackState
+
+Every safety-relevant message must include:
+- protocol version
+- source
+- destination where applicable
+- sequence counter
+- generation or measurement timestamp
+- validity duration
+- units
+- value ranges
+- quality/validity
+- fault flags
+- configuration/calibration version
+- integrity field where used by the simulated command protocol
+
+Do not rely only on ROS transport reliability for command integrity.
+
+6. QoS
+Define per-topic QoS based on semantics.
+
+Examples:
+- camera and LiDAR: sensor-data profile, bounded queue
+- IMU: low latency, bounded queue
+- commands: reliable where appropriate, small depth, deadline/liveliness monitoring
+- state and diagnostics: reliable, transient-local only where justified
+- /clock: deterministic and documented
+
+Test:
+- lost messages
+- slow subscriber
+- queue overflow
+- incompatible QoS
+- stale command despite reliable transport
+- liveliness loss
+
+7. SENSOR PUBLICATION
+Publish all Phase 6 sensors with original:
+- measurement timestamps
+- frame IDs
+- sequence information where supported
+- calibration metadata
+- quality state
+- fault state
+
+Ground truth must use debug-only topics and be disabled by default in autonomy launches.
+
+Provide launch configurations for:
+- minimal sensor suite
+- prototype suite
+- camera-only experiment
+- LiDAR-only experiment
+- fusion experiment
+- degraded/faulted sensors
+
+8. DIAGNOSTICS
+Publish diagnostics for:
+- actual rate
+- latency
+- data age
+- queue depth
+- drops
+- sequence faults
+- calibration
+- power
+- temperature
+- VCU state
+- independent safety state
+- actuator health
+- localization/perception contracts
+- active DTCs
+
+Diagnostic severity must be derived from actual state.
+
+9. LOCALIZATION CONTRACT
+Define inputs and outputs without forcing one algorithm.
+
+Localization output must include:
+- pose
+- velocity
+- yaw rate
+- covariance
+- timestamp
+- map/track projection validity
+- quality state
+- innovation/residual metric
+- initialization state
+- fault flags
+
+Provide a deterministic ground-truth-derived localization stub for interface testing only. Mark it DEBUG/TEST ONLY and do not use it as proof of localization performance.
+
+Optional baseline:
+- wheel odometry + IMU dead reckoning
+- simple EKF adapter if dependencies are available
+
+Do not hide unobservable states or output zero covariance.
+
+10. PERCEPTION CONTRACT
+Define:
+- detected objects
+- free-space or clear-path distance
+- unknown-space distance
+- track boundaries
+- confidence
+- coverage
+- processing latency
+- sensor sources
+- fault state
+
+Provide deterministic test stubs using debug ground truth only for SIL interface validation. Keep them clearly separated from operational perception.
+
+11. TRAJECTORY MESSAGE
+Trajectory must contain time-parameterized points:
+- relative or absolute time
+- x, y, z
+- heading
+- speed
+- acceleration
+- curvature
+- optional jerk
+- path/track coordinate s
+- validity
+- frame ID
+
+Validate:
+- monotonically increasing time
+- finite values
+- bounded curvature
+- bounded speed/acceleration
+- frame consistency
+- no duplicate points
+- sufficient horizon
+- not stale
+- trajectory starts near current state within configured tolerance
+
+Do not accept a spatial path as a complete trajectory without timing.
+
+12. PURE PURSUIT CONTROLLER
+Implement as a baseline, not as a safety layer.
+
+Required:
+- configurable lookahead
+- speed-dependent lookahead option
+- nearest/progress point handling
+- closed-loop track support
+- reverse disabled unless explicitly supported
+- steering saturation
+- steering-rate limit
+- low-speed handling
+- command timestamp and expiry
+- debug outputs
+
+Core geometry:
+curvature_command = 2*y_local / lookahead_distance^2
+or an equivalent documented formulation.
+
+Tests:
+- straight path
+- constant-radius path
+- closed-loop seam
+- low speed
+- lookahead beyond final point
+- off-path recovery
+- noisy localization
+- steering saturation
+
+13. STANLEY CONTROLLER
+Implement:
+delta = heading_error + atan2(k * cross_track_error, speed + softening)
+with documented sign conventions and angle normalization.
+
+Required:
+- low-speed softening
+- steering and rate limits
+- direction/sign tests
+- closed-loop support
+- debug terms
+- no divide-by-zero
+
+Tests:
+- straight convergence
+- left/right sign
+- circular tracking
+- low speed
+- large cross-track error
+- noisy heading
+- saturation
+
+14. LONGITUDINAL CONTROLLER
+Implement:
+- speed PID or PI baseline
+- feedforward acceleration/force option
+- anti-windup
+- output saturation
+- torque/brake arbitration
+- command rate and jerk limits
+- standstill logic
+- brake hold
+- reverse disabled unless explicitly supported
+- safety-envelope speed limit input
+- VCU remains final authority
+
+Do not allow controller to command propulsion against a confirmed stuck brake.
+
+Tests:
+- acceleration
+- constant speed
+- braking to stop
+- grade
+- voltage sag
+- saturation
+- anti-windup
+- changing safety limit
+- command timeout
+
+15. CONTROLLER MANAGER
+Support selectable controllers:
+- Pure Pursuit + longitudinal PID
+- Stanley + longitudinal PID
+- external controller
+- replayed command
+- disabled
+
+Controller selection must be configuration-driven and logged.
+
+Controllers publish high-level commands; they do not bypass Phase 7 validation.
+
+16. SOFTWARE-IN-LOOP
+Provide launch modes:
+A. simulator + baseline controllers
+B. simulator + external ROS autonomy stack
+C. sensor replay + external autonomy stack
+D. deterministic CI mode without visualization
+E. fault-injected autonomy run
+
+Support:
+- start/stop
+- reset
+- seeded scenario
+- launch parameter validation
+- run metadata
+- exact configuration hashes
+
+17. REPLAY
+Support:
+- ROS bag output where available
+- internal deterministic replay
+- rosbag-to-internal import adapter where practical
+- original measurement timestamps
+- optional original delivery timing
+- replay speed control
+- pause/step
+- fault overlay
+- command comparison
+
+Exact replay must not regenerate sensor noise.
+
+18. REQUIRED TESTS
+Unit:
+- every message conversion
+- frame conversion
+- QoS configuration
+- trajectory validation
+- controller equations
+- angle signs
+- timestamp preservation
+
+Integration:
+- full sensor publication
+- controller receives valid localization/path
+- VCU receives valid command
+- stale ROS command causes controlled stop
+- Jetson node crash causes timeout
+- /clock pause/resume
+- bag/replay determinism
+- sensor fault reaches diagnostics
+- safety state visible
+- no ground-truth topic in production launch
+
+Scenario tests:
+- autonomous straight
+- circle
+- slalom
+- mixed track
+- wet patch
+- command loss
+- localization degradation
+- LiDAR freeze
+- steering fault
+- emergency stop
+
+19. PERFORMANCE
+Measure:
+- publish latency
+- conversion overhead
+- controller execution time
+- callback jitter
+- queue depth
+- missed deadlines
+- real-time factor
+- CPU and memory
+
+20. DOCUMENTATION
+Create/update:
+- docs/ROS2_ARCHITECTURE.md
+- docs/ROS2_TOPICS.md
+- docs/ROS2_QOS.md
+- docs/ROS2_TIME.md
+- docs/ROS2_FRAMES.md
+- docs/TRAJECTORY_INTERFACE.md
+- docs/BASELINE_CONTROLLERS.md
+- docs/SIL.md
+- docs/REPLAY.md
+- docs/ASSUMPTIONS.md
+- docs/FMEA.md
+- docs/STATUS.md
+
+21. ACCEPTANCE CRITERIA
+Phase 8 is complete only when:
+- simulator still runs without ROS 2
+- /clock and simulated time work
+- sensor timestamps are preserved
+- frame tree is valid
+- message contracts are documented and tested
+- QoS is explicit
+- VCU commands retain integrity/freshness checks
+- trajectories are time parameterized and validated
+- Pure Pursuit works on straight and curved tracks
+- Stanley works on straight and curved tracks
+- longitudinal control supports acceleration, braking, stop, and anti-windup
+- controllers cannot bypass VCU safety
+- SIL launch modes work
+- command loss triggers Phase 7 response
+- deterministic replay works
+- required tests pass
+- documentation matches implementation
+
+22. REQUIRED FINAL REPORT
+PHASE:
+Phase 8 — ROS 2 Autonomy Interfaces and SIL
+
+STATUS:
+COMPLETE / PARTIAL / BLOCKED
+
+VERDICT:
+APPROVED / APPROVED_WITH_CONDITIONS / REJECTED /
+MORE_DATA_REQUIRED / PROTOTYPE_TEST_REQUIRED
+
+BASELINE TEST STATUS:
+- ...
+
+IMPLEMENTED:
+- ROS optional architecture:
+- Clock/time:
+- TF:
+- Messages:
+- QoS:
+- Sensor publishers:
+- Diagnostics:
+- Localization contract:
+- Perception contract:
+- Trajectory:
+- Pure Pursuit:
+- Stanley:
+- Longitudinal controller:
+- Controller manager:
+- SIL:
+- Replay:
+
+TEST RESULTS:
+- Unit:
+- Integration:
+- Scenario:
+- Determinism:
+- Safety regression:
+
+PERFORMANCE:
+- ...
+
+ASSUMPTIONS:
+- ...
+
+KNOWN LIMITATIONS:
+- ...
+
+NEXT PHASE:
+Phase 9 — Engineering dashboard and live/replay visualization.

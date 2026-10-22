@@ -1,0 +1,42 @@
+measured_at: "2026-07-29"
+host_note: "single local process; results are not portable guarantees"
+tiers:
+  - tier: 0
+    status: EXECUTED
+    workload: "planar unit plant, 5000 fixed steps"
+    simulated_duration_s: 5.0
+    wall_time_s: 0.043095284
+    cpu_time_s: 0.043089874
+    cpu_utilization_percent: 99.9874
+    peak_rss_mib: 45.2852
+    update_rate_hz: 116021.976
+    real_time_factor: 116.022
+    gpu: NOT_USED_HEADLESS
+  - tier: 1
+    status: EXECUTED
+    workload: "VCU-routed dynamic fast environment with 108-beam LiDAR"
+    simulated_duration_s: 4.0
+    wall_time_s: 1.663366089
+    cpu_time_s: 1.663053629
+    cpu_utilization_percent: 99.9812
+    peak_rss_mib: 45.7852
+    update_rate_hz: 120.238
+    real_time_factor: 2.40476
+    gpu: NOT_USED_HEADLESS
+  - tier: 2
+    status: EXECUTED
+    workload: "dynamic four-wheel controlled-stop engineering scenario"
+    simulated_duration_s: 1.2
+    wall_time_s: 0.475774234
+    cpu_time_s: 0.475691735
+    cpu_utilization_percent: 99.9827
+    peak_rss_mib: 60.5352
+    update_rate_hz: 2522.205
+    real_time_factor: 2.52220
+    gpu: NOT_USED_HEADLESS
+  - tier: 3
+    status: NOT_EXECUTED_EXTERNAL_DEPENDENCY
+    detail: "native spawn/interface smoke passed; GPU/payload benchmark not collected"
+  - tier: 4
+    status: NOT_EXECUTED_EXTERNAL_DEPENDENCY
+    detail: "Project Chrono Python bindings unavailable"

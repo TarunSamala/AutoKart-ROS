@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="autokart">
+  <!-- SIMULATION USE ONLY. Every numeric property below is MEASUREMENT REQUIRED. -->
+  <!-- Values mirror configs/karts/prototype_dynamic.yaml where that source exists. -->
+  <xacro:property name="mass" value="145.0"/>
+  <xacro:property name="wheelbase" value="1.15"/>
+  <xacro:property name="front_track" value="0.95"/>
+  <xacro:property name="rear_track" value="0.92"/>
+  <xacro:property name="wheel_radius" value="0.14"/>
+  <xacro:property name="wheel_width" value="0.10"/>
+  <xacro:property name="cg_x" value="0.05"/>
+  <xacro:property name="cg_z" value="0.30"/>
+  <xacro:property name="road_wheel_limit" value="0.5585053606"/>
+
+  <!-- User-measured camera/bumper geometry loads from the bringup YAML.
+       camera_x_m is NOT one of the user's measurements (no absolute camera position
+       relative to base_link was given, only its offset from the bumper), so it stays the prior
+       provisional chassis-relative placement; front_bumper_link below is derived FROM camera_x_m and the
+       measured offset, so it moves correctly if camera_x_m is ever corrected. -->
+  <xacro:property name="measured_geometry" value="${xacro.load_yaml('$(find autokart_bringup)/config/vehicle_geometry.yaml')['vehicle_geometry']}"/>
+  <xacro:property name="camera_height_m" value="${measured_geometry['camera_height_m']}"/>
+  <xacro:property name="camera_pitch_down_deg" value="${measured_geometry['camera_pitch_down_deg']}"/>
+  <xacro:property name="camera_pitch_down_rad" value="${camera_pitch_down_deg * 3.141592653589793 / 180.0}"/>
+  <xacro:property name="camera_to_front_bumper_horizontal_m" value="${measured_geometry['camera_to_front_bumper_horizontal_m']}"/>
+  <xacro:property name="bumper_width_m" value="${measured_geometry['bumper_width_m']}"/>
+  <xacro:property name="camera_x_m" value="0.64"/>  <!-- provisional, not a measured value; see note above -->
+
+  <xacro:macro name="box_link" params="name mass xyz size color">
+    <link name="${name}">
+      <inertial><origin xyz="${xyz}"/><mass value="${mass}"/>
+        <inertia ixx="${mass * 0.08}" ixy="0" ixz="0" iyy="${mass * 0.15}" iyz="0" izz="${mass * 0.20}"/>
+      </inertial>
+      <visual><origin xyz="${xyz}"/><geometry><box size="${size}"/></geometry><material name="${color}"/></visual>
+      <!-- Primitive collision is intentionally separate from future reviewed CAD visuals. -->
+      <collision><origin xyz="${xyz}"/><geometry><box size="${size}"/></geometry></collision>
+    </link>
+  </xacro:macro>
+  <xacro:macro name="small_link" params="name mass size color">
+    <xacro:box_link name="${name}" mass="${mass}" xyz="0 0 0" size="${size}" color="${color}"/>
+  </xacro:macro>
+  <xacro:macro name="wheel_link" params="name mass">
+    <link name="${name}">
+      <inertial><mass value="${mass}"/><inertia ixx="0.025" ixy="0" ixz="0" iyy="0.012" iyz="0" izz="0.025"/></inertial>
+      <visual><origin rpy="1.57079632679 0 0"/><geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry><material name="rubber"/></visual>
+      <collision><origin rpy="1.57079632679 0 0"/><geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry></collision>
+    </link>
+  </xacro:macro>
+
+  <material name="frame"><color rgba="0.12 0.14 0.16 1"/></material>
+  <material name="body"><color rgba="0.85 0.08 0.04 1"/></material>
+  <material name="metal"><color rgba="0.45 0.48 0.52 1"/></material>
+  <material name="electronics"><color rgba="0.05 0.12 0.22 1"/></material>
+  <material name="battery"><color rgba="0.08 0.32 0.12 1"/></material>
+  <material name="sensor"><color rgba="0.08 0.08 0.08 1"/></material>
+  <material name="rubber"><color rgba="0.02 0.02 0.02 1"/></material>
+
+  <link name="base_link"/>
+  <!-- Chassis allocation makes total described mass 145 kg; component masses remain provisional. -->
+  <link name="chassis_link">
+    <inertial><origin xyz="${cg_x} 0 ${cg_z}"/><mass value="91.95"/>
+      <inertia ixx="24" ixy="0" ixz="0" iyy="35" iyz="0" izz="35"/>
+    </inertial>
+    <visual><origin xyz="${cg_x} 0 ${cg_z}"/><geometry><box size="1.75 1.06 0.16"/></geometry><material name="frame"/></visual>
+    <collision><origin xyz="${cg_x} 0 ${cg_z}"/><geometry><box size="1.75 1.06 0.16"/></geometry></collision>
+  </link>
+  <joint name="base_to_chassis" type="fixed"><parent link="base_link"/><child link="chassis_link"/></joint>
+
+  <xacro:small_link name="front_axle_link" mass="3.0" size="0.08 ${front_track} 0.08" color="metal"/>
+  <joint name="front_axle_mount" type="fixed"><parent link="chassis_link"/><child link="front_axle_link"/><origin xyz="${wheelbase/2} 0 ${wheel_radius}"/></joint>
+  <xacro:small_link name="front_left_steer_link" mass="0.8" size="0.10 0.08 0.16" color="metal"/>
+  <xacro:small_link name="front_right_steer_link" mass="0.8" size="0.10 0.08 0.16" color="metal"/>
+  <joint name="front_left_steering_joint" type="revolute">
+    <parent link="front_axle_link"/><child link="front_left_steer_link"/><origin xyz="0 ${front_track/2} 0"/>
+    <axis xyz="0 0 1"/><limit lower="${-road_wheel_limit}" upper="${road_wheel_limit}" effort="300" velocity="3"/>
+  </joint>
+  <joint name="front_right_steering_joint" type="revolute">
+    <parent link="front_axle_link"/><child link="front_right_steer_link"/><origin xyz="0 ${-front_track/2} 0"/>
+    <axis xyz="0 0 1"/><limit lower="${-road_wheel_limit}" upper="${road_wheel_limit}" effort="300" velocity="3"/>
+  </joint>
+  <xacro:wheel_link name="front_left_wheel_link" mass="2.2"/>
+  <xacro:wheel_link name="front_right_wheel_link" mass="2.2"/>
+  <joint name="front_left_wheel_joint" type="continuous"><parent link="front_left_steer_link"/><child link="front_left_wheel_link"/><axis xyz="0 1 0"/><limit effort="200" velocity="150"/></joint>
+  <joint name="front_right_wheel_joint" type="continuous"><parent link="front_right_steer_link"/><child link="front_right_wheel_link"/><axis xyz="0 1 0"/><limit effort="200" velocity="150"/></joint>
+
+  <!-- Solid rear axle: one common rotating axle state; no differential plugin. -->
+  <link name="rear_axle_link">
+    <inertial><mass value="3.0"/><inertia ixx="0.12" ixy="0" ixz="0" iyy="0.12" iyz="0" izz="0.12"/></inertial>
+    <visual><origin rpy="1.57079632679 0 0"/><geometry><cylinder radius="0.025" length="${rear_track}"/></geometry><material name="metal"/></visual>
+    <collision><origin rpy="1.57079632679 0 0"/><geometry><cylinder radius="0.025" length="${rear_track}"/></geometry></collision>
+  </link>
+  <joint name="rear_solid_axle_joint" type="continuous"><parent link="chassis_link"/><child link="rear_axle_link"/><origin xyz="${-wheelbase/2} 0 ${wheel_radius}"/><axis xyz="0 1 0"/><limit effort="500" velocity="150"/><dynamics damping="0.2"/></joint>
+  <xacro:wheel_link name="rear_left_wheel_link" mass="2.4"/>
+  <xacro:wheel_link name="rear_right_wheel_link" mass="2.4"/>
+  <joint name="rear_left_wheel_rigid_joint" type="fixed"><parent link="rear_axle_link"/><child link="rear_left_wheel_link"/><origin xyz="0 ${rear_track/2} 0"/></joint>
+  <joint name="rear_right_wheel_rigid_joint" type="fixed"><parent link="rear_axle_link"/><child link="rear_right_wheel_link"/><origin xyz="0 ${-rear_track/2} 0"/></joint>
+
+  <xacro:small_link name="steering_column_link" mass="1.2" size="0.45 0.035 0.035" color="metal"/>
+  <joint name="steering_column_joint" type="revolute"><parent link="chassis_link"/><child link="steering_column_link"/><origin xyz="0.25 0 0.55" rpy="0 0.45 0"/><axis xyz="1 0 0"/><limit lower="-1.5" upper="1.5" effort="20" velocity="6"/></joint>
+  <xacro:small_link name="steering_actuator_link" mass="1.5" size="0.18 0.11 0.11" color="electronics"/>
+  <joint name="steering_actuator_joint" type="revolute"><parent link="chassis_link"/><child link="steering_actuator_link"/><origin xyz="0.18 0 0.36"/><axis xyz="1 0 0"/><limit lower="-1.5" upper="1.5" effort="20" velocity="6"/></joint>
+  <xacro:small_link name="brake_actuator_link" mass="1.5" size="0.18 0.12 0.10" color="electronics"/>
+  <joint name="brake_actuator_joint" type="prismatic"><parent link="chassis_link"/><child link="brake_actuator_link"/><origin xyz="-0.05 0.30 0.28"/><axis xyz="1 0 0"/><limit lower="0" upper="0.025" effort="4000" velocity="0.3"/></joint>
+  <xacro:small_link name="motor_link" mass="8.0" size="0.30 0.25 0.25" color="metal"/>
+  <joint name="motor_mount" type="fixed"><parent link="chassis_link"/><child link="motor_link"/><origin xyz="-0.42 0.20 0.31"/></joint>
+  <xacro:small_link name="battery_link" mass="20.0" size="0.55 0.38 0.20" color="battery"/>
+  <joint name="battery_mount" type="fixed"><parent link="chassis_link"/><child link="battery_link"/><origin xyz="-0.10 -0.20 0.30"/></joint>
+  <xacro:small_link name="vcu_link" mass="1.0" size="0.20 0.14 0.07" color="electronics"/>
+  <joint name="vcu_mount" type="fixed"><parent link="chassis_link"/><child link="vcu_link"/><origin xyz="0.10 -0.34 0.42"/></joint>
+  <xacro:small_link name="compute_link" mass="1.8" size="0.22 0.16 0.08" color="electronics"/>
+  <joint name="compute_mount" type="fixed"><parent link="chassis_link"/><child link="compute_link"/><origin xyz="0.18 0.28 0.45"/></joint>
+
+  <!-- Sensor poses are provisional SIMULATION USE ONLY; MEASUREMENT REQUIRED. -->
+  <xacro:small_link name="camera_link" mass="0.2" size="0.08 0.16 0.06" color="sensor"/>
+  <!-- height (z) is the user-measured camera_height_m; pitch tilts the optical axis down by
+       camera_pitch_down_deg before the existing fixed optical-frame-convention rotation below. -->
+  <joint name="camera_mount" type="fixed">
+    <parent link="chassis_link"/><child link="camera_link"/>
+    <origin xyz="${camera_x_m} 0 ${camera_height_m}" rpy="0 ${camera_pitch_down_rad} 0"/>
+  </joint>
+  <link name="camera_optical_frame"/>
+  <joint name="camera_optical_joint" type="fixed"><parent link="camera_link"/><child link="camera_optical_frame"/><origin rpy="-1.57079632679 0 -1.57079632679"/></joint>
+  <!-- Front bumper reference point: derived from the camera position and the measured
+       camera_to_front_bumper_horizontal_m offset, at ground level (z=0 in the chassis/base_link frame,
+       see base_to_chassis, which has no origin offset). All stop-distance logic is bumper-referenced, not
+       camera-referenced: see autokart_planner/mission.py and docs/VCU_PROTOCOL.md. bumper_width_m is
+       exposed as a property above for the planner/safety corridor-width check; it is not drawn as its own
+       dimension here since no bumper geometry/CAD exists yet. -->
+  <link name="front_bumper_link"/>
+  <joint name="front_bumper_mount" type="fixed">
+    <parent link="chassis_link"/><child link="front_bumper_link"/>
+    <origin xyz="${camera_x_m + camera_to_front_bumper_horizontal_m} 0 0"/>
+  </joint>
+  <xacro:small_link name="depth_camera_link" mass="0.25" size="0.08 0.18 0.07" color="sensor"/>
+  <joint name="depth_camera_mount" type="fixed"><parent link="chassis_link"/><child link="depth_camera_link"/><origin xyz="0.60 0 0.64"/></joint>
+  <xacro:small_link name="lidar_link" mass="0.6" size="0.12 0.12 0.10" color="sensor"/>
+  <joint name="lidar_mount" type="fixed"><parent link="chassis_link"/><child link="lidar_link"/><origin xyz="0.20 0 0.82"/></joint>
+  <xacro:small_link name="imu_link" mass="0.1" size="0.05 0.04 0.02" color="sensor"/>
+  <joint name="imu_mount" type="fixed"><parent link="chassis_link"/><child link="imu_link"/><origin xyz="${cg_x} 0 ${cg_z}"/></joint>
+  <xacro:small_link name="gps_link" mass="0.1" size="0.06 0.06 0.02" color="sensor"/>
+  <joint name="gps_mount" type="fixed"><parent link="chassis_link"/><child link="gps_link"/><origin xyz="-0.20 0 0.80"/></joint>
+
+  <!-- Interface declarations only: requests are consumed by the VCU-backed custom system. -->
+  <ros2_control name="AutoKartVcuSystem" type="system">
+    <hardware><plugin>autokart_sim_bridge/VcuSystemInterface</plugin>
+      <param name="direct_actuator_commands">false</param>
+      <param name="physics_authority">external_selected_backend</param>
+    </hardware>
+    <joint name="steering_actuator_joint"><command_interface name="position"/><state_interface name="position"/><state_interface name="velocity"/><state_interface name="effort"/></joint>
+    <joint name="brake_actuator_joint"><command_interface name="position"/><state_interface name="position"/><state_interface name="velocity"/><state_interface name="effort"/></joint>
+    <joint name="rear_solid_axle_joint"><command_interface name="effort"/><state_interface name="position"/><state_interface name="velocity"/><state_interface name="effort"/></joint>
+  </ros2_control>
+</robot>

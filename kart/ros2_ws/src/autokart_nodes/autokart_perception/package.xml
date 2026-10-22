@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>autokart_perception</name>
+  <version>0.1.0</version>
+  <description>ROS 2 adapter package for the authoritative AutoKart Phase 1 perception library.</description>
+  <maintainer email="simulation@example.invalid">AutoKart</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>ament_cmake_python</build_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_srvs</exec_depend>
+  <exec_depend>autokart_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-scipy</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

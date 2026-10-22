@@ -1,0 +1,485 @@
+AUTONOMOUS ELECTRIC GO-KART SIMULATOR
+CODEX EXECUTION RULES
+
+You are acting as the lead vehicle-dynamics, robotics, embedded, controls, safety, reliability, simulation, and software engineer.
+
+This is not a game-only project. It is a research-grade, deterministic, configurable autonomous electric go-kart simulator that must eventually support software-in-loop, hardware-in-loop, real-kart calibration, and safety fault injection.
+
+ENGINEERING PRIORITY
+1. Human safety
+2. Emergency stopping
+3. Prevention of uncontrolled propulsion or steering
+4. Predictable behaviour
+5. Fault detection
+6. Determinism and timing correctness
+7. Physics and sensor correctness
+8. Testability
+9. Maintainability
+10. Performance
+11. Visual quality
+
+MANDATORY ENGINEERING BEHAVIOUR
+- Inspect the repository and run the complete existing test suite before modifying code.
+- Preserve existing validated work.
+- Do not perform destructive Git operations.
+- Do not silently weaken tests, thresholds, or safety logic to make tests pass.
+- Do not claim success because code compiles.
+- Do not invent hardware specifications.
+- Put provisional values in schema-validated configuration files.
+- Record every assumption in docs/ASSUMPTIONS.md.
+- Record important decisions in docs/ADR/.
+- Use SI units internally.
+- Keep world, vehicle, track, sensor, camera optical, and actuator frames explicit.
+- Use deterministic fixed-step simulation and seeded random streams.
+- Keep measurement time, processing completion time, delivery time, and consumer time separate.
+- Keep operational sensor data separate from debug ground truth.
+- Keep high-level computer, VCU, and independent safety layer separate.
+- No actuator command may remain active indefinitely after communication loss.
+- Every critical fault must have detection, safe response, latching/reset policy, and automated verification.
+- Never claim ISO 26262, ASIL, automotive certification, or real-vehicle safety compliance.
+- Mark example configurations:
+  SIMULATION USE ONLY
+  NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+
+VERDICTS
+Use only:
+- APPROVED
+- APPROVED_WITH_CONDITIONS
+- REJECTED
+- MORE_DATA_REQUIRED
+- PROTOTYPE_TEST_REQUIRED
+
+WORKFLOW
+1. Audit repository and environment.
+2. Run baseline tests and record exact results.
+3. Identify interfaces affected by this phase.
+4. Create a phase implementation plan.
+5. Implement in small, testable increments.
+6. Run unit, integration, regression, fault, determinism, and performance tests.
+7. Update documentation and requirements traceability.
+8. Produce the required final report.
+9. Do not begin the next phase automatically.
+
+EXTERNAL DEPENDENCIES
+When a dependency is unavailable:
+- Do not stop the whole phase.
+- Implement clean interfaces and optional build flags.
+- Add a deterministic fallback or mock where meaningful.
+- Add installation and validation instructions.
+- Mark tests requiring the dependency as explicit optional/integration tests.
+- Never mark an unexecuted integration as passed.
+PHASE 9
+ENGINEERING DASHBOARD, LIVE/REPLAY VISUALIZATION, CORNER ANALYSIS,
+FAULT TIMELINES, AND REPORT EXPORT
+
+PREREQUISITE GATE
+Begin after Phase 8 interfaces and baseline controllers work without bypassing VCU safety.
+
+OBJECTIVE
+Build an engineering dashboard that allows a user to understand what the kart, controllers, sensors, electrical system, and safety system are doing in real time and during replay.
+
+The dashboard is an analysis tool. It must not become a safety authority or directly command actuators unless a separately protected test interface is explicitly enabled.
+
+1. INITIAL AUDIT
+Inspect:
+- current log schema
+- run metadata
+- ROS/internal data sources
+- corner analysis outputs
+- sensor and actuator telemetry
+- fault events
+- plotting tools
+- front-end dependencies
+- headless CI constraints
+Run baseline tests.
+
+2. ARCHITECTURE
+Use a separated architecture:
+data source adapters
+→ normalized telemetry model
+→ cache/time-series store
+→ analysis services
+→ API/WebSocket layer
+→ dashboard UI
+
+Support:
+- live internal simulator
+- live ROS 2
+- recorded run
+- deterministic replay
+- comparison of two runs
+- exported static report
+
+Choose the smallest maintainable stack compatible with the repository. Examples include a Python API plus a browser UI, Plotly/Dash, or another modular approach. Record the ADR. Do not couple physics code to the UI framework.
+
+3. DATA MODEL
+Create normalized typed records for:
+- vehicle state
+- wheel/tire state
+- steering
+- brakes
+- motor/drivetrain
+- battery/power domains
+- thermal state
+- track/corner state
+- sensors
+- localization/perception
+- VCU state
+- safety envelope
+- commands
+- faults/DTCs
+- scenario events
+
+Every record must retain:
+- simulation timestamp
+- source
+- sequence where relevant
+- validity
+- units
+- frame
+- configuration hash
+
+4. LIVE AND REPLAY MODES
+Live:
+- bounded buffers
+- decimation
+- backpressure
+- no blocking of simulation
+- connection-loss indication
+- displayed data age
+
+Replay:
+- timeline seek
+- play/pause
+- speed control
+- frame stepping
+- bookmarks
+- fault jump
+- corner jump
+- synchronized plots
+- original measurement and delivery times
+
+5. CORE LAYOUT
+Create configurable pages:
+
+A. Mission Overview
+- run/scenario
+- kart/track/config hashes
+- current state
+- speed
+- lap/sector/corner
+- active safety limit
+- faults
+- emergency-stop status
+- battery
+- sensor-health summary
+
+B. Track and Trajectory
+- centreline/boundaries
+- requested and actual path
+- vehicle footprint
+- wheel contact points
+- corner labels
+- surfaces
+- obstacles
+- clear-path/safety envelope
+- track-limit events
+
+C. Vehicle Dynamics
+- four wheel loads
+- longitudinal/lateral tire forces
+- slip ratios
+- slip angles
+- tire utilization
+- yaw rate
+- sideslip estimate
+- acceleration
+- chassis twist
+- inside-rear load/lift
+- locked-axle scrub
+
+D. Actuators
+- steering requested/validated/actual
+- road-wheel angles
+- steering current/torque/error
+- brake command/position/cable force/pressure/torque
+- motor command/available/actual torque
+- actuator saturation and faults
+
+E. Electrical and Thermal
+- battery SOC/voltage/current/power
+- DC bus
+- contactor/pre-charge
+- power domains
+- energy flow
+- motor/controller/brake/battery temperatures
+- derating
+
+F. Sensors
+- rates
+- capture/delivery latency
+- age
+- quality
+- queue depth
+- drops
+- camera preview when available
+- depth validity
+- LiDAR view
+- IMU
+- encoders
+- calibration/faults
+
+G. Safety
+- VCU state
+- state transitions
+- transition guards
+- watchdogs
+- command age/integrity
+- dynamic speed candidates
+- stopping-distance components
+- controlled-stop phase
+- emergency-stop actions
+- invariants
+- DTC timeline
+
+H. Corner Analysis
+- entry/apex/exit
+- corner metrics
+- phases
+- limiting factors
+- evidence
+- time loss
+- comparison
+- recommendation trace
+
+6. VISUALIZATION RULES
+- Show units on every axis/value.
+- Indicate stale or invalid data visually.
+- Do not interpolate across data gaps without marking them.
+- Avoid misleading dual-axis plots.
+- Keep raw and filtered values distinguishable.
+- Show command, validated command, and measured response separately.
+- Show confidence and uncertainty where available.
+- Display simulation time prominently.
+- Never hide active emergency or critical faults behind another page.
+
+7. TRACK VIEW
+Implement:
+- pan/zoom
+- world and track-coordinate modes
+- vehicle orientation and footprint
+- colorable overlays
+- surface friction map
+- path-error vectors
+- braking/acceleration zones
+- corner phase highlighting
+- selectable wheel traces
+- fault markers
+- time cursor linked to all plots
+
+8. TIRE VISUALS
+For each wheel:
+- load bar
+- force vector
+- friction ellipse/utilization
+- slip ratio
+- slip angle
+- contact material
+- contact validity
+- lift indicator
+
+Ensure signs match vehicle conventions.
+
+9. SAFETY VISUALS
+Display:
+- current state
+- requested transition
+- failed guards
+- command age
+- watchdog deadlines
+- all candidate speed limits
+- active limit
+- clear distance
+- predicted stop distance
+- guaranteed deceleration
+- uncertainty/margin
+- stop progress
+- torque-removal confirmation
+- brake-response confirmation
+
+10. FAULT TIMELINE
+Support:
+- severity filter
+- subsystem filter
+- fault start
+- detection
+- confirmation
+- safety action
+- safe-state time
+- reset
+- linked snapshot
+- distance travelled after fault
+
+11. COMPARISON MODE
+Compare two runs normalized by:
+- track s
+- corner phase
+- simulation time where appropriate
+
+Show deltas for:
+- lap/corner time
+- speed
+- path error
+- tire utilization
+- steering error
+- brake pressure
+- energy
+- temperature
+- safety intervention
+- faults
+
+12. REPORT EXPORT
+Export:
+- HTML
+- PDF adapter if available
+- CSV
+- JSON
+- static plots
+- corner reports
+- safety report
+- run comparison report
+- configuration manifest
+
+Reports must include assumptions and warnings.
+
+13. USER CONTROLS
+Safe controls:
+- choose run
+- pause/replay/seek
+- select signals
+- configure plots
+- export
+- add annotation
+- choose comparison
+
+Any live control command must:
+- be disabled by default
+- require explicit test mode
+- pass through existing command validation and VCU
+- be visually distinguished
+- never bypass emergency stop
+
+14. PERFORMANCE
+Implement:
+- server-side decimation
+- fixed maximum visible points
+- progressive loading
+- bounded memory
+- lazy camera/depth loading
+- cached derived metrics
+- responsive UI under long runs
+
+Measure:
+- update latency
+- frame rate
+- memory
+- CPU
+- data-loss/backpressure
+- maximum run length supported
+
+15. TESTS
+Unit:
+- telemetry conversions
+- units
+- decimation
+- gaps/stale handling
+- corner/fault selection
+- report serialization
+
+Integration:
+- live simulator stream
+- ROS stream
+- replay
+- connection loss
+- large log
+- multi-run comparison
+- fault timeline synchronization
+- export
+
+Visual regression where practical:
+- key pages
+- invalid-data state
+- emergency-stop state
+- split-friction event
+- steering fault
+- brake fault
+
+Safety:
+- dashboard cannot directly bypass VCU
+- emergency state always visible
+- stale data marked
+- invalid data not presented as valid
+
+16. DOCUMENTATION
+Create/update:
+- docs/DASHBOARD_ARCHITECTURE.md
+- docs/DASHBOARD_DATA_MODEL.md
+- docs/DASHBOARD_PAGES.md
+- docs/DASHBOARD_LIVE_MODE.md
+- docs/DASHBOARD_REPLAY.md
+- docs/DASHBOARD_REPORTS.md
+- docs/STATUS.md
+
+17. ACCEPTANCE CRITERIA
+- dashboard works with recorded run
+- dashboard works with live source
+- simulation is not blocked by UI
+- all key subsystems visible
+- invalid/stale data visible
+- safety and E-stop visible globally
+- track and corner synchronization works
+- comparison works by track distance
+- exports work
+- performance is measured
+- tests pass
+- documentation matches implementation
+
+18. REQUIRED FINAL REPORT
+PHASE:
+Phase 9 — Engineering Dashboard
+
+STATUS:
+COMPLETE / PARTIAL / BLOCKED
+
+VERDICT:
+...
+
+IMPLEMENTED:
+- architecture
+- live mode
+- replay
+- pages
+- track
+- vehicle dynamics
+- actuators
+- electrical/thermal
+- sensors
+- safety
+- corner analysis
+- comparison
+- exports
+
+TEST RESULTS:
+- ...
+
+PERFORMANCE:
+- ...
+
+SAFETY LIMITATIONS:
+- ...
+
+KNOWN LIMITATIONS:
+- ...
+
+NEXT PHASE:
+Phase 10 — Complete fault-injection benchmark.

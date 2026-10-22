@@ -1,0 +1,6 @@
+name: engineering_internal
+mode: engineering
+simulation: {physics_backend: internal, gazebo_role: disabled, fidelity_tier: 2}
+features: {sensor_suite: vehicle_feedback, vcu_enabled: true, independent_safety_enabled: true, rendering_enabled: false, ros_enabled: false, dashboard_enabled: true, real_actuator_outputs_enabled: false}
+expected_performance: "Deterministic full-actuator execution near or above real time on a modern CPU."
+dependencies: [python3, pyyaml, pydantic, aiohttp]

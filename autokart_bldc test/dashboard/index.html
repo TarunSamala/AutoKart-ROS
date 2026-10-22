@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AutoKart Perception Lab</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">AUTOKART / PICO EXPERIMENT</p>
+        <h1>Live Perception Lab</h1>
+        <p class="subtitle">HP60C detection · depth candidates · geometry · navigation preview</p>
+      </div>
+      <div class="header-badges">
+        <span id="stream-badge" class="badge warn">CONNECTING</span>
+        <span id="safety-badge" class="badge bad">NO MOTION AUTHORITY</span>
+      </div>
+    </header>
+
+    <div class="safety-banner">
+      <strong>Read-only Pico link.</strong> Detection distances and bird’s-eye positions are diagnostic candidates.
+      Steering, DAC and STOP are software previews; this page cannot move or physically stop the kart.
+    </div>
+
+    <section class="visual-grid" aria-label="Live visualizations">
+      <article class="panel">
+        <div class="panel-head"><div><h2>Camera perception</h2><p>Real HP60C frame with live model boxes and candidate distances</p></div><span id="camera-meta" class="small-pill">Waiting for frame</span></div>
+        <div class="visual-frame">
+          <img id="camera-image" alt="Live HP60C camera with detected cone boxes" />
+          <div id="camera-empty" class="empty-state">Waiting for camera frame</div>
+          <span class="corner-tag">LIVE · BGR → RGB DISPLAY</span>
+        </div>
+        <div class="visual-footer"><span id="detector-label">Detector: loading</span><span id="detection-count">0 detections</span></div>
+      </article>
+      <article class="panel">
+        <div class="panel-head"><div><h2>Bird’s-eye diagnostic view</h2><p>Current-frame cone candidates; no fabricated track or trajectory</p></div><span id="bev-meta" class="small-pill">No candidates</span></div>
+        <div class="visual-frame bev-frame">
+          <canvas id="bev-canvas" width="760" height="480" aria-label="Bird's-eye view of detected cones"></canvas>
+          <span class="corner-tag amber">UNVERIFIED GEOMETRY</span>
+        </div>
+        <div class="visual-footer"><span id="path-label">NO QUALIFIED PATH</span><span>Forward ↑ · left ← · metres</span></div>
+      </article>
+    </section>
+
+    <section class="readout-grid" aria-label="Key outputs">
+      <div class="readout"><span>Detections</span><strong id="metric-detections">—</strong><small id="metric-detections-sub">Waiting</small></div>
+      <div class="readout"><span>Depth candidates</span><strong id="metric-depth">—</strong><small>Unverified scale and mount</small></div>
+      <div class="readout"><span>Corridor</span><strong id="metric-corridor">—</strong><small id="metric-corridor-sub">Waiting</small></div>
+      <div class="readout"><span>Steering preview</span><strong id="metric-steering">—</strong><small id="metric-curvature">No path profile</small></div>
+      <div class="readout"><span>DAC preview</span><strong id="metric-dac">0 mV</strong><small>Output disabled</small></div>
+      <div class="readout"><span>STOP decision</span><strong id="metric-stop">—</strong><small id="metric-stop-sub">Software only</small></div>
+    </section>
+
+    <section class="panel pipeline-panel" aria-label="Algorithm pipeline">
+      <div class="panel-head"><div><h2>Algorithm pipeline</h2><p>Each stage shows the result of the latest real camera frame</p></div><span id="frame-age" class="small-pill">—</span></div>
+      <div class="pipeline" id="pipeline-stages">
+        <div class="stage" id="stage-camera"><span class="stage-index">01</span><span class="stage-name">Camera</span><strong>WAITING</strong><small>—</small></div>
+        <div class="stage" id="stage-detector"><span class="stage-index">02</span><span class="stage-name">YOLO detection</span><strong>WAITING</strong><small>—</small></div>
+        <div class="stage" id="stage-depth"><span class="stage-index">03</span><span class="stage-name">Depth localization</span><strong>WAITING</strong><small>—</small></div>
+        <div class="stage" id="stage-graph"><span class="stage-index">04</span><span class="stage-name">Cone graph</span><strong>WAITING</strong><small>—</small></div>
+        <div class="stage" id="stage-corridor"><span class="stage-index">05</span><span class="stage-name">Corridor + path</span><strong>WAITING</strong><small>—</small></div>
+        <div class="stage" id="stage-steering"><span class="stage-index">06</span><span class="stage-name">Steering</span><strong>WAITING</strong><small>—</small></div>
+        <div class="stage" id="stage-obstacle"><span class="stage-index">07</span><span class="stage-name">Obstacle</span><strong>WAITING</strong><small>—</small></div>
+        <div class="stage" id="stage-stop"><span class="stage-index">08</span><span class="stage-name">STOP state</span><strong>WAITING</strong><small>—</small></div>
+        <div class="stage" id="stage-pico"><span class="stage-index">09</span><span class="stage-name">Pico telemetry</span><strong>WAITING</strong><small>—</small></div>
+      </div>
+      <div class="reason-strip"><span class="reason-title">Current rejection reasons</span><div id="reasons">Waiting for diagnostics</div></div>
+    </section>
+
+    <section class="lower-grid">
+      <article class="panel">
+        <div class="panel-head"><div><h2>Detected cones</h2><p>Boxes and depth results from the same processed frame</p></div></div>
+        <div class="table-wrap"><table><thead><tr><th>ID</th><th>Class</th><th>Confidence</th><th>Distance</th><th>Localization</th></tr></thead><tbody id="detections-body"><tr><td colspan="5" class="muted">Waiting for detections</td></tr></tbody></table></div>
+      </article>
+      <article class="panel controls-panel">
+        <div class="panel-head"><div><h2>Preview controls</h2><p>Controls only the diagnostic application</p></div></div>
+        <div class="controls">
+          <button data-action="camera_start">CAMERA START</button>
+          <button data-action="camera_stop">CAMERA STOP</button>
+          <button data-action="perception_start">PERCEPTION START</button>
+          <button data-action="perception_stop">PERCEPTION STOP</button>
+          <button data-action="navigation_preview_on">NAV PREVIEW ON</button>
+          <button data-action="navigation_preview_off">NAV PREVIEW OFF</button>
+          <button class="danger" data-action="stop_request">STOP REQUEST · PREVIEW</button>
+          <button data-action="reset_fault">RESET PREVIEW</button>
+        </div>
+        <p id="action-message" class="muted">Pico commands transmitted: none.</p>
+        <div class="telemetry" id="telemetry">Waiting for Pico telemetry</div>
+      </article>
+    </section>
+    <details class="raw-panel"><summary>Raw live status JSON</summary><pre id="raw-status"></pre></details>
+  </main>
+</body>
+</html>

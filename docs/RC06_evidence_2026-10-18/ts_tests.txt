@@ -1,0 +1,13 @@
+== TypeScript: vitest full suite ==
+
+ RUN  v5.0.0 /home/mark1/Desktop/autonomous_kart/phase_sim
+
+
+ Test Files  10 passed (10)
+      Tests  40 passed (40)
+   Start at  15:32:02
+   Duration  19.27s (tests 64%, environment 29%, transform 5%, import 1%)
+
+== tsc --noEmit ==
+tsc exit: 0
+2026-10-18T10:02:22Z

@@ -1,0 +1,72 @@
+# AutoKart parameters. Everything marked MEASURE is a placeholder until you measure it on the real kart.
+# The safety node refuses to arm until the *_verified flags are set to true.
+
+autokart_perception:
+  ros__parameters:
+    model_path: /home/mark1/Desktop/autonomous_kart/models/yolo26s/best.onnx
+    class_names: ["blue", "yellow", "orange"]    # MUST match the order used to train/export the model
+    conf_threshold: 0.4
+    color_topic: /hp60c/color                    # published by the existing HP60C SDK owner
+    depth_topic: /hp60c/depth                    # depth aligned to RGB, 16UC1
+    depth_scale: 0.001                           # raw depth units to metres
+    depth_is_radial: false
+    max_range_m: 8.0
+    # Intrinsics (MEASURE / from calibration)
+    fx: 600.0
+    fy: 600.0
+    cx: 320.0
+    cy: 240.0
+    # Camera mount in the vehicle frame (MEASURE with a tape measure)
+    mount_x: 0.0
+    mount_y: 0.0
+    mount_z: 0.5
+    mount_pitch_deg: 0.0
+    mount_yaw_deg: 0.0
+    calibration_verified: false                  # set true only after cone distances match a tape measure
+
+autokart_mapping:
+  ros__parameters:
+    left_class: blue
+    right_class: yellow
+    min_width_m: 1.0
+    max_width_m: 5.0
+    nominal_width_m: 3.0
+
+autokart_planner:
+  ros__parameters:
+    stop_gap_m: 0.15            # stop 15 cm before the cone ahead
+    front_bumper_x_m: 0.6       # MEASURE: front of the kart, vehicle-frame x
+    cruise_speed_mps: 1.0
+    a_verified_mps2: 0.5        # MEASURE with tools/braking_test.py (placeholder is deliberately conservative)
+    t_latency_s: 0.25           # MEASURE
+    d_margin_m: 0.10            # lower to ~0.02 only after braking is repeatable
+    stop_lateral_tol_m: 0.35
+    stop_class: ""              # e.g. "orange" if the center cone has its own class
+    max_run_m: 15.0
+
+autokart_controller:
+  ros__parameters:
+    wheelbase_m: 1.0            # MEASURE
+    lookahead_min_m: 0.8
+    lookahead_max_m: 2.5
+    max_steer_deg: 25.0         # MEASURE
+    volts_per_mps: 1.0          # MEASURE: throttle volts needed per m/s
+    throttle_v_max: 2.0         # absolute hard cap, also enforced in the bridge and the VCU firmware
+    throttle_run_v: 2.0         # measured motor start voltage: a RUN command is 0 V or in [throttle_run_v,
+                                 # throttle_v_max]. Must match esp32_firmware/include/config.h THROTTLE_RUN_MV.
+                                 # With both at 2.0, speed control is on/off (see autokart_controller/core.py).
+
+autokart_vehicle_bridge:
+  ros__parameters:
+    port: /dev/ttyACM0
+    wheelbase_m: 1.0            # MEASURE (same value as the controller)
+    steer_zero_raw: 2048        # MEASURE: AS5600 reading with the wheels straight
+    steer_deg_per_raw: 0.0879   # MEASURE: wheel degrees per AS5600 count (0.0879 = 1:1)
+    throttle_v_max: 2.0         # absolute hard cap; the bridge's CommandGate also clamps to THROTTLE_MAX_MV
+
+autokart_safety:
+  ros__parameters:
+    vehicle_config_verified: false   # set true after wheelbase, tyre radius, steering zero/scale are measured
+    braking_verified: false          # set true after tools/braking_test.py results are in the planner
+    overspeed_mps: 2.5               # tune after measuring top speed at 2 V
+    stop_ineffective_s: 4.0

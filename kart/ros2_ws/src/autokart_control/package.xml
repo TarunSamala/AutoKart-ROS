@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<package format="3"><name>autokart_control</name><version>0.1.0</version><description>High-level AutoKart controllers; output MotionCommand only.</description><maintainer email="simulation@example.invalid">AutoKart Sim Studio</maintainer><license>Apache-2.0</license><buildtool_depend>ament_cmake</buildtool_depend><exec_depend>autokart_msgs</exec_depend><export><build_type>ament_cmake</build_type></export></package>

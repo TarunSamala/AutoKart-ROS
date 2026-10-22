@@ -1,0 +1,18 @@
+[Unit]
+Description=AutoKart live diagnostic dashboard (vehicle authority disabled)
+After=multi-user.target
+
+[Service]
+Type=simple
+User=mark1
+WorkingDirectory=/home/mark1/Desktop/autonomous_kart
+Environment=AUTOKART_PYTHON=/usr/bin/python3
+ExecStart=/home/mark1/Desktop/autonomous_kart/autokart_apps/run_live.sh --mode live --host 127.0.0.1 --port 8768
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+
+[Install]
+WantedBy=default.target

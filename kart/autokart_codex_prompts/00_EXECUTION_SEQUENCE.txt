@@ -1,0 +1,55 @@
+AUTONOMOUS GO-KART SIMULATOR — CODEX EXECUTION SEQUENCE
+
+Run one prompt at a time in this exact order:
+
+1. 08_PHASE_ROS2_AUTONOMY_SIL.txt
+2. 09_PHASE_ENGINEERING_DASHBOARD.txt
+3. 10_PHASE_FAULT_INJECTION_BENCHMARK.txt
+4. 11_PHASE_PROJECT_CHRONO_INTEGRATION.txt
+5. 12_PHASE_CARLA_UNREAL_INTEGRATION.txt
+6. 13_PHASE_SIL_HIL_JETSON_VCU_CAN.txt
+7. 14_PHASE_REAL_KART_CALIBRATION_VALIDATION.txt
+8. 15_PHASE_FINAL_RESEARCH_DEMONSTRATION.txt
+
+EXECUTION RULES
+
+- Place the selected prompt in the repository root or provide it to Codex with repository access.
+- Run only one phase at a time.
+- Do not start the next phase until Codex produces the required final report.
+- Save the final report from each phase under docs/phase_reports/.
+- Require all mandatory tests from the current phase to pass.
+- When the verdict is REJECTED, MORE_DATA_REQUIRED, or PROTOTYPE_TEST_REQUIRED, resolve the blocking item before continuing.
+- APPROVED_WITH_CONDITIONS is acceptable only when every condition is written as a tracked issue with an owner, test, and completion phase.
+- Commit each phase separately.
+- Tag major validated milestones.
+- Preserve raw logs and benchmark results.
+- Never allow later graphical or integration work to weaken Phase 7 safety logic.
+- Never connect real actuator power merely because Phase 13 software integration succeeds.
+- Do not call the result a validated digital twin until Phase 14 independent validation supports that claim.
+- Do not claim real-vehicle safety or standards compliance from simulation.
+
+RECOMMENDED CODEX INVOCATION MESSAGE
+
+Read the attached phase prompt completely. Inspect the repository, run baseline tests, execute the task in sequence, and produce the exact final report requested. Do not start later phases. Do not weaken safety checks or tests. When an external dependency is missing, implement the interface and optional fallback, document the blocker, and continue all work that can be validated locally.
+
+REQUIRED REPOSITORY STATUS FILES
+
+Maintain:
+- docs/STATUS.md
+- docs/ASSUMPTIONS.md
+- docs/PROJECT_PLAN.md
+- docs/FMEA.md
+- docs/SAFETY_REQUIREMENTS.md
+- docs/phase_reports/
+- docs/ADR/
+
+FINAL ORDER CHECK
+
+Phase 8 establishes autonomy contracts.
+Phase 9 makes behaviour observable.
+Phase 10 makes faults repeatably measurable.
+Phase 11 raises vehicle-dynamics fidelity.
+Phase 12 raises environment and rendered-sensor fidelity.
+Phase 13 connects real computing and VCU hardware safely.
+Phase 14 calibrates and validates against the real kart.
+Phase 15 packages the research demonstration and release.

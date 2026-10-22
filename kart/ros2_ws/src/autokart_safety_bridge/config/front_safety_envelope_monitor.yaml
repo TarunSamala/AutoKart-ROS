@@ -1,0 +1,43 @@
+# AutoKart front safety envelope monitor -- DIAGNOSTIC_ONLY.
+#
+# Non-negotiable: the node refuses to start unless vehicle_authority is OFF
+# and safety_monitor_mode is DIAGNOSTIC_ONLY. There is no VCU/brake/throttle/
+# drive-inhibit publisher or client in this node; nothing here can command
+# the vehicle.
+#
+# bumper_setback_m and corridor_half_width_m are omitted so the node loads both
+# defaults from autokart_vehicle_geometry's shared YAML. response_latency_s,
+# guaranteed_deceleration_mps2 and distance_margin_m remain
+# PROVISIONAL (not from a measured braking test). camera_height_m/camera_pitch_deg below are recorded as
+# documentation only (this node does not use them) and are resolved, not UNVERIFIED: see
+# vehicle_geometry.yaml. Earlier notes also reported a ~52 in (1.3208 m) camera-to-bumper diagonal that
+# conflicted with the other measured dimensions -- ignore it; the only diagonal to use anywhere is the one
+# derived from camera_height_m/camera_to_front_bumper_horizontal_m (autokart_vehicle_geometry.geometry
+# .GEOMETRY.camera_to_bumper_diagonal_m, about 1.357 m).
+front_safety_envelope_monitor:
+  ros__parameters:
+    vehicle_authority: "OFF"
+    safety_monitor_mode: "DIAGNOSTIC_ONLY"
+
+    odometry_topic: "/vehicle/odometry"
+    obstacle_topic: "/perception/obstacles"
+    publish_topic: "/safety/envelope"
+    publish_rate_hz: 10.0
+    max_odometry_age_s: 0.5
+    max_obstacle_age_s: 0.5
+
+    minimum_bumper_clearance_m: 1.0
+    response_latency_s: 0.25
+    guaranteed_deceleration_mps2: 2.0
+    distance_margin_m: 0.3
+
+    calibration_verified: false
+    # camera_height_m: 0.8382       # documentation only, unused by this node -- see vehicle_geometry.yaml
+    # camera_pitch_deg: 17.8        # documentation only, unused by this node -- see vehicle_geometry.yaml
+
+    # Required, explicit provenance of the odometry/obstacle input this node
+    # consumes: "LIVE" (real HP60C + perception pipeline), "SIMULATED", or
+    # "REPLAY". Left unset here deliberately -- the launch file that wires
+    # this node to a specific input must set it explicitly. An unset or
+    # invalid value publishes as UNVERIFIED, never silently as LIVE.
+    # data_source: "LIVE"

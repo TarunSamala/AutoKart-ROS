@@ -1,0 +1,1 @@
+{"gateway_diagnostics_valid": true, "mapping_valid_samples": 1, "mission": "SKIDPAD", "perception_valid_samples": 1, "planner_hold_samples": 1, "planner_reasons": ["OBSERVED_LOOPS_UNAVAILABLE"], "planner_valid_samples": 0, "source": "SIMULATED", "vehicle_authorized": false}

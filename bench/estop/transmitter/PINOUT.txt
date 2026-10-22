@@ -1,0 +1,15 @@
+E-STOP TRANSMITTER PINOUT
+=========================
+
+Pico GPIO18  -> RA-02 SCK
+Pico GPIO19  -> RA-02 MOSI
+Pico GPIO16  -> RA-02 MISO
+Pico GPIO17  -> RA-02 NSS/CS
+Pico GPIO20  -> RA-02 RESET
+Pico GPIO21  -> RA-02 DIO0
+Pico GPIO22  -> E-stop switch signal
+Pico 3.3 V   -> RA-02 VCC and switch high side as designed
+Pico GND     -> RA-02 GND
+
+GPIO22 uses an internal pull-down: released must read LOW and pressed HIGH.
+Use a 433 MHz antenna and never apply 5 V to RA-02 logic or power pins.

@@ -1,0 +1,20 @@
+[INFO] [launch]: All log files can be found below /home/mark1/.ros/log/2026-10-16-10-59-50-970529-Jarvis-247353
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [perception_node-1]: process started with pid [247373]
+[INFO] [mapping_node-2]: process started with pid [247375]
+[INFO] [planner_node-3]: process started with pid [247377]
+[INFO] [dashboard_gateway-4]: process started with pid [247379]
+[perception_node-1] frame status=DEGRADED reasons=('INVALID_POSE',)
+[perception_node-1] frame status=DEGRADED reasons=('INVALID_POSE',)
+[perception_node-1] frame status=DEGRADED reasons=('INVALID_POSE',)
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [dashboard_gateway-4]: sending signal 'SIGINT' to process[dashboard_gateway-4]
+[INFO] [planner_node-3]: sending signal 'SIGINT' to process[planner_node-3]
+[INFO] [mapping_node-2]: sending signal 'SIGINT' to process[mapping_node-2]
+[INFO] [perception_node-1]: sending signal 'SIGINT' to process[perception_node-1]
+[dashboard_gateway-4] ======== Running on http://127.0.0.1:18765 ========
+[dashboard_gateway-4] (Press CTRL+C to quit)
+[INFO] [mapping_node-2]: process has finished cleanly [pid 247375]
+[INFO] [planner_node-3]: process has finished cleanly [pid 247377]
+[INFO] [perception_node-1]: process has finished cleanly [pid 247373]
+[INFO] [dashboard_gateway-4]: process has finished cleanly [pid 247379]

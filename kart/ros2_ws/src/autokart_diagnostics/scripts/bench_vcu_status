@@ -1,0 +1,120 @@
+#!/usr/bin/env python3
+"""Read-only projection of the Stage 2 NOOP bench status packet.
+
+No command publisher, serial access, actuator output or vehicle authorization.
+The original eight-word packet contract is documented in
+/home/mark1/Desktop/autokart-remote/docs/INTERFACE_CONTRACT.md.
+"""
+
+from __future__ import annotations
+
+import time
+from typing import Sequence
+
+UINT64_MAX = (1 << 64) - 1
+PROTOCOL_VERSION = 1
+BENCH_SAFE_STATE = 0
+KNOWN_FAULT_BITS = 0x07
+STATUS_TIMEOUT_NS = 500_000_000
+SOURCE = "BENCH_USB_NOOP"
+
+
+def decode(words: Sequence[int], previous: tuple[int, int, int] | None):
+    """Return an eight-word status tuple or a fail-closed reason.
+
+    The ESP32 uptime is in its own monotonic clock domain. We never compare it
+    with the host ROS timestamp. A new boot ID starts a new sequence epoch.
+    """
+    if len(words) != 8:
+        return None, "BAD_LENGTH"
+    version, boot, uptime, sequence, agent, state, faults, age = map(int, words)
+    if version != PROTOCOL_VERSION:
+        return None, "BAD_VERSION"
+    if boot == 0 or agent not in (0, 1) or state != BENCH_SAFE_STATE:
+        return None, "INVALID_BENCH_STATE"
+    if faults & ~KNOWN_FAULT_BITS:
+        return None, "UNKNOWN_FAULT_BITS"
+    if (sequence == 0 and age != UINT64_MAX) or (sequence > 0 and age == UINT64_MAX):
+        return None, "INVALID_COMMAND_AGE"
+    if sequence > 0 and age > uptime:
+        return None, "INVALID_COMMAND_AGE"
+    if previous is not None and boot == previous[0]:
+        if uptime <= previous[1] or sequence < previous[2]:
+            return None, "REGRESSED_STATUS"
+    return (version, boot, uptime, sequence, agent, state, faults, age), "OK"
+
+
+def main() -> None:
+    import rclpy
+    from rclpy.node import Node
+    from std_msgs.msg import UInt64MultiArray
+    from autokart_msgs.msg import BenchVcuStatus
+
+    class BenchStatusNode(Node):
+        def __init__(self) -> None:
+            super().__init__("bench_vcu_status")
+            self.previous = None
+            self.last_rx_ns = None
+            self.publisher = self.create_publisher(
+                BenchVcuStatus, "/autokart/bench/vcu_status", 10
+            )
+            self.subscription = self.create_subscription(
+                UInt64MultiArray, "/autokart/bench/status", self.receive, 10
+            )
+            self.timer = self.create_timer(0.1, self.expire)
+            self.get_logger().info("Read-only NOOP bench status adapter; vehicle_authorized=false")
+
+        def publish(self, words=None, *, reason: str, stale: bool) -> None:
+            message = BenchVcuStatus()
+            message.receipt_time = self.get_clock().now().to_msg()
+            message.source = SOURCE
+            message.vehicle_authorized = False
+            message.packet_valid = words is not None
+            message.stale = stale
+            message.reason = reason
+            if words is not None:
+                (message.protocol_version, message.boot_id, message.vcu_uptime_ms,
+                 message.last_accepted_sequence, agent, message.controller_state,
+                 message.fault_bits, message.last_command_age_ms) = words
+                message.agent_online = bool(agent)
+                message.has_accepted_command = message.last_accepted_sequence > 0
+            self.publisher.publish(message)
+
+        def receive(self, packet: UInt64MultiArray) -> None:
+            now_ns = time.monotonic_ns()
+            if packet.layout.dim or packet.layout.data_offset != 0:
+                self.last_rx_ns = now_ns
+                self.publish(reason="BAD_LAYOUT", stale=True)
+                return
+            words, reason = decode(packet.data, self.previous)
+            self.last_rx_ns = now_ns
+            if words is None:
+                self.publish(reason=reason, stale=True)
+                return
+            self.previous = (words[1], words[2], words[3])
+            if not words[4]:
+                reason = "AGENT_OFFLINE"
+            elif words[6]:
+                reason = "BENCH_FAULT"
+            elif words[3] == 0:
+                reason = "NO_COMMAND"
+            else:
+                reason = "BENCH_ONLY"
+            self.publish(words, reason=reason, stale=False)
+
+        def expire(self) -> None:
+            if self.last_rx_ns is None or time.monotonic_ns() - self.last_rx_ns >= STATUS_TIMEOUT_NS:
+                self.publish(reason="STATUS_TIMEOUT" if self.last_rx_ns is not None
+                             else "NO_STATUS", stale=True)
+
+    rclpy.init()
+    node = BenchStatusNode()
+    try:
+        rclpy.spin(node)
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()

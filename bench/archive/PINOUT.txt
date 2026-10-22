@@ -1,0 +1,7 @@
+ARCHIVE PINOUT NOTICE
+=====================
+
+Archived versions contain different and sometimes conflicting pin assignments.
+Their original connection notes are preserved alongside them. Do not infer a
+current wiring plan from archive files; use bench/PINOUT.txt and the selected
+active subsystem's PINOUT.txt.

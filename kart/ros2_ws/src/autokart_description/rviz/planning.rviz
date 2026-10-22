@@ -1,0 +1,7 @@
+Visualization Manager:
+  Fixed Frame: map
+  Displays:
+    - {Class: rviz_default_plugins/Map, Name: Occupancy, Enabled: true, Topic: /map}
+    - {Class: rviz_default_plugins/Path, Name: Planned Path, Enabled: true, Topic: /planning/path}
+    - {Class: rviz_default_plugins/MarkerArray, Name: Trajectory, Enabled: true, Topic: /planning/trajectory_markers}
+    - {Class: rviz_default_plugins/Polygon, Name: Footprint, Enabled: true, Topic: /vehicle/footprint}

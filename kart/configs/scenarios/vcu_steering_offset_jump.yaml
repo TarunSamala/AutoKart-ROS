@@ -1,0 +1,6 @@
+name: vcu_steering_offset_jump
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 0.7
+control: {mode: vcu, steering_feedback_fault: primary_offset_jump, steering_feedback_fault_time_s: 0.2}
+initial_state: {u_mps: 2.0}
+command: {drive: 0.5, brake: 0.0, steering_rad: 0.1}

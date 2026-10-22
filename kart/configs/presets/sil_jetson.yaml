@@ -1,0 +1,6 @@
+name: sil_jetson
+mode: sil_hil
+simulation: {physics_backend: internal, gazebo_role: disabled, fidelity_tier: 2}
+features: {sensor_suite: planned_kart, vcu_enabled: true, independent_safety_enabled: true, rendering_enabled: false, ros_enabled: true, dashboard_enabled: true, real_actuator_outputs_enabled: false}
+expected_performance: "Real-time paced SIL with simulated plant and external compute."
+dependencies: [python3, ros2_humble, jetson_external]

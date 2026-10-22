@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!-- Generated dependency-free structural URDF. SIMULATION USE ONLY; MEASUREMENT REQUIRED. -->
+<robot name="autokart">
+  <material name="frame"><color rgba="0.12 0.14 0.16 1"/></material>
+  <material name="body"><color rgba="0.85 0.08 0.04 1"/></material>
+  <material name="rubber"><color rgba="0.02 0.02 0.02 1"/></material>
+  <link name="base_link"/>
+  <link name="chassis_link"><inertial><origin xyz="0.05 0 0.30"/><mass value="91.95"/><inertia ixx="24" ixy="0" ixz="0" iyy="35" iyz="0" izz="35"/></inertial><visual><origin xyz="0.05 0 0.30"/><geometry><box size="1.75 1.06 0.16"/></geometry><material name="frame"/></visual><collision><origin xyz="0.05 0 0.30"/><geometry><box size="1.75 1.06 0.16"/></geometry></collision></link>
+  <link name="front_axle_link"><inertial><mass value="3"/><inertia ixx=".2" ixy="0" ixz="0" iyy=".02" iyz="0" izz=".2"/></inertial><visual><geometry><box size=".08 .95 .08"/></geometry></visual><collision><geometry><box size=".08 .95 .08"/></geometry></collision></link>
+  <link name="front_left_steer_link"><inertial><mass value=".8"/><inertia ixx=".01" ixy="0" ixz="0" iyy=".01" iyz="0" izz=".01"/></inertial><visual><geometry><box size=".10 .08 .16"/></geometry></visual><collision><geometry><box size=".10 .08 .16"/></geometry></collision></link>
+  <link name="front_right_steer_link"><inertial><mass value=".8"/><inertia ixx=".01" ixy="0" ixz="0" iyy=".01" iyz="0" izz=".01"/></inertial><visual><geometry><box size=".10 .08 .16"/></geometry></visual><collision><geometry><box size=".10 .08 .16"/></geometry></collision></link>
+  <link name="front_left_wheel_link"><inertial><mass value="2.2"/><inertia ixx=".025" ixy="0" ixz="0" iyy=".012" iyz="0" izz=".025"/></inertial><visual><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".14" length=".10"/></geometry><material name="rubber"/></visual><collision><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".14" length=".10"/></geometry></collision></link>
+  <link name="front_right_wheel_link"><inertial><mass value="2.2"/><inertia ixx=".025" ixy="0" ixz="0" iyy=".012" iyz="0" izz=".025"/></inertial><visual><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".14" length=".10"/></geometry><material name="rubber"/></visual><collision><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".14" length=".10"/></geometry></collision></link>
+  <link name="rear_axle_link"><inertial><mass value="3"/><inertia ixx=".12" ixy="0" ixz="0" iyy=".12" iyz="0" izz=".12"/></inertial><visual><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".025" length=".92"/></geometry></visual><collision><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".025" length=".92"/></geometry></collision></link>
+  <link name="rear_left_wheel_link"><inertial><mass value="2.4"/><inertia ixx=".025" ixy="0" ixz="0" iyy=".012" iyz="0" izz=".025"/></inertial><visual><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".14" length=".10"/></geometry><material name="rubber"/></visual><collision><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".14" length=".10"/></geometry></collision></link>
+  <link name="rear_right_wheel_link"><inertial><mass value="2.4"/><inertia ixx=".025" ixy="0" ixz="0" iyy=".012" iyz="0" izz=".025"/></inertial><visual><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".14" length=".10"/></geometry><material name="rubber"/></visual><collision><origin rpy="1.570796 0 0"/><geometry><cylinder radius=".14" length=".10"/></geometry></collision></link>
+  <link name="steering_column_link"><inertial><mass value="1.2"/><inertia ixx=".01" ixy="0" ixz="0" iyy=".03" iyz="0" izz=".03"/></inertial><visual><geometry><box size=".45 .035 .035"/></geometry></visual><collision><geometry><box size=".45 .035 .035"/></geometry></collision></link>
+  <link name="steering_actuator_link"><inertial><mass value="1.5"/><inertia ixx=".01" ixy="0" ixz="0" iyy=".01" iyz="0" izz=".01"/></inertial><visual><geometry><box size=".18 .11 .11"/></geometry></visual><collision><geometry><box size=".18 .11 .11"/></geometry></collision></link>
+  <link name="brake_actuator_link"><inertial><mass value="1.5"/><inertia ixx=".01" ixy="0" ixz="0" iyy=".01" iyz="0" izz=".01"/></inertial><visual><geometry><box size=".18 .12 .10"/></geometry></visual><collision><geometry><box size=".18 .12 .10"/></geometry></collision></link>
+  <link name="motor_link"><inertial><mass value="8"/><inertia ixx=".08" ixy="0" ixz="0" iyy=".08" iyz="0" izz=".08"/></inertial><visual><geometry><box size=".30 .25 .25"/></geometry></visual><collision><geometry><box size=".30 .25 .25"/></geometry></collision></link>
+  <link name="battery_link"><inertial><mass value="20"/><inertia ixx=".35" ixy="0" ixz="0" iyy=".6" iyz="0" izz=".7"/></inertial><visual><geometry><box size=".55 .38 .20"/></geometry></visual><collision><geometry><box size=".55 .38 .20"/></geometry></collision></link>
+  <link name="vcu_link"><inertial><mass value="1"/><inertia ixx=".01" ixy="0" ixz="0" iyy=".01" iyz="0" izz=".01"/></inertial><visual><geometry><box size=".20 .14 .07"/></geometry></visual><collision><geometry><box size=".20 .14 .07"/></geometry></collision></link>
+  <link name="compute_link"><inertial><mass value="1.8"/><inertia ixx=".02" ixy="0" ixz="0" iyy=".02" iyz="0" izz=".02"/></inertial><visual><geometry><box size=".22 .16 .08"/></geometry></visual><collision><geometry><box size=".22 .16 .08"/></geometry></collision></link>
+  <link name="camera_link"><inertial><mass value=".2"/><inertia ixx=".001" ixy="0" ixz="0" iyy=".001" iyz="0" izz=".001"/></inertial><visual><geometry><box size=".08 .16 .06"/></geometry></visual><collision><geometry><box size=".08 .16 .06"/></geometry></collision></link>
+  <link name="camera_optical_frame"/>
+  <link name="depth_camera_link"><inertial><mass value=".25"/><inertia ixx=".001" ixy="0" ixz="0" iyy=".001" iyz="0" izz=".001"/></inertial><visual><geometry><box size=".08 .18 .07"/></geometry></visual><collision><geometry><box size=".08 .18 .07"/></geometry></collision></link>
+  <link name="lidar_link"><inertial><mass value=".6"/><inertia ixx=".002" ixy="0" ixz="0" iyy=".002" iyz="0" izz=".002"/></inertial><visual><geometry><cylinder radius=".06" length=".10"/></geometry></visual><collision><geometry><cylinder radius=".06" length=".10"/></geometry></collision></link>
+  <link name="imu_link"><inertial><mass value=".1"/><inertia ixx=".0001" ixy="0" ixz="0" iyy=".0001" iyz="0" izz=".0001"/></inertial><visual><geometry><box size=".05 .04 .02"/></geometry></visual><collision><geometry><box size=".05 .04 .02"/></geometry></collision></link>
+  <link name="gps_link"><inertial><mass value=".1"/><inertia ixx=".0001" ixy="0" ixz="0" iyy=".0001" iyz="0" izz=".0001"/></inertial><visual><geometry><box size=".06 .06 .02"/></geometry></visual><collision><geometry><box size=".06 .06 .02"/></geometry></collision></link>
+
+  <joint name="base_to_chassis" type="fixed"><parent link="base_link"/><child link="chassis_link"/></joint>
+  <joint name="front_axle_mount" type="fixed"><parent link="chassis_link"/><child link="front_axle_link"/><origin xyz=".575 0 .14"/></joint>
+  <joint name="front_left_steering_joint" type="revolute"><parent link="front_axle_link"/><child link="front_left_steer_link"/><origin xyz="0 .475 0"/><axis xyz="0 0 1"/><limit lower="-.558505" upper=".558505" effort="300" velocity="3"/></joint>
+  <joint name="front_right_steering_joint" type="revolute"><parent link="front_axle_link"/><child link="front_right_steer_link"/><origin xyz="0 -.475 0"/><axis xyz="0 0 1"/><limit lower="-.558505" upper=".558505" effort="300" velocity="3"/></joint>
+  <joint name="front_left_wheel_joint" type="continuous"><parent link="front_left_steer_link"/><child link="front_left_wheel_link"/><axis xyz="0 1 0"/></joint>
+  <joint name="front_right_wheel_joint" type="continuous"><parent link="front_right_steer_link"/><child link="front_right_wheel_link"/><axis xyz="0 1 0"/></joint>
+  <joint name="rear_solid_axle_joint" type="continuous"><parent link="chassis_link"/><child link="rear_axle_link"/><origin xyz="-.575 0 .14"/><axis xyz="0 1 0"/><dynamics damping=".2"/></joint>
+  <joint name="rear_left_wheel_rigid_joint" type="fixed"><parent link="rear_axle_link"/><child link="rear_left_wheel_link"/><origin xyz="0 .46 0"/></joint>
+  <joint name="rear_right_wheel_rigid_joint" type="fixed"><parent link="rear_axle_link"/><child link="rear_right_wheel_link"/><origin xyz="0 -.46 0"/></joint>
+  <joint name="steering_column_joint" type="revolute"><parent link="chassis_link"/><child link="steering_column_link"/><origin xyz=".25 0 .55" rpy="0 .45 0"/><axis xyz="1 0 0"/><limit lower="-1.5" upper="1.5" effort="20" velocity="6"/></joint>
+  <joint name="steering_actuator_joint" type="revolute"><parent link="chassis_link"/><child link="steering_actuator_link"/><origin xyz=".18 0 .36"/><axis xyz="1 0 0"/><limit lower="-1.5" upper="1.5" effort="20" velocity="6"/></joint>
+  <joint name="brake_actuator_joint" type="prismatic"><parent link="chassis_link"/><child link="brake_actuator_link"/><origin xyz="-.05 .30 .28"/><axis xyz="1 0 0"/><limit lower="0" upper=".025" effort="4000" velocity=".3"/></joint>
+  <joint name="motor_mount" type="fixed"><parent link="chassis_link"/><child link="motor_link"/><origin xyz="-.42 .20 .31"/></joint>
+  <joint name="battery_mount" type="fixed"><parent link="chassis_link"/><child link="battery_link"/><origin xyz="-.10 -.20 .30"/></joint>
+  <joint name="vcu_mount" type="fixed"><parent link="chassis_link"/><child link="vcu_link"/><origin xyz=".10 -.34 .42"/></joint>
+  <joint name="compute_mount" type="fixed"><parent link="chassis_link"/><child link="compute_link"/><origin xyz=".18 .28 .45"/></joint>
+  <joint name="camera_mount" type="fixed"><parent link="chassis_link"/><child link="camera_link"/><origin xyz=".64 0 .72"/></joint>
+  <joint name="camera_optical_joint" type="fixed"><parent link="camera_link"/><child link="camera_optical_frame"/><origin rpy="-1.570796 0 -1.570796"/></joint>
+  <joint name="depth_camera_mount" type="fixed"><parent link="chassis_link"/><child link="depth_camera_link"/><origin xyz=".60 0 .64"/></joint>
+  <joint name="lidar_mount" type="fixed"><parent link="chassis_link"/><child link="lidar_link"/><origin xyz=".20 0 .82"/></joint>
+  <joint name="imu_mount" type="fixed"><parent link="chassis_link"/><child link="imu_link"/><origin xyz=".05 0 .30"/></joint>
+  <joint name="gps_mount" type="fixed"><parent link="chassis_link"/><child link="gps_link"/><origin xyz="-.20 0 .80"/></joint>
+</robot>

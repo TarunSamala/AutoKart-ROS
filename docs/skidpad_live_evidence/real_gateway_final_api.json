@@ -1,0 +1,66 @@
+{
+  "manifest": {
+    "schema_version": 1,
+    "run_id": "ros-live",
+    "source": "REAL_KART",
+    "scenario": "SKIDPAD",
+    "samples": 0,
+    "start_time_s": null,
+    "end_time_s": null,
+    "read_only": true,
+    "actuator_authority": "NONE",
+    "mode": "LIVE"
+  },
+  "status": {
+    "source": "REAL_KART",
+    "run_id": "ros-live",
+    "scenario": "SKIDPAD",
+    "ros_connected": false,
+    "odometry": {
+      "current": false,
+      "state": "MISSING",
+      "age_ms": null,
+      "payload": null
+    },
+    "vcu": {
+      "current": false,
+      "state": "MISSING",
+      "age_ms": null,
+      "payload": null
+    },
+    "safety": {
+      "current": false,
+      "state": "MISSING",
+      "age_ms": null,
+      "payload": null
+    },
+    "stages": {
+      "perception": {
+        "current": false,
+        "state": "MISSING",
+        "age_ms": null,
+        "payload": null
+      },
+      "mapping": {
+        "current": false,
+        "state": "MISSING",
+        "age_ms": null,
+        "payload": null
+      },
+      "planning": {
+        "current": false,
+        "state": "MISSING",
+        "age_ms": null,
+        "payload": null
+      }
+    },
+    "read_only": true,
+    "vehicle_authorized": false,
+    "mode": "LIVE"
+  },
+  "camera": {
+    "available": false,
+    "frame_id": null,
+    "reason": "CAMERA_PAIR_MISSING"
+  }
+}

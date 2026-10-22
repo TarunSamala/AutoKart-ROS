@@ -1,0 +1,1 @@
+{"exit_decisions": ["EXIT_PATH_CANDIDATE", "EXIT_PATH_CANDIDATE", "EXIT_PATH_CANDIDATE", "STOP_CANDIDATE", "HOLD", "STOP"], "exit_path_seen": true, "final_state": "STOP", "left_laps": 2, "right_laps": 2, "samples": 169, "source": "SIMULATED", "stop_pending_seen": true, "transition_seen": true, "valid_path_samples": 165, "vehicle_authorized": false}

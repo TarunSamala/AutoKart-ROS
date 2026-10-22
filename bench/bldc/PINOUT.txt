@@ -1,0 +1,19 @@
+BLDC / BLD-750 PINOUT
+=====================
+
+ESP32-S3 GPIO8  -> GP8630N SDA
+ESP32-S3 GPIO9  -> GP8630N SCL
+ESP32-S3 GPIO1  -> transistor driver -> BLD-750 EN
+ESP32-S3 GPIO2  -> transistor driver -> BLD-750 BRK
+ESP32-S3 GPIO7  -> transistor driver -> BLD-750 F/R
+
+GP8630N OUT      -> BLD-750 SV
+GP8630N GND      -> BLD-750 COM
+GP8630N VCC      -> supported logic supply per module documentation
+
+Motor yellow/green/blue were documented as U/V/W respectively. Hall red/black
+were documented as REF+/REF-, with hall yellow/green/blue as HU/HV/HW. Verify
+the exact motor/controller documentation before applying power.
+
+The NPN interface assumed by the code makes ESP GPIO HIGH pull the BLD input
+to COM. GPIO1/2/7 must be physically available and safe on the exact board.

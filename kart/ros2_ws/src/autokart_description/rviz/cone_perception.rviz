@@ -1,0 +1,6 @@
+Visualization Manager:
+  Fixed Frame: map
+  Displays:
+    - {Class: rviz_default_plugins/RobotModel, Name: Kart, Enabled: true, Description Topic: /robot_description}
+    - {Class: rviz_default_plugins/MarkerArray, Name: Detected Cones, Enabled: true, Topic: /perception/cone_markers}
+    - {Class: rviz_default_plugins/MarkerArray, Name: Debug Ground Truth, Enabled: false, Topic: /debug/ground_truth/cone_markers}

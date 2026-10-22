@@ -1,0 +1,397 @@
+AUTONOMOUS ELECTRIC GO-KART SIMULATOR
+CODEX EXECUTION RULES
+
+You are acting as the lead vehicle-dynamics, robotics, embedded, controls, safety, reliability, simulation, and software engineer.
+
+This is not a game-only project. It is a research-grade, deterministic, configurable autonomous electric go-kart simulator that must eventually support software-in-loop, hardware-in-loop, real-kart calibration, and safety fault injection.
+
+ENGINEERING PRIORITY
+1. Human safety
+2. Emergency stopping
+3. Prevention of uncontrolled propulsion or steering
+4. Predictable behaviour
+5. Fault detection
+6. Determinism and timing correctness
+7. Physics and sensor correctness
+8. Testability
+9. Maintainability
+10. Performance
+11. Visual quality
+
+MANDATORY ENGINEERING BEHAVIOUR
+- Inspect the repository and run the complete existing test suite before modifying code.
+- Preserve existing validated work.
+- Do not perform destructive Git operations.
+- Do not silently weaken tests, thresholds, or safety logic to make tests pass.
+- Do not claim success because code compiles.
+- Do not invent hardware specifications.
+- Put provisional values in schema-validated configuration files.
+- Record every assumption in docs/ASSUMPTIONS.md.
+- Record important decisions in docs/ADR/.
+- Use SI units internally.
+- Keep world, vehicle, track, sensor, camera optical, and actuator frames explicit.
+- Use deterministic fixed-step simulation and seeded random streams.
+- Keep measurement time, processing completion time, delivery time, and consumer time separate.
+- Keep operational sensor data separate from debug ground truth.
+- Keep high-level computer, VCU, and independent safety layer separate.
+- No actuator command may remain active indefinitely after communication loss.
+- Every critical fault must have detection, safe response, latching/reset policy, and automated verification.
+- Never claim ISO 26262, ASIL, automotive certification, or real-vehicle safety compliance.
+- Mark example configurations:
+  SIMULATION USE ONLY
+  NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+
+VERDICTS
+Use only:
+- APPROVED
+- APPROVED_WITH_CONDITIONS
+- REJECTED
+- MORE_DATA_REQUIRED
+- PROTOTYPE_TEST_REQUIRED
+
+WORKFLOW
+1. Audit repository and environment.
+2. Run baseline tests and record exact results.
+3. Identify interfaces affected by this phase.
+4. Create a phase implementation plan.
+5. Implement in small, testable increments.
+6. Run unit, integration, regression, fault, determinism, and performance tests.
+7. Update documentation and requirements traceability.
+8. Produce the required final report.
+9. Do not begin the next phase automatically.
+
+EXTERNAL DEPENDENCIES
+When a dependency is unavailable:
+- Do not stop the whole phase.
+- Implement clean interfaces and optional build flags.
+- Add a deterministic fallback or mock where meaningful.
+- Add installation and validation instructions.
+- Mark tests requiring the dependency as explicit optional/integration tests.
+- Never mark an unexecuted integration as passed.
+PHASE 12
+CARLA/UNREAL 3D WORLD, CUSTOM TRACK, SENSOR RENDERING,
+WEATHER, DYNAMIC ACTORS, AND PHYSICS SYNCHRONIZATION
+
+PREREQUISITE GATE
+Begin after Phase 11 provides a stable backend abstraction. The internal or Chrono backend must remain the authoritative kart physics source.
+
+OBJECTIVE
+Integrate a 3D environment/rendering backend using CARLA/Unreal or a compatible adapter. Provide realistic visual scenes, cameras, depth, LiDAR, lighting, weather, obstacles, and humans without corrupting deterministic physics or sensor timing.
+
+1. INITIAL AUDIT
+Inspect:
+- installed CARLA/Unreal versions
+- GPU/driver
+- supported OS
+- Python/C++ APIs
+- current map/sensor APIs
+- repository adapters
+- track export formats
+- sensor interfaces
+- physics backend
+Run baseline tests.
+
+Use official documentation matching the detected versions. Do not assume current APIs.
+
+2. AUTHORITY MODEL
+Choose and document one:
+A. simulator/Chrono authoritative physics, Unreal visual follower
+B. CARLA vehicle physics authoritative only for comparison mode
+
+Default research mode should avoid double physics.
+
+If external physics is authoritative:
+- disable or neutralize conflicting vehicle dynamics
+- synchronize pose/velocity
+- avoid feedback loops
+- verify no render frame changes physics
+
+3. ADAPTER ARCHITECTURE
+adapters/carla_unreal/
+- client/session
+- world_sync
+- vehicle_actor
+- track_import
+- object_manager
+- weather
+- lighting
+- camera
+- depth
+- lidar
+- semantic labels
+- coordinate conversions
+- recording
+- diagnostics
+
+Core simulator must still run without CARLA/Unreal.
+
+4. SYNCHRONOUS MODE
+Implement:
+- fixed delta seconds
+- explicit world tick
+- sensor frame synchronization
+- timeout detection
+- dropped-frame detection
+- pause/reset
+- deterministic seed where supported
+- metadata for non-deterministic engine effects
+
+5. COORDINATE CONVERSIONS
+Test:
+- handedness
+- axes
+- yaw/pitch/roll
+- units
+- camera optical frames
+- LiDAR point frames
+- map origin
+- track s projection
+
+6. CUSTOM KART ACTOR
+Create:
+- visual mesh placeholder with clear replacement path
+- collision geometry
+- wheel transforms
+- steering animation
+- brake/motor visual state
+- sensor mounts
+- safety indicators
+- scale validation
+
+Do not use the visual actor’s wheel animation as physics feedback.
+
+7. TRACK IMPORT
+Convert Phase 5 track data into:
+- drivable mesh
+- boundaries
+- kerbs
+- run-off
+- barriers
+- surface material regions
+- elevation/banking
+- named corners
+- spawn points
+
+Preserve track coordinate mapping and surface IDs.
+
+Support reproducible procedural generation or export pipeline.
+
+8. MATERIALS
+Separate:
+- optical material
+- semantic class
+- LiDAR reflectivity
+- tire friction from physics backend
+
+Do not infer friction from rendered appearance.
+
+9. LIGHTING/WEATHER
+Support:
+- time of day
+- sun
+- shadows
+- overcast
+- rain
+- fog
+- wetness
+- puddle placeholder
+- dust/visibility
+- ambient temperature metadata
+
+Environmental settings must feed Phase 6 sensor-degradation models.
+
+10. DYNAMIC ACTORS
+Support:
+- cones
+- barriers
+- vehicles
+- pedestrians/humans
+- moving obstacles
+- scripted trajectories
+- sudden entry
+- occlusion scenarios
+
+Every actor:
+- ID
+- pose
+- velocity
+- collision geometry
+- semantic class
+- scenario timeline
+
+11. CAMERA RENDERING
+Connect Phase 6 timing and calibration:
+- capture timestamps
+- rolling shutter approximation
+- exposure
+- motion blur
+- intrinsics/distortion
+- mounting/calibration
+- latency/queue
+- faults
+
+Do not replace Phase 6 timing with engine callback time.
+
+12. DEPTH
+Provide:
+- ground-truth depth debug stream
+- RGB-D device-like degraded stream
+- invalid pixels
+- range limits
+- alignment errors
+- active-stereo degradation hooks
+
+Keep debug depth separate.
+
+13. LIDAR
+Provide:
+- ray-based returns
+- per-point timestamps or synthesized beam timing
+- motion distortion
+- intensity/reflectivity mapping
+- range/dropout
+- weather degradation
+- faults
+
+If engine LiDAR cannot provide required timing, document and apply a post-processing timing model.
+
+14. SEMANTIC DATA
+Optional debug/training:
+- semantic segmentation
+- instance IDs
+- bounding boxes
+- optical flow
+- ground truth
+
+Disabled or separated from operational topics.
+
+15. COLLISION AND SAFETY
+Collision events:
+- actor IDs
+- contact point
+- normal
+- impulse
+- timestamp
+- damage abstraction
+
+Do not use collision as the primary obstacle-detection method.
+
+16. HEADLESS/OFFSCREEN
+Support:
+- headless server
+- no-display CI where possible
+- recording
+- reduced sensor suite
+- connection diagnostics
+- clean shutdown
+
+17. VALIDATION SCENARIOS
+- static projection
+- camera calibration target
+- moving checkerboard/rolling shutter
+- depth range targets
+- reflective/transparent surfaces
+- LiDAR wall/incidence
+- fog/rain
+- glare
+- night
+- pedestrian crossing
+- obstacle occlusion
+- kerb/wet patch
+- synchronous replay
+
+18. CROSS-BACKEND TESTS
+Verify:
+- physics unchanged by rendering frame rate
+- actor pose follows authoritative backend
+- sensor timestamp mapping
+- frame conversions
+- track/surface alignment
+- object positions match ground truth
+- no double integration
+- safety response still works
+
+19. PERFORMANCE
+Measure:
+- render FPS
+- sensor throughput
+- GPU memory
+- latency
+- dropped frames
+- real-time factor
+- network overhead
+
+Fidelity presets:
+- CI/minimal
+- real-time development
+- dataset
+- offline high fidelity
+
+20. DOCUMENTATION
+Create/update:
+- docs/CARLA_UNREAL_INTEGRATION.md
+- docs/WORLD_SYNCHRONIZATION.md
+- docs/CUSTOM_KART_ACTOR.md
+- docs/TRACK_RENDER_PIPELINE.md
+- docs/RENDERED_SENSORS.md
+- docs/ENVIRONMENT_SCENARIOS.md
+- docs/STATUS.md
+
+21. ACCEPTANCE CRITERIA
+- optional integration
+- authoritative physics defined
+- no double physics
+- synchronous mode
+- custom kart actor
+- track import
+- camera/depth/LiDAR connected to Phase 6 timing
+- weather/lighting
+- dynamic actors
+- debug ground truth separated
+- headless mode
+- required tests
+- performance measured
+- safety regressions pass
+
+22. REQUIRED FINAL REPORT
+PHASE:
+Phase 12 — CARLA/Unreal Integration
+
+STATUS:
+...
+
+VERDICT:
+...
+
+ENVIRONMENT:
+- versions
+- GPU
+- modes
+
+IMPLEMENTED:
+- sync
+- coordinate mapping
+- kart actor
+- track
+- materials
+- weather
+- actors
+- camera
+- depth
+- LiDAR
+- semantic/debug
+- headless
+
+VALIDATION:
+- timing
+- frames
+- sensor
+- no double physics
+- safety
+- performance
+
+KNOWN LIMITATIONS:
+- ...
+
+NEXT PHASE:
+Phase 13 — SIL/HIL with real Jetson, VCU, and CAN.

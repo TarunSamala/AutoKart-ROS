@@ -1,0 +1,22 @@
+schema_version: 1
+name: cpu_only_software_render
+qualification_status: measured_offline_only
+cpu: host CPU
+gpu: none
+ram_gib: 8
+rendering_backend: Mesa llvmpipe via LIBGL_ALWAYS_SOFTWARE=1
+physics_hz: 1000
+gazebo_follower_hz: 100
+ros_executor_threads: 4
+recorder: bounded representative payload evidence
+dashboard: optional
+sensor_fidelity:
+  rgb: {width: 160, height: 90, rate_hz: 10}
+  depth: {width: 160, height: 90, rate_hz: 10}
+  lidar: {samples: 180, rate_hz: 10}
+  imu: {source: internal, rate_hz: 200}
+performance_gates:
+  minimum_sustained_rtf: NOT_QUALIFIED
+  maximum_sensor_queue_depth: 4
+  vcu_deadline_misses: 0
+  independent_safety_deadline_misses: 0

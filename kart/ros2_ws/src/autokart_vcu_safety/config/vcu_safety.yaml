@@ -1,0 +1,14 @@
+# VCU safety supervisor parameters. The three *_verified flags gate ALL arming and are false until a person
+# reviews docs/BENCH_TESTS.md and sets them -- nothing in this repository sets them automatically.
+#
+# config_schema_version: 1 -- bump in this comment whenever a parameter below is added, removed, or
+# changes meaning/units. Owner: autokart_vcu_safety. Kept as a comment, not a ros__parameters key,
+# so this file's ROS parameter-loading behaviour is not changed by adding it; tools/
+# validate_config_schema.py reads this comment and reports a mismatch read-only.
+autokart_vcu_safety:
+  ros__parameters:
+    overspeed_mps: 2.5          # m/s; tune after measuring real top speed at the 2 V throttle cap; owner: operator
+    stop_ineffective_s: 4.0     # s; owner: autokart_vcu_safety (default, not yet operator-tuned)
+    calibration_verified: false       # bool; autokart_perception camera/depth calibration; owner: operator (never set by software)
+    vehicle_config_verified: false    # bool; wheelbase, tyre radius, steering AS5600 zero/scale; owner: operator (never set by software)
+    braking_verified: false           # bool; tools/braking_test.py results reviewed and accepted; owner: operator (never set by software)

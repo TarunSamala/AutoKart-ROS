@@ -1,0 +1,25 @@
+# See mission_skidpad.yaml's header -- the same three algorithm/geometry/planner package paths are
+# required here too.
+autokart_mission:
+  ros__parameters:
+    algorithm_package_path: ""
+    vehicle_geometry_package_path: ""
+    planner_package_path: ""
+    mission: "BRAKING_TEST"
+    source: "SIMULATED"
+    brake_min_mps2: 3.0
+    brake_delay_s: 0.2
+    brake_provenance: "SIMULATED"
+    brake_margin_m: 1.0
+    speed_limit_mps: 1.0
+    camera_to_bumper_m: -1.0
+    stop_gap_from_bumper_m: 1.0
+    lateral_margin_m: -1.0
+    footprint_width_m: -1.0
+    odom_topic: "/autokart/odom"
+    mapping_status_topic: "/autokart_mapping/status"
+    feedback_topic: "/vehicle/actuator_feedback"
+    obstacles_topic: "/autokart_mission/obstacles"
+    status_topic: "/autokart_mission/status"
+    status_max_age_s: 0.3
+    input_timeout_s: 0.5

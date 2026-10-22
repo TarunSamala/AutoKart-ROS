@@ -1,0 +1,13 @@
+# SIMULATION USE ONLY — NOT SURVEY OR CONSTRUCTION DATA.
+track:
+  name: split_friction_straight
+  type: open
+  coordinate_system: local_enu
+  centreline: {representation: polyline, control_points: [[0,0,0],[50,0,0]]}
+  width: {default_left_m: 2.0, default_right_m: 2.0}
+  banking: {default_rad: 0.0}
+materials:
+  dry_asphalt: {friction_longitudinal: 1.0, friction_lateral: 0.95, rolling_resistance: 0.018}
+  wet_asphalt: {friction_longitudinal: 0.60, friction_lateral: 0.55, rolling_resistance: 0.020}
+surface_regions:
+  - {id: right_wet, coordinates: track, start_s_m: 0.0, end_s_m: 50.0, min_lateral_m: -2.0, max_lateral_m: -0.01, material: wet_asphalt, priority: 10}

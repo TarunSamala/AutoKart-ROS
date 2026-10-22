@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>autokart_mapping</name>
+  <version>0.1.0</version>
+  <description>ROS adapter package for the tested shared geometry and mapping algorithms.</description>
+  <maintainer email="simulation@example.invalid">AutoKart</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>ament_cmake_python</build_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>autokart_msgs</exec_depend>
+  <exec_depend>autokart_perception</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>

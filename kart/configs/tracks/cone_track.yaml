@@ -1,0 +1,26 @@
+# SIMULATION USE ONLY — original cone-defined test course.
+track:
+  name: autokart_cone_track
+  type: closed
+  closed_loop: true
+  coordinate_system: local_enu
+  centreline:
+    representation: spline_source_polyline
+    control_points: [[0, 0, 0], [12, 1, 0], [22, 8, 0.3], [17, 19, 0.5], [5, 22, 0.2], [-7, 17, 0], [-10, 6, 0], [-5, -2, 0]]
+  width: {default_left_m: 2.0, default_right_m: 2.0}
+  elevation: {source: centreline_z}
+  banking: {default_rad: 0.02}
+  surfaces: [dry_asphalt, wet_asphalt]
+  kerbs: []
+  run_off: {default_m: 3}
+  barriers: []
+  cones: {generation: boundaries, spacing_m: 3.0}
+  sectors: [{id: S1, start_s_m: 0, end_s_m: 30}, {id: S2, start_s_m: 30, end_s_m: 70}]
+  corners: []
+  spawn_points: [{id: grid, s_m: 0, lateral_m: 0}]
+  obstacles: [{id: stopped_vehicle_zone, s_m: 42, enabled: false}]
+materials:
+  dry_asphalt: {friction_longitudinal: 1.0, friction_lateral: 0.95, rolling_resistance: 0.018}
+  wet_asphalt: {friction_longitudinal: 0.55, friction_lateral: 0.50, rolling_resistance: 0.022}
+surface_regions:
+  - {id: wet_patch, coordinates: track, start_s_m: 48, end_s_m: 58, min_lateral_m: -2, max_lateral_m: 2, material: wet_asphalt, priority: 10}

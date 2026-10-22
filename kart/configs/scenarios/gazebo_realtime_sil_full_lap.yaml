@@ -1,0 +1,74 @@
+# SIMULATION USE ONLY — Phase 16 real-time SIL acceptance scenario.
+name: gazebo_realtime_sil_full_lap
+preset: configs/presets/gazebo_realtime_sil.yaml
+track: configs/tracks/research_circle.yaml
+kart: configs/karts/prototype_dynamic.yaml
+controller: configs/controllers/baseline_racing.yaml
+sensor_suite: configs/sensors/planned_kart.yaml
+seed: 20260729
+duration_s: 35.0
+start: {s_m: 0.0, lateral_m: 0.0}
+target_speed_mps: 4.0
+agents: 1
+weather: {condition: clear, temperature_c: 25.0}
+obstacles: []
+faults: []
+session_rules:
+  laps: 1
+  controlled_stop_after_finish: true
+simulation:
+  physics_backend: internal
+  scheduler_mode: realtime_synchronized
+gazebo:
+  role: visual_sensor_follower
+  vehicle_dynamics_authority: false
+  actuation_authority: false
+  world: simulation/worlds/autokart_gazebo_follower_world.sdf
+rates:
+  physics_hz: 1000
+  vcu_hz: 1000
+  independent_safety_hz: 1000
+  gazebo_follow_hz: 100
+  camera_hz: 10
+  depth_hz: 10
+  lidar_hz: 10
+  imu_hz: 200
+timing:
+  maximum_interpolation_s: 0.020
+  maximum_state_age_s: 0.020
+  camera_processing_latency_s: 0.008
+  depth_processing_latency_s: 0.010
+  lidar_processing_latency_s: 0.004
+  imu_processing_latency_s: 0.001
+  transport_latency_s: 0.002
+  jitter_s: 0.0005
+  maximum_follower_lag_s: 0.060
+  acknowledgement_timeout_s: 1.0
+  # Scheduler wake-up compensation only; authoritative physics remains 1 ms.
+  wall_time_target_rtf: 1.005
+  disable_cyclic_gc_during_qualification: true
+timing_budgets:
+  physics:
+    rate_hz: 1000
+    average_budget_s: 0.0007
+    deadline_s: 0.001
+    severity: warning
+  vcu:
+    rate_hz: 1000
+    average_budget_s: 0.0004
+    deadline_s: 0.001
+    severity: error
+  independent_safety:
+    rate_hz: 1000
+    average_budget_s: 0.0001
+    deadline_s: 0.001
+    severity: critical
+imu:
+  source: internal
+logging:
+  telemetry: true
+  sensors: true
+  ros_recording: true
+  bounded_recorder: true
+  dashboard: true
+  artifacts: artifacts/phase16/realtime_full_lap

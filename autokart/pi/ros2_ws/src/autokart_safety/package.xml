@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>autokart_safety</name>
+  <version>0.1.0</version>
+  <description>autokart_safety</description>
+  <maintainer email="harrishkesavan@gmail.com">autokart</maintainer>
+  <license>Proprietary</license>
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>autokart_msgs</depend>
+  <depend>autokart_vehicle_bridge</depend>
+  <export><build_type>ament_python</build_type></export>
+</package>

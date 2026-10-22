@@ -1,0 +1,25 @@
+# Synthetic/dev profile: no gateway_package_path or perception_package_path
+# set, so both real dependencies are deliberately absent. The node still
+# builds and launches, but serves ONLY a degraded /health endpoint
+# (gateway_available: false) -- no ROS node, no publisher/subscriber, no
+# WebSocket, no actuation path of any kind. This is what makes the package
+# buildable/launchable with zero external dependency, matching
+# autokart_hp60c/autokart_safety's "synthetic"/dependency-unavailable
+# convention. It is NOT a claim that the Mission Control UI was exercised --
+# see config/dashboard_gateway_live.yaml and reports/VALIDATOR_REPORT.md.
+autokart_dashboard_gateway:
+  ros__parameters:
+    gateway_package_path: ""
+    perception_package_path: ""
+    enable_camera_feed: false
+    mode: "replay"
+    source: "SIMULATION"
+    run_id: "synthetic"
+    scenario: "UNKNOWN"
+    host: "127.0.0.1"
+    port: 8765
+    static_root: ""
+    display_only: true
+    fsds: false
+    replay_path: ""
+    readiness_path: ""

@@ -1,0 +1,6 @@
+name: gazebo_sensor_development
+mode: gazebo
+simulation: {physics_backend: internal, gazebo_role: visual_follower, fidelity_tier: 3}
+features: {sensor_suite: full_gazebo, vcu_enabled: true, independent_safety_enabled: true, rendering_enabled: true, ros_enabled: true, dashboard_enabled: false, real_actuator_outputs_enabled: false}
+expected_performance: "Target 1.0 real-time factor with rendered camera, depth, LiDAR and IMU."
+dependencies: [python3, ros2_humble, gazebo_classic_or_gz, robot_state_publisher, ros_gz_bridge]

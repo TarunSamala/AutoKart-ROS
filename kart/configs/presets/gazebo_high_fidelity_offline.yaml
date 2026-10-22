@@ -1,0 +1,83 @@
+# SIMULATION USE ONLY — offline dataset/research preset.
+schema_version: 1
+name: gazebo_high_fidelity_offline
+mode: gazebo
+simulation:
+  physics_backend: internal
+  gazebo_role: visual_follower
+  fidelity_tier: 4
+features:
+  sensor_suite: high_fidelity_offline
+  vcu_enabled: true
+  independent_safety_enabled: true
+  rendering_enabled: true
+  ros_enabled: true
+  dashboard_enabled: false
+  real_actuator_outputs_enabled: false
+expected_performance: "Offline deterministic dataset and research rendering."
+dependencies: [python3, pyyaml, ros2_humble, gazebo_classic_11]
+physics_authority: internal
+gazebo_role: visual_sensor_follower
+vehicle_dynamics_authority: false
+scheduler_mode: deterministic_offline
+hardware_profile: development_workstation
+rates:
+  physics_hz: 1000
+  vcu_hz: 1000
+  independent_safety_hz: 1000
+  gazebo_follow_hz: 100
+  gazebo_world_step_hz: 1000
+  ros_output_hz: 100
+rendering:
+  headless: true
+  software_render: false
+  shadows: true
+  sensor_visualization: false
+  anti_aliasing: 4
+sensors:
+  rgb_camera:
+    enabled: true
+    width: 1280
+    height: 720
+    rate_hz: 30
+    processing_latency_s: 0.008
+    transport_latency_s: 0.002
+    queue_capacity: 8
+  depth_camera:
+    enabled: true
+    width: 1280
+    height: 720
+    rate_hz: 30
+    processing_latency_s: 0.010
+    transport_latency_s: 0.002
+    queue_capacity: 8
+  lidar:
+    enabled: true
+    samples: 1080
+    angular_coverage_deg: 270
+    rate_hz: 20
+    processing_latency_s: 0.004
+    transport_latency_s: 0.002
+    queue_capacity: 8
+  imu:
+    enabled: true
+    source: internal
+    rate_hz: 200
+synchronization:
+  maximum_state_age_s: 0.020
+  maximum_follower_lag_s: 0.030
+  acknowledgement_timeout_s: 5.0
+ros:
+  executor_threads: 4
+  sensor_queue_depth: 10
+  metadata_queue_depth: 8192
+recorder:
+  process_isolation: false
+  payload_evidence: all
+  maximum_payload_hashes_per_sensor: 1000000
+  follower_evidence_stride: 1
+  rosbag: true
+  dashboard: false
+performance_target:
+  minimum_sustained_rtf: 0.0
+  classification: OFFLINE_ONLY

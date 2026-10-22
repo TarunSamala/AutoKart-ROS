@@ -1,0 +1,8 @@
+.lab-nav{flex:none;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:6px 16px;background:#1b1430;border-bottom:1px solid #4b3b7a;color:#d9d0f5;font:11px 'Manrope Variable',Manrope,system-ui,sans-serif;letter-spacing:.03em}
+.lab-nav-brand{color:#b7a8e8;font-weight:700}.lab-nav-brand b{color:#fff}
+.lab-nav-item{display:flex;flex-direction:column;padding:4px 10px;border:1px solid #4b3b7a;border-radius:5px;color:#cfc4f2;text-decoration:none;line-height:1.25}
+.lab-nav-item small{font-size:9.5px;color:#9d90c9}
+.lab-nav-item.current{background:#3a2a6b;border-color:#8b74e0;color:#fff}
+a.lab-nav-item:hover{background:#2a2050}
+.lab-nav-note{color:#9d90c9;flex:1;min-width:220px}.lab-nav-note a{color:#c6b6ff}
+.lab-nav-authority{color:#ffba76;font-weight:800}

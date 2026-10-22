@@ -1,0 +1,19 @@
+[0.447s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'autokart_dashboard_gateway' is in: /tmp/autokart_skidpad_live_final_install/autokart_dashboard_gateway, /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding autokart_dashboard_gateway
+
+This may be promoted to an error in a future release of colcon-override-check.
+Starting >>> autokart_dashboard_gateway
+[0.466s] WARNING:colcon.colcon_core.shell:The following packages are in the workspace but haven't been built:
+- autokart_msgs
+They are being used from the following locations instead:
+- /tmp/autokart_skidpad_live_install/autokart_msgs
+To suppress this warning ignore these packages in the workspace:
+--packages-ignore autokart_msgs
+Finished <<< autokart_dashboard_gateway [2.18s]
+
+Summary: 1 package finished [2.50s]

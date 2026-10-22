@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>AutoKart Engineering Console</title>
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">AK</span>
+      <span><strong>AutoKart</strong><small>Engineering Console</small></span>
+    </div>
+    <div class="top-metrics">
+      <div><label>SCENARIO</label><strong id="scenario-name">—</strong></div>
+      <div><label>TRACK</label><strong id="track-name">—</strong></div>
+      <div><label>RUN</label><strong id="run-id">—</strong></div>
+      <div><label>SIM TIME</label><strong class="mono" id="sim-time">0.000 s</strong></div>
+      <div><label>MODE</label><strong id="run-mode">REPLAY</strong></div>
+      <div><label>RT FACTOR</label><strong class="mono" id="rt-factor">1.00×</strong></div>
+    </div>
+    <div class="status-cluster">
+      <span class="status-pill neutral" id="connection-state">CONNECTING</span>
+      <span class="status-pill" id="vcu-state">NO DATA</span>
+      <span class="status-pill neutral" id="independent-state">SAFETY —</span>
+      <span class="speed-block"><label>SPEED</label><strong id="header-speed">0.0</strong><small>m/s</small></span>
+    </div>
+  </header>
+
+  <div class="authority-banner">
+    <span>ENGINEERING VISUALIZATION ONLY</span>
+    <strong>NO ACTUATOR AUTHORITY</strong>
+    <span id="global-alert">Read-only telemetry</span>
+  </div>
+
+  <main class="workspace">
+    <section class="scene-shell">
+      <canvas id="scene-canvas" aria-label="Three-dimensional track and kart engineering scene"></canvas>
+      <div class="scene-hud hud-left">
+        <div><small>POSITION ENU [m]</small><strong class="mono" id="scene-position">0.00 / 0.00 / 0.00</strong></div>
+        <div><small>TRACK s / eᵧ [m]</small><strong class="mono" id="scene-track-position">0.00 / 0.00</strong></div>
+      </div>
+      <div class="scene-hud hud-right">
+        <label for="camera-mode">CAMERA</label>
+        <select id="camera-mode">
+          <option value="orbit">Engineering orbit</option>
+          <option value="chase">Chase</option>
+          <option value="top">Top-down</option>
+          <option value="front">Kart front</option>
+          <option value="driver">Driver eye</option>
+          <option value="corner">Corner fixed</option>
+          <option value="free">Free</option>
+        </select>
+        <button id="reset-camera" type="button">Reset view</button>
+      </div>
+      <div class="overlay-drawer">
+        <button id="overlay-toggle" type="button">OVERLAYS</button>
+        <div id="overlay-menu" class="overlay-menu">
+          <label><input type="checkbox" data-overlay="trajectory" checked> Actual trajectory</label>
+          <label><input type="checkbox" data-overlay="boundaries" checked> Track boundaries</label>
+          <label><input type="checkbox" data-overlay="surface" checked> Surface regions</label>
+          <label><input type="checkbox" data-overlay="footprint" checked> Vehicle footprint</label>
+          <label><input type="checkbox" data-overlay="forces"> Tire-force vectors</label>
+          <label><input type="checkbox" data-overlay="velocity"> Velocity vector</label>
+          <label><input type="checkbox" data-overlay="stopping"> Stopping envelope</label>
+          <label><input type="checkbox" data-overlay="corners" checked> Corners and apexes</label>
+          <label><input type="checkbox" data-overlay="faults" checked> Fault locations</label>
+          <label><input type="checkbox" data-overlay="cg"> CG marker</label>
+        </div>
+      </div>
+      <div class="scene-legend">
+        <span><i class="legend-line actual"></i>actual trajectory</span>
+        <span><i class="legend-box wet"></i>wet surface</span>
+        <span><i class="legend-box kart"></i>procedural kart</span>
+        <span id="scene-fidelity">TRACK: PHASE 5 · KART: PLACEHOLDER MODEL</span>
+      </div>
+      <div class="stale-overlay hidden" id="stale-overlay">
+        <strong>TELEMETRY STALE</strong>
+        <span>Rendering frozen at the last valid measurement</span>
+      </div>
+    </section>
+
+    <aside class="inspector">
+      <nav class="panel-tabs" aria-label="Engineering panels">
+        <button class="active" data-panel="vehicle">Vehicle</button>
+        <button data-panel="safety">Safety</button>
+        <button data-panel="actuators">Actuators</button>
+        <button data-panel="tires">Tires</button>
+        <button data-panel="power">Power</button>
+        <button data-panel="sensors">Sensors</button>
+        <button data-panel="race">Race</button>
+        <button data-panel="performance">Performance</button>
+        <button data-panel="corner">Corner</button>
+      </nav>
+      <div class="panel-stack">
+        <section class="panel-page active" data-page="vehicle">
+          <div class="section-title"><span>Vehicle dynamics</span><em id="vehicle-validity">VALID</em></div>
+          <div class="hero-metric"><strong id="vehicle-speed">0.00</strong><span>m/s</span><small>actual speed</small></div>
+          <div class="metric-grid">
+            <div><label>Target</label><strong id="target-speed">—</strong><small>m/s</small></div>
+            <div><label>Long. accel</label><strong id="long-accel">0.00</strong><small>m/s²</small></div>
+            <div><label>Lat. accel</label><strong id="lat-accel">0.00</strong><small>m/s²</small></div>
+            <div><label>Yaw rate</label><strong id="yaw-rate">0.00</strong><small>rad/s</small></div>
+            <div><label>Sideslip</label><strong id="sideslip">0.00</strong><small>deg</small></div>
+            <div><label>Heading</label><strong id="heading">0.0</strong><small>deg</small></div>
+            <div><label>Track s</label><strong id="track-s">0.00</strong><small>m</small></div>
+            <div><label>Lateral error</label><strong id="lateral-error">0.00</strong><small>m</small></div>
+            <div><label>Curvature</label><strong id="curvature">0.000</strong><small>1/m</small></div>
+            <div><label>Distance</label><strong id="distance-travelled">0.00</strong><small>m</small></div>
+          </div>
+          <div class="command-chain" id="command-chain">
+            <div><span>requested</span><strong id="command-requested">—</strong></div>
+            <i></i><div><span>validated</span><strong id="command-validated">—</strong></div>
+            <i></i><div><span>safety-limited</span><strong id="command-limited">—</strong></div>
+            <i></i><div><span>actual</span><strong id="command-actual">—</strong></div>
+          </div>
+        </section>
+
+        <section class="panel-page" data-page="safety">
+          <div class="section-title"><span>Safety authority</span><em class="critical-text">ALWAYS VISIBLE</em></div>
+          <div class="safety-state-card" id="safety-state-card">
+            <small>VCU operating state</small><strong id="safety-vcu-state">—</strong>
+            <span id="controlled-stop-phase">normal operation</span>
+          </div>
+          <div class="signal-list">
+            <div><span>Independent layer</span><strong id="safety-independent">—</strong></div>
+            <div><span>Physical E-stop</span><strong id="safety-estop">RELEASED</strong></div>
+            <div><span>Motor enable</span><strong id="safety-motor-enable">—</strong></div>
+            <div><span>Contactor request</span><strong id="safety-contactor">—</strong></div>
+            <div><span>Command age</span><strong id="command-age">—</strong></div>
+            <div><span>Reset eligibility</span><strong id="reset-eligibility">NOT REQUESTED</strong></div>
+          </div>
+          <h3>Dynamic speed limits <span>m/s</span></h3>
+          <div id="speed-limits" class="bar-list"></div>
+          <h3>Stopping envelope <span>metres</span></h3>
+          <div id="stopping-distance" class="stopping-stack"></div>
+          <div class="fault-card">
+            <div><span>ACTIVE / LATCHED FAULTS</span><strong id="fault-count">0</strong></div>
+            <ul id="active-fault-list"><li class="muted">None</li></ul>
+          </div>
+        </section>
+
+        <section class="panel-page" data-page="actuators">
+          <div class="section-title"><span>Actuator plausibility</span><em id="actuator-health">NOMINAL</em></div>
+          <article class="chain-card">
+            <header><span>Steering</span><strong id="steering-fault">HEALTHY</strong></header>
+            <div class="metric-grid compact">
+              <div><label>Requested</label><strong id="steer-requested">0.000</strong><small>rad</small></div>
+              <div><label>Validated</label><strong id="steer-validated">0.000</strong><small>rad</small></div>
+              <div><label>Actuator</label><strong id="steer-actuator">0.000</strong><small>rad</small></div>
+              <div><label>Linkage</label><strong id="steer-linkage">0.000</strong><small>rad</small></div>
+              <div><label>Left wheel</label><strong id="steer-left">0.000</strong><small>rad</small></div>
+              <div><label>Right wheel</label><strong id="steer-right">0.000</strong><small>rad</small></div>
+              <div><label>Following error</label><strong id="steer-error">0.000</strong><small>rad</small></div>
+              <div><label>Current</label><strong id="steer-current">0.0</strong><small>A</small></div>
+            </div>
+          </article>
+          <article class="chain-card">
+            <header><span>Brake feedback chain</span><strong id="brake-fault">HEALTHY</strong></header>
+            <div class="feedback-chain">
+              <div><span>CMD</span><strong id="brake-command">0%</strong></div>
+              <b>→</b><div><span>ACTUATOR</span><strong id="brake-position">0.0 mm</strong></div>
+              <b>→</b><div><span>CABLE</span><strong id="cable-force">0 N</strong></div>
+              <b>→</b><div><span>PRESSURE</span><strong id="brake-pressure">0.00 MPa</strong></div>
+              <b>→</b><div><span>TORQUE</span><strong id="brake-torque">0 Nm</strong></div>
+              <b>→</b><div><span>DECEL</span><strong id="brake-decel">0.00 m/s²</strong></div>
+            </div>
+          </article>
+          <article class="chain-card">
+            <header><span>Traction</span><strong id="motor-fault">HEALTHY</strong></header>
+            <div class="metric-grid compact">
+              <div><label>Requested</label><strong id="torque-requested">0.0</strong><small>Nm</small></div>
+              <div><label>Actual</label><strong id="torque-actual">0.0</strong><small>Nm</small></div>
+              <div><label>Motor current</label><strong id="motor-current">0.0</strong><small>A</small></div>
+              <div><label>Motor speed</label><strong id="motor-speed">0</strong><small>rad/s</small></div>
+              <div><label>Chain torque</label><strong id="chain-torque">0.0</strong><small>Nm</small></div>
+              <div><label>Controller temp</label><strong id="controller-temperature">0.0</strong><small>°C</small></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel-page" data-page="tires">
+          <div class="section-title"><span>Four-wheel contact</span><em id="inside-rear-state">ALL CONTACT</em></div>
+          <div id="wheel-selector" class="wheel-selector"></div>
+          <canvas id="friction-circle" width="420" height="260"></canvas>
+          <div id="wheel-metrics" class="metric-grid compact"></div>
+        </section>
+
+        <section class="panel-page" data-page="power">
+          <div class="section-title"><span>Electrical & thermal</span><em id="power-health">NOMINAL</em></div>
+          <div class="energy-flow">
+            <div><span>BATTERY</span><strong id="battery-power">0 W</strong></div><i></i>
+            <div><span>DC BUS</span><strong id="bus-voltage">0 V</strong></div><i></i>
+            <div><span>INVERTER</span><strong id="motor-power">0 W</strong></div><i></i>
+            <div><span>MOTOR</span><strong id="mechanical-power">0 W</strong></div>
+          </div>
+          <div class="metric-grid">
+            <div><label>State of charge</label><strong id="battery-soc">0.0</strong><small>%</small></div>
+            <div><label>Battery voltage</label><strong id="battery-voltage">0.0</strong><small>V</small></div>
+            <div><label>Battery current</label><strong id="battery-current">0.0</strong><small>A</small></div>
+            <div><label>Contactor</label><strong id="contactor-state">—</strong></div>
+            <div><label>Steering domain</label><strong id="steering-voltage">0.0</strong><small>V</small></div>
+            <div><label>Brake domain</label><strong id="brake-voltage">0.0</strong><small>V</small></div>
+            <div><label>Motor temp</label><strong id="motor-temperature">0.0</strong><small>°C</small></div>
+            <div><label>Brake disc</label><strong id="brake-temperature">0.0</strong><small>°C</small></div>
+          </div>
+        </section>
+
+        <section class="panel-page" data-page="sensors">
+          <div class="section-title"><span>Sensor timing</span><em>OPERATIONAL DATA ONLY</em></div>
+          <div class="sensor-grid" id="sensor-grid">
+            <article><i class="sensor-dot degraded"></i><div><strong>Sensor stream metadata unavailable</strong><span>Phase 6 messages are not present in this run.</span></div></article>
+          </div>
+          <div class="debug-ground-truth">
+            <span>DEBUG GROUND TRUTH</span>
+            <strong>DISABLED</strong>
+            <p>Ground truth is never substituted for operational sensor validity.</p>
+          </div>
+        </section>
+
+        <section class="panel-page" data-page="race">
+          <div class="section-title"><span>Race control</span><em id="race-session-state">SETUP</em></div>
+          <div class="metric-grid">
+            <div><label>Lap</label><strong id="race-lap-count">0</strong></div>
+            <div><label>Current lap</label><strong id="race-current-lap">—</strong><small>s</small></div>
+            <div><label>Best lap</label><strong id="race-best-lap">—</strong><small>s</small></div>
+            <div><label>Sector</label><strong id="race-sector">—</strong><small>s</small></div>
+            <div><label>Cone penalties</label><strong id="race-cone-penalties">0</strong></div>
+            <div><label>Track limits</label><strong id="race-track-limits">0</strong></div>
+            <div><label>Collisions</label><strong id="race-collisions">0</strong></div>
+            <div><label>Classification</label><strong id="race-classification">RUNNING</strong></div>
+          </div>
+          <div class="debug-ground-truth">
+            <span>RACE AUTHORITY</span>
+            <strong>NO SAFETY OVERRIDE</strong>
+            <p>Race control observes timing and penalties. It cannot clear or override independent E-stop state.</p>
+          </div>
+        </section>
+
+        <section class="panel-page" data-page="corner">
+          <div class="section-title"><span>Corner engineering</span><em id="corner-id">—</em></div>
+          <div id="corner-summary" class="corner-summary">
+            <strong>No active corner</strong><span>Select a corner marker or replay through a segmented corner.</span>
+          </div>
+          <div class="metric-grid" id="corner-metrics"></div>
+        </section>
+        <section class="panel-page" data-page="performance">
+          <div class="section-title"><span>Real-time qualification</span><em id="perf-class">OFFLINE_ONLY</em></div>
+          <div class="safety-state-card" id="performance-state-card">
+            <small>Execution classification</small><strong id="perf-status">OFFLINE_ONLY</strong>
+            <span>Measured evidence from the selected run</span>
+          </div>
+          <div class="metric-grid compact">
+            <div><label>Aggregate RTF</label><strong id="perf-rtf">—</strong><small>×</small></div>
+            <div><label>Minimum window</label><strong id="perf-min-rtf">—</strong><small>×</small></div>
+            <div><label>Physics p99</label><strong id="perf-physics">—</strong><small>ms</small></div>
+            <div><label>VCU p99</label><strong id="perf-vcu">—</strong><small>ms</small></div>
+            <div><label>Safety max</label><strong id="perf-safety">—</strong><small>ms</small></div>
+            <div><label>Follower lead</label><strong id="perf-follower">—</strong><small>ms</small></div>
+            <div><label>CPU time</label><strong id="perf-cpu">—</strong><small>s</small></div>
+            <div><label>Memory</label><strong id="perf-memory">—</strong><small>MiB</small></div>
+          </div>
+          <h3>Deadline misses <span>count</span></h3>
+          <div class="signal-list">
+            <div><span>Physics</span><strong id="perf-physics-misses">—</strong></div>
+            <div><span>VCU</span><strong id="perf-vcu-misses">—</strong></div>
+            <div><span>Independent safety</span><strong id="perf-safety-misses">—</strong></div>
+          </div>
+          <h3>Sensor pipeline <span>bounded</span></h3>
+          <div class="signal-list">
+            <div><span>Maximum queue depth</span><strong id="perf-queue">—</strong></div>
+            <div><span>Maximum latency</span><strong id="perf-sensor-latency">—</strong></div>
+            <div><span>Drops by reason</span><strong id="perf-drops">—</strong></div>
+            <div><span>ROS callback latency</span><strong id="perf-ros">NOT MEASURED</strong></div>
+            <div><span>GPU</span><strong id="perf-gpu">—</strong></div>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <section class="analysis-dock">
+      <div class="plot-toolbar">
+        <div class="plot-tabs">
+          <button class="active" data-plot="speed">Speed</button>
+          <button data-plot="actuators">Actuators</button>
+          <button data-plot="dynamics">Dynamics</button>
+          <button data-plot="tire">Tire</button>
+          <button data-plot="power">Power</button>
+          <button data-plot="safety">Safety</button>
+        </div>
+        <div class="plot-actions">
+          <button id="compare-run" type="button">Compare run</button>
+          <button id="export-csv" type="button">Export CSV</button>
+          <button id="export-png" type="button">Export PNG</button>
+        </div>
+      </div>
+      <div class="plot-area">
+        <canvas id="timeseries-canvas"></canvas>
+        <div class="plot-cursor" id="plot-tooltip"></div>
+      </div>
+      <div class="fault-timeline-wrap">
+        <span>FAULT / STATE TIMELINE</span>
+        <canvas id="fault-timeline"></canvas>
+      </div>
+      <div class="replay-controls">
+        <button id="restart-replay" title="Restart">↺</button>
+        <button id="step-back" title="Previous sample">‹</button>
+        <button class="primary" id="play-pause" title="Play or pause">▶</button>
+        <button id="step-forward" title="Next sample">›</button>
+        <span class="mono" id="replay-current">0.000</span>
+        <input id="replay-range" type="range" min="0" max="1" step="0.001" value="0">
+        <span class="mono" id="replay-end">0.000 s</span>
+        <select id="replay-speed" title="Replay speed">
+          <option value="0.25">0.25×</option>
+          <option value="0.5">0.5×</option>
+          <option value="1" selected>1×</option>
+          <option value="2">2×</option>
+          <option value="4">4×</option>
+          <option value="10">10×</option>
+        </select>
+        <label class="loop-label"><input id="replay-loop" type="checkbox"> loop</label>
+        <button id="jump-fault" type="button">Jump to fault</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span id="performance-line">render — fps · telemetry — Hz · latency — ms</span>
+    <span>SI units · ENU world frame · +z up · +yaw CCW</span>
+    <strong>SIMULATION USE ONLY — REAL-VEHICLE READINESS REJECTED</strong>
+  </footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

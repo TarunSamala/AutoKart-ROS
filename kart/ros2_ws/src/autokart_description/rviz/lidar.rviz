@@ -1,0 +1,6 @@
+Visualization Manager:
+  Fixed Frame: lidar_link
+  Displays:
+    - {Class: rviz_default_plugins/TF, Name: TF, Enabled: true}
+    - {Class: rviz_default_plugins/LaserScan, Name: LiDAR Scan, Enabled: true, Topic: /sensors/lidar/scan}
+    - {Class: rviz_default_plugins/PointCloud2, Name: LiDAR Cloud, Enabled: true, Topic: /sensors/lidar/points}

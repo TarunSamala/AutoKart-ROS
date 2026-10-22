@@ -1,0 +1,13 @@
+THROTTLE TEST PINOUT
+====================
+
+ESP32-S3 GPIO8  -> GP8630N SDA
+ESP32-S3 GPIO9  -> GP8630N SCL
+ESP32-S3 3.3 V  -> GP8630N VCC, only if supported by the exact module
+ESP32-S3 GND    -> GP8630N GND
+GP8630N OUT     -> BLD-750 SV
+GP8630N GND     -> BLD-750 COM
+
+The original test arrangement documented BLD-750 EN-to-COM and BRK-to-COM as
+manual jumpers and F/R open. Confirm controller logic before fitting jumpers;
+the test has no independent digital stop output.

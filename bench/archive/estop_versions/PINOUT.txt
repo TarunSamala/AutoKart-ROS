@@ -1,0 +1,10 @@
+ARCHIVED E-STOP PINOUT
+======================
+
+The original receiver revisions use ESP32-S3 GPIO14 SCK, GPIO13 MOSI, GPIO15
+MISO, GPIO16 NSS/CS, GPIO17 RESET, and GPIO18 DIO0.
+
+The original transmitter revisions use Pico GPIO18 SCK, GPIO19 MOSI, GPIO16
+MISO, GPIO17 NSS/CS, GPIO20 RESET, GPIO21 DIO0, and GPIO22 for the switch.
+
+Refer to the active E-stop PINOUT.txt files before wiring.

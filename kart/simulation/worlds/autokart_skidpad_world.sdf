@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <world name="autokart_skidpad">
+    <gravity>0 0 -9.80665</gravity><physics name="deterministic" type="ode"><max_step_size>.001</max_step_size><real_time_update_rate>1000</real_time_update_rate></physics>
+    <scene><ambient>.48 .50 .52 1</ambient><background>.40 .62 .88 1</background><shadows>true</shadows></scene>
+    <light name="sun" type="directional"><cast_shadows>true</cast_shadows><diffuse>.95 .92 .85 1</diffuse><direction>-.4 .2 -1</direction></light>
+    <model name="ground"><static>true</static><link name="ground"><collision name="ground"><geometry><plane><normal>0 0 1</normal><size>80 55</size></plane></geometry></collision><visual name="grass"><geometry><plane><normal>0 0 1</normal><size>80 55</size></plane></geometry><material><ambient>.07 .28 .05 1</ambient><diffuse>.1 .4 .07 1</diffuse></material></visual></link></model>
+    <!-- Two dark pads and green insets form an original configurable figure-eight preview. -->
+    <model name="left_asphalt"><static>true</static><pose>-9.125 0 .006 0 0 0</pose><link name="pad"><visual name="pad"><geometry><cylinder><radius>12.2</radius><length>.01</length></cylinder></geometry><material><ambient>.10 .10 .11 1</ambient></material></visual></link></model>
+    <model name="right_asphalt"><static>true</static><pose>9.125 0 .006 0 0 0</pose><link name="pad"><visual name="pad"><geometry><cylinder><radius>12.2</radius><length>.01</length></cylinder></geometry><material><ambient>.10 .10 .11 1</ambient></material></visual></link></model>
+    <model name="left_infield"><static>true</static><pose>-9.125 0 .013 0 0 0</pose><link name="infield"><visual name="grass"><geometry><cylinder><radius>7.6</radius><length>.012</length></cylinder></geometry><material><ambient>.08 .30 .05 1</ambient></material></visual></link></model>
+    <model name="right_infield"><static>true</static><pose>9.125 0 .013 0 0 0</pose><link name="infield"><visual name="grass"><geometry><cylinder><radius>7.6</radius><length>.012</length></cylinder></geometry><material><ambient>.08 .30 .05 1</ambient></material></visual></link></model>
+    <model name="timing_line"><static>true</static><pose>0 -10 .015 0 0 0</pose><link name="line"><visual name="orange"><geometry><box><size>.15 5 .02</size></box></geometry><material><ambient>1 .4 .02 1</ambient></material></visual></link></model>
+  </world>
+</sdf>

@@ -1,0 +1,95 @@
+# SIMULATION USE ONLY — low-bandwidth timing qualification, not perception qualification.
+schema_version: 1
+name: gazebo_realtime_sil
+mode: sil_hil
+simulation:
+  physics_backend: internal
+  gazebo_role: visual_follower
+  fidelity_tier: 3
+features:
+  sensor_suite: realtime_sil
+  vcu_enabled: true
+  independent_safety_enabled: true
+  rendering_enabled: true
+  ros_enabled: true
+  dashboard_enabled: true
+  real_actuator_outputs_enabled: false
+expected_performance: "RTF >= 1.0 on the qualified development workstation."
+dependencies: [python3, pyyaml, ros2_humble, gazebo_classic_11]
+physics_authority: internal
+gazebo_role: visual_sensor_follower
+vehicle_dynamics_authority: false
+scheduler_mode: realtime_synchronized
+hardware_profile: development_workstation
+rates:
+  physics_hz: 1000
+  vcu_hz: 1000
+  independent_safety_hz: 1000
+  gazebo_follow_hz: 100
+  gazebo_world_step_hz: 100
+  # Gazebo's scheduler target includes measured per-step pacing overhead.
+  # The authoritative core and acceptance monitor remain referenced to wall
+  # time; this is not a physics-time scale.
+  gazebo_scheduler_target_rtf: 1.40
+  ros_output_hz: 20
+rendering:
+  headless: true
+  software_render: false
+  shadows: false
+  sensor_visualization: false
+  anti_aliasing: 0
+sensors:
+  rgb_camera:
+    enabled: true
+    width: 160
+    height: 90
+    rate_hz: 10
+    processing_latency_s: 0.008
+    transport_latency_s: 0.002
+    queue_capacity: 3
+  depth_camera:
+    enabled: true
+    width: 160
+    height: 90
+    rate_hz: 10
+    processing_latency_s: 0.010
+    transport_latency_s: 0.002
+    queue_capacity: 3
+  lidar:
+    enabled: true
+    samples: 180
+    angular_coverage_deg: 270
+    rate_hz: 10
+    processing_latency_s: 0.004
+    transport_latency_s: 0.002
+    queue_capacity: 4
+  imu:
+    enabled: true
+    source: internal
+    rate_hz: 200
+synchronization:
+  maximum_state_age_s: 0.020
+  # Bounded producer lead; sensor validity is evaluated against the applied
+  # Gazebo clock and retains the stricter 20 ms maximum_state_age_s above.
+  maximum_follower_lag_s: 0.060
+  acknowledgement_timeout_s: 2.0
+ros:
+  executor_threads: 1
+  sensor_queue_depth: 4
+  metadata_queue_depth: 128
+execution:
+  # Host-profile-specific isolation for the measured i7-9750H platform:
+  # Gazebo uses physical cores 0-3, ROS uses core 4, authority uses core 5.
+  core_cpu_list: [5]
+  recorder_cpu_list: "10"
+  gazebo_cpu_list: "0-3,6-9"
+recorder:
+  process_isolation: true
+  payload_evidence: representative
+  maximum_payload_hashes_per_sensor: 8
+  follower_evidence_stride: 1
+  rosbag: false
+  dashboard: true
+performance_target:
+  minimum_sustained_rtf: 1.0
+  classification: REALTIME_QUALIFIED

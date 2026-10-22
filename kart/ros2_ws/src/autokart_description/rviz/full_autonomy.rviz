@@ -1,0 +1,18 @@
+Panels:
+  - Class: rviz_common/Displays
+Visualization Manager:
+  Class: ""
+  Fixed Frame: map
+  Displays:
+    - {Class: rviz_default_plugins/Grid, Name: Grid, Enabled: true}
+    - {Class: rviz_default_plugins/RobotModel, Name: Kart, Enabled: true, Description Topic: /robot_description}
+    - {Class: rviz_default_plugins/TF, Name: TF, Enabled: true}
+    - {Class: rviz_default_plugins/LaserScan, Name: LiDAR, Enabled: true, Topic: /sensors/lidar/scan}
+    - {Class: rviz_default_plugins/PointCloud2, Name: Depth Cloud, Enabled: true, Topic: /sensors/depth/points}
+    - {Class: rviz_default_plugins/Map, Name: Occupancy, Enabled: true, Topic: /map}
+    - {Class: rviz_default_plugins/Path, Name: Planned Path, Enabled: true, Topic: /planning/path}
+    - {Class: rviz_default_plugins/Odometry, Name: Localization, Enabled: true, Topic: /localization/odometry}
+    - {Class: rviz_default_plugins/Polygon, Name: Safety Envelope, Enabled: true, Topic: /safety/envelope_polygon}
+    - {Class: rviz_default_plugins/MarkerArray, Name: Cones, Enabled: true, Topic: /perception/cone_markers}
+    - {Class: rviz_default_plugins/MarkerArray, Name: Faults, Enabled: true, Topic: /diagnostics/fault_markers}
+  Global Options: {Background Color: 30; 32; 36, Fixed Frame: map, Frame Rate: 30}

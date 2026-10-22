@@ -1,0 +1,144 @@
+Starting >>> autokart_msgs
+Starting >>> autokart_description
+Starting >>> autokart_diagnostics
+Starting >>> autokart_localization
+Starting >>> autokart_planning
+Starting >>> autokart_safety_bridge
+Starting >>> autokart_scenarios
+--- stderr: autokart_description
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_description [1.24s]
+--- stderr: autokart_planning
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_planning [1.25s]
+--- stderr: autokart_safety_bridge
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_safety_bridge [1.27s]
+--- stderr: autokart_scenarios
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_scenarios [1.28s]
+--- stderr: autokart_localization
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_localization [1.33s]
+--- stderr: autokart_diagnostics
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_diagnostics [1.36s]
+--- stderr: autokart_msgs
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_msgs [12.0s]
+Starting >>> autokart_perception
+Starting >>> autokart_sim_bridge
+Starting >>> autokart_control
+Starting >>> autokart_dashboard_gateway
+Starting >>> autokart_gazebo
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+--- stderr: autokart_control
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_control [1.35s]
+Finished <<< autokart_perception [1.85s]
+Starting >>> autokart_mapping
+Finished <<< autokart_dashboard_gateway [1.91s]
+--- stderr: autokart_sim_bridge
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+---
+Finished <<< autokart_sim_bridge [1.97s]
+Starting >>> autokart_bringup
+--- stderr: autokart_bringup
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_bringup [1.05s]
+Finished <<< autokart_mapping [1.53s]
+Starting >>> autokart_planner
+Finished <<< autokart_planner [1.51s]
+Starting >>> autokart_controller
+Finished <<< autokart_controller [1.50s]
+--- stderr: autokart_gazebo
+CMake Warning (dev) at /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake:438 (message):
+  The package name passed to `find_package_handle_standard_args` (PkgConfig)
+  does not match the name of the calling package (gazebo).  This can lead to
+  problems in calling code that expects `find_package` result variables
+  (e.g., `_FOUND`) to follow a certain pattern.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.22/Modules/FindPkgConfig.cmake:99 (find_package_handle_standard_args)
+  /usr/lib/x86_64-linux-gnu/cmake/gazebo/gazebo-config.cmake:72 (include)
+  CMakeLists.txt:11 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:48 (ament_add_pytest_test)
+
+
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_gazebo [34.4s]
+
+Summary: 16 packages finished [46.7s]
+  11 packages had stderr output: autokart_bringup autokart_control autokart_description autokart_diagnostics autokart_gazebo autokart_localization autokart_msgs autokart_planning autokart_safety_bridge autokart_scenarios autokart_sim_bridge

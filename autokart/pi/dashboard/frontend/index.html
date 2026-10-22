@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AutoKart Mission Control</title>
+<style>
+:root{--bg:#0b0e13;--panel:#131822;--line:#222b3a;--txt:#d7deea;--dim:#7c889c;--ok:#35d07f;--warn:#f0b429;--bad:#f0554d;--info:#4aa3ff;--blue:#3b82f6;--yellow:#facc15}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:13px/1.4 ui-monospace,Menlo,Consolas,monospace}
+header{display:flex;align-items:center;gap:18px;padding:10px 16px;border-bottom:1px solid var(--line);background:#0e131b;position:sticky;top:0;z-index:5}
+header h1{font-size:15px;letter-spacing:.14em;margin:0;flex:1}
+.pill{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--dim);display:inline-block}
+.s-READY,.s-LIVE{--c:var(--ok)}.s-DEGRADED,.s-STALE,.s-REPLAY,.s-INITIALIZING{--c:var(--warn)}
+.s-FAULT,.s-INVALID{--c:var(--bad)}.s-SIMULATED{--c:var(--info)}.s-UNAVAILABLE,.s-UNKNOWN{--c:var(--dim)}
+.dot[class*=s-]{background:var(--c)}
+.tag{font-size:10px;padding:1px 6px;border-radius:3px;border:1px solid var(--c,var(--dim));color:var(--c,var(--dim));letter-spacing:.06em}
+main{padding:12px;display:grid;gap:12px;grid-template-columns:repeat(12,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:10px;min-width:0}
+.card h2{margin:0 0 8px;font-size:11px;letter-spacing:.14em;color:var(--dim);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.card.stale .v{opacity:.45}
+.c6{grid-column:span 6}.c4{grid-column:span 4}.c12{grid-column:span 12}.c8{grid-column:span 8}
+@media(max-width:1000px){.c6,.c4,.c8{grid-column:span 12}}
+canvas{width:100%;background:#05070a;border-radius:4px;display:block}
+.kv{display:grid;grid-template-columns:1fr auto;gap:2px 10px}
+.kv span:nth-child(odd){color:var(--dim)}.kv span:nth-child(even){text-align:right}
+.big{font-size:20px}
+.meta{font-size:10px;color:var(--dim);margin-top:6px}
+.pipe{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.pipe .n{padding:6px 10px;border:1px solid var(--line);border-radius:4px;display:flex;gap:6px;align-items:center}
+.pipe .a{color:var(--dim)}
+.stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:4px 12px}
+.stage{display:flex;gap:8px;align-items:center}
+.stage small{color:var(--dim)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button,select{background:#1b2331;color:var(--txt);border:1px solid #2d3a50;border-radius:4px;padding:7px 12px;font:inherit;cursor:pointer}
+button:hover:not(:disabled){border-color:var(--info)}
+button:disabled{opacity:.35;cursor:not-allowed}
+button.stop{border-color:var(--bad);color:var(--bad)}
+#log{height:150px;overflow:auto;background:#05070a;border-radius:4px;padding:6px;font-size:12px}
+#log .e{color:var(--warn)}#log .f{color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:11px}
+td,th{padding:3px 6px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--dim);font-weight:normal}
+.note{color:var(--dim);font-size:11px}
+</style>
+</head>
+<body>
+<header>
+  <h1>AUTOKART MISSION CONTROL</h1>
+  <span class="pill"><span class="dot" id="h-ws"></span>GATEWAY</span>
+  <span class="pill"><span class="dot" id="h-ros"></span>ROS 2</span>
+  <span class="pill"><span class="dot" id="h-vcu"></span>VCU</span>
+  <span class="pill"><span class="dot" id="h-safe"></span>SAFE: <b id="h-safe-t">--</b></span>
+</header>
+
+<main>
+  <div class="card c12">
+    <div class="bar">
+      <span>MISSION: <b>STRAIGHT TRACK</b></span>
+      <span>MODE: <b id="mode">--</b></span>
+      <span>CAMERA: <span class="tag" id="cam-tag">UNAVAILABLE</span></span>
+      <span>SYSTEM: <span class="tag" id="sys-tag">UNAVAILABLE</span></span>
+      <span class="note" id="ws-url"></span>
+    </div>
+  </div>
+
+  <div class="card c6" id="card-camera">
+    <h2>LIVE HP60C CAMERA <span class="tag" id="t-camera"></span></h2>
+    <canvas id="cam" width="640" height="480"></canvas>
+    <div class="kv" style="margin-top:6px">
+      <span>FPS / depth</span><span class="v" id="cam-fps">--</span>
+      <span>Inference latency</span><span class="v" id="cam-lat">--</span>
+      <span>Frame id / detection sync</span><span class="v" id="cam-sync">--</span>
+    </div>
+    <div class="meta" id="m-camera"></div>
+  </div>
+
+  <div class="card c6" id="card-map">
+    <h2>BIRD'S-EYE VIEW <span class="tag" id="t-map"></span></h2>
+    <canvas id="bev" width="640" height="480"></canvas>
+    <div class="kv" style="margin-top:6px">
+      <span>X / Y / Yaw</span><span class="v" id="bev-pose">--</span>
+      <span>Planned vs actual lateral offset</span><span class="v" id="bev-dev">--</span>
+      <span>Map frame id</span><span class="v" id="bev-fid">--</span>
+    </div>
+    <div class="meta" id="m-map"></div>
+  </div>
+
+  <div class="card c12">
+    <h2>AUTONOMOUS PIPELINE</h2>
+    <div class="pipe" id="pipe"></div>
+  </div>
+
+  <div class="card c4" id="card-steering">
+    <h2>STEERING (OBSERVE ONLY) <span class="tag" id="t-steering"></span></h2>
+    <div class="kv v">
+      <span>Target</span><span id="st-t">--</span>
+      <span>Actual (AS5600)</span><span id="st-a">--</span>
+      <span>Error</span><span id="st-e" class="big">--</span>
+      <span>Control status</span><span id="st-s">--</span>
+      <span>Motor fault</span><span id="st-f">--</span>
+    </div>
+    <div class="meta" id="m-steering"></div>
+  </div>
+  <div class="card c4" id="card-drive">
+    <h2>BLDC SPEED CONTROLLER <span class="tag" id="t-drive"></span></h2>
+    <div class="kv v">
+      <span>Target</span><span id="dr-t">--</span>
+      <span>Actual (AS5047P)</span><span id="dr-a">--</span>
+      <span>Error</span><span id="dr-e" class="big">--</span>
+      <span>Accel estimate</span><span id="dr-acc">--</span>
+      <span>Drive command</span><span id="dr-c">--</span>
+      <span>Drive status</span><span id="dr-s">--</span>
+    </div>
+    <div class="meta" id="m-drive"></div>
+  </div>
+  <div class="card c4" id="card-brake">
+    <h2>BRAKE (BLD-750 BRK LINE) <span class="tag" id="t-brake"></span></h2>
+    <div class="kv v">
+      <span>Target</span><span id="br-t">--</span>
+      <span>Actual (AS5600)</span><span id="br-a">--</span>
+      <span>Error</span><span id="br-e" class="big">--</span>
+      <span>Brake status</span><span id="br-s">--</span>
+      <span>Wheel speed ≈ 0</span><span id="br-z">--</span>
+    </div>
+    <div class="meta" id="m-brake"></div>
+  </div>
+
+  <div class="card c6" id="card-pp">
+    <h2>PURE PURSUIT <span class="tag" id="t-pp"></span></h2>
+    <div class="kv v">
+      <span>Wheelbase L</span><span id="pp-L">--</span>
+      <span>Lookahead Ld</span><span id="pp-Ld">--</span>
+      <span>Heading error α</span><span id="pp-al">--</span>
+      <span>δ = atan(2L·sinα / Ld) (dashboard check)</span><span id="pp-d">--</span>
+      <span>δ reported by controller</span><span id="pp-dr">--</span>
+      <span>δ measured at steering</span><span id="pp-dm">--</span>
+    </div>
+    <div class="meta" id="m-pp"></div>
+  </div>
+  <div class="card c6">
+    <div class="kv v" style="grid-template-columns:1fr 1fr;gap:12px">
+      <div id="card-odom">
+        <h2>LOCALIZATION <span class="tag" id="t-odom"></span></h2>
+        <div class="kv v">
+          <span>Axle encoder</span><span id="lo-enc">--</span>
+          <span>IMU yaw rate</span><span id="lo-yr">--</span>
+          <span>Vehicle speed</span><span id="lo-v">--</span>
+          <span>Odometry status</span><span id="lo-s">--</span>
+        </div>
+        <div class="meta" id="m-odom"></div>
+      </div>
+      <div id="card-obstacle">
+        <h2>OBSTACLE + STOP MONITOR <span class="tag" id="t-obstacle"></span></h2>
+        <div class="kv v">
+          <span>Nearest obstacle</span><span id="ob-n">--</span>
+          <span>Required stop dist.</span><span id="ob-r">--</span>
+          <span>Available distance</span><span id="ob-a">--</span>
+          <span>Decision</span><span id="ob-d">--</span>
+        </div>
+        <div class="meta" id="m-obstacle"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card c12">
+    <h2>STARTUP SEQUENCE <span class="tag" id="t-startup"></span></h2>
+    <div class="stages" id="stages"></div>
+    <div id="reasons" class="note" style="margin-top:8px"></div>
+    <div class="meta">READY is shown only when the startup supervisor reports every required check passed. The dashboard never infers readiness from page load or process existence.</div>
+  </div>
+
+  <div class="card c12">
+    <div class="bar">
+      <button id="b-diag">DIAGNOSTICS</button>
+      <select id="mission"><option value="straight_track">STRAIGHT TRACK</option></select>
+      <button id="b-arm">REQUEST ARM</button>
+      <button id="b-stop" class="stop">REQUEST STOP</button>
+      <button id="b-reset">RESET FAULT</button>
+      <button id="b-estop">CONFIRM E-STOP TESTED</button>
+      <span class="note">Buttons send <i>requests</i> to the safety node. The dashboard never publishes actuator commands.</span>
+    </div>
+    <div id="diag" style="display:none;margin-top:10px"></div>
+    <h2 style="margin-top:12px">SYSTEM LOGS</h2>
+    <div id="log"></div>
+  </div>
+</main>
+
+<script>
+"use strict";
+const WS_URL = new URLSearchParams(location.search).get("ws") || `ws://${location.hostname || "localhost"}:8765`;
+const STALE_MS = {camera:1000,detections:1000,map:1000,odom:500,steering:500,drive:500,brake:500,obstacle:1000,safety:1000,startup:5000};
+const STAGES = ["Start ROS 2 runtime","ESP32-S3 USB communication","Firmware / protocol compatibility","AS5047P axle encoder","Steering + brake encoders","MPU-6500 IMU","HP60C SDK + camera","RGB/depth synchronization","YOLO26s ONNX model","Camera calibration","Localization + mapping","Planner + controller","Independent E-stop + interlocks","Disarmed, mission-ready"];
+
+const topics = {};           // topic -> {msg, rx}
+const frames = new Map();    // frame_id -> {img, ready}
+const trail = [];            // estimated actual trajectory (odom frame)
+let ws = null, wsOpen = false;
+const $ = id => document.getElementById(id);
+
+/* ---------- helpers ---------- */
+const num = v => (typeof v === "number" && isFinite(v));
+const f = (v, d = 1, u = "") => num(v) ? v.toFixed(d) + u : "--";
+const now = () => performance.now();
+function age(t){ const e = topics[t]; return e ? now() - e.rx : Infinity; }
+function d(t){ const e = topics[t]; return e ? (e.msg.data || {}) : {}; }
+function status(t){
+  const e = topics[t];
+  if(!e) return "UNAVAILABLE";
+  if(now() - e.rx > (STALE_MS[t] || 1000)) return "STALE";
+  if(e.msg.valid === false) return "INVALID";
+  const m = String(e.msg.mode || "").toUpperCase();
+  return ["LIVE","REPLAY","SIMULATED"].includes(m) ? m : "UNKNOWN";
+}
+const fresh = t => ["LIVE","REPLAY","SIMULATED","UNKNOWN"].includes(status(t));
+function setTag(id, s){ const el = $(id); if(!el) return; el.textContent = s; el.className = "tag s-" + s; }
+function setMeta(t){
+  const e = topics[t], m = $("m-" + t); if(!m) return;
+  m.textContent = e ? `src: ${e.msg.source || "?"} · stamp: ${f(e.msg.stamp,3)} · age: ${Math.round(now()-e.rx)} ms · valid: ${e.msg.valid !== false}` : "no data received";
+}
+function card(id, t){ const c = $(id); if(c) c.classList.toggle("stale", !fresh(t)); }
+function logLine(txt, cls = ""){
+  const el = $("log"), div = document.createElement("div");
+  if(cls) div.className = cls;
+  div.textContent = new Date().toLocaleTimeString() + "  " + txt;
+  el.appendChild(div);
+  while(el.children.length > 400) el.removeChild(el.firstChild);
+  el.scrollTop = el.scrollHeight;
+}
+
+/* ---------- websocket ---------- */
+$("ws-url").textContent = "gateway: " + WS_URL;
+function connect(){
+  try { ws = new WebSocket(WS_URL); } catch(e){ setTimeout(connect, 2000); return; }
+  ws.onopen = () => { wsOpen = true; logLine("Gateway connected"); };
+  ws.onclose = () => { wsOpen = false; logLine("Gateway disconnected — retrying", "e"); setTimeout(connect, 2000); };
+  ws.onerror = () => {};
+  ws.onmessage = ev => {
+    let m; try { m = JSON.parse(ev.data); } catch { return; }
+    if(!m || !m.topic) return;
+    if(m.topic === "log"){ logLine(`[${m.source || "ros"}] ${m.data && m.data.text || ""}`, m.data && m.data.level === "fault" ? "f" : m.data && m.data.level === "warn" ? "e" : ""); return; }
+    if(m.topic === "camera"){
+      const fid = m.frame_id, dt = m.data || {};
+      if(dt.jpeg_b64){
+        const img = new Image(), rec = {img, ready:false};
+        img.onload = () => { rec.ready = true; };
+        img.src = "data:image/jpeg;base64," + dt.jpeg_b64;
+        frames.set(fid, rec);
+        while(frames.size > 12) frames.delete(frames.keys().next().value);
+      }
+      const slim = {...m, data:{...dt}}; delete slim.data.jpeg_b64;
+      topics.camera = {msg: slim, rx: now()};
+      return;
+    }
+    topics[m.topic] = {msg: m, rx: now()};
+    if(m.topic === "odom" && m.valid !== false && num(m.data?.x) && num(m.data?.y)){
+      trail.push([m.data.x, m.data.y]); if(trail.length > 600) trail.shift();
+    }
+  };
+}
+connect();
+
+function send(action){
+  if(!wsOpen){ logLine("Cannot send request: gateway not connected", "e"); return; }
+  ws.send(JSON.stringify({type:"request", action, mission:$("mission").value, t:Date.now()/1000}));
+  logLine("Request sent: " + action);
+}
+
+/* ---------- camera canvas ---------- */
+function drawCamera(){
+  const cv = $("cam"), ctx = cv.getContext("2d");
+  ctx.fillStyle = "#05070a"; ctx.fillRect(0,0,cv.width,cv.height);
+  const cs = status("camera"), cm = topics.camera?.msg;
+  const fid = cm?.frame_id;
+  const det = topics.detections?.msg;
+  // show the frame that the detections belong to, if still buffered and detections are fresh
+  let showId = fid, sync = "no detections";
+  if(det && fresh("detections")){
+    if(frames.has(det.frame_id) && frames.get(det.frame_id).ready){ showId = det.frame_id; sync = det.frame_id === fid ? "matched (latest)" : "matched (buffered)"; }
+    else sync = "SYNC MISS — boxes hidden";
+  }
+  const rec = frames.get(showId);
+  if(rec && rec.ready){
+    ctx.drawImage(rec.img, 0, 0, cv.width, cv.height);
+    if(det && fresh("detections") && det.frame_id === showId){
+      const w0 = cm?.data?.width || rec.img.naturalWidth || cv.width, h0 = cm?.data?.height || rec.img.naturalHeight || cv.height;
+      const sx = cv.width / w0, sy = cv.height / h0;
+      ctx.lineWidth = 2; ctx.font = "12px monospace";
+      for(const c of (det.data?.items || [])){
+        const [x1,y1,x2,y2] = c.bbox || [0,0,0,0];
+        const col = /blue/i.test(c.cls) ? "#3b82f6" : /yellow/i.test(c.cls) ? "#facc15" : "#f97316";
+        ctx.strokeStyle = col; ctx.strokeRect(x1*sx, y1*sy, (x2-x1)*sx, (y2-y1)*sy);
+        const lab = `${c.cls} ${f(c.conf,2)} ${f(c.dist_m,2,"m")}`;
+        const tw = ctx.measureText(lab).width + 6;
+        ctx.fillStyle = col; ctx.fillRect(x1*sx, Math.max(0,y1*sy-16), tw, 16);
+        ctx.fillStyle = "#000"; ctx.fillText(lab, x1*sx+3, Math.max(12,y1*sy-4));
+      }
+    }
+  } else {
+    ctx.fillStyle = "#7c889c"; ctx.font = "16px monospace"; ctx.textAlign = "center";
+    ctx.fillText(wsOpen ? "NO CAMERA FRAME" : "GATEWAY NOT CONNECTED", cv.width/2, cv.height/2); ctx.textAlign = "left";
+  }
+  // badge
+  ctx.fillStyle = "rgba(0,0,0,.6)"; ctx.fillRect(8,8,110,20);
+  ctx.fillStyle = {LIVE:"#35d07f",REPLAY:"#f0b429",SIMULATED:"#4aa3ff"}[cs] || "#f0554d";
+  ctx.font = "12px monospace"; ctx.fillText(cs, 14, 22);
+  const cd = cm?.data || {};
+  $("cam-fps").textContent = `${f(cd.fps,1)} fps / depth ${cd.depth_valid === undefined ? "--" : (cd.depth_valid ? "valid" : "INVALID")}`;
+  $("cam-lat").textContent = f(d("detections").inference_ms, 1, " ms");
+  $("cam-sync").textContent = `${fid ?? "--"} / ${sync}`;
+}
+
+/* ---------- bird's-eye view ---------- */
+function drawBEV(){
+  const cv = $("bev"), ctx = cv.getContext("2d"), W = cv.width, H = cv.height;
+  ctx.fillStyle = "#05070a"; ctx.fillRect(0,0,W,H);
+  const mp = d("map"), od = d("odom");
+  const havePose = num(od.x) && num(od.y) && num(od.yaw_rad);
+  const px = havePose ? od.x : 0, py = havePose ? od.y : 0, yaw = havePose ? od.yaw_rad : 0;
+  const S = 40, ox = W/2, oy = H - 60; // 40 px per metre, kart near bottom
+  // odom frame: x forward, y left. Rotate so kart heading is up.
+  const tf = (x,y) => { const dx = x-px, dy = y-py, c = Math.cos(-yaw), s = Math.sin(-yaw);
+    const fx = dx*c - dy*s, fy = dx*s + dy*c; return [ox - fy*S, oy - fx*S]; };
+  ctx.strokeStyle = "#151c28"; ctx.lineWidth = 1;
+  for(let m = 0; m <= 10; m++){ const y = oy - m*S; ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+  ctx.fillStyle = "#3b4658"; ctx.font = "10px monospace";
+  for(let m = 2; m <= 10; m += 2) ctx.fillText(m + " m", 4, oy - m*S - 2);
+  const live = fresh("map") && fresh("odom");
+  ctx.globalAlpha = live ? 1 : .35;
+  const path = mp.path || [];
+  if(path.length){ ctx.strokeStyle = "#35d07f"; ctx.lineWidth = 2; ctx.beginPath();
+    path.forEach(([x,y],i)=>{ const [a,b]=tf(x,y); i?ctx.lineTo(a,b):ctx.moveTo(a,b); }); ctx.stroke(); }
+  if(trail.length > 1){ ctx.strokeStyle = "#f0b429"; ctx.setLineDash([4,3]); ctx.beginPath();
+    trail.forEach(([x,y],i)=>{ const [a,b]=tf(x,y); i?ctx.lineTo(a,b):ctx.moveTo(a,b); }); ctx.stroke(); ctx.setLineDash([]); }
+  for(const c of (mp.cones || [])){
+    const [a,b] = tf(c.x, c.y);
+    ctx.fillStyle = /blue/i.test(c.cls) ? "#3b82f6" : /yellow/i.test(c.cls) ? "#facc15" : "#f97316";
+    ctx.beginPath(); ctx.arc(a,b,6,0,7); ctx.fill();
+  }
+  if(mp.lookahead && num(mp.lookahead.x)){ const [a,b] = tf(mp.lookahead.x, mp.lookahead.y);
+    ctx.strokeStyle = "#c084fc"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(a,b,8,0,7); ctx.stroke(); ctx.fillStyle="#c084fc"; ctx.fillText("LA",a+10,b+4); }
+  if(mp.stop_target && num(mp.stop_target.x)){ const [a,b] = tf(mp.stop_target.x, mp.stop_target.y);
+    ctx.strokeStyle = "#f0554d"; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(a-25,b); ctx.lineTo(a+25,b); ctx.stroke(); ctx.fillStyle="#f0554d"; ctx.fillText("STOP",a+28,b+4); }
+  ctx.globalAlpha = 1;
+  // kart
+  ctx.fillStyle = havePose ? "#d7deea" : "#4b5563";
+  ctx.beginPath(); ctx.moveTo(ox,oy-16); ctx.lineTo(ox+10,oy+12); ctx.lineTo(ox-10,oy+12); ctx.closePath(); ctx.fill();
+  if(!live){ ctx.fillStyle = "#f0b429"; ctx.font = "14px monospace"; ctx.fillText(!topics.map ? "NO MAP DATA" : "STALE — last known state", 12, 22); }
+  ctx.font = "11px monospace"; ctx.fillStyle = "#7c889c";
+  ctx.fillText("green: planned   yellow dashed: estimated actual   purple: lookahead", 12, H-8);
+  $("bev-pose").textContent = havePose ? `${f(od.x,2," m")} / ${f(od.y,2," m")} / ${f(yaw*180/Math.PI,1,"°")}` : "--";
+  $("bev-fid").textContent = topics.map?.msg.frame_id ?? "--";
+  let dev = "--";
+  if(havePose && path.length > 1){ // nearest perpendicular distance to planned polyline
+    let best = Infinity;
+    for(let i=0;i<path.length-1;i++){ const [x1,y1]=path[i],[x2,y2]=path[i+1], vx=x2-x1, vy=y2-y1, L2=vx*vx+vy*vy||1e-9;
+      let t=((px-x1)*vx+(py-y1)*vy)/L2; t=Math.max(0,Math.min(1,t)); best=Math.min(best,Math.hypot(px-(x1+t*vx),py-(y1+t*vy))); }
+    dev = f(best,2," m");
+  }
+  $("bev-dev").textContent = dev;
+}
+
+/* ---------- panels ---------- */
+function renderPanels(){
+  const T = ["camera","detections","map","odom","steering","drive","brake","obstacle","safety","startup"];
+  T.forEach(t => { setTag("t-" + t, status(t)); setMeta(t); });
+  card("card-camera","camera"); card("card-map","map"); card("card-steering","steering"); card("card-drive","drive");
+  card("card-brake","brake"); card("card-odom","odom"); card("card-obstacle","obstacle"); card("card-pp","map");
+  setTag("t-pp", status("map")); $("m-pp").textContent = $("m-map").textContent;
+
+  const s = d("steering"); $("st-t").textContent = f(s.target_deg,2,"°"); $("st-a").textContent = f(s.actual_deg,2,"°");
+  $("st-e").textContent = num(s.target_deg) && num(s.actual_deg) ? f(s.target_deg - s.actual_deg,2,"°") : "--";
+  $("st-s").textContent = s.state ?? "--"; $("st-f").textContent = s.fault ?? "--";
+  const v = d("drive"); $("dr-t").textContent = f(v.target_kmh,2," km/h"); $("dr-a").textContent = f(v.actual_kmh,2," km/h");
+  $("dr-e").textContent = num(v.target_kmh) && num(v.actual_kmh) ? f(v.target_kmh - v.actual_kmh,2," km/h") : "--";
+  $("dr-acc").textContent = f(v.accel_mps2,2," m/s²"); $("dr-c").textContent = v.cmd ?? "--"; $("dr-s").textContent = v.state ?? "--";
+  const b = d("brake"), u = b.unit || "°"; $("br-t").textContent = f(b.target,2,u); $("br-a").textContent = f(b.actual,2,u);
+  $("br-e").textContent = num(b.target) && num(b.actual) ? f(b.target - b.actual,2,u) : "--";
+  $("br-s").textContent = b.state ?? "--"; $("br-z").textContent = b.wheel_speed_zero === undefined ? "--" : (b.wheel_speed_zero ? "CONFIRMED" : "NO");
+
+  const mp = d("map"), pp = mp.pure_pursuit || {};
+  $("pp-L").textContent = f(pp.wheelbase_m,3," m"); $("pp-Ld").textContent = f(pp.lookahead_m,2," m");
+  $("pp-al").textContent = num(pp.alpha_rad) ? f(pp.alpha_rad*180/Math.PI,2,"°") : "--";
+  $("pp-d").textContent = num(pp.wheelbase_m) && num(pp.alpha_rad) && num(pp.lookahead_m) && pp.lookahead_m > 0
+    ? f(Math.atan2(2*pp.wheelbase_m*Math.sin(pp.alpha_rad), pp.lookahead_m)*180/Math.PI,2,"°") : "--";
+  $("pp-dr").textContent = f(pp.delta_deg,2,"°"); $("pp-dm").textContent = f(s.actual_deg,2,"°");
+
+  const o = d("odom"); $("lo-enc").textContent = o.axle_counts !== undefined ? String(o.axle_counts) : f(o.axle_rad,3," rad");
+  $("lo-yr").textContent = f(o.yaw_rate_dps,2,"°/s"); $("lo-v").textContent = f(o.speed_mps,2," m/s"); $("lo-s").textContent = o.status ?? "--";
+  const ob = d("obstacle"); $("ob-n").textContent = f(ob.nearest_m,2," m"); $("ob-r").textContent = f(ob.required_stop_m,2," m");
+  $("ob-a").textContent = f(ob.available_m,2," m"); $("ob-d").textContent = ob.decision ?? "--";
+
+  // header
+  const wsS = wsOpen ? "READY" : "FAULT"; $("h-ws").className = "dot s-" + wsS;
+  const rosFresh = T.some(fresh); $("h-ros").className = "dot s-" + (!wsOpen ? "UNAVAILABLE" : rosFresh ? "READY" : "STALE");
+  const sf = d("safety"), sfFresh = fresh("safety");
+  $("h-vcu").className = "dot s-" + (!topics.safety ? "UNAVAILABLE" : !sfFresh ? "STALE" : sf.vcu_heartbeat_ok ? "READY" : "FAULT");
+  const st = sfFresh ? (sf.state || "UNKNOWN") : (topics.safety ? "STALE" : "UNAVAILABLE");
+  $("h-safe-t").textContent = st;
+  $("h-safe").className = "dot s-" + (!sfFresh ? (topics.safety ? "STALE" : "UNAVAILABLE") : /FAULT/i.test(st) ? "FAULT" : /ARMED$|SAFE|DISARM/i.test(st) ? "READY" : "DEGRADED");
+  const modes = new Set(T.filter(t => topics[t]).map(t => status(t)).filter(x => ["LIVE","REPLAY","SIMULATED"].includes(x)));
+  $("mode").textContent = modes.size ? [...modes].join(" + ") : "--";
+  setTag("cam-tag", status("camera"));
+
+  // startup
+  const su = topics.startup?.msg.data || {}, list = su.stages || [], supFresh = fresh("startup");
+  $("stages").innerHTML = STAGES.map((name,i) => {
+    const e = list.find(x => x.id === i+1);
+    const s2 = !topics.startup ? "UNAVAILABLE" : !supFresh ? "STALE" : (e?.state || "UNAVAILABLE");
+    return `<div class="stage"><span class="dot s-${s2}"></span><span>${String(i+1).padStart(2,"0")} ${name}</span><small>${s2}${e?.detail ? " · " + e.detail : ""}</small></div>`;
+  }).join("");
+  const sysS = !topics.startup ? "UNAVAILABLE" : !supFresh ? "STALE" : su.ready === true ? "READY" : (list.some(x => x.state === "FAULT") ? "FAULT" : "INITIALIZING");
+  setTag("sys-tag", sysS);
+
+  const rs = sfFresh ? (sf.reasons || []) : [];
+  $("reasons").innerHTML = rs.length ? "<b>Blocking / fault items:</b><br>" + rs.map(x => "• " + String(x).replace(/[<>&]/g, "")).join("<br>") : (sfFresh ? "No blocking items reported." : "");
+
+  // pipeline (status derived purely from data freshness)
+  const P = [["CAMERA","camera"],["DETECTION","detections"],["MAPPING","map"],["LOCALIZATION","odom"],["PLANNING","map"],["CONTROLLER","steering"]];
+  $("pipe").innerHTML = P.map(([n,t],i) => `<span class="n"><span class="dot s-${status(t)}"></span>${n}</span>${i<P.length-1?'<span class="a">→</span>':""}`).join("");
+
+  // buttons: arm only when supervisor says it is allowed
+  $("b-arm").disabled = !(wsOpen && sysS === "READY" && sfFresh && sf.arm_allowed === true);
+  $("b-stop").disabled = !wsOpen; $("b-estop").disabled = !wsOpen; $("b-reset").disabled = !(wsOpen && sfFresh && (/FAULT/i.test(st) || sf.stop_latched === true));
+
+  if(!$("diag").hidden && $("diag").style.display !== "none"){
+    $("diag").innerHTML = "<table><tr><th>topic</th><th>source</th><th>stamp</th><th>age</th><th>valid</th><th>state</th></tr>" +
+      Object.keys(topics).concat(["camera"].filter(x=>!topics[x])).map(t => { const e = topics[t];
+        return `<tr><td>${t}</td><td>${e?.msg.source ?? "--"}</td><td>${f(e?.msg.stamp,3)}</td><td>${e ? Math.round(now()-e.rx)+" ms" : "--"}</td><td>${e ? e.msg.valid !== false : "--"}</td><td><span class="tag s-${status(t)}">${status(t)}</span></td></tr>`; }).join("") + "</table>";
+  }
+}
+
+$("b-diag").onclick = () => { const x = $("diag"); x.style.display = x.style.display === "none" ? "block" : "none"; };
+$("b-arm").onclick = () => { if(confirm("Authorize autonomous mission? Confirm the area is clear and E-stop is within reach.")) send("arm"); };
+$("b-stop").onclick = () => send("stop");
+$("b-reset").onclick = () => send("reset_fault");
+$("b-estop").onclick = () => { if(confirm("Confirm that you physically pressed the E-stop and it cut drive power?")) send("confirm_estop_tested"); };
+
+setInterval(() => { renderPanels(); drawCamera(); drawBEV(); }, 100);
+logLine("Dashboard started — waiting for gateway");
+</script>
+</body>
+</html>

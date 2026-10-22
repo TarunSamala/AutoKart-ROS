@@ -1,0 +1,4 @@
+# SIMULATION USE ONLY — NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+backend: chrono_multibody
+fidelity: smoke
+allow_fallback: false

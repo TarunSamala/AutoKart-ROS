@@ -1,0 +1,40 @@
+PHASE SIM PROJECT INFORMATION
+=============================
+
+Project: Live Delaunay Kart Lab
+Version: 1.0.0 (from package.json)
+Previous directory name: phase1
+Current directory name: phase_sim
+
+Purpose
+-------
+
+Browser-based engineering simulator for a cone-derived Delaunay planning
+pipeline, Pure Pursuit controller, and bicycle-model kart dynamics.
+
+Important files
+---------------
+
+src/main.tsx          React entry point.
+src/App.tsx           Main simulator application and layout.
+src/engine/           Simulation, planning, control, geometry, and presets.
+src/ui/               UI helpers and visualization components.
+src/test/             Vitest setup and tests.
+package.json          Commands and JavaScript dependencies.
+vite.config.ts        Vite and Vitest configuration.
+README.md             Runtime architecture and usage details.
+
+Commands
+--------
+
+npm install           Restore dependencies.
+npm run dev           Start the local development server.
+npm run test          Run the automated tests.
+npm run build         Type-check and produce dist/.
+npm run check         Run tests and build together.
+
+Generated content
+-----------------
+
+node_modules/, dist/, and *.tsbuildinfo are intentionally excluded from the
+source tree and can be regenerated with the commands above.

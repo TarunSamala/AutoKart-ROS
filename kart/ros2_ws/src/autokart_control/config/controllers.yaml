@@ -1,0 +1,6 @@
+controllers:
+  lateral: [pure_pursuit, stanley, follow_the_gap, external]
+  longitudinal: [pid, external]
+  emergency: [controlled_stop, emergency_stop]
+output_topic: control/motion_command
+prohibited_outputs: [motor_effort, brake_effort, steering_effort]

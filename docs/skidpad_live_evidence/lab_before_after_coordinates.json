@@ -1,0 +1,2600 @@
+{
+  "provenance": "Deterministic synthetic LAB; 0.25 s sampling; saved pre-edit source versus corrected source; proxy rectangle 1.6 x 1.2 m; no physical vehicle qualification",
+  "before": {
+    "settings": {},
+    "transitions": [
+      {
+        "state": "UNKNOWN",
+        "time_s": 0,
+        "pose_xy": [
+          0,
+          -17
+        ]
+      },
+      {
+        "state": "RIGHT_LOOPS",
+        "time_s": 0.25,
+        "pose_xy": [
+          0,
+          -16.957
+        ]
+      },
+      {
+        "state": "LEFT_LOOPS",
+        "time_s": 46.25,
+        "pose_xy": [
+          0.312,
+          -2.208
+        ]
+      },
+      {
+        "state": "EXIT",
+        "time_s": 85.75,
+        "pose_xy": [
+          -0.337,
+          -2.28
+        ]
+      },
+      {
+        "state": "COMPLETE",
+        "time_s": 92.067,
+        "pose_xy": [
+          0.063,
+          13.034
+        ]
+      }
+    ],
+    "exit_first": {
+      "time_s": 85.75,
+      "pose": {
+        "x_m": -0.33668859259567496,
+        "y_m": -2.2799037874538497
+      },
+      "selected_path": [
+        {
+          "x_m": -0.33668859259567496,
+          "y_m": -2.2799037874538497
+        },
+        {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        }
+      ],
+      "lookahead": {
+        "x_m": 2.8268911814237123,
+        "y_m": 6.081903412770231
+      }
+    },
+    "terminal": {
+      "time_s": 92.067,
+      "state": "COMPLETE",
+      "pose": {
+        "x_m": 0.06331826220641741,
+        "y_m": 13.034048847566043
+      },
+      "selected_path": [],
+      "lookahead": {
+        "x_m": 0,
+        "y_m": 13.058644307702199
+      },
+      "speed_mps": 2.6,
+      "right_turns": -2.0709975160442213,
+      "left_turns": 1.9955670906829708
+    },
+    "max_same_branch_target_jump": {
+      "distance_m": 13.938,
+      "time_s": 7,
+      "state": "RIGHT_LOOPS"
+    },
+    "max_sampled_steering_step": {
+      "rad": 0.245,
+      "time_s": 88.75,
+      "state": "EXIT"
+    },
+    "min_cone_center_distance": {
+      "distance_m": 0.226,
+      "time_s": 90.75,
+      "state": "EXIT",
+      "cone": "M26",
+      "pose_xy": [
+        1.725,
+        10.049
+      ],
+      "cone_xy": [
+        1.5,
+        10.059
+      ]
+    },
+    "min_proxy_rectangle_clearance": {
+      "clearance_m": 0,
+      "time_s": 87.5,
+      "state": "EXIT",
+      "cone": "M75"
+    }
+  },
+  "after": {
+    "settings": {},
+    "transitions": [
+      {
+        "state": "UNKNOWN",
+        "time_s": 0,
+        "pose_xy": [
+          0,
+          -17
+        ]
+      },
+      {
+        "state": "RIGHT_LOOPS",
+        "time_s": 0.25,
+        "pose_xy": [
+          0,
+          -16.957
+        ]
+      },
+      {
+        "state": "LEFT_LOOPS",
+        "time_s": 46.5,
+        "pose_xy": [
+          -0.217,
+          -2.339
+        ]
+      },
+      {
+        "state": "EXIT",
+        "time_s": 86.25,
+        "pose_xy": [
+          0.167,
+          -2.492
+        ]
+      },
+      {
+        "state": "STOP",
+        "time_s": 92.6,
+        "pose_xy": [
+          0.022,
+          12.837
+        ]
+      }
+    ],
+    "exit_first": {
+      "time_s": 86.25,
+      "pose": {
+        "x_m": 0.16747763364488635,
+        "y_m": -2.49189994133949
+      },
+      "selected_path": [
+        {
+          "x_m": 0.16747763364488635,
+          "y_m": -2.49189994133949
+        },
+        {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        }
+      ],
+      "lookahead": {
+        "x_m": 0,
+        "y_m": 7.0586443077022
+      }
+    },
+    "terminal": {
+      "time_s": 92.6,
+      "state": "STOP",
+      "pose": {
+        "x_m": 0.021854691483523248,
+        "y_m": 12.837126300311443
+      },
+      "selected_path": [],
+      "lookahead": null,
+      "speed_mps": 0,
+      "right_turns": -2.0741027317676966,
+      "left_turns": 2.001414382467976
+    },
+    "max_same_branch_target_jump": {
+      "distance_m": 1,
+      "time_s": 2.75,
+      "state": "RIGHT_LOOPS"
+    },
+    "max_sampled_steering_step": {
+      "rad": 0.223,
+      "time_s": 47,
+      "state": "LEFT_LOOPS"
+    },
+    "min_cone_center_distance": {
+      "distance_m": 0.944,
+      "time_s": 88,
+      "state": "EXIT",
+      "cone": "M75",
+      "pose_xy": [
+        0.914,
+        1.977
+      ],
+      "cone_xy": [
+        1.849,
+        2.102
+      ]
+    },
+    "min_proxy_rectangle_clearance": {
+      "clearance_m": 0.315,
+      "time_s": 87.75,
+      "state": "EXIT",
+      "cone": "M75"
+    }
+  },
+  "noisy_after": {
+    "settings": {
+      "noise": 0.12
+    },
+    "transitions": [
+      {
+        "state": "UNKNOWN",
+        "time_s": 0,
+        "pose_xy": [
+          0,
+          -17
+        ]
+      },
+      {
+        "state": "RIGHT_LOOPS",
+        "time_s": 0.25,
+        "pose_xy": [
+          0,
+          -16.957
+        ]
+      },
+      {
+        "state": "LEFT_LOOPS",
+        "time_s": 46.5,
+        "pose_xy": [
+          -0.255,
+          -2.166
+        ]
+      },
+      {
+        "state": "EXIT",
+        "time_s": 86.25,
+        "pose_xy": [
+          0.209,
+          -2.36
+        ]
+      },
+      {
+        "state": "STOP",
+        "time_s": 92.533,
+        "pose_xy": [
+          0.051,
+          12.848
+        ]
+      }
+    ],
+    "exit_first": {
+      "time_s": 86.25,
+      "pose": {
+        "x_m": 0.20922675744078345,
+        "y_m": -2.360192148600916
+      },
+      "selected_path": [
+        {
+          "x_m": 0.20922675744078345,
+          "y_m": -2.360192148600916
+        },
+        {
+          "x_m": 0.05226072402424142,
+          "y_m": 6.979139474904159
+        }
+      ],
+      "lookahead": {
+        "x_m": 0.05226072402424142,
+        "y_m": 6.979139474904159
+      }
+    },
+    "terminal": {
+      "time_s": 92.533,
+      "state": "STOP",
+      "pose": {
+        "x_m": 0.05101069536615484,
+        "y_m": 12.847954244797506
+      },
+      "selected_path": [],
+      "lookahead": null,
+      "speed_mps": 0,
+      "right_turns": -2.0741562057562333,
+      "left_turns": 2.00143842975701
+    },
+    "max_same_branch_target_jump": {
+      "distance_m": 1.475,
+      "time_s": 3.5,
+      "state": "RIGHT_LOOPS"
+    },
+    "max_sampled_steering_step": {
+      "rad": 0.256,
+      "time_s": 7,
+      "state": "RIGHT_LOOPS"
+    },
+    "min_cone_center_distance": {
+      "distance_m": 0.806,
+      "time_s": 89.75,
+      "state": "EXIT",
+      "cone": "M23",
+      "pose_xy": [
+        0.798,
+        6.661
+      ],
+      "cone_xy": [
+        1.5,
+        7.059
+      ]
+    },
+    "min_proxy_rectangle_clearance": {
+      "clearance_m": 0.139,
+      "time_s": 89.75,
+      "state": "EXIT",
+      "cone": "M23"
+    }
+  },
+  "missing_cones_after": {
+    "settings": {
+      "dropout": 0.15
+    },
+    "transitions": [
+      {
+        "state": "UNKNOWN",
+        "time_s": 0,
+        "pose_xy": [
+          0,
+          -17
+        ]
+      },
+      {
+        "state": "RIGHT_LOOPS",
+        "time_s": 0.25,
+        "pose_xy": [
+          0,
+          -16.957
+        ]
+      }
+    ],
+    "exit_first": null,
+    "terminal": null,
+    "max_same_branch_target_jump": {
+      "distance_m": 1.113,
+      "time_s": 25,
+      "state": "RIGHT_LOOPS"
+    },
+    "max_sampled_steering_step": {
+      "rad": 0.68,
+      "time_s": 143,
+      "state": "RIGHT_LOOPS"
+    },
+    "min_cone_center_distance": {
+      "distance_m": 0.04,
+      "time_s": 30,
+      "state": "RIGHT_LOOPS",
+      "cone": "M39",
+      "pose_xy": [
+        5.261,
+        -9.137
+      ],
+      "cone_xy": [
+        5.262,
+        -9.097
+      ]
+    },
+    "min_proxy_rectangle_clearance": {
+      "clearance_m": 0,
+      "time_s": 6.25,
+      "state": "RIGHT_LOOPS",
+      "cone": "M78"
+    }
+  },
+  "final_left_samples": {
+    "before": [
+      {
+        "time_s": 78,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.605,
+        "pose": [
+          -15.622,
+          -3.023
+        ],
+        "path_end": {
+          "x_m": -14.099131821015028,
+          "y_m": -5.176440594976285
+        },
+        "lookahead": {
+          "x_m": -14.099131821015028,
+          "y_m": -5.176440594976285
+        },
+        "steer_rad": 0.127,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 78.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.618,
+        "pose": [
+          -15.359,
+          -3.617
+        ],
+        "path_end": {
+          "x_m": -13.755633646424311,
+          "y_m": -5.539439900359356
+        },
+        "lookahead": {
+          "x_m": -13.755633646424311,
+          "y_m": -5.539439900359356
+        },
+        "steer_rad": 0.132,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 78.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.63,
+        "pose": [
+          -15.049,
+          -4.188
+        ],
+        "path_end": {
+          "x_m": -13.025175106135649,
+          "y_m": -6.220014757222369
+        },
+        "lookahead": {
+          "x_m": -13.025175106135649,
+          "y_m": -6.220014757222369
+        },
+        "steer_rad": 0.122,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 78.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.643,
+        "pose": [
+          -14.695,
+          -4.733
+        ],
+        "path_end": {
+          "x_m": -12.624115236938021,
+          "y_m": -6.5177795011411455
+        },
+        "lookahead": {
+          "x_m": -12.624115236938021,
+          "y_m": -6.5177795011411455
+        },
+        "steer_rad": 0.126,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 79,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.656,
+        "pose": [
+          -14.3,
+          -5.248
+        ],
+        "path_end": {
+          "x_m": -12.21227858595871,
+          "y_m": -6.800894889597071
+        },
+        "lookahead": {
+          "x_m": -12.21227858595871,
+          "y_m": -6.800894889597071
+        },
+        "steer_rad": 0.128,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 79.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.668,
+        "pose": [
+          -13.864,
+          -5.731
+        ],
+        "path_end": {
+          "x_m": -11.773033285593288,
+          "y_m": -7.039277295747876
+        },
+        "lookahead": {
+          "x_m": -11.773033285593288,
+          "y_m": -7.039277295747876
+        },
+        "steer_rad": 0.133,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 79.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.681,
+        "pose": [
+          -13.392,
+          -6.177
+        ],
+        "path_end": {
+          "x_m": -10.86909304928565,
+          "y_m": -7.462713160547565
+        },
+        "lookahead": {
+          "x_m": -10.86909304928565,
+          "y_m": -7.462713160547565
+        },
+        "steer_rad": 0.123,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 79.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.693,
+        "pose": [
+          -12.886,
+          -6.585
+        ],
+        "path_end": {
+          "x_m": -10.396677210835634,
+          "y_m": -7.62495034918202
+        },
+        "lookahead": {
+          "x_m": -10.396677210835634,
+          "y_m": -7.62495034918202
+        },
+        "steer_rad": 0.126,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 80,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.706,
+        "pose": [
+          -12.349,
+          -6.951
+        ],
+        "path_end": {
+          "x_m": -9.917301930443388,
+          "y_m": -7.766235050844026
+        },
+        "lookahead": {
+          "x_m": -9.917301930443388,
+          "y_m": -7.766235050844026
+        },
+        "steer_rad": 0.129,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 80.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.719,
+        "pose": [
+          -11.785,
+          -7.274
+        ],
+        "path_end": {
+          "x_m": -8.934031939129294,
+          "y_m": -7.944261578256412
+        },
+        "lookahead": {
+          "x_m": -8.934031939129294,
+          "y_m": -7.944261578256412
+        },
+        "steer_rad": 0.134,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 80.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.731,
+        "pose": [
+          -11.197,
+          -7.551
+        ],
+        "path_end": {
+          "x_m": -8.435715486911473,
+          "y_m": -7.982317955670884
+        },
+        "lookahead": {
+          "x_m": -8.435715486911473,
+          "y_m": -7.982317955670884
+        },
+        "steer_rad": 0.124,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 80.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.744,
+        "pose": [
+          -10.589,
+          -7.78
+        ],
+        "path_end": {
+          "x_m": -7.936353058825786,
+          "y_m": -7.993870800179392
+        },
+        "lookahead": {
+          "x_m": -7.936353058825786,
+          "y_m": -7.993870800179392
+        },
+        "steer_rad": 0.127,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 81,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.756,
+        "pose": [
+          -9.965,
+          -7.961
+        ],
+        "path_end": {
+          "x_m": -7.436800519582912,
+          "y_m": -7.9792079741755355
+        },
+        "lookahead": {
+          "x_m": -7.436800519582912,
+          "y_m": -7.9792079741755355
+        },
+        "steer_rad": 0.13,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 81.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.769,
+        "pose": [
+          -9.329,
+          -8.092
+        ],
+        "path_end": {
+          "x_m": -6.446296607732511,
+          "y_m": -7.847156281380334
+        },
+        "lookahead": {
+          "x_m": -6.446296607732511,
+          "y_m": -7.847156281380334
+        },
+        "steer_rad": 0.12,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 81.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.782,
+        "pose": [
+          -8.684,
+          -8.171
+        ],
+        "path_end": {
+          "x_m": -5.960821595140555,
+          "y_m": -7.728505750208008
+        },
+        "lookahead": {
+          "x_m": -5.960821595140555,
+          "y_m": -7.728505750208008
+        },
+        "steer_rad": 0.125,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 81.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.794,
+        "pose": [
+          -8.034,
+          -8.2
+        ],
+        "path_end": {
+          "x_m": -5.481407221852607,
+          "y_m": -7.588232779567477
+        },
+        "lookahead": {
+          "x_m": -5.481407221852607,
+          "y_m": -7.588232779567477
+        },
+        "steer_rad": 0.128,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 82,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.807,
+        "pose": [
+          -7.385,
+          -8.177
+        ],
+        "path_end": {
+          "x_m": -5.011099108847313,
+          "y_m": -7.41919451411443
+        },
+        "lookahead": {
+          "x_m": -5.011099108847313,
+          "y_m": -7.41919451411443
+        },
+        "steer_rad": 0.131,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 82.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.82,
+        "pose": [
+          -6.739,
+          -8.102
+        ],
+        "path_end": {
+          "x_m": -4.108935747437724,
+          "y_m": -6.989533961013794
+        },
+        "lookahead": {
+          "x_m": -4.108935747437724,
+          "y_m": -6.989533961013794
+        },
+        "steer_rad": 0.121,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 82.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.832,
+        "pose": [
+          -6.102,
+          -7.977
+        ],
+        "path_end": {
+          "x_m": -3.6843192263106643,
+          "y_m": -6.725957298480191
+        },
+        "lookahead": {
+          "x_m": -3.6843192263106643,
+          "y_m": -6.725957298480191
+        },
+        "steer_rad": 0.126,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 82.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.845,
+        "pose": [
+          -5.476,
+          -7.801
+        ],
+        "path_end": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.128,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 83,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.857,
+        "pose": [
+          -4.866,
+          -7.577
+        ],
+        "path_end": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.126,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 83.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.87,
+        "pose": [
+          -4.276,
+          -7.304
+        ],
+        "path_end": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.13,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 83.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.883,
+        "pose": [
+          -3.711,
+          -6.985
+        ],
+        "path_end": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.164,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 83.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.895,
+        "pose": [
+          -3.184,
+          -6.604
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.343,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 84,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.908,
+        "pose": [
+          -2.736,
+          -6.134
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.141,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 84.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.921,
+        "pose": [
+          -2.338,
+          -5.621
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.067,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 84.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.934,
+        "pose": [
+          -1.963,
+          -5.09
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.048,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 84.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.947,
+        "pose": [
+          -1.604,
+          -4.548
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.048,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 85,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.96,
+        "pose": [
+          -1.261,
+          -3.996
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.044,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 85.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.973,
+        "pose": [
+          -0.934,
+          -3.434
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.05,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 85.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.986,
+        "pose": [
+          -0.624,
+          -2.863
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.063,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 85.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          -0.337,
+          -2.28
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 86,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          -0.062,
+          -1.691
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 86.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          0.206,
+          -1.099
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 86.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          0.467,
+          -0.504
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 86.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          0.722,
+          0.095
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 87,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          0.969,
+          0.696
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 87.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          1.209,
+          1.3
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 87.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          1.442,
+          1.907
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 87.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          1.667,
+          2.516
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 88,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          1.886,
+          3.129
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 88.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          2.097,
+          3.743
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.019,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 88.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          2.301,
+          4.36
+        ],
+        "path_end": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "lookahead": {
+          "x_m": 2.8268911814237123,
+          "y_m": 6.081903412770231
+        },
+        "steer_rad": 0.015,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 88.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          2.488,
+          4.983
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 9.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 9.558644307702199
+        },
+        "steer_rad": 0.26,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 89,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          2.59,
+          5.624
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 10.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 10.558644307702199
+        },
+        "steer_rad": 0.202,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 89.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          2.613,
+          6.273
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 11.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 11.558644307702199
+        },
+        "steer_rad": 0.15,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 89.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          2.571,
+          6.922
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 11.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 11.558644307702199
+        },
+        "steer_rad": 0.15,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 89.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          2.475,
+          7.565
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 12.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 12.558644307702199
+        },
+        "steer_rad": 0.103,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 90,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          2.338,
+          8.2
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 12.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 12.558644307702199
+        },
+        "steer_rad": 0.103,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 90.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          2.164,
+          8.826
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "steer_rad": 0.077,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 90.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          1.959,
+          9.443
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "steer_rad": 0.077,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 90.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          1.725,
+          10.049
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "steer_rad": 0.077,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 91,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          1.463,
+          10.644
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "steer_rad": 0.077,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 91.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          1.173,
+          11.226
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "steer_rad": 0.069,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 91.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          0.858,
+          11.794
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "steer_rad": 0.059,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 91.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          0.522,
+          12.35
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "steer_rad": 0.06,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 92,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 1.996,
+        "pose": [
+          0.164,
+          12.893
+        ],
+        "path_end": null,
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "steer_rad": 0.123,
+        "speed_mps": 2.6
+      }
+    ],
+    "after": [
+      {
+        "time_s": 78.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.6,
+        "pose": [
+          -15.772,
+          -2.613
+        ],
+        "path_end": {
+          "x_m": -14.402691996750274,
+          "y_m": -4.779435416811919
+        },
+        "lookahead": {
+          "x_m": -14.402691996750274,
+          "y_m": -4.779435416811919
+        },
+        "steer_rad": 0.13,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 78.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.613,
+        "pose": [
+          -15.541,
+          -3.221
+        ],
+        "path_end": {
+          "x_m": -14.099131821015028,
+          "y_m": -5.176440594976285
+        },
+        "lookahead": {
+          "x_m": -14.099131821015028,
+          "y_m": -5.176440594976285
+        },
+        "steer_rad": 0.131,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 78.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.625,
+        "pose": [
+          -15.262,
+          -3.808
+        ],
+        "path_end": {
+          "x_m": -13.404903619046785,
+          "y_m": -5.895097503568049
+        },
+        "lookahead": {
+          "x_m": -13.404903619046785,
+          "y_m": -5.895097503568049
+        },
+        "steer_rad": 0.123,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 79,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.638,
+        "pose": [
+          -14.938,
+          -4.371
+        ],
+        "path_end": {
+          "x_m": -13.025175106135649,
+          "y_m": -6.220014757222369
+        },
+        "lookahead": {
+          "x_m": -13.025175106135649,
+          "y_m": -6.220014757222369
+        },
+        "steer_rad": 0.127,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 79.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.651,
+        "pose": [
+          -14.57,
+          -4.906
+        ],
+        "path_end": {
+          "x_m": -12.624115236938021,
+          "y_m": -6.5177795011411455
+        },
+        "lookahead": {
+          "x_m": -12.624115236938021,
+          "y_m": -6.5177795011411455
+        },
+        "steer_rad": 0.131,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 79.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.663,
+        "pose": [
+          -14.161,
+          -5.411
+        ],
+        "path_end": {
+          "x_m": -11.773033285593288,
+          "y_m": -7.039277295747876
+        },
+        "lookahead": {
+          "x_m": -11.773033285593288,
+          "y_m": -7.039277295747876
+        },
+        "steer_rad": 0.131,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 79.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.676,
+        "pose": [
+          -13.713,
+          -5.882
+        ],
+        "path_end": {
+          "x_m": -11.3309828423,
+          "y_m": -7.27187023977368
+        },
+        "lookahead": {
+          "x_m": -11.3309828423,
+          "y_m": -7.27187023977368
+        },
+        "steer_rad": 0.124,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 80,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.688,
+        "pose": [
+          -13.229,
+          -6.316
+        ],
+        "path_end": {
+          "x_m": -10.86909304928565,
+          "y_m": -7.462713160547565
+        },
+        "lookahead": {
+          "x_m": -10.86909304928565,
+          "y_m": -7.462713160547565
+        },
+        "steer_rad": 0.128,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 80.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.701,
+        "pose": [
+          -12.713,
+          -6.71
+        ],
+        "path_end": {
+          "x_m": -10.396677210835634,
+          "y_m": -7.62495034918202
+        },
+        "lookahead": {
+          "x_m": -10.396677210835634,
+          "y_m": -7.62495034918202
+        },
+        "steer_rad": 0.132,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 80.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.714,
+        "pose": [
+          -12.167,
+          -7.063
+        ],
+        "path_end": {
+          "x_m": -9.425735517029713,
+          "y_m": -7.8563771973159
+        },
+        "lookahead": {
+          "x_m": -9.425735517029713,
+          "y_m": -7.8563771973159
+        },
+        "steer_rad": 0.124,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 80.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.726,
+        "pose": [
+          -11.594,
+          -7.37
+        ],
+        "path_end": {
+          "x_m": -8.934031939129294,
+          "y_m": -7.944261578256412
+        },
+        "lookahead": {
+          "x_m": -8.934031939129294,
+          "y_m": -7.944261578256412
+        },
+        "steer_rad": 0.125,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 81,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.739,
+        "pose": [
+          -10.999,
+          -7.632
+        ],
+        "path_end": {
+          "x_m": -8.435715486911473,
+          "y_m": -7.982317955670884
+        },
+        "lookahead": {
+          "x_m": -8.435715486911473,
+          "y_m": -7.982317955670884
+        },
+        "steer_rad": 0.129,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 81.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.752,
+        "pose": [
+          -10.386,
+          -7.845
+        ],
+        "path_end": {
+          "x_m": -7.936353058825786,
+          "y_m": -7.993870800179392
+        },
+        "lookahead": {
+          "x_m": -7.936353058825786,
+          "y_m": -7.993870800179392
+        },
+        "steer_rad": 0.132,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 81.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.764,
+        "pose": [
+          -9.757,
+          -8.01
+        ],
+        "path_end": {
+          "x_m": -6.941547479243035,
+          "y_m": -7.914165988641621
+        },
+        "lookahead": {
+          "x_m": -6.941547479243035,
+          "y_m": -7.914165988641621
+        },
+        "steer_rad": 0.124,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 81.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.777,
+        "pose": [
+          -9.117,
+          -8.123
+        ],
+        "path_end": {
+          "x_m": -6.446296607732511,
+          "y_m": -7.847156281380334
+        },
+        "lookahead": {
+          "x_m": -6.446296607732511,
+          "y_m": -7.847156281380334
+        },
+        "steer_rad": 0.125,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 82,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.789,
+        "pose": [
+          -8.47,
+          -8.186
+        ],
+        "path_end": {
+          "x_m": -5.960821595140555,
+          "y_m": -7.728505750208008
+        },
+        "lookahead": {
+          "x_m": -5.960821595140555,
+          "y_m": -7.728505750208008
+        },
+        "steer_rad": 0.13,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 82.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.802,
+        "pose": [
+          -7.82,
+          -8.197
+        ],
+        "path_end": {
+          "x_m": -5.011099108847313,
+          "y_m": -7.41919451411443
+        },
+        "lookahead": {
+          "x_m": -5.011099108847313,
+          "y_m": -7.41919451411443
+        },
+        "steer_rad": 0.131,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 82.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.815,
+        "pose": [
+          -7.172,
+          -8.157
+        ],
+        "path_end": {
+          "x_m": -4.558929638841662,
+          "y_m": -7.206956866141561
+        },
+        "lookahead": {
+          "x_m": -4.558929638841662,
+          "y_m": -7.206956866141561
+        },
+        "steer_rad": 0.125,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 82.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.827,
+        "pose": [
+          -6.528,
+          -8.066
+        ],
+        "path_end": {
+          "x_m": -4.108935747437724,
+          "y_m": -6.989533961013794
+        },
+        "lookahead": {
+          "x_m": -4.108935747437724,
+          "y_m": -6.989533961013794
+        },
+        "steer_rad": 0.126,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 83,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.84,
+        "pose": [
+          -5.894,
+          -7.924
+        ],
+        "path_end": {
+          "x_m": -3.6843192263106643,
+          "y_m": -6.725957298480191
+        },
+        "lookahead": {
+          "x_m": -3.6843192263106643,
+          "y_m": -6.725957298480191
+        },
+        "steer_rad": 0.131,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 83.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.852,
+        "pose": [
+          -5.273,
+          -7.733
+        ],
+        "path_end": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.131,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 83.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.865,
+        "pose": [
+          -4.67,
+          -7.492
+        ],
+        "path_end": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.126,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 83.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.878,
+        "pose": [
+          -4.087,
+          -7.205
+        ],
+        "path_end": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "lookahead": {
+          "x_m": -3.26994669128356,
+          "y_m": -6.447064166840998
+        },
+        "steer_rad": 0.136,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 84,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.89,
+        "pose": [
+          -3.531,
+          -6.869
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.042,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 84.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.903,
+        "pose": [
+          -2.992,
+          -6.506
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.073,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 84.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.916,
+        "pose": [
+          -2.469,
+          -6.119
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.098,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 84.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.928,
+        "pose": [
+          -1.972,
+          -5.701
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.117,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 85,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.94,
+        "pose": [
+          -1.506,
+          -5.248
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.129,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 85.25,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.953,
+        "pose": [
+          -1.077,
+          -4.759
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.137,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 85.5,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.965,
+        "pose": [
+          -0.692,
+          -4.236
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.141,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 85.75,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.977,
+        "pose": [
+          -0.355,
+          -3.681
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.142,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 86,
+        "state": "LEFT_LOOPS",
+        "branch": "LEFT",
+        "left_turns": 1.989,
+        "pose": [
+          -0.067,
+          -3.098
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.141,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 86.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.167,
+          -2.492
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.139,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 86.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.361,
+          -1.871
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.073,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 86.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.526,
+          -1.243
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.073,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 87,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.662,
+          -0.607
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.073,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 87.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.769,
+          0.034
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.073,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 87.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.847,
+          0.679
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.074,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 87.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.895,
+          1.327
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.074,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 88,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.914,
+          1.977
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.074,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 88.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.903,
+          2.627
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.074,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 88.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.862,
+          3.275
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.074,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 88.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.792,
+          3.922
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.0586443077022
+        },
+        "steer_rad": 0.074,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 89,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.694,
+          4.564
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.558644307702199
+        },
+        "steer_rad": 0.04,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 89.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.577,
+          5.203
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.558644307702199
+        },
+        "steer_rad": 0.04,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 89.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.445,
+          5.84
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.558644307702199
+        },
+        "steer_rad": 0.032,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 89.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.3,
+          6.474
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 7.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 7.558644307702199
+        },
+        "steer_rad": 0.03,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 90,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.144,
+          7.104
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 8.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 8.058644307702199
+        },
+        "steer_rad": -0.079,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 90.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.005,
+          7.739
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 8.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 8.558644307702199
+        },
+        "steer_rad": -0.135,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 90.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          -0.08,
+          8.384
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 9.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 9.558644307702199
+        },
+        "steer_rad": -0.125,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 90.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          -0.111,
+          9.033
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 10.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 10.058644307702199
+        },
+        "steer_rad": -0.099,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 91,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          -0.104,
+          9.683
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 11.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 11.058644307702199
+        },
+        "steer_rad": -0.037,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 91.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          -0.077,
+          10.332
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 11.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 11.558644307702199
+        },
+        "steer_rad": -0.007,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 91.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          -0.041,
+          10.981
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 12.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 12.058644307702199
+        },
+        "steer_rad": 0.012,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 91.75,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          -0.009,
+          11.63
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 12.558644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 12.558644307702199
+        },
+        "steer_rad": 0.027,
+        "speed_mps": 2.6
+      },
+      {
+        "time_s": 92,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.011,
+          12.221
+        ],
+        "path_end": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "lookahead": {
+          "x_m": 0,
+          "y_m": 13.058644307702199
+        },
+        "steer_rad": 0.033,
+        "speed_mps": 2.013
+      },
+      {
+        "time_s": 92.25,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.019,
+          12.618
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.009,
+        "speed_mps": 1.213
+      },
+      {
+        "time_s": 92.5,
+        "state": "EXIT",
+        "branch": "EXIT",
+        "left_turns": 2.001,
+        "pose": [
+          0.022,
+          12.814
+        ],
+        "path_end": null,
+        "lookahead": null,
+        "steer_rad": 0.008,
+        "speed_mps": 0.413
+      }
+    ]
+  }
+}

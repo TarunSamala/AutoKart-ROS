@@ -1,0 +1,31 @@
+Starting >>> autokart_dashboard_gateway
+running egg_info
+writing ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/PKG-INFO
+writing dependency_links to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/dependency_links.txt
+writing entry points to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/entry_points.txt
+writing requirements to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/requires.txt
+writing top-level names to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/top_level.txt
+reading manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+writing manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+running build
+running build_py
+copying autokart_dashboard_gateway/core.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/camera_feed.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/__init__.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/gateway.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+running install
+running install_lib
+copying /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway/core.py -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway/core.py to core.cpython-310.pyc
+running install_data
+copying resource/autokart_dashboard_gateway -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/share/ament_index/resource_index/packages
+copying package.xml -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/share/autokart_dashboard_gateway
+running install_egg_info
+removing '/tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway-0.1.0-py3.10.egg-info' (and everything under it)
+Copying ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info to /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway-0.1.0-py3.10.egg-info
+running install_scripts
+Installing dashboard_gateway script to /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/autokart_dashboard_gateway
+writing list of installed files to '/tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/install.log'
+Finished <<< autokart_dashboard_gateway [1.71s]
+
+Summary: 1 package finished [1.93s]

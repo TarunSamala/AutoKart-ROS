@@ -1,0 +1,2 @@
+[console_scripts]
+kart-sim = kart_sim.cli:main

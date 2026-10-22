@@ -1,0 +1,6 @@
+name: formula_student_skidpad
+mode: formula_student
+simulation: {physics_backend: internal, gazebo_role: disabled, fidelity_tier: 2}
+features: {sensor_suite: cone_racing, vcu_enabled: true, independent_safety_enabled: true, rendering_enabled: false, ros_enabled: false, dashboard_enabled: true, real_actuator_outputs_enabled: false}
+expected_performance: "Faster-than-real-time deterministic event timing and dynamics."
+dependencies: [python3, pyyaml, pydantic]

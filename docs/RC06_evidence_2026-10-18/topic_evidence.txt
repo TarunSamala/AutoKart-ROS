@@ -1,0 +1,59 @@
+== ros2 topic echo /safety/envelope --once ==
+timestamp:
+  sec: 1792317859
+  nanosec: 878968795
+frame_id: base_link
+maximum_speed_mps: 0.0
+maximum_acceleration_mps2: 0.0
+guaranteed_deceleration_mps2: 2.0
+clear_distance_m: 10.0
+stopping_distance_m: 2.8
+lateral_limit_mps2: 0.0
+allowed_region:
+  points: []
+limiting_reason: CLEAR:OBSTACLE_OUTSIDE_BRAKING_ENVELOPE:CALIBRATION_UNVERIFIED
+valid: true
+---
+== ros2 topic hz /safety/envelope (5s sample) ==
+average rate: 10.001
+	min: 0.100s max: 0.100s std dev: 0.00007s window: 11
+average rate: 10.001
+	min: 0.100s max: 0.100s std dev: 0.00007s window: 22
+average rate: 10.001
+	min: 0.100s max: 0.100s std dev: 0.00007s window: 32
+== ros2 topic info /safety/envelope -v ==
+Type: autokart_msgs/msg/SafetyEnvelope
+
+Publisher count: 1
+
+Node name: front_safety_envelope_monitor
+Node namespace: /
+Topic type: autokart_msgs/msg/SafetyEnvelope
+Endpoint type: PUBLISHER
+GID: 01.0f.80.29.f7.c7.bb.da.00.00.00.00.00.00.13.03.00.00.00.00.00.00.00.00
+QoS profile:
+  Reliability: RELIABLE
+  History (Depth): UNKNOWN
+  Durability: VOLATILE
+  Lifespan: Infinite
+  Deadline: Infinite
+  Liveliness: AUTOMATIC
+  Liveliness lease duration: Infinite
+
+Subscription count: 1
+
+Node name: dashboard_gateway
+Node namespace: /
+Topic type: autokart_msgs/msg/SafetyEnvelope
+Endpoint type: SUBSCRIPTION
+GID: 01.0f.80.29.f8.c7.49.9b.00.00.00.00.00.00.19.04.00.00.00.00.00.00.00.00
+QoS profile:
+  Reliability: RELIABLE
+  History (Depth): UNKNOWN
+  Durability: VOLATILE
+  Lifespan: Infinite
+  Deadline: Infinite
+  Liveliness: AUTOMATIC
+  Liveliness lease duration: Infinite
+
+2026-10-18T10:04:25Z

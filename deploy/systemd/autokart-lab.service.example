@@ -1,0 +1,56 @@
+# =====================================================================================
+#  EXAMPLE ONLY -- NOT INSTALLED, NOT VALIDATED ON THE RASPBERRY PI.
+#  Written and syntax-checked on the Jarvis workstation (Ubuntu 22.04, ROS 2 Humble);
+#  the runner it calls (scripts/run_foreground.sh lab) was exercised by hand, but this
+#  unit has never been loaded by systemd on any machine.
+#
+#  READ-ONLY DIAGNOSTIC SERVICE. It starts nothing that can actuate the vehicle:
+#  no VCU/brake/throttle/steering publisher, vehicle authority OFF, no authority
+#  override parameters. Verify with scripts/audit_no_actuation.sh after start.
+#
+#  To try it (operator decision, not automatic):
+#    sudo cp deploy/systemd/autokart-lab.service.example /etc/systemd/system/autokart-lab.service
+#    sudoedit /etc/systemd/system/autokart-lab.service   # fix User=, paths
+#    sudo systemctl daemon-reload && sudo systemctl start autokart-lab
+#    journalctl -u autokart-lab -f
+#  Prerequisites: scripts/build_ros.sh run once; cd phase_sim && npm run build:apps.
+# =====================================================================================
+[Unit]
+Description=AutoKart Algorithm Lab (lab CORE :8767 + SIMULATION gateway :8775 on ROS_DOMAIN_ID=42 + lab UI :5181)
+Documentation=file:///home/mark1/Desktop/autonomous_kart/docs/ui_split/OPERATIONS.md
+After=network-online.target
+
+# Bounded restarts: at most 5 starts per 5 minutes, then the unit stays failed for a human.
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=mark1
+Group=mark1
+WorkingDirectory=/home/mark1/Desktop/autonomous_kart
+Environment=AUTOKART_ROOT=/home/mark1/Desktop/autonomous_kart
+Environment=HOME=/home/mark1
+Environment=AUTOKART_LAB_CORE_PORT=8767
+Environment=AUTOKART_LAB_GATEWAY_PORT=8775
+Environment=AUTOKART_LAB_PORT=5181
+# Separate ROS domain so the Lab can never see or publish live topics.
+Environment=AUTOKART_LAB_ROS_DOMAIN_ID=42
+Environment=ROS_DOMAIN_ID=0
+ExecStart=/home/mark1/Desktop/autonomous_kart/scripts/run_foreground.sh lab
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+KillMode=control-group
+KillSignal=SIGTERM
+# Hardening (diagnostic process needs no privileges).
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=false
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+# Intentionally not enabled by default. Only enable after Pi validation.
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+string source_id
+uint32 sequence
+builtin_interfaces/Time measurement_time
+builtin_interfaces/Time valid_until
+float64 speed_mps
+float64 steering_rad
+float64 brake
+bool emergency_stop
+uint16 crc16
+string mode
+float64 acceleration_limit_mps2
+float64 deceleration_limit_mps2
+bool valid
+uint64 reset_epoch

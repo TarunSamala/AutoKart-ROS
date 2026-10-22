@@ -1,0 +1,348 @@
+AUTONOMOUS ELECTRIC GO-KART SIMULATOR
+CODEX EXECUTION RULES
+
+You are acting as the lead vehicle-dynamics, robotics, embedded, controls, safety, reliability, simulation, and software engineer.
+
+This is not a game-only project. It is a research-grade, deterministic, configurable autonomous electric go-kart simulator that must eventually support software-in-loop, hardware-in-loop, real-kart calibration, and safety fault injection.
+
+ENGINEERING PRIORITY
+1. Human safety
+2. Emergency stopping
+3. Prevention of uncontrolled propulsion or steering
+4. Predictable behaviour
+5. Fault detection
+6. Determinism and timing correctness
+7. Physics and sensor correctness
+8. Testability
+9. Maintainability
+10. Performance
+11. Visual quality
+
+MANDATORY ENGINEERING BEHAVIOUR
+- Inspect the repository and run the complete existing test suite before modifying code.
+- Preserve existing validated work.
+- Do not perform destructive Git operations.
+- Do not silently weaken tests, thresholds, or safety logic to make tests pass.
+- Do not claim success because code compiles.
+- Do not invent hardware specifications.
+- Put provisional values in schema-validated configuration files.
+- Record every assumption in docs/ASSUMPTIONS.md.
+- Record important decisions in docs/ADR/.
+- Use SI units internally.
+- Keep world, vehicle, track, sensor, camera optical, and actuator frames explicit.
+- Use deterministic fixed-step simulation and seeded random streams.
+- Keep measurement time, processing completion time, delivery time, and consumer time separate.
+- Keep operational sensor data separate from debug ground truth.
+- Keep high-level computer, VCU, and independent safety layer separate.
+- No actuator command may remain active indefinitely after communication loss.
+- Every critical fault must have detection, safe response, latching/reset policy, and automated verification.
+- Never claim ISO 26262, ASIL, automotive certification, or real-vehicle safety compliance.
+- Mark example configurations:
+  SIMULATION USE ONLY
+  NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+
+VERDICTS
+Use only:
+- APPROVED
+- APPROVED_WITH_CONDITIONS
+- REJECTED
+- MORE_DATA_REQUIRED
+- PROTOTYPE_TEST_REQUIRED
+
+WORKFLOW
+1. Audit repository and environment.
+2. Run baseline tests and record exact results.
+3. Identify interfaces affected by this phase.
+4. Create a phase implementation plan.
+5. Implement in small, testable increments.
+6. Run unit, integration, regression, fault, determinism, and performance tests.
+7. Update documentation and requirements traceability.
+8. Produce the required final report.
+9. Do not begin the next phase automatically.
+
+EXTERNAL DEPENDENCIES
+When a dependency is unavailable:
+- Do not stop the whole phase.
+- Implement clean interfaces and optional build flags.
+- Add a deterministic fallback or mock where meaningful.
+- Add installation and validation instructions.
+- Mark tests requiring the dependency as explicit optional/integration tests.
+- Never mark an unexecuted integration as passed.
+PHASE 11
+PROJECT CHRONO MULTIBODY VEHICLE-DYNAMICS INTEGRATION,
+BACKEND ABSTRACTION, KART-SPECIFIC MODEL, AND CROSS-VALIDATION
+
+PREREQUISITE GATE
+Begin after the internal simulator, safety logic, autonomy interfaces, dashboard, and fault benchmark are stable.
+
+OBJECTIVE
+Integrate Project Chrono as an optional high-fidelity multibody backend and quantify differences from the internal analytical model.
+
+Do not replace the internal model blindly. Maintain both backends behind a common interface.
+
+1. INITIAL AUDIT AND CURRENT DOCUMENTATION
+Inspect:
+- installed Chrono version and modules
+- supported compilers
+- build system
+- vehicle/tire APIs
+- sensor/terrain modules if relevant
+- repository backend interfaces
+- coordinate and unit conventions
+- internal four-wheel model
+Run baseline tests.
+
+When technical API details are needed, use the official documentation and source for the detected version. Do not assume an API from memory or a different release.
+
+2. BACKEND INTERFACE
+Create a VehiclePhysicsBackend interface:
+- initialize
+- reset
+- step
+- apply actuator inputs
+- query chassis state
+- query wheel states
+- query tire/contact forces
+- query energy
+- query diagnostics
+- serialize snapshot where practical
+
+Backends:
+- internal_analytical
+- chrono_multibody
+
+The VCU, sensors, track, logging, and dashboard must not depend on backend-specific classes.
+
+3. OPTIONAL BUILD
+- feature flag
+- clear dependency detection
+- no Chrono requirement for basic build
+- CI without Chrono
+- optional CI with Chrono
+- version report
+- install documentation
+- no silent fallback when Chrono was explicitly requested
+
+4. COORDINATE/UNIT MAPPING
+Implement tested conversions:
+- position
+- orientation
+- linear/angular velocity
+- force/torque
+- wheel rotation
+- steering angles
+- track frames
+- gravity
+- sign conventions
+
+5. KART MULTIBODY MODEL
+Do not reuse a generic passenger-car template without justification.
+
+Represent:
+- chassis rigid body initially
+- configurable mass/CG/inertia
+- optional torsional chassis abstraction or flexible-body path
+- front steering spindles/kingpins
+- front wheels
+- solid rear axle
+- rear wheels locked to axle
+- sprocket/drive torque input
+- brake torques
+- steering linkage or equivalent constraints
+- no conventional suspension unless the real kart has it
+- wheel lift/contact loss
+- mechanical stops
+- bearing/friction losses
+
+6. SOLID REAR AXLE
+Mandatory:
+- common axle rotational state or explicit rigid constraint
+- no open differential
+- inside/outside path conflict
+- scrub and unloading effects
+- axle inertia
+- optional compliance
+- chain torque input
+
+Create comparison against an open-differential reference only as an analysis case.
+
+7. STEERING
+Map Phase 4 actuator/linkage output to Chrono joints without bypassing actuator dynamics.
+
+Support:
+- actual left/right road-wheel angles
+- Ackermann/nonlinear calibration
+- mechanical stops
+- load torque feedback
+- jam/linkage fault hooks
+
+8. TIRES
+Support selected Chrono tire models appropriate to available data:
+- rigid or simple tire for smoke tests
+- Fiala/TMeasy or equivalent for engineering
+- Pacejka only with justified coefficients
+
+Create a tire parameter adapter. Do not copy unrelated coefficients.
+
+9. TERRAIN/TRACK CONTACT
+Integrate Phase 5:
+- track geometry
+- per-wheel material
+- friction
+- height
+- roughness
+- kerbs
+- banking/grade
+
+Avoid two conflicting contact authorities.
+
+10. ACTUATORS/POWERTRAIN
+Preserve Phase 4 models:
+- steering actuator
+- brake hydraulics
+- BLDC/battery/thermal
+
+Chrono receives physical torques/forces. It must not replace electrical and control dynamics with ideal inputs.
+
+11. CO-SIMULATION TIMING
+- deterministic fixed step
+- documented integrator
+- solver settings
+- contact settings
+- substeps
+- no render-rate dependence
+- VCU/sensor schedules preserved
+- detection of solver failure
+
+12. ENERGY AND FORCE TELEMETRY
+Expose:
+- chassis state
+- joint states
+- wheel loads
+- tire forces
+- contact state
+- axle torque
+- constraint forces
+- energy
+- solver diagnostics
+
+13. VALIDATION
+Analytical cases:
+- stationary equilibrium
+- straight acceleration
+- coast-down
+- braking
+- constant-radius circle
+- skidpad
+- step steer
+- slalom
+- split-friction braking
+- inside-rear lift
+- kerb crossing
+- wheel lift
+
+Cross-backend comparison:
+- same config/scenario
+- aligned logs
+- error metrics
+- explain differences
+- no expectation of identical outputs
+
+14. PARAMETER SENSITIVITY
+Evaluate:
+- tire stiffness/friction
+- chassis torsion
+- CG height
+- axle stiffness
+- steering geometry
+- timestep
+- solver/contact parameters
+
+15. PERFORMANCE
+Measure:
+- step time
+- real-time factor
+- memory
+- solver iterations
+- contact count
+- failure rate
+
+Provide fidelity presets:
+- smoke
+- real-time
+- engineering
+- offline high fidelity
+
+16. SAFETY REGRESSION
+Run Phase 7/10 critical faults on Chrono backend:
+- command loss
+- steering jam
+- brake failure
+- motor runaway
+- E-stop
+- wet surface
+
+Safety logic must remain backend-independent.
+
+17. DOCUMENTATION
+Create/update:
+- docs/CHRONO_INTEGRATION.md
+- docs/CHRONO_BUILD.md
+- docs/CHRONO_KART_MODEL.md
+- docs/CHRONO_TIRES.md
+- docs/CHRONO_VALIDATION.md
+- docs/BACKEND_COMPARISON.md
+- docs/STATUS.md
+
+18. ACCEPTANCE CRITERIA
+- optional build works
+- common backend interface works
+- kart-specific model exists
+- solid rear axle exists
+- track/surfaces integrated
+- actuator/electrical dynamics preserved
+- deterministic fixed-step mode works
+- required validation scenarios run
+- differences quantified
+- safety tests pass
+- documentation matches implementation
+
+19. REQUIRED FINAL REPORT
+PHASE:
+Phase 11 — Project Chrono Integration
+
+STATUS:
+...
+
+VERDICT:
+...
+
+CHRONO VERSION/ENVIRONMENT:
+- ...
+
+IMPLEMENTED:
+- backend interface
+- kart model
+- solid axle
+- steering
+- tires
+- track/terrain
+- actuator coupling
+- telemetry
+- build
+
+VALIDATION:
+- analytical
+- internal vs Chrono
+- safety
+- determinism
+- performance
+
+MODEL DIFFERENCES:
+- ...
+
+KNOWN LIMITATIONS:
+- ...
+
+NEXT PHASE:
+Phase 12 — CARLA/Unreal integration.

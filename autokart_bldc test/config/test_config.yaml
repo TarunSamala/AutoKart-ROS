@@ -1,0 +1,55 @@
+# AutoKart BLDC experimental test harness configuration.
+# This file configures a SEPARATE, isolated test app. It does not change, and
+# is not read by, the production ROS 2 stack, autokart_vcu_safety, or
+# vcu_firmware/. Every "measured" field below is a placeholder until a person
+# fills it in from the corresponding tool in docs/BENCH_TESTS.md; nothing in
+# this app sets these automatically.
+
+camera:
+  kind: hp60c
+  bridge_library: null        # defaults to autokart_perception's built native .so
+  camera_configuration: null  # defaults to autokart_perception's packaged SDK config
+  max_frame_age_ms: 250
+  warmup_read_attempts: 20    # the HP60C SDK needs a few frames before intrinsics are valid
+
+perception:
+  detector: conenet-v1        # matches the existing pinned default (CANONICAL_COMPONENTS.md)
+  confidence: null            # null = use the detector's own pinned default
+  wheelbase_m: 1.15           # UNVERIFIED default from autokart_perception.sdk; confirm against the real kart
+
+planning:
+  corridor_half_width_m: 0.9       # lateral band either side of the centerline treated as "in path"
+  obstacle_lookahead_m: 6.0        # ignore cones further ahead than this when checking for a blocking cone
+  stop_gap_from_bumper_m: 1.0      # matches commissioning.yaml's first-run target; tighten only after measurement
+
+stopping:
+  # All three are UNMEASURED placeholders (owner: operator). Filling these in
+  # does not set calibration_verified / vehicle_config_verified / braking_verified
+  # in kart/ros2_ws/src/autokart_vcu_safety/config/vcu_safety.yaml -- that file
+  # is untouched by this app and remains the authoritative gate.
+  measured: false
+  brake_min_mps2: 0.0        # paste tools/braking_test.py's brake_min_mps2 line here once measured
+  t_latency_s: 0.0           # paste tools/latency_report.py's t_latency line here once measured
+  margin_m: 1.5              # fixed extra margin added on top of the physics term, same default as shared_core.BrakeCapability
+
+throttle:
+  motor_output_enabled: false   # must remain false; app rejects true and never sends VCU commands
+  dac_voltage_limit_v: 2.0      # requested ceiling -- NOT a verified safe crawl speed, see README
+  min_command_v: 0.0
+  max_command_v: 2.0
+  ramp_v_per_s: 1.0              # mirrors the firmware's own 1000 mV/s ramp (vcu_firmware/README.md)
+  command_timeout_ms: 300        # mirrors CMD_TIMEOUT_MS in docs/VCU_PROTOCOL.md
+
+vcu:
+  # Current RP2040 Pico USB identity observed on this host. Verify against the
+  # installed board; the port is opened for reading only and never commanded.
+  port: /dev/serial/by-id/usb-Arduino_RaspberryPi_Pico_A63064E62F6E204B-if00
+  baud: 115200
+  link_timeout_ms: 300
+
+dashboard:
+  host: 127.0.0.1
+  port: 8780
+
+logging:
+  results_dir: results

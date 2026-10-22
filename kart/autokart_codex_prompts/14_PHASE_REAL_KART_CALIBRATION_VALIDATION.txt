@@ -1,0 +1,457 @@
+AUTONOMOUS ELECTRIC GO-KART SIMULATOR
+CODEX EXECUTION RULES
+
+You are acting as the lead vehicle-dynamics, robotics, embedded, controls, safety, reliability, simulation, and software engineer.
+
+This is not a game-only project. It is a research-grade, deterministic, configurable autonomous electric go-kart simulator that must eventually support software-in-loop, hardware-in-loop, real-kart calibration, and safety fault injection.
+
+ENGINEERING PRIORITY
+1. Human safety
+2. Emergency stopping
+3. Prevention of uncontrolled propulsion or steering
+4. Predictable behaviour
+5. Fault detection
+6. Determinism and timing correctness
+7. Physics and sensor correctness
+8. Testability
+9. Maintainability
+10. Performance
+11. Visual quality
+
+MANDATORY ENGINEERING BEHAVIOUR
+- Inspect the repository and run the complete existing test suite before modifying code.
+- Preserve existing validated work.
+- Do not perform destructive Git operations.
+- Do not silently weaken tests, thresholds, or safety logic to make tests pass.
+- Do not claim success because code compiles.
+- Do not invent hardware specifications.
+- Put provisional values in schema-validated configuration files.
+- Record every assumption in docs/ASSUMPTIONS.md.
+- Record important decisions in docs/ADR/.
+- Use SI units internally.
+- Keep world, vehicle, track, sensor, camera optical, and actuator frames explicit.
+- Use deterministic fixed-step simulation and seeded random streams.
+- Keep measurement time, processing completion time, delivery time, and consumer time separate.
+- Keep operational sensor data separate from debug ground truth.
+- Keep high-level computer, VCU, and independent safety layer separate.
+- No actuator command may remain active indefinitely after communication loss.
+- Every critical fault must have detection, safe response, latching/reset policy, and automated verification.
+- Never claim ISO 26262, ASIL, automotive certification, or real-vehicle safety compliance.
+- Mark example configurations:
+  SIMULATION USE ONLY
+  NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+
+VERDICTS
+Use only:
+- APPROVED
+- APPROVED_WITH_CONDITIONS
+- REJECTED
+- MORE_DATA_REQUIRED
+- PROTOTYPE_TEST_REQUIRED
+
+WORKFLOW
+1. Audit repository and environment.
+2. Run baseline tests and record exact results.
+3. Identify interfaces affected by this phase.
+4. Create a phase implementation plan.
+5. Implement in small, testable increments.
+6. Run unit, integration, regression, fault, determinism, and performance tests.
+7. Update documentation and requirements traceability.
+8. Produce the required final report.
+9. Do not begin the next phase automatically.
+
+EXTERNAL DEPENDENCIES
+When a dependency is unavailable:
+- Do not stop the whole phase.
+- Implement clean interfaces and optional build flags.
+- Add a deterministic fallback or mock where meaningful.
+- Add installation and validation instructions.
+- Mark tests requiring the dependency as explicit optional/integration tests.
+- Never mark an unexecuted integration as passed.
+PHASE 14
+REAL-KART DATA IMPORT, PARAMETER IDENTIFICATION, CALIBRATION,
+UNCERTAINTY QUANTIFICATION, AND INDEPENDENT VALIDATION
+
+PREREQUISITE GATE
+Begin after simulator and HIL interfaces produce synchronized, traceable logs. Real vehicle testing must follow an approved staged safety plan.
+
+OBJECTIVE
+Fit simulator parameters using measured kart data and then test predictive accuracy on separate validation data.
+
+Do not call the simulator a validated digital twin until independent validation meets declared criteria.
+
+1. INITIAL AUDIT
+Inspect:
+- parameter list
+- assumptions
+- existing real logs
+- calibration tools
+- experiment metadata
+- timing synchronization
+- units/frames
+- safety test plan
+- data quality
+Run software baseline tests.
+
+2. DATA GOVERNANCE
+Every dataset must include:
+- dataset ID
+- date
+- kart configuration
+- driver/payload
+- track/surface
+- weather/temperature
+- tire pressure/condition
+- battery SOC
+- software/firmware versions
+- sensor calibrations
+- test procedure
+- safety limits
+- anomalies
+- raw files
+- processed files
+- checksum
+
+Never overwrite raw data.
+
+3. DATA SPLIT
+Separate before fitting:
+- calibration/training set
+- validation set
+- optional final holdout set
+
+Do not tune on validation results without declaring a new split/version.
+
+4. REQUIRED EXPERIMENTS
+Static:
+- mass
+- axle/corner weights
+- CG longitudinal
+- CG height method
+- wheel radius
+- wheelbase/track
+- yaw inertia method or estimate
+- steering geometry
+- brake geometry
+
+Straight:
+- coast-down
+- acceleration
+- constant speed
+- torque/current
+- voltage sag
+- braking
+- repeated braking
+- low/high SOC
+
+Steering/dynamics:
+- steering mapping
+- step response
+- backlash
+- static torque
+- constant-radius
+- skidpad
+- step steer
+- slalom
+- braking in turn
+- acceleration in turn
+- inside-rear load/lift where measurable
+
+Sensors:
+- intrinsics/extrinsics
+- latency
+- IMU Allan deviation
+- encoder scale
+- depth error
+- LiDAR range
+- time synchronization
+
+5. SAFETY STAGING
+Tests:
+1. desk/bench
+2. wheels off ground
+3. manual low speed
+4. controlled closed track
+5. progressive speed
+6. fault testing only after nominal validation
+
+Every test plan must define:
+- objective
+- setup
+- safety precautions
+- abort conditions
+- procedure
+- data
+- pass/fail
+- next action
+
+6. IMPORT PIPELINE
+Support:
+- CSV
+- ROS bag
+- CAN logs
+- simulator logs
+- video metadata
+- custom sensor files
+
+Pipeline:
+raw
+→ validated
+→ synchronized
+→ calibrated
+→ segmented
+→ feature extracted
+→ calibration/validation package
+
+7. TIME SYNCHRONIZATION
+Estimate:
+- offsets
+- drift
+- latency
+- dropped data
+- resampling uncertainty
+
+Do not align signals only by visual shifting without recording the estimate.
+
+8. PARAMETER REGISTRY
+Create typed registry:
+- name
+- unit
+- nominal
+- bounds
+- source
+- confidence
+- identifiable experiments
+- dependencies
+- fitted value
+- uncertainty
+- validation status
+
+Groups:
+- mass/inertia
+- tire
+- chassis
+- steering
+- brake
+- motor/drivetrain
+- battery
+- thermal
+- sensor
+- timing
+
+9. IDENTIFIABILITY
+Before fitting:
+- sensitivity analysis
+- parameter correlation
+- rank/condition analysis where practical
+- freeze unidentifiable parameters
+- design additional experiments
+
+Do not fit many parameters from one insufficient maneuver.
+
+10. OBJECTIVE FUNCTIONS
+Use weighted residuals:
+J(theta) = sum (y_real - y_sim(theta))^T W (y_real - y_sim(theta))
+plus regularization only when justified.
+
+Metrics:
+- RMSE
+- MAE
+- max error
+- phase delay
+- settling time
+- overshoot
+- frequency response where applicable
+- stopping-distance error
+- yaw-rate gain
+- path error
+- energy error
+
+Weights and filters must be documented.
+
+11. OPTIMIZATION
+Support:
+- bounded local optimizer
+- global/multistart option
+- deterministic seed
+- parallel evaluation
+- checkpoint/resume
+- parameter transformations
+- physical constraints
+- failed-run handling
+
+Do not allow optimizer to exploit nonphysical parameter values.
+
+12. CALIBRATION ORDER
+Recommended:
+A. geometry/mass
+B. clocks/sensors
+C. rolling/drag
+D. motor/drivetrain/battery
+E. steering actuator/linkage
+F. brake/hydraulic/thermal
+G. tire longitudinal
+H. tire lateral
+I. chassis/solid axle
+J. coupled validation
+
+Avoid fitting everything simultaneously first.
+
+13. UNCERTAINTY
+Estimate:
+- parameter confidence intervals or covariance
+- bootstrap where practical
+- residual distributions
+- model-form uncertainty
+- measurement uncertainty
+- prediction bands
+
+Safety envelope should use conservative validated bounds, not best-fit only.
+
+14. VALIDATION
+Use unseen:
+- speeds
+- corners
+- surfaces
+- payloads
+- SOC/temperature
+- maneuvers
+
+Compare:
+- trajectories
+- speed
+- acceleration
+- yaw
+- steering
+- brake pressure
+- motor current
+- voltage
+- temperatures
+- wheel loads if available
+- sensor statistics
+
+15. ACCEPTANCE THRESHOLDS
+Define per metric before final validation.
+Examples must remain provisional until agreed:
+- stopping-distance error
+- yaw-rate RMSE
+- speed RMSE
+- steering delay error
+- voltage-sag error
+- sensor latency error
+
+Do not create thresholds after seeing results to force a pass.
+
+16. CROSS-VALIDATION
+Where enough data:
+- leave-one-run-out
+- leave-one-corner-type-out
+- surface split
+- speed split
+- day/environment split
+
+17. SIM-TO-REAL REPORT
+For each subsystem:
+- fitted parameters
+- source experiments
+- uncertainty
+- calibration residual
+- validation residual
+- failure cases
+- valid operating envelope
+- unsupported conditions
+
+18. VERSIONING
+Create model release:
+- parameter set version
+- data version
+- code commit
+- config hash
+- calibration tool version
+- validation report
+
+19. TESTS
+- import
+- units
+- synchronization
+- parameter bounds
+- optimizer deterministic
+- synthetic parameter recovery
+- holdout separation
+- report reproducibility
+- failure handling
+- no raw data modification
+
+20. DOCUMENTATION
+Create/update:
+- docs/REAL_TEST_PLAN.md
+- docs/DATA_DICTIONARY.md
+- docs/CALIBRATION_PIPELINE.md
+- docs/PARAMETER_REGISTRY.md
+- docs/IDENTIFIABILITY.md
+- docs/VALIDATION_CRITERIA.md
+- docs/SIM_TO_REAL_REPORT.md
+- docs/MODEL_LIMITATIONS.md
+- docs/STATUS.md
+
+21. ACCEPTANCE CRITERIA
+- raw data immutable
+- metadata complete
+- calibration/validation split
+- synchronized data
+- parameter registry
+- identifiability assessed
+- bounded fitting
+- synthetic recovery test
+- subsystem calibration
+- independent validation
+- uncertainty reported
+- operating envelope stated
+- model versioned
+- no unsupported digital-twin claim
+- tests pass
+
+22. REQUIRED FINAL REPORT
+PHASE:
+Phase 14 — Real-Kart Calibration and Validation
+
+STATUS:
+...
+
+VERDICT:
+...
+
+DATASETS:
+- calibration
+- validation
+- holdout
+
+EXPERIMENTS:
+- ...
+
+PARAMETERS:
+- fitted
+- fixed
+- unidentifiable
+- uncertainty
+
+VALIDATION RESULTS:
+- vehicle dynamics
+- actuators
+- power
+- thermal
+- sensors
+- safety stopping
+
+VALID OPERATING ENVELOPE:
+- ...
+
+FAILED/WEAK AREAS:
+- ...
+
+DIGITAL TWIN CLAIM:
+NOT JUSTIFIED / JUSTIFIED WITH CONDITIONS
+with evidence
+
+NEXT PHASE:
+Phase 15 — Final research demonstration and release.

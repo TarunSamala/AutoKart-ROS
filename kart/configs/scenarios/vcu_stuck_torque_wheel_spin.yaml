@@ -1,0 +1,11 @@
+name: vcu_stuck_torque_wheel_spin
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 0.8
+control:
+  mode: vcu
+  command_timeout_s: 0.05
+  command_stop_time_s: 0.25
+  inject_fault: "motor:torque_stuck_positive"
+  wheel_friction_scales: {rear_left: 0.15, rear_right: 0.15}
+initial_state: {u_mps: 1.0}
+command: {drive: 0.8, brake: 0.0, steering_rad: 0.0}

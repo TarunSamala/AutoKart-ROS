@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# React / TypeScript generated files
+phase_sim/node_modules/
+phase_sim/dist/
+phase_sim/dist-*/
+phase_sim/*.tsbuildinfo
+
+# Editor and OS files
+.DS_Store
+*.swp
+*~
+*.bak-*
+
+# Build artifacts
+.ros_build/
+build/
+**/build/
+install/
+**/install/
+log/
+**/log/
+.ros_phase1_live_*/
+.ros_phase1_overlay/
+.run/
+.venv/
+
+# Large data / model / training artifacts (not tracked here)
+datasets/
+models/
+training_runs/
+results/
+artifacts/
+**/artifacts/
+runs/
+**/runs/
+autokart_cone_detection_model/
+
+# Backups and snapshots
+backups/
+_autokart_audit/
+_autokart_full_audit/
+_rollback/
+
+# Nested git repositories (own history, excluded from this repo)
+autonomy_stack_phase1/
+_autokart_integration/
+_camera_team_base/
+AutoKart_RC_Dynamics_ESP32S3_v1/
+
+# Firmware archives / zips (binary release artifacts)
+*.zip
+*.tar.gz
+*.tgz
+*.7z
+AutoKart_RC_Dynamics_ESP32S3_v1.zip
+ESP32S3_RA02_ESTOP_RECEIVER_PRODUCTION.zip
+XIAO_C3_RA02_ESTOP_PRODUCTION.zip
+
+# Locally compiled test executables
+/vcu/tests/test_guard

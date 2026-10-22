@@ -1,0 +1,50 @@
+Task exception was never retrieved
+future: <Task finished name='Task-243' coro=<WebSocketWriter.ping() done, defined at /usr/lib/python3/dist-packages/aiohttp/http_websocket.py:672> exception=ConnectionResetError('Cannot write to closing transport')>
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 676, in ping
+    await self._send_frame(message, WSMsgType.PING)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 653, in _send_frame
+    self._write(header + message)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 663, in _write
+    raise ConnectionResetError("Cannot write to closing transport")
+ConnectionResetError: Cannot write to closing transport
+Task exception was never retrieved
+future: <Task finished name='Task-244' coro=<WebSocketWriter.ping() done, defined at /usr/lib/python3/dist-packages/aiohttp/http_websocket.py:672> exception=ConnectionResetError('Cannot write to closing transport')>
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 676, in ping
+    await self._send_frame(message, WSMsgType.PING)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 653, in _send_frame
+    self._write(header + message)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 663, in _write
+    raise ConnectionResetError("Cannot write to closing transport")
+ConnectionResetError: Cannot write to closing transport
+Task exception was never retrieved
+future: <Task finished name='Task-258' coro=<WebSocketWriter.ping() done, defined at /usr/lib/python3/dist-packages/aiohttp/http_websocket.py:672> exception=ConnectionResetError('Cannot write to closing transport')>
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 676, in ping
+    await self._send_frame(message, WSMsgType.PING)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 653, in _send_frame
+    self._write(header + message)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 663, in _write
+    raise ConnectionResetError("Cannot write to closing transport")
+ConnectionResetError: Cannot write to closing transport
+Task exception was never retrieved
+future: <Task finished name='Task-1430' coro=<WebSocketWriter.ping() done, defined at /usr/lib/python3/dist-packages/aiohttp/http_websocket.py:672> exception=ConnectionResetError('Cannot write to closing transport')>
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 676, in ping
+    await self._send_frame(message, WSMsgType.PING)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 653, in _send_frame
+    self._write(header + message)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 663, in _write
+    raise ConnectionResetError("Cannot write to closing transport")
+ConnectionResetError: Cannot write to closing transport
+Task exception was never retrieved
+future: <Task finished name='Task-1599' coro=<WebSocketWriter.ping() done, defined at /usr/lib/python3/dist-packages/aiohttp/http_websocket.py:672> exception=ConnectionResetError('Cannot write to closing transport')>
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 676, in ping
+    await self._send_frame(message, WSMsgType.PING)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 653, in _send_frame
+    self._write(header + message)
+  File "/usr/lib/python3/dist-packages/aiohttp/http_websocket.py", line 663, in _write
+    raise ConnectionResetError("Cannot write to closing transport")
+ConnectionResetError: Cannot write to closing transport

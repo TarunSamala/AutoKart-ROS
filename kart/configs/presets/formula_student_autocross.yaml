@@ -1,0 +1,6 @@
+name: formula_student_autocross
+mode: formula_student
+simulation: {physics_backend: internal, gazebo_role: visual_follower, fidelity_tier: 3}
+features: {sensor_suite: cone_racing, vcu_enabled: true, independent_safety_enabled: true, rendering_enabled: true, ros_enabled: true, dashboard_enabled: true, real_actuator_outputs_enabled: false}
+expected_performance: "Target real-time execution with cone perception and visualization."
+dependencies: [python3, ros2_humble, gazebo_classic_or_gz]

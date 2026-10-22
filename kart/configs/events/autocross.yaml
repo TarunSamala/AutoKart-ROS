@@ -1,0 +1,3 @@
+event: {type: autocross, track: tracks/cone_track.yaml, timed_laps: 1, unknown_track: true, cone_penalty_s: 2.0}
+autonomy: {perception: noisy_cones, planning: cone_midpoint, controller: pure_pursuit}
+safety: {vcu_required: true, independent_safety_required: true}

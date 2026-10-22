@@ -1,0 +1,10 @@
+AUTOKART HP60C CAMERA + ALGORITHM IMPLEMENTATION
+
+1) Download AutoKart_Camera_Production_Execution_Pack.zip.
+2) Extract both markdown files into /home/mark1/Desktop/autonomous_kart/ (repository/project root).
+3) In your EXISTING Codex AutoKart development thread, paste the entire contents of AutoKart_Camera_Algorithms_Codex_Master_Prompt.md.
+4) Ask Codex to execute, not only plan. It should read AutoKart_HP60C_Camera_Geometry_Production_Spec.md, current work log and actual code.
+5) Keep the camera stationary for the first live calibrated geometry test. Measure reference distances physically before marking calibration verified.
+6) Do NOT authorize vehicle motion.
+
+Key distinction: camera static mounting X/Y/Z/rpy calibration != dynamic moving camera X/Y/yaw pose.

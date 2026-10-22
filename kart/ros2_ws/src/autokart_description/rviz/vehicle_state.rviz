@@ -1,0 +1,6 @@
+Visualization Manager:
+  Fixed Frame: odom
+  Displays:
+    - {Class: rviz_default_plugins/RobotModel, Name: Kart, Enabled: true, Description Topic: /robot_description}
+    - {Class: rviz_default_plugins/Odometry, Name: Vehicle Odometry, Enabled: true, Topic: /vehicle/odometry}
+    - {Class: rviz_default_plugins/TF, Name: TF, Enabled: true}

@@ -1,0 +1,9 @@
+
+ RUN  v5.0.0 /home/mark1/Desktop/autonomous_kart/phase_sim
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  11:53:52
+   Duration  19.53s (tests 95%, environment 4%, transform 1%)
+

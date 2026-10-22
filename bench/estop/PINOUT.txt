@@ -1,0 +1,11 @@
+WIRELESS E-STOP PINOUT SUMMARY
+==============================
+
+ESP32-S3 receiver: GPIO14 SCK, GPIO13 MOSI, GPIO15 MISO, GPIO16 NSS/CS,
+GPIO17 RESET, GPIO18 DIO0.
+
+Raspberry Pi Pico transmitter: GPIO18 SCK, GPIO19 MOSI, GPIO16 MISO,
+GPIO17 NSS/CS, GPIO20 RESET, GPIO21 DIO0, GPIO22 E-stop input.
+
+Use 3.3 V logic and the RA-02 module's required stable 3.3 V supply. Do not
+power the RA-02 from 5 V. Follow the device-specific PINOUT.txt files.

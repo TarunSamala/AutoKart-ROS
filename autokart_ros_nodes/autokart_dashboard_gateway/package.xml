@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>autokart_dashboard_gateway</name>
+  <version>0.1.0</version>
+  <description>Read-only ROS-to-WebSocket/HTTP Mission Control gateway. Reuses the real, already-tested
+    autokart_dashboard_gateway implementation via a lazy, path-parameterized import. Standalone, portable
+    node from the autokart_ros_nodes library. The only effect a browser can have on the vehicle is a
+    bounded, whitelisted request string evaluated by autokart_safety (node 10) -- this node has no
+    actuator publisher and cannot bypass that gate.</description>
+  <maintainer email="harrishkesavan@gmail.com">AutoKart</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>python3-aiohttp</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

@@ -1,0 +1,79 @@
+BENCH VERSION AND CLEANUP HISTORY
+=================================
+
+Active release: 2026-09-09 repository reorganization
+
+Retained and renamed
+--------------------
+
+estop/autokart_lora_rx_fixed.py
+  -> bench/estop/receiver/main.py, firmware 1.1.0
+
+estop/autokart_lora_tx_fixed.py
+  -> bench/estop/transmitter/main.py, firmware 1.1.0
+
+estop/test rx.py and test tx.py
+  -> bench/estop/diagnostics/*_radio_test.py, firmware 1.0.0
+
+rc_bench/full_bldc_test.py
+  -> bench/bldc/main.py, firmware 1.1.0
+
+rc_bench/throttle test.py
+  -> bench/throttle/main.py, firmware 1.1.0
+
+rc_bench/steering_test_3to1.py
+  -> bench/steering/main.py, firmware 1.1.0
+
+rc_bench/main.py
+  -> bench/full_setup/main.py, firmware 2.0.0
+
+New
+---
+
+bench/brake/main.py
+  Standalone brake-only test, firmware 1.0.0, derived from the latest
+  documented full-controller brake settings.
+
+Preserved under bench/archive/ as development lineage
+------------------------------------------------------
+
+estop/rx main.py
+estop/tx main.py
+rc_bench/rc_bench.py
+rc_bench/autokart_rc_v3.py
+rc_bench/autokart_rc_v4_realcar.py
+rc_bench/autokart_rc_v5_controlled_stop.py
+rc_bench/autokart_rc_FINAL_20deg.py
+rc_bench/full rc
+rc_bench/steering_brake_test.py
+rc_bench/autokart_bld750_lora_estop_merged.py
+rc_bench/autokart_bld750_lora_estop_auto_recover.py
+rc_bench.zip
+
+No two Python files in the original hardware folders were byte-identical. The
+older or partial variants have all been retained with descriptive filenames in
+bench/archive/estop_versions and bench/archive/rc_versions. The original ZIP is
+in bench/archive/source_snapshots. validate_bench.py checks active firmware for
+future exact duplicates while syntax-checking every archived Python file.
+
+Safety changes in full_setup 2.0.0
+----------------------------------
+
+- LoRa readiness now gates ARM and E-stop reset.
+- LoRa timeout, receiver failure, or transmitter restart while armed latches
+  E-stop instead of allowing continued driving.
+- Steering default reduced from unvalidated +/-90 degrees to the last
+  documented validated +/-20 degrees.
+- Throttle ceiling reduced from 5.00 V to 0.70 V because prior notes reported
+  a BLD-750 fault near 0.75 V.
+- The misleading BLDC header pinout was corrected from GPIO13/14/15 to the
+  GPIO1/2/7 values actually used by the program.
+
+Recovery index integration
+--------------------------
+
+The supplied AUTOKART CODE ARCHIVE — RECOVERY INDEX was added under
+bench/archive/recovery_index without alteration. It is a manifest rather than
+a source ZIP. Its 24 records were cross-referenced against the preserved local
+files; see recovery_index/RECOVERY_CROSS_REFERENCE.txt for exact coverage and
+the raw File Library revisions still needed for byte-level recovery.

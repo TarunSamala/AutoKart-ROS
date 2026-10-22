@@ -1,0 +1,237 @@
+AUTOKART CODE ARCHIVE — RECOVERY INDEX
+========================================================================
+
+Purpose
+-------
+This index reconstructs the AutoKart code/version history from files found in the user's File Library.
+Files with the same original filename are intentionally kept as separate revisions.
+
+IMPORTANT LIMITATION
+--------------------
+The File Library exposes references to original uploads, not raw local filesystem copies in this runtime.
+Therefore this ZIP contains a complete organization/index/changelog and per-source manifests.
+It does NOT falsely claim to contain byte-for-byte copies of every original .py upload.
+Use the source references in ChatGPT/File Library to open the original code files.
+
+SAFETY
+------
+Many recovered files are OPEN-LOOP or BENCH-ONLY. Do not treat a filename containing 'FINAL' as vehicle-validated.
+In particular, steering/brake position is open-loop in several RC branches, and software LoRa E-stop is not an independent final safety layer.
+
+FOLDER MAP
+----------
+- 00_MASTER_INDEX
+- 01_RC_CONTROLLER_HISTORY
+- 02_STEERING_BRAKE_TESTS
+- 03_TRACTION_BLD750
+- 04_LORA_ESTOP
+- 05_INTEGRATED_ESTOP_TRACTION
+- 06_WIRING_CONNECTIONS
+- 07_ARCHITECTURE_NOTES
+- 08_ERROR_LOGS
+
+RECOVERED FILES
+---------------
+01. [01_RC_CONTROLLER_HISTORY] 2026-08-22_RC_v1_initial_45deg_30deg_3V.py
+    Original: Pasted text.txt
+    Date: 2026-08-22
+    Source ref: turn7file4
+    Status: HISTORICAL / OPEN-LOOP
+    What it is: Early ESP32-S3 RC controller. Nominal steering ±45°, brake 0–30°, throttle up to 3.0 V, with initial test limits reduced to ±10° steering and 10° brake. Open-loop actuator position.
+    Key change: Baseline RC web controller with TB6600 steering/brake and GP8630N throttle.
+
+02. [01_RC_CONTROLLER_HISTORY] 2026-08-27_RC_v2_conservative_10deg_0p70V.py
+    Original: 7643b88e-9a38-40cb-a63b-4ed300fdfe68.py
+    Date: 2026-08-27
+    Source ref: turn7file2
+    Status: HISTORICAL / CONSERVATIVE BENCH
+    What it is: Conservative RC version after BLD-750 fault behavior. Steering/brake limited to 10°, throttle capped at 0.70 V, 1.2 s command timeout, non-blocking stepper loop.
+    Key change: Reduced throttle and motion limits; safer watchdog-focused bench behavior.
+
+03. [01_RC_CONTROLLER_HISTORY] 2026-09-08_RC_v3_ESTOP_UI_90deg.py
+    Original: autokart_rc_v3.py
+    Date: 2026-09-08
+    Source ref: turn6file17
+    Status: HISTORICAL / SOFTWARE E-STOP
+    What it is: Responsive RC controller with software-latched E-stop, ARM/DISARM logic, progressive steering UI, brake handling, throttle ramp, and stale steering command rejection.
+    Key change: Added E-stop latch/reset behavior, improved UI, command sequencing, responsive actuator timing.
+
+04. [01_RC_CONTROLLER_HISTORY] 2026-09-08_RC_v4_realcar_90deg_accel.py
+    Original: autokart_rc_v4_realcar.py
+    Date: 2026-09-08
+    Source ref: turn6file14
+    Status: HISTORICAL / REAL-CAR TEST BRANCH
+    What it is: 90° steering branch with accelerated stepper timing, steering-limit UI feedback, brake control and 3.0 V software throttle ceiling.
+    Key change: Faster stepper acceleration profile and refined mobile RC UI.
+
+05. [01_RC_CONTROLLER_HISTORY] 2026-08-28_RC_v5_controlled_stop_original.py
+    Original: autokart_rc_v5_controlled_stop.py
+    Date: 2026-08-28
+    Source ref: turn4file2
+    Status: HISTORICAL / CONTROLLED-STOP
+    What it is: Controlled-stop branch. Browser loss drives traction toward safe state, steering holds, brake applies.
+    Key change: Introduced explicit controlled-stop behavior rather than simple command drop.
+
+06. [01_RC_CONTROLLER_HISTORY] 2026-09-08_RC_v5_controlled_stop_uploaded_copy.py
+    Original: autokart_rc_v5_controlled_stop.py
+    Date: 2026-09-08
+    Source ref: turn6file13
+    Status: DUPLICATE/RE-UPLOAD CANDIDATE
+    What it is: Later uploaded copy of the v5 controlled-stop branch. Preserve separately until exact diff is confirmed.
+    Key change: Do not overwrite the Aug 28 copy; same filename but separate upload history.
+
+07. [01_RC_CONTROLLER_HISTORY] 2026-09-08_RC_FINAL_20deg_brake_reverse.py
+    Original: autokart_rc_FINAL_20deg.py
+    Date: 2026-09-08
+    Source ref: turn6file16
+    Status: LATEST RC OPEN-LOOP BRANCH
+    What it is: Steering software limit reduced to ±20°. Brake maximum 15° with brake apply direction reversed from the previous build. 1.8 s browser fail-safe and 3.0 V software throttle ceiling.
+    Key change: 20° steering limit + corrected brake direction.
+
+08. [02_STEERING_BRAKE_TESTS] steering_brake_test_open_loop.py
+    Original: steering_brake_test.py
+    Date: 2026-09-08
+    Source ref: turn6file15
+    Status: BENCH TEST
+    What it is: Standalone TB6600 steering/brake motion test. Uses GPIO4/5/6 and GPIO10/11/12, 3200 pulses/rev assumption, configurable gear ratio and software position.
+    Key change: Dedicated mechanical direction, pulse count and travel validation.
+
+09. [02_STEERING_BRAKE_TESTS] rc_bench_conservative_0p70V.py
+    Original: rc_bench.py
+    Date: 2026-09-08
+    Source ref: turn6file19
+    Status: BENCH TEST / CONSERVATIVE
+    What it is: Conservative integrated bench controller using 10° steering/brake limits and 0.70 V throttle ceiling.
+    Key change: Useful safe baseline before higher-motion versions.
+
+10. [03_TRACTION_BLD750] throttle_test_speed_only_3V.py
+    Original: throttle test.py
+    Date: 2026-09-08
+    Source ref: turn7file0
+    Status: BENCH TEST / SPEED ONLY
+    What it is: GP8630N + BLD-750 speed-only Wi-Fi controller. EN and BRK are manual jumpers; software controls SV only. 3.0 V cap and 5 s browser watchdog.
+    Key change: Separates throttle/DAC diagnosis from steering/brake and BLD digital-control logic.
+
+11. [03_TRACTION_BLD750] full_bldc_test_v1_gpio13_14_15.py
+    Original: full_bldc_test.py
+    Date: 2026-09-08
+    Source ref: turn6file11
+    Status: BENCH TEST / OLD PIN MAP
+    What it is: Complete BLD-750 controller with PN2222A controls on GPIO13/14/15 for EN/BRK/F-R. GP8630N throttle and browser watchdog.
+    Key change: Older digital-control pin map.
+
+12. [03_TRACTION_BLD750] full_bldc_test_v2_gpio1_2_7.py
+    Original: full_bldc_test.py
+    Date: 2026-09-08
+    Source ref: turn6file2
+    Status: BENCH TEST / NEW PIN MAP
+    What it is: Same full BLD-750 controller branch but actual program pin map changed to GPIO1/2/7 for EN/BRK/F-R.
+    Key change: Critical pin-map change: 13/14/15 → 1/2/7.
+
+13. [04_LORA_ESTOP] lora_test_tx_simple_strings.py
+    Original: test tx.py
+    Date: 2026-09-08
+    Source ref: turn7file5
+    Status: RF BRING-UP TEST
+    What it is: Simple Pico + RA-02 LoRa transmitter for string-level radio validation before safety protocol integration.
+    Key change: No E-stop protocol; used to prove basic RF transmission.
+
+14. [04_LORA_ESTOP] lora_test_rx_simple_strings.py
+    Original: test rx.py
+    Date: 2026-09-08
+    Source ref: turn7file6
+    Status: RF BRING-UP TEST
+    What it is: Simple ESP32-S3 + RA-02 receiver. Receives arbitrary LoRa payloads; no heartbeat, sequence, application CRC or STOP/RUN logic.
+    Key change: Used only to prove the radio link.
+
+15. [04_LORA_ESTOP] lora_estop_tx_v1_0809.py
+    Original: tx main.py
+    Date: 2026-09-08
+    Source ref: turn6file7
+    Status: E-STOP TX VERSION
+    What it is: Pico + RA-02 + LAY37 transmitter. 100 ms heartbeat, 300 ms release stabilization, STOP burst, session/sequence and application CRC protocol.
+    Key change: First recovered full safety-protocol TX upload.
+
+16. [04_LORA_ESTOP] lora_estop_tx_v2_1114.py
+    Original: tx main.py
+    Date: 2026-09-08
+    Source ref: turn6file5
+    Status: LATER E-STOP TX VERSION
+    What it is: Later TX upload with verified switch logic: RELEASED=0, PRESSED=1, heartbeat plus STOP burst and radio recovery behavior.
+    Key change: Preserve as a separate revision even if large portions match v1.
+
+17. [04_LORA_ESTOP] lora_estop_rx_v1_0809.py
+    Original: rx main.py
+    Date: 2026-09-08
+    Source ref: turn6file9
+    Status: E-STOP RX VERSION
+    What it is: ESP32-S3 + RA-02 protocol receiver. 350 ms timeout, 5 good RUN packets required, sequence/session handling and latched stop logic.
+    Key change: Early recovered safety receiver.
+
+18. [04_LORA_ESTOP] lora_estop_rx_v2_1114.py
+    Original: rx main.py
+    Date: 2026-09-08
+    Source ref: turn6file4
+    Status: E-STOP RX VERSION
+    What it is: Later uploaded copy of receiver protocol. Preserve separately pending exact diff.
+    Key change: Separate recovery point due to repeated same-name uploads.
+
+19. [04_LORA_ESTOP] lora_estop_rx_v3_1137.py
+    Original: rx main.py
+    Date: 2026-09-08
+    Source ref: turn6file3
+    Status: LATEST STANDALONE RX RECOVERED
+    What it is: Latest standalone receiver upload recovered before traction integration. Maintains 350 ms timeout and 5-good-RUN validation.
+    Key change: Latest recovered standalone RX timestamp.
+
+20. [05_INTEGRATED_ESTOP_TRACTION] integrated_bld750_lora_estop_web_warning.py
+    Original: Pasted text.txt
+    Date: 2026-09-08
+    Source ref: turn6file1
+    Status: LATEST INTEGRATED BRANCH RECOVERED
+    What it is: ESP32-S3 integrated BLD-750 traction + GP8630N + LoRa wireless E-stop. E-stop action: SV→0, BRK applied, EN stop, software latch, block run/brake-release/throttle, browser red warning.
+    Key change: Combines traction control and LoRa E-stop into one controller with browser status.
+
+21. [06_WIRING_CONNECTIONS] rc_connection.txt
+    Original: rc_connection.txt
+    Date: 2026-09-08
+    Source ref: turn6file10
+    Status: REFERENCE
+    What it is: RC wiring reference for steering TB6600, brake TB6600, GP8630N and BLD-750 manual jumper configuration.
+    Key change: Keep beside RC code.
+
+22. [06_WIRING_CONNECTIONS] steering_brake_connections.txt
+    Original: Steering Brake connections.txt
+    Date: 2026-09-08
+    Source ref: turn6file18
+    Status: REFERENCE
+    What it is: Compact steering/brake TB6600 wiring map including common ground wiring.
+    Key change: Dedicated actuator wiring note.
+
+23. [07_ARCHITECTURE_NOTES] autokart_prototype_v1_wiring_architecture_rev2.md
+    Original: Pasted markdown.md
+    Date: 2026-08-26
+    Source ref: turn7file12
+    Status: ARCHITECTURE / SAFETY REFERENCE
+    What it is: Prototype wiring architecture covering power tree, actuator links, sensor transport, RA-02, E-stop architecture and fault-handling principles.
+    Key change: Useful context for why later code and pin-map decisions were made.
+
+24. [08_ERROR_LOGS] 2026-08-21_gp8630n_not_found_log.txt
+    Original: Pasted text.txt
+    Date: 2026-08-21
+    Source ref: turn7file13
+    Status: DEBUG LOG
+    What it is: ESP32-S3 boot/debug output showing PSRAM warning and GP8630N NOT FOUND runtime error.
+    Key change: Keep for I2C/DAC bring-up history.
+
+RECOMMENDED NAMING RULE
+-----------------------
+YYYY-MM-DD_<subsystem>_<version>_<key-change>.<ext>
+Never overwrite two uploads just because their original filename is identical.
+
+CURRENT RECOVERY VERDICT
+------------------------
+Best RC branch to inspect first: 2026-09-08_RC_FINAL_20deg_brake_reverse.py
+Best standalone LoRa TX/RX pair to inspect first: lora_estop_tx_v2_1114.py + lora_estop_rx_v3_1137.py
+Best integrated traction/E-stop branch to inspect first: integrated_bld750_lora_estop_web_warning.py
+Do not assume any of these are road-safe without bench, wheels-off-ground and fault-injection validation.

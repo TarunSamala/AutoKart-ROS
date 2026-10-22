@@ -1,0 +1,15 @@
+{
+  "project": "Autonomous Electric Go-Kart Simulator",
+  "prompt_set": "Phases 8-15",
+  "execution_order": [
+    "08_PHASE_ROS2_AUTONOMY_SIL.txt",
+    "09_PHASE_ENGINEERING_DASHBOARD.txt",
+    "10_PHASE_FAULT_INJECTION_BENCHMARK.txt",
+    "11_PHASE_PROJECT_CHRONO_INTEGRATION.txt",
+    "12_PHASE_CARLA_UNREAL_INTEGRATION.txt",
+    "13_PHASE_SIL_HIL_JETSON_VCU_CAN.txt",
+    "14_PHASE_REAL_KART_CALIBRATION_VALIDATION.txt",
+    "15_PHASE_FINAL_RESEARCH_DEMONSTRATION.txt"
+  ],
+  "file_count": 9
+}

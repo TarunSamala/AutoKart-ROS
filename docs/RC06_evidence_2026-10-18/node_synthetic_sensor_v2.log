@@ -1,0 +1,57 @@
+[INFO] [1792318084.765156765] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CLEAR @ 0.1s
+[INFO] [1792318089.802868133] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> BRAKING @ 5.1s
+[INFO] [1792318094.818746150] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CRITICAL @ 10.1s
+[INFO] [1792318099.757320231] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> STALE @ 15.1s
+[INFO] [1792318104.683138883] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CLEAR @ 20.0s
+[INFO] [1792318109.725566216] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> BRAKING @ 25.0s
+[INFO] [1792318114.773612292] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CRITICAL @ 30.1s
+[INFO] [1792318119.683900040] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> STALE @ 35.0s
+[INFO] [1792318124.683135725] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CLEAR @ 40.0s
+[INFO] [1792318129.832800376] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> BRAKING @ 45.2s
+[INFO] [1792318134.799821320] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CRITICAL @ 50.1s
+[INFO] [1792318139.821754429] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> STALE @ 55.1s
+[INFO] [1792318144.683201772] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CLEAR @ 60.0s
+[INFO] [1792318149.883375435] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> BRAKING @ 65.2s
+[INFO] [1792318154.858302477] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CRITICAL @ 70.2s
+[INFO] [1792318159.810264435] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> STALE @ 75.1s
+[INFO] [1792318164.682614906] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CLEAR @ 80.0s
+[INFO] [1792318169.779800107] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> BRAKING @ 85.1s
+[INFO] [1792318174.806886136] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CRITICAL @ 90.1s
+[INFO] [1792318179.749347976] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> STALE @ 95.1s
+[INFO] [1792318184.683216474] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CLEAR @ 100.0s
+[INFO] [1792318189.740552170] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> BRAKING @ 105.1s
+[INFO] [1792318194.863742212] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CRITICAL @ 110.2s
+[INFO] [1792318199.734142230] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> STALE @ 115.1s
+[INFO] [1792318204.683228995] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CLEAR @ 120.0s
+[INFO] [1792318209.818894631] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> BRAKING @ 125.1s
+[INFO] [1792318214.809424480] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> CRITICAL @ 130.1s
+[INFO] [1792318219.783084512] [rc06_synthetic_sensor]: RC06_PHASE_TRANSITION -> STALE @ 135.1s
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-mark1-Desktop-autonomous-kart/3d2e64a1-49dc-4857-a73c-f3f8c37700c7/scratchpad/rc06_evidence/rc06_synthetic_sensor.py", line 145, in main
+    rclpy.spin(node)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+    executor.spin_once()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 812, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 801, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 784, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 685, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/claude-1000/-home-mark1-Desktop-autonomous-kart/3d2e64a1-49dc-4857-a73c-f3f8c37700c7/scratchpad/rc06_evidence/rc06_synthetic_sensor.py", line 154, in <module>
+    main()
+  File "/tmp/claude-1000/-home-mark1-Desktop-autonomous-kart/3d2e64a1-49dc-4857-a73c-f3f8c37700c7/scratchpad/rc06_evidence/rc06_synthetic_sensor.py", line 150, in main
+    rclpy.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+    _shutdown(context=context)
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+    return context.shutdown()
+  File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+    self.__context.shutdown()
+rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241

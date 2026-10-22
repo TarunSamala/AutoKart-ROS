@@ -1,0 +1,15 @@
+Starting >>> autokart_perception
+Finished <<< autokart_perception [1.08s]
+Starting >>> autokart_mapping
+Finished <<< autokart_mapping [0.73s]
+Starting >>> autokart_planner
+--- stderr: autokart_planner
+Errors while running CTest
+Output from these tests are in: /tmp/autokart_rc03_clean_build/autokart_planner/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+---
+Finished <<< autokart_planner [0.64s]	[ with test failures ]
+
+Summary: 3 packages finished [2.63s]
+  1 package had stderr output: autokart_planner
+  1 package had test failures: autokart_planner

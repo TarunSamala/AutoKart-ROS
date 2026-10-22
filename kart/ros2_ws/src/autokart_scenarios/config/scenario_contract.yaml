@@ -1,0 +1,6 @@
+required: [name, preset, track, kart, controller, sensor_suite, seed, duration_s]
+optional: [start, weather, surfaces, obstacles, faults, agents, session_rules, logging]
+invariants:
+  - vcu_enabled
+  - independent_safety_enabled
+  - real_actuator_outputs_disabled

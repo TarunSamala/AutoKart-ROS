@@ -1,0 +1,390 @@
+AUTONOMOUS ELECTRIC GO-KART SIMULATOR
+CODEX EXECUTION RULES
+
+You are acting as the lead vehicle-dynamics, robotics, embedded, controls, safety, reliability, simulation, and software engineer.
+
+This is not a game-only project. It is a research-grade, deterministic, configurable autonomous electric go-kart simulator that must eventually support software-in-loop, hardware-in-loop, real-kart calibration, and safety fault injection.
+
+ENGINEERING PRIORITY
+1. Human safety
+2. Emergency stopping
+3. Prevention of uncontrolled propulsion or steering
+4. Predictable behaviour
+5. Fault detection
+6. Determinism and timing correctness
+7. Physics and sensor correctness
+8. Testability
+9. Maintainability
+10. Performance
+11. Visual quality
+
+MANDATORY ENGINEERING BEHAVIOUR
+- Inspect the repository and run the complete existing test suite before modifying code.
+- Preserve existing validated work.
+- Do not perform destructive Git operations.
+- Do not silently weaken tests, thresholds, or safety logic to make tests pass.
+- Do not claim success because code compiles.
+- Do not invent hardware specifications.
+- Put provisional values in schema-validated configuration files.
+- Record every assumption in docs/ASSUMPTIONS.md.
+- Record important decisions in docs/ADR/.
+- Use SI units internally.
+- Keep world, vehicle, track, sensor, camera optical, and actuator frames explicit.
+- Use deterministic fixed-step simulation and seeded random streams.
+- Keep measurement time, processing completion time, delivery time, and consumer time separate.
+- Keep operational sensor data separate from debug ground truth.
+- Keep high-level computer, VCU, and independent safety layer separate.
+- No actuator command may remain active indefinitely after communication loss.
+- Every critical fault must have detection, safe response, latching/reset policy, and automated verification.
+- Never claim ISO 26262, ASIL, automotive certification, or real-vehicle safety compliance.
+- Mark example configurations:
+  SIMULATION USE ONLY
+  NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+
+VERDICTS
+Use only:
+- APPROVED
+- APPROVED_WITH_CONDITIONS
+- REJECTED
+- MORE_DATA_REQUIRED
+- PROTOTYPE_TEST_REQUIRED
+
+WORKFLOW
+1. Audit repository and environment.
+2. Run baseline tests and record exact results.
+3. Identify interfaces affected by this phase.
+4. Create a phase implementation plan.
+5. Implement in small, testable increments.
+6. Run unit, integration, regression, fault, determinism, and performance tests.
+7. Update documentation and requirements traceability.
+8. Produce the required final report.
+9. Do not begin the next phase automatically.
+
+EXTERNAL DEPENDENCIES
+When a dependency is unavailable:
+- Do not stop the whole phase.
+- Implement clean interfaces and optional build flags.
+- Add a deterministic fallback or mock where meaningful.
+- Add installation and validation instructions.
+- Mark tests requiring the dependency as explicit optional/integration tests.
+- Never mark an unexecuted integration as passed.
+PHASE 13
+SOFTWARE-IN-LOOP AND HARDWARE-IN-LOOP WITH REAL JETSON,
+RP2350 VCU, SOCKETCAN/CAN, TIMING MEASUREMENT, AND BENCH SAFETY
+
+PREREQUISITE GATE
+Begin only after:
+- Phase 7 safety behaviour is automated
+- Phase 8 ROS/SIL works
+- Phase 10 critical campaigns pass
+- simulator can run without rendering
+- hardware bench safety plan exists
+
+OBJECTIVE
+Connect real autonomy and VCU hardware to the simulated plant without allowing unsafe unintended physical actuator operation.
+
+STRICT SAFETY RULE
+HIL must begin with simulated actuators and isolated low-energy interfaces. Hardware outputs capable of moving the real kart must be disabled, disconnected, or intercepted until a separately reviewed vehicle-test phase.
+
+1. INITIAL AUDIT
+Inspect:
+- Jetson model/OS/ROS
+- RP2350 VCU firmware/toolchain
+- CAN interfaces
+- motor/brake/steering I/O
+- current protocol
+- physical bench wiring
+- emergency stop
+- power supplies
+- isolation
+- repository SIL/HIL adapters
+Run software baseline tests.
+
+2. HIL LEVELS
+Implement staged levels:
+H0 software-only internal
+H1 ROS external nodes, simulated VCU
+H2 real Jetson, simulated VCU/plant
+H3 real VCU connected to simulated CAN plant
+H4 real Jetson + real VCU + simulated plant
+H5 selected real sensors with simulated plant
+H6 actuator electronics bench with mechanical motion constrained
+H7 future vehicle tests, explicitly out of scope
+
+Each level must have entry criteria and hardware interlocks.
+
+3. CAN PROTOCOL
+Define exact messages:
+- IDs
+- source/destination
+- rate
+- byte layout
+- byte order
+- units/scaling
+- valid range
+- counter
+- CRC
+- timeout
+- stale behaviour
+- state applicability
+- fault response
+
+Messages:
+- high-level command
+- steering command/feedback
+- brake command/feedback
+- motor command/feedback
+- wheel speeds
+- IMU summary
+- power
+- VCU state
+- safety state
+- heartbeat/watchdog
+- DTCs
+- time synchronization
+
+Generate code from one protocol definition where practical. Avoid duplicate hand-coded layouts.
+
+4. SOCKETCAN
+Support:
+- vcan for CI/SIL
+- physical CAN adapters
+- configurable interface
+- bitrate documentation
+- bus-load calculation
+- receive timestamping
+- bus-off/recovery
+- error frames
+- logging/candump adapter
+
+5. SIMULATED CAN PLANT
+Create a bridge:
+real VCU commands
+→ validated decoder
+→ simulated actuator/vehicle plant
+→ simulated sensors/feedback
+→ encoded CAN feedback
+
+Do not bypass plant dynamics.
+
+6. TIME
+Measure and preserve:
+- command generation
+- CAN transmit
+- receive
+- VCU processing
+- output
+- simulated actuator response
+- feedback transmit
+- Jetson receive
+
+Support:
+- synchronized host clocks where possible
+- monotonic timestamps
+- offset estimation
+- latency report
+- drift report
+
+7. REAL JETSON INTEGRATION
+Provide:
+- deployment scripts
+- containers or reproducible environment
+- ROS launch
+- device configuration
+- logging
+- resource monitoring
+- watchdog
+- startup/shutdown
+- network isolation
+- version/config hash
+
+Test:
+- node crash
+- overload
+- CPU/GPU throttling
+- memory pressure
+- ROS communication loss
+- delayed perception
+- reboot
+
+8. REAL VCU INTEGRATION
+Provide:
+- firmware build/flash instructions
+- protocol compatibility
+- boot/self-test
+- watchdog
+- state machine
+- configuration/version reporting
+- safe output defaults
+- reset behaviour
+- test firmware mode
+
+Do not flash or overwrite unknown firmware without backup and explicit scope.
+
+9. HARDWARE SAFETY
+Require:
+- bench emergency stop
+- traction power physically isolated
+- real actuator power disconnected or current-limited for early HIL
+- fused supplies
+- proper grounding
+- isolation where needed
+- no breadboard high-current paths
+- visible state indicators
+- physical kill accessible
+- test area controlled
+
+Create a pre-test checklist.
+
+10. I/O INTERCEPTION
+If VCU outputs PWM/analog/digital:
+- capture with isolated measurement or interface hardware
+- convert to simulated commands
+- do not connect to real actuator driver during plant HIL
+- validate voltage levels
+- validate power-off state
+- protect inputs
+
+11. FAULT INJECTION
+At CAN/host/hardware abstraction:
+- drop/corrupt/delay/reorder
+- bus-off
+- interface disconnect
+- Jetson power loss
+- VCU reset
+- watchdog loss
+- sensor freeze
+- contactor feedback mismatch
+- brownout abstraction
+
+12. REAL-TIME
+Measure:
+- loop period
+- jitter
+- WCET
+- CAN latency
+- command age
+- missed deadlines
+- simulation real-time factor
+
+Never hide missed deadlines.
+
+13. SAFETY TESTS
+- stale command
+- Jetson crash
+- VCU freeze
+- CAN disconnect
+- invalid CRC
+- counter fault
+- motor stuck simulation
+- steering jam simulation
+- brake failure simulation
+- physical E-stop
+- independent watchdog
+- restart without auto autonomous
+
+14. RECORD/REPLAY
+Record:
+- CAN frames
+- ROS messages
+- simulator state
+- wall clock
+- monotonic clock
+- hardware versions
+- configuration
+- fault events
+
+Allow exact replay into software-only environment.
+
+15. BUS LOAD
+Calculate:
+- frame rates
+- payloads
+- overhead
+- utilization
+- margin
+- worst-case bursts
+
+Reject designs with insufficient margin.
+
+16. AUTOMATION
+Commands:
+- setup vcan
+- start simulator bridge
+- start Jetson SIL
+- connect VCU
+- run preflight
+- run HIL scenario
+- capture logs
+- generate latency report
+
+17. DOCUMENTATION
+Create/update:
+- docs/HIL_ARCHITECTURE.md
+- docs/HIL_SAFETY_PLAN.md
+- docs/CAN_PROTOCOL.md
+- docs/CAN_BUS_LOAD.md
+- docs/JETSON_DEPLOYMENT.md
+- docs/VCU_HIL.md
+- docs/HIL_TEST_PLAN.md
+- docs/HIL_CHECKLIST.md
+- docs/STATUS.md
+
+18. ACCEPTANCE CRITERIA
+- vcan SIL works
+- real Jetson SIL works
+- real VCU plant HIL works where hardware available
+- real outputs cannot move kart during plant HIL
+- protocol generated/validated
+- counters/CRC/timeouts work
+- timing measured
+- E-stop tested
+- failures lead to safe state
+- exact logs/replay
+- bus load acceptable
+- documentation and checklist complete
+
+19. REQUIRED FINAL REPORT
+PHASE:
+Phase 13 — SIL/HIL
+
+STATUS:
+...
+
+VERDICT:
+...
+
+HARDWARE:
+- Jetson
+- VCU
+- CAN
+- safety setup
+
+IMPLEMENTED:
+- HIL levels
+- protocol
+- SocketCAN
+- plant bridge
+- Jetson
+- VCU
+- timing
+- fault injection
+- logging/replay
+
+SAFETY CHECKS:
+- ...
+
+TIMING RESULTS:
+- ...
+
+BUS LOAD:
+- ...
+
+TEST RESULTS:
+- ...
+
+HARDWARE LIMITATIONS:
+- ...
+
+NEXT PHASE:
+Phase 14 — Real-kart calibration and validation.

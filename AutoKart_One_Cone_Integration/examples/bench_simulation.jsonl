@@ -1,0 +1,3 @@
+{"cone_gap_m": 1.0, "wheel_speed_mps": 0.0, "observation_age_s": 0.01, "source": "SIMULATED", "calibration_status": "MOUNT_VERIFIED", "depth_valid": true, "wheel_speed_valid": true, "emergency_stop_clear": true}
+{"cone_gap_m": 0.6, "wheel_speed_mps": 0.10, "observation_age_s": 0.01, "source": "SIMULATED", "calibration_status": "MOUNT_VERIFIED", "depth_valid": true, "wheel_speed_valid": true, "emergency_stop_clear": true}
+{"cone_gap_m": 0.3, "wheel_speed_mps": 0.20, "observation_age_s": 0.01, "source": "SIMULATED", "calibration_status": "MOUNT_VERIFIED", "depth_valid": true, "wheel_speed_valid": true, "emergency_stop_clear": true}

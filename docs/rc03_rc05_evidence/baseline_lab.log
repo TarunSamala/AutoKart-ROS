@@ -1,0 +1,13 @@
+
+> live-delaunay-kart-lab@1.0.0 test
+> vitest run --run
+
+
+ RUN  v5.0.0 /home/mark1/Desktop/autonomous_kart/phase_sim
+
+
+ Test Files  8 passed (8)
+      Tests  32 passed (32)
+   Start at  02:49:25
+   Duration  8.27s (tests 56%, environment 35%, transform 6%, import 2%, setup 1%)
+

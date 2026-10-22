@@ -1,0 +1,20 @@
+# SIMULATION USE ONLY — REAL ACTUATOR OUTPUTS MUST REMAIN DISCONNECTED
+interface: vcan0
+bitrate: 500000
+messages:
+  motion_command:
+    arbitration_id: 0x180
+    byte_order: little
+    payload_bytes: 10
+    counter_bits: 8
+    maximum_sequence_gap: 3
+    crc: {algorithm: crc8_sae_j1850, polynomial: 0x1D, initial: 0xFF, final_xor: 0xFF}
+    timeout_s: 0.10
+    stale_response: brake_fallback_no_propulsion
+    fields:
+      - {name: sequence, offset: 0, type: uint8}
+      - {name: speed_cms, offset: 1, type: int16}
+      - {name: steering_millirad, offset: 3, type: int16}
+      - {name: brake_permille, offset: 5, type: uint16}
+      - {name: valid_ms, offset: 7, type: uint16}
+      - {name: crc8, offset: 9, type: uint8}

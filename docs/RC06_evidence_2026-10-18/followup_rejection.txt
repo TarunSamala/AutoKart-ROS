@@ -1,0 +1,7 @@
+Setting parameter failed: vehicle_authority is a diagnostic-only, non-negotiable constant; it cannot be changed from 'OFF' at runtime
+String value is: OFF
+Setting parameter failed: safety_monitor_mode is a diagnostic-only, non-negotiable constant; it cannot be changed from 'DIAGNOSTIC_ONLY' at runtime
+String value is: DIAGNOSTIC_ONLY
+== unrelated param still settable ==
+Set parameter successful
+2026-10-18T10:27:34Z

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>autokart_safety_bridge</name>
+  <version>0.1.0</version>
+  <description>Read-only safety-state and independent E-stop bridge. Currently hosts the front safety envelope monitor (DIAGNOSTIC_ONLY, vehicle_authority=OFF): no VCU, brake, throttle or drive-inhibit command path.</description>
+  <maintainer email="simulation@example.invalid">AutoKart</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>ament_cmake_python</build_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>autokart_msgs</exec_depend>
+  <exec_depend>autokart_vehicle_geometry</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>ros2launch</exec_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

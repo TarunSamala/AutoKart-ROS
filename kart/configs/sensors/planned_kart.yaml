@@ -1,0 +1,40 @@
+# SIMULATION USE ONLY — sensor part numbers, poses and calibrations MEASUREMENT REQUIRED.
+seed: 20260729
+sensors:
+  camera:
+    type: rgb
+    frame_id: camera_optical_frame
+    rate_hz: 30
+    width: 1280
+    height: 720
+    horizontal_fov_rad: 1.3962634
+    exposure_s: 0.005
+    rolling_shutter_s: 0.0
+    latency_s: 0.025
+    noise_std: 0.01
+  depth:
+    type: rgbd
+    frame_id: depth_camera_link
+    rate_hz: 30
+    minimum_range_m: 0.2
+    maximum_range_m: 20.0
+    quantization_m: 0.001
+    alignment_error_px: 0.5
+  lidar:
+    type: planar_lidar
+    frame_id: lidar_link
+    rate_hz: 20
+    beams: 1080
+    field_of_view_rad: 4.71238898038
+    minimum_range_m: 0.05
+    maximum_range_m: 30.0
+    range_noise_std_m: 0.01
+  imu:
+    type: imu
+    frame_id: imu_link
+    rate_hz: 200
+    acceleration_noise_std_mps2: 0.03
+    angular_noise_std_radps: 0.002
+    bias_drift_per_s: 0.0001
+    saturation_acceleration_mps2: 80
+    saturation_angular_radps: 20

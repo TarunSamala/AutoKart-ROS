@@ -1,0 +1,17 @@
+RECOVERY INDEX PINOUT NOTICE
+============================
+
+The recovery index describes multiple incompatible historical pin maps.
+
+Current integrated map:
+  BLD-750 control GPIO1/2/7
+  Steering GPIO4/5/6
+  GP8630N GPIO8/9
+  Brake GPIO10/11/12
+  RA-02 receiver GPIO13/14/15/16/17/18
+
+Historical BLD-750 record:
+  One unavailable revision is described as GPIO13/14/15 for EN/BRK/F-R.
+  Do not combine that map with the LoRa receiver because those pins overlap.
+
+Use bench/PINOUT.txt and the active subsystem PINOUT.txt for wiring.

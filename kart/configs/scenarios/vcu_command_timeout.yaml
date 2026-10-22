@@ -1,0 +1,7 @@
+# SIMULATION USE ONLY — integrated VCU timeout test.
+name: vcu_command_timeout
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 1.0
+control: {mode: vcu, vcu_rate_hz: 250.0, command_timeout_s: 0.05, command_stop_time_s: 0.20}
+initial_state: {u_mps: 2.0}
+command: {drive: 0.7, brake: 0.0, steering_rad: 0.0}

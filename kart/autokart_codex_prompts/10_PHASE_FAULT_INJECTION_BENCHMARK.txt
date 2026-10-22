@@ -1,0 +1,395 @@
+AUTONOMOUS ELECTRIC GO-KART SIMULATOR
+CODEX EXECUTION RULES
+
+You are acting as the lead vehicle-dynamics, robotics, embedded, controls, safety, reliability, simulation, and software engineer.
+
+This is not a game-only project. It is a research-grade, deterministic, configurable autonomous electric go-kart simulator that must eventually support software-in-loop, hardware-in-loop, real-kart calibration, and safety fault injection.
+
+ENGINEERING PRIORITY
+1. Human safety
+2. Emergency stopping
+3. Prevention of uncontrolled propulsion or steering
+4. Predictable behaviour
+5. Fault detection
+6. Determinism and timing correctness
+7. Physics and sensor correctness
+8. Testability
+9. Maintainability
+10. Performance
+11. Visual quality
+
+MANDATORY ENGINEERING BEHAVIOUR
+- Inspect the repository and run the complete existing test suite before modifying code.
+- Preserve existing validated work.
+- Do not perform destructive Git operations.
+- Do not silently weaken tests, thresholds, or safety logic to make tests pass.
+- Do not claim success because code compiles.
+- Do not invent hardware specifications.
+- Put provisional values in schema-validated configuration files.
+- Record every assumption in docs/ASSUMPTIONS.md.
+- Record important decisions in docs/ADR/.
+- Use SI units internally.
+- Keep world, vehicle, track, sensor, camera optical, and actuator frames explicit.
+- Use deterministic fixed-step simulation and seeded random streams.
+- Keep measurement time, processing completion time, delivery time, and consumer time separate.
+- Keep operational sensor data separate from debug ground truth.
+- Keep high-level computer, VCU, and independent safety layer separate.
+- No actuator command may remain active indefinitely after communication loss.
+- Every critical fault must have detection, safe response, latching/reset policy, and automated verification.
+- Never claim ISO 26262, ASIL, automotive certification, or real-vehicle safety compliance.
+- Mark example configurations:
+  SIMULATION USE ONLY
+  NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+
+VERDICTS
+Use only:
+- APPROVED
+- APPROVED_WITH_CONDITIONS
+- REJECTED
+- MORE_DATA_REQUIRED
+- PROTOTYPE_TEST_REQUIRED
+
+WORKFLOW
+1. Audit repository and environment.
+2. Run baseline tests and record exact results.
+3. Identify interfaces affected by this phase.
+4. Create a phase implementation plan.
+5. Implement in small, testable increments.
+6. Run unit, integration, regression, fault, determinism, and performance tests.
+7. Update documentation and requirements traceability.
+8. Produce the required final report.
+9. Do not begin the next phase automatically.
+
+EXTERNAL DEPENDENCIES
+When a dependency is unavailable:
+- Do not stop the whole phase.
+- Implement clean interfaces and optional build flags.
+- Add a deterministic fallback or mock where meaningful.
+- Add installation and validation instructions.
+- Mark tests requiring the dependency as explicit optional/integration tests.
+- Never mark an unexecuted integration as passed.
+PHASE 10
+COMPLETE FAULT-INJECTION BENCHMARK, FMEA TRACEABILITY,
+AUTOMATED CAMPAIGNS, COVERAGE METRICS, AND SAFETY REPORTING
+
+PREREQUISITE GATE
+Begin after Phase 9 can visualize and report faults, detection times, responses, and safe-state progress.
+
+OBJECTIVE
+Convert the existing fault framework into a repeatable benchmark covering single, sequential, and selected simultaneous failures across communication, sensors, actuators, electrical power, environment, software, and safety hardware abstractions.
+
+This phase must measure safety behaviour. It must not only inject faults.
+
+1. INITIAL AUDIT
+Inspect:
+- FMEA
+- safety requirements
+- fault schemas
+- Phase 7 campaigns
+- Phase 6 sensor faults
+- Phase 4 actuator/power faults
+- reports/dashboard
+- deterministic seeds
+- CI capacity
+Run all baseline tests.
+
+2. BENCHMARK ARCHITECTURE
+Create:
+benchmark/
+  catalog
+  scenario_generator
+  campaign_runner
+  oracle
+  metrics
+  coverage
+  minimizer
+  report
+  regression_baselines
+
+Separate:
+- physical fault activation
+- observable symptom
+- diagnostic
+- safety oracle
+- pass/fail evaluation
+
+3. FAULT CATALOG
+Every fault definition must include:
+- unique ID
+- subsystem
+- physical meaning
+- injection layer
+- parameters
+- onset mode
+- duration
+- recovery
+- detectability
+- expected diagnostics
+- required safety response
+- severity
+- related FMEA rows
+- related safety requirements
+- applicable operating states
+- exclusions
+- test evidence
+
+Catalog groups:
+A. Communication
+B. Timing/software
+C. Sensors
+D. Steering
+E. Brakes
+F. Motor/drivetrain
+G. Battery/electrical
+H. Thermal
+I. Track/environment
+J. Localization/perception contracts
+K. Independent safety layer
+L. Combined faults
+
+4. CAMPAIGN DIMENSIONS
+Parameterize:
+- speed
+- acceleration
+- corner curvature
+- surface friction
+- banking/grade
+- obstacle distance
+- battery SOC
+- temperatures
+- fault start time
+- fault duration
+- detection thresholds
+- communication latency
+- sensor quality
+- vehicle mass/configuration
+
+Do not brute-force an unbounded space. Use:
+- equivalence classes
+- boundary values
+- pairwise combinations
+- risk-prioritized combinations
+- seeded randomized sampling
+- explicit worst-case scenarios
+
+5. SAFETY ORACLES
+Implement machine-checkable oracles:
+- no positive propulsion after critical disable deadline
+- stale command rejected
+- emergency stop highest priority
+- controlled stop completes or escalates
+- stopping distance within scenario-specific bound
+- vehicle remains inside allowed envelope where physically achievable
+- no automatic autonomous restart
+- fault latch/reset rules obeyed
+- no NaN/invalid state
+- no energy creation
+- no hidden invariant violation
+- detection and response within configured bounds
+- brake failure not misclassified solely because surface is slippery
+- unknown perception space not treated as free
+
+Every oracle must explain failures with evidence.
+
+6. DETECTION/RESPONSE METRICS
+Record:
+- physical fault start
+- first symptom
+- pending diagnostic
+- confirmed diagnostic
+- safety action
+- torque zero
+- brake pressure onset
+- stop
+- safe state
+- distance during each interval
+- peak speed after fault
+- path deviation
+- yaw response
+- invariant violations
+
+7. REQUIRED SINGLE-FAULT CAMPAIGNS
+Communication:
+- delay, jitter, loss, corruption, reorder, duplicate, stale, counter/CRC, bus-off
+
+Sensors:
+- camera/depth/LiDAR/IMU/encoders/pressure/current/voltage faults
+- timing, calibration, power, environmental degradation
+
+Steering:
+- jam, runaway, linkage break, sensor mismatch, power loss, stop impact
+
+Brake:
+- stall, missed steps, cable break, leak, fade, release failure, sensor faults, power loss
+
+Traction:
+- stuck torque, wrong sign, torque loss, current/speed sensor faults, chain break, contactor fault
+
+Electrical:
+- sag, BMS shutdown, pre-charge failure, welded contactor, DC/DC failures, brownouts
+
+Software:
+- Jetson crash, VCU task freeze, loop overrun, watchdog failure, memory/state corruption abstraction
+
+Environment:
+- wet/oil/gravel patch, split friction, sudden obstacle, visibility reduction, track obstruction
+
+8. REQUIRED COMBINED-FAULT CAMPAIGNS
+At minimum:
+- command loss + wet surface
+- steering sensor drift + tight corner
+- brake fade + short obstacle distance
+- motor runaway + contactor welded
+- VCU reset + brake power loss
+- camera failure + stale LiDAR
+- localization uncertainty + decreasing-radius corner
+- wheel encoder loss + motor speed sensor bias
+- remote E-stop request + communication degradation
+- sensor power loss + compute backlog
+- steering jam + split-friction braking
+- low battery + high thermal load
+
+Use risk justification for every combination.
+
+9. RANDOMIZED CAMPAIGNS
+Use seeded random generation with:
+- bounded valid ranges
+- reproducibility
+- failure minimization
+- saved scenario on failure
+
+Implement shrinking/minimization where practical to find simpler reproducing cases.
+
+10. COVERAGE
+Report:
+- FMEA row coverage
+- safety-requirement coverage
+- fault ID coverage
+- operating-state coverage
+- speed range coverage
+- surface coverage
+- corner-type coverage
+- response-state coverage
+- untested combinations
+
+Never claim complete real-world safety coverage.
+
+11. REGRESSION BASELINES
+Store approved benchmark baselines:
+- detection time
+- response time
+- stopping distance
+- path deviation
+- torque decay
+- safe-state time
+
+Changes beyond tolerance require explanation and approval.
+
+12. PARALLEL EXECUTION
+Support parallel campaign workers without losing determinism.
+- isolated seeds
+- isolated run directories
+- bounded resources
+- stable result ordering
+- resume interrupted campaigns
+
+13. REPORTS
+Generate:
+- campaign summary
+- per-fault results
+- worst cases
+- failed oracle evidence
+- FMEA traceability
+- safety requirement traceability
+- timing distributions
+- stopping-distance distributions
+- uncovered items
+- comparison to prior baseline
+
+14. CI TIERS
+Create:
+- fast critical smoke campaign
+- nightly medium campaign
+- full offline campaign
+- optional high-fidelity backend campaign
+
+Do not place prohibitively large campaigns in every commit CI.
+
+15. TESTS
+- schema
+- campaign generation
+- deterministic seeds
+- oracle correctness
+- expected failure detection
+- false-positive prevention
+- parallel determinism
+- resume
+- report consistency
+- failure minimization
+
+16. DOCUMENTATION
+Create/update:
+- docs/FAULT_BENCHMARK.md
+- docs/FAULT_CATALOG.md
+- docs/SAFETY_ORACLES.md
+- docs/CAMPAIGN_DESIGN.md
+- docs/COVERAGE.md
+- docs/FMEA.md
+- docs/SAFETY_REQUIREMENTS.md
+- docs/STATUS.md
+
+17. ACCEPTANCE CRITERIA
+- fault catalog is traceable
+- critical single faults covered
+- required combined faults covered
+- machine-checkable oracles exist
+- timing/distance metrics recorded
+- deterministic replay works
+- failed campaigns save reproduction data
+- coverage report produced
+- CI tiers configured
+- baseline comparison works
+- no claim of complete safety
+- tests pass
+
+18. REQUIRED FINAL REPORT
+PHASE:
+Phase 10 — Fault-Injection Benchmark
+
+STATUS:
+...
+
+VERDICT:
+...
+
+CATALOG:
+- ...
+
+CAMPAIGNS:
+- single
+- combined
+- randomized
+- CI tiers
+
+COVERAGE:
+- FMEA
+- requirements
+- states
+- operating conditions
+- open gaps
+
+WORST CASES:
+- detection
+- response
+- stopping distance
+- path deviation
+- invariant violations
+
+TEST RESULTS:
+- ...
+
+KNOWN LIMITATIONS:
+- ...
+
+NEXT PHASE:
+Phase 11 — Project Chrono integration.

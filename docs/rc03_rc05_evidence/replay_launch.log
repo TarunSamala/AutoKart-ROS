@@ -1,0 +1,6 @@
+[INFO] [launch]: All log files can be found below /home/mark1/.ros/log/2026-10-16-10-29-55-988316-Jarvis-232085
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [perception_node-1]: process started with pid [232086]
+[perception_node-1] frame status=DEGRADED reasons=('INVALID_POSE', 'PERCEPTION_INVALID')
+[perception_node-1] frame status=DEGRADED reasons=('INVALID_POSE', 'PERCEPTION_INVALID')
+[INFO] [perception_node-1]: process has finished cleanly [pid 232086]

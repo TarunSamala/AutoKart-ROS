@@ -1,0 +1,23 @@
+schema_version: 1
+name: development_workstation
+qualification_status: measured
+cpu: Intel Core i7-9750H, 6 cores / 12 threads
+gpu: Intel UHD 630 and NVIDIA GTX 1650 Mobile (nouveau/Mesa; utilization unavailable)
+ram_gib: 15
+os: Ubuntu 22.04.5 LTS, Linux 6.8 PREEMPT_DYNAMIC
+rendering_backend: Mesa hardware path, headless Gazebo Classic
+physics_hz: 1000
+gazebo_follower_hz: 100
+ros_executor_threads: 1 for real-time preset; 2 balanced; 4 offline
+recorder: bounded representative payload evidence
+dashboard: enabled for acceptance preset
+sensor_fidelity:
+  rgb: {width: 160, height: 90, rate_hz: 10}
+  depth: {width: 160, height: 90, rate_hz: 10}
+  lidar: {samples: 180, rate_hz: 10}
+  imu: {source: internal, rate_hz: 200}
+performance_gates:
+  minimum_sustained_rtf: 1.0
+  maximum_sensor_queue_depth: 4
+  vcu_deadline_misses: 0
+  independent_safety_deadline_misses: 0

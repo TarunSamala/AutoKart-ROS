@@ -1,0 +1,11 @@
+topics:
+  clock: /clock
+  transforms: [/tf, /tf_static]
+  joint_states: /joint_states
+  vehicle: [/vehicle/odometry, /vehicle/state, /vehicle/wheel_states, /vehicle/actuator_feedback]
+  vcu: [/vcu/state, /vcu/safety_state, /vcu/faults, /vcu/validated_command]
+  safety: [/safety/envelope, /safety/estop]
+  sensors: [/sensors/camera/image, /sensors/camera/camera_info, /sensors/depth/image, /sensors/depth/points, /sensors/lidar/scan, /sensors/imu]
+  autonomy: [/perception/cones, /perception/obstacles, /localization/odometry, /localization/status, /planning/path, /planning/trajectory, /control/motion_command]
+  diagnostics: /diagnostics
+command_rule: "/control/motion_command -> VCU only; no integrated actuator command topics"

@@ -1,0 +1,419 @@
+AUTONOMOUS ELECTRIC GO-KART SIMULATOR
+CODEX EXECUTION RULES
+
+You are acting as the lead vehicle-dynamics, robotics, embedded, controls, safety, reliability, simulation, and software engineer.
+
+This is not a game-only project. It is a research-grade, deterministic, configurable autonomous electric go-kart simulator that must eventually support software-in-loop, hardware-in-loop, real-kart calibration, and safety fault injection.
+
+ENGINEERING PRIORITY
+1. Human safety
+2. Emergency stopping
+3. Prevention of uncontrolled propulsion or steering
+4. Predictable behaviour
+5. Fault detection
+6. Determinism and timing correctness
+7. Physics and sensor correctness
+8. Testability
+9. Maintainability
+10. Performance
+11. Visual quality
+
+MANDATORY ENGINEERING BEHAVIOUR
+- Inspect the repository and run the complete existing test suite before modifying code.
+- Preserve existing validated work.
+- Do not perform destructive Git operations.
+- Do not silently weaken tests, thresholds, or safety logic to make tests pass.
+- Do not claim success because code compiles.
+- Do not invent hardware specifications.
+- Put provisional values in schema-validated configuration files.
+- Record every assumption in docs/ASSUMPTIONS.md.
+- Record important decisions in docs/ADR/.
+- Use SI units internally.
+- Keep world, vehicle, track, sensor, camera optical, and actuator frames explicit.
+- Use deterministic fixed-step simulation and seeded random streams.
+- Keep measurement time, processing completion time, delivery time, and consumer time separate.
+- Keep operational sensor data separate from debug ground truth.
+- Keep high-level computer, VCU, and independent safety layer separate.
+- No actuator command may remain active indefinitely after communication loss.
+- Every critical fault must have detection, safe response, latching/reset policy, and automated verification.
+- Never claim ISO 26262, ASIL, automotive certification, or real-vehicle safety compliance.
+- Mark example configurations:
+  SIMULATION USE ONLY
+  NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+
+VERDICTS
+Use only:
+- APPROVED
+- APPROVED_WITH_CONDITIONS
+- REJECTED
+- MORE_DATA_REQUIRED
+- PROTOTYPE_TEST_REQUIRED
+
+WORKFLOW
+1. Audit repository and environment.
+2. Run baseline tests and record exact results.
+3. Identify interfaces affected by this phase.
+4. Create a phase implementation plan.
+5. Implement in small, testable increments.
+6. Run unit, integration, regression, fault, determinism, and performance tests.
+7. Update documentation and requirements traceability.
+8. Produce the required final report.
+9. Do not begin the next phase automatically.
+
+EXTERNAL DEPENDENCIES
+When a dependency is unavailable:
+- Do not stop the whole phase.
+- Implement clean interfaces and optional build flags.
+- Add a deterministic fallback or mock where meaningful.
+- Add installation and validation instructions.
+- Mark tests requiring the dependency as explicit optional/integration tests.
+- Never mark an unexecuted integration as passed.
+PHASE 15
+FINAL RESEARCH DEMONSTRATION, REPRODUCIBLE RELEASE,
+PAPER-READY RESULTS, DATASET PACKAGE, AND PROJECT HANDOVER
+
+PREREQUISITE GATE
+Begin after Phase 14 has produced an independently validated parameter set and a documented operating envelope.
+
+OBJECTIVE
+Produce a reproducible, auditable final demonstration and release showing:
+- nominal autonomous operation
+- corner-level engineering analysis
+- sensor realism
+- VCU safety behaviour
+- controlled and emergency stopping
+- environmental degradation
+- fault injection
+- internal vs Chrono comparison
+- 3D rendered scenarios
+- SIL/HIL evidence
+- sim-to-real validation
+
+Do not hide failed scenarios. Do not overstate research claims.
+
+1. INITIAL AUDIT
+Run:
+- full unit/integration/regression suite
+- critical fault smoke campaign
+- deterministic replay
+- calibration validation
+- build/package checks
+- documentation links
+Record baseline.
+
+2. RELEASE DEFINITION
+Create:
+- release version
+- tagged configuration sets
+- parameter model version
+- dataset manifest
+- dependency lock/containers
+- supported platforms
+- known limitations
+- license notices
+- reproducibility instructions
+
+3. REFERENCE KART
+Provide one complete reference configuration:
+- geometry/mass
+- tires
+- steering
+- brakes
+- motor/drivetrain
+- battery
+- thermal
+- sensors
+- VCU/safety
+- ROS/autonomy
+- rendering
+- calibration version
+
+Label which values are measured, fitted, assumed, or provisional.
+
+4. REFERENCE TRACKS
+Include:
+- basic validation track
+- mixed research circuit
+- wet/split-friction track
+- sensor-degradation track
+- fault demonstration track
+
+5. NOMINAL DEMONSTRATIONS
+A. manual low-level validation
+B. Pure Pursuit lap
+C. Stanley lap
+D. selected external autonomy/SIL lap
+E. repeated laps with thermal effects
+F. corner analysis report
+
+6. SAFETY DEMONSTRATIONS
+At minimum:
+- command loss
+- Jetson crash
+- VCU watchdog failure
+- steering linkage fault
+- steering runaway
+- brake cable/leak failure
+- brake fade
+- motor stuck torque
+- welded contactor abstraction
+- physical/remote E-stop abstraction
+- sensor stale data
+- localization uncertainty
+- sudden obstacle
+- wet/split friction
+
+For each show:
+- fault time
+- detection
+- safety action
+- torque zero
+- braking
+- stopping distance
+- final state
+- invariant result
+
+7. SENSOR DEMONSTRATIONS
+- daylight/night/glare
+- rolling shutter
+- RGB-D range/invalid pixels
+- LiDAR motion distortion
+- fog/dust
+- IMU bias/vibration
+- encoder slip
+- calibration error
+- timing backlog
+
+8. PHYSICS DEMONSTRATIONS
+- solid axle vs differential comparison
+- inside-rear unloading/lift
+- understeer/oversteer
+- split-friction braking
+- banked/off-camber
+- kerb
+- tire utilization
+- energy balance
+- internal vs Chrono
+
+9. 3D DEMONSTRATION
+Provide repeatable CARLA/Unreal launch:
+- fixed scenario
+- camera/depth/LiDAR capture
+- dynamic pedestrian/obstacle
+- weather
+- exact configs
+- recording
+
+10. SIL/HIL DEMONSTRATION
+Where hardware exists:
+- real Jetson
+- real VCU
+- virtual/physical CAN
+- latency report
+- E-stop
+- command loss
+- replay
+
+If unavailable, report not executed. Do not fabricate.
+
+11. SIM-TO-REAL
+Present:
+- calibration data separate
+- validation data
+- error metrics
+- prediction intervals
+- operating envelope
+- mismatches
+- model limitations
+
+12. RESEARCH CONTRIBUTIONS
+Evaluate evidence for claims such as:
+- kart-specific solid-axle/chassis model
+- cross-sensor degradation framework
+- VCU-enforced dynamic safety envelope
+- fault-injection benchmark
+- corner-level explainability
+- sim-to-real identification
+
+For every claimed contribution provide:
+- novelty statement
+- implementation
+- experiment
+- baseline
+- metric
+- result
+- limitation
+
+Do not claim novelty without literature review and evidence.
+
+13. PAPER-READY OUTPUTS
+Generate:
+- abstract draft inputs
+- method diagrams
+- architecture diagrams
+- equations/model table
+- experiment table
+- result tables
+- plots with units/error bars
+- ablation studies
+- failure cases
+- reproducibility statement
+- limitations
+- ethics/safety statement
+- citation placeholders linked to verified sources
+
+Do not invent citations.
+
+14. ABLATIONS
+At minimum:
+- ideal vs noisy sensors
+- no latency vs real latency
+- constant vs spatial friction
+- differential vs solid axle
+- no chassis torsion vs torsion
+- static vs dynamic safety envelope
+- single sensor vs fusion interface
+- internal vs Chrono
+- nominal vs calibrated parameters
+
+15. BENCHMARK PACKAGE
+Include:
+- scenario definitions
+- fault catalog
+- expected oracles
+- reference outputs
+- scripts
+- result schema
+- license
+- contribution guide
+
+16. REPRODUCIBILITY
+One-command paths:
+- setup
+- build
+- test
+- run nominal demo
+- run safety demo
+- run benchmark smoke
+- generate dashboard/report
+- reproduce paper figures
+
+Support containers where practical.
+Pin versions or record exact versions.
+
+17. FINAL QUALITY GATES
+- no failing mandatory tests
+- no hidden skipped critical test
+- deterministic reference runs
+- config validation
+- docs links valid
+- clean install tested
+- output directories clean
+- no secret credentials
+- no unsafe real-hardware default
+- real actuator outputs disabled by default
+- debug ground truth disabled in operational launch
+- licensing checked
+
+18. HANDOVER
+Create:
+- architecture overview
+- developer setup
+- operator guide
+- test guide
+- calibration guide
+- HIL guide
+- troubleshooting
+- known issues
+- roadmap
+- maintenance ownership
+- decision log index
+
+19. FINAL VERDICTS
+Provide separate verdicts:
+- simulator software
+- internal physics
+- Chrono backend
+- rendered sensors
+- ROS/SIL
+- HIL
+- safety benchmark
+- sim-to-real model
+- real-vehicle readiness
+
+Use only approved verdict vocabulary.
+
+20. ACCEPTANCE CRITERIA
+- reproducible release
+- reference configs/tracks
+- nominal demos
+- critical safety demos
+- sensor/physics demos
+- dashboard/reports
+- fault benchmark
+- Chrono comparison
+- 3D scenario
+- SIL/HIL truthfully reported
+- independent validation
+- paper-ready outputs
+- limitations
+- clean setup/test
+- no unsupported safety claim
+
+21. REQUIRED FINAL REPORT
+PHASE:
+Phase 15 — Final Research Demonstration and Release
+
+STATUS:
+COMPLETE / PARTIAL / BLOCKED
+
+VERDICT:
+...
+
+RELEASE:
+- version
+- commit
+- environments
+- artifacts
+
+DEMONSTRATIONS:
+- nominal
+- safety
+- sensors
+- physics
+- 3D
+- SIL/HIL
+- sim-to-real
+
+TEST SUMMARY:
+- ...
+
+FAULT BENCHMARK:
+- ...
+
+VALIDATION:
+- ...
+
+RESEARCH CONTRIBUTIONS:
+- supported
+- partially supported
+- unsupported
+
+PAPER-READY OUTPUTS:
+- ...
+
+REPRODUCIBILITY:
+- ...
+
+REAL-VEHICLE READINESS VERDICT:
+APPROVED / APPROVED_WITH_CONDITIONS / REJECTED /
+MORE_DATA_REQUIRED / PROTOTYPE_TEST_REQUIRED
+
+OPEN SAFETY RISKS:
+- ...
+
+KNOWN LIMITATIONS:
+- ...
+
+FINAL NEXT ENGINEERING TASK:
+State exactly one highest-priority next task.

@@ -1,0 +1,27 @@
+# Immutable internal-physics output. Consumers must never write commands back.
+std_msgs/Header header
+float64 simulation_time_s
+uint64 sequence
+float64 position_x_m
+float64 position_y_m
+float64 position_z_m
+float64 roll_rad
+float64 pitch_rad
+float64 yaw_rad
+float64[3] linear_velocity_body_mps
+float64[3] angular_velocity_body_radps
+float64 front_left_steering_rad
+float64 front_right_steering_rad
+float64 front_left_wheel_rotation_rad
+float64 front_right_wheel_rotation_rad
+float64 rear_left_wheel_rotation_rad
+float64 rear_right_wheel_rotation_rad
+float64 front_left_wheel_speed_radps
+float64 front_right_wheel_speed_radps
+float64 rear_left_wheel_speed_radps
+float64 rear_right_wheel_speed_radps
+float64 rear_axle_rotation_rad
+float64 rear_axle_speed_radps
+bool valid
+uint32 reset_epoch
+string configuration_hash

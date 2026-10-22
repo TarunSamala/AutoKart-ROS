@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "operator": null,
+  "instrument": null,
+  "base_link_definition": "Origin: ground point directly below the optical centre (plumb). X forward = kart centreline = ground projection of the optical axis. Y left. Left/right cone forward x derived from tape diagonal origin->cone foot and measured lateral offset: x = sqrt(diag^2 - lateral^2).",
+  "mount_measurement": {
+    "x_forward_m": 0.0,
+    "y_left_m": 0.0,
+    "height_m": null,
+    "pitch_down_deg": 18.0,
+    "roll_deg": null,
+    "yaw_left_deg": 0.0,
+    "uncertainty": {
+      "translation_m": null,
+      "angle_deg": null
+    }
+  },
+  "approved_grid": {
+    "distances_m": [
+      1.5,
+      2.0,
+      2.5,
+      3.0
+    ],
+    "approved_by": null,
+    "reason": null
+  },
+  "stations": [
+    {
+      "id": "fit-1",
+      "role": "fit",
+      "instructions": "Place one cone in each image third near 1.5 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": 1.644,
+          "y_m": 0.6,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": 1.66,
+          "y_m": 0.0,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": 1.644,
+          "y_m": -0.6,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "fit-2",
+      "role": "fit",
+      "instructions": "Place one cone in each image third near 2.0 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": 2.138,
+          "y_m": 0.7,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": 2.15,
+          "y_m": 0.0,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": 2.138,
+          "y_m": -0.7,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "fit-3",
+      "role": "fit",
+      "instructions": "Place one cone in each image third near 2.5 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": 2.683,
+          "y_m": 0.8,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": 2.7,
+          "y_m": 0.0,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": 2.683,
+          "y_m": -0.8,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "fit-4",
+      "role": "fit",
+      "instructions": "Place one cone in each image third near 3.0 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "validate-1",
+      "role": "validate",
+      "instructions": "Place one cone in each image third near 1.5 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "validate-2",
+      "role": "validate",
+      "instructions": "Place one cone in each image third near 2.0 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "validate-3",
+      "role": "validate",
+      "instructions": "Place one cone in each image third near 2.5 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "validate-4",
+      "role": "validate",
+      "instructions": "Place one cone in each image third near 3.0 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    }
+  ]
+}

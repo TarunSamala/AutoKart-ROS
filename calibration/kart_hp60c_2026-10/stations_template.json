@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "operator": null,
+  "instrument": null,
+  "base_link_definition": null,
+  "mount_measurement": {
+    "x_forward_m": null,
+    "y_left_m": null,
+    "height_m": null,
+    "pitch_down_deg": null,
+    "roll_deg": null,
+    "yaw_left_deg": null,
+    "uncertainty": {
+      "translation_m": null,
+      "angle_deg": null
+    }
+  },
+  "approved_grid": {
+    "distances_m": [
+      1.5,
+      2.0,
+      2.5,
+      3.0
+    ],
+    "approved_by": null,
+    "reason": null
+  },
+  "stations": [
+    {
+      "id": "fit-1",
+      "role": "fit",
+      "instructions": "Place one cone in each image third near 1.5 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "fit-2",
+      "role": "fit",
+      "instructions": "Place one cone in each image third near 2.0 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "fit-3",
+      "role": "fit",
+      "instructions": "Place one cone in each image third near 2.5 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "fit-4",
+      "role": "fit",
+      "instructions": "Place one cone in each image third near 3.0 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "validate-1",
+      "role": "validate",
+      "instructions": "Place one cone in each image third near 1.5 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "validate-2",
+      "role": "validate",
+      "instructions": "Place one cone in each image third near 2.0 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "validate-3",
+      "role": "validate",
+      "instructions": "Place one cone in each image third near 2.5 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    },
+    {
+      "id": "validate-4",
+      "role": "validate",
+      "instructions": "Place one cone in each image third near 3.0 m forward; measure every cone foot.",
+      "cones": [
+        {
+          "region": "left",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "center",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        },
+        {
+          "region": "right",
+          "x_m": null,
+          "y_m": null,
+          "sigma_m": null,
+          "label": "orange"
+        }
+      ]
+    }
+  ]
+}

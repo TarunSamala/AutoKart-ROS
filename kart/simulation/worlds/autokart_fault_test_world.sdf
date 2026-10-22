@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <world name="autokart_fault_test">
+    <gravity>0 0 -9.80665</gravity><physics name="deterministic" type="ode"><max_step_size>.001</max_step_size><real_time_update_rate>1000</real_time_update_rate></physics>
+    <scene><ambient>.38 .40 .43 1</ambient><background>.36 .48 .62 1</background><shadows>true</shadows></scene>
+    <light name="sun" type="directional"><cast_shadows>true</cast_shadows><diffuse>.78 .76 .72 1</diffuse><direction>-.4 .2 -1</direction></light>
+    <model name="ground"><static>true</static><link name="ground"><collision name="ground"><geometry><plane><normal>0 0 1</normal><size>90 50</size></plane></geometry></collision><visual name="grass"><geometry><plane><normal>0 0 1</normal><size>90 50</size></plane></geometry><material><ambient>.06 .25 .04 1</ambient></material></visual></link></model>
+    <model name="fault_lane"><static>true</static><pose>0 0 .006 0 0 0</pose><link name="lane"><collision name="lane_collision"><geometry><box><size>70 8 .01</size></box></geometry></collision><visual name="lane_visual"><geometry><box><size>70 8 .01</size></box></geometry><material><ambient>.10 .10 .11 1</ambient></material></visual></link></model>
+    <model name="intrusion_obstacle"><static>false</static><pose>15 0 .6 0 0 0</pose><link name="obstacle"><inertial><mass>80</mass><inertia><ixx>10</ixx><iyy>10</iyy><izz>10</izz></inertia></inertial><collision name="collision"><geometry><box><size>1.2 1.2 1.2</size></box></geometry></collision><visual name="warning"><geometry><box><size>1.2 1.2 1.2</size></box></geometry><material><ambient>.9 .35 .02 1</ambient></material></visual></link></model>
+    <model name="estop_boundary"><static>true</static><pose>25 0 .014 0 0 0</pose><link name="line"><visual name="red"><geometry><box><size>.2 8 .018</size></box></geometry><material><ambient>.9 .02 .02 1</ambient></material></visual></link></model>
+  </world>
+</sdf>

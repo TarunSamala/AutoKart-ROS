@@ -1,0 +1,3 @@
+event: {type: acceleration, track: tracks/acceleration_event.yaml, timed_distance_m: 75.0, maximum_velocity_mps: 15.0, emergency_stop_zone_start_m: 80.0, cone_penalty_s: 2.0}
+start: {procedure: standing, ready_hold_s: 1.0}
+safety: {vcu_required: true, independent_safety_required: true}

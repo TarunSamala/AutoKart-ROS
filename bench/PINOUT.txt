@@ -1,0 +1,41 @@
+AUTOKART BENCH MASTER PINOUT
+============================
+
+Integrated ESP32-S3 assignment
+------------------------------
+
+GPIO1   BLD-750 EN transistor driver
+GPIO2   BLD-750 BRK transistor driver
+GPIO4   Steering TB6600 PUL+
+GPIO5   Steering TB6600 DIR+
+GPIO6   Steering TB6600 ENA+
+GPIO7   BLD-750 F/R transistor driver
+GPIO8   GP8630N SDA
+GPIO9   GP8630N SCL
+GPIO10  Brake TB6600 PUL+
+GPIO11  Brake TB6600 DIR+
+GPIO12  Brake TB6600 ENA+
+GPIO13  RA-02 MOSI
+GPIO14  RA-02 SCK
+GPIO15  RA-02 MISO
+GPIO16  RA-02 NSS/CS
+GPIO17  RA-02 RESET
+GPIO18  RA-02 DIO0
+
+All TB6600 negative signal terminals connect to ESP32 GND for the documented
+single-ended wiring. GP8630N GND, BLD-750 COM, logic-interface ground, and the
+appropriate controller ground must share the intended reference. Confirm
+isolation and voltage compatibility before wiring.
+
+Raspberry Pi Pico E-stop transmitter
+------------------------------------
+
+GPIO16  RA-02 MISO
+GPIO17  RA-02 NSS/CS
+GPIO18  RA-02 SCK
+GPIO19  RA-02 MOSI
+GPIO20  RA-02 RESET
+GPIO21  RA-02 DIO0
+GPIO22  E-stop switch input; LOW released, HIGH pressed
+
+See each subsystem PINOUT.txt before making connections.

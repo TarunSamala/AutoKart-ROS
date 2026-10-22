@@ -1,0 +1,110 @@
+AUTOKART RECOVERY CROSS-REFERENCE
+=================================
+
+Audit date: 2026-09-09
+Index records: 24
+Locally available archives inspected: bench/archive/ and repository root
+
+Status meanings
+---------------
+
+PRESENT       A corresponding raw local file is preserved in bench/archive.
+LIKELY MATCH  Behavior/name aligns, but the indexed File Library object cannot
+              be compared byte-for-byte in this runtime.
+PARTIAL       Fewer local revisions exist than the index lists.
+MISSING RAW   Only the index description/source reference is available.
+
+01  RC v1 initial                     LIKELY MATCH
+    Candidate: ../rc_versions/integrated_controller_v1.py
+    The local file contains conservative 10-degree/10-degree/0.70 V active
+    limits and commented nominal future values. The indexed turn7file4 bytes
+    are unavailable, so this is not claimed as exact.
+
+02  RC v2 conservative                MISSING RAW
+    Source reference turn7file2 is unavailable. Its documented behavior is
+    represented by ../rc_versions/integrated_controller_v1.py, but a separate
+    raw revision has not been invented.
+
+03  RC v3 E-stop UI                   PRESENT
+    ../rc_versions/integrated_controller_v3.py
+
+04  RC v4 real-car acceleration       PRESENT
+    ../rc_versions/integrated_controller_v4_realcar.py
+
+05  RC v5 controlled stop, Aug 28     PARTIAL
+06  RC v5 uploaded copy, Sep 8        PARTIAL
+    One raw local revision exists:
+    ../rc_versions/integrated_controller_v5_controlled_stop.py
+    The two File Library uploads cannot be distinguished without their bytes.
+
+07  RC final 20-degree branch         PRESENT
+    ../rc_versions/integrated_controller_v6_20_deg.py
+
+08  Steering/brake open-loop test     PRESENT
+    ../rc_versions/combined_steering_brake_test_v1.py
+
+09  rc_bench conservative baseline    PRESENT
+    ../rc_versions/integrated_controller_v1.py
+
+10  Throttle speed-only test          PRESENT
+    ../rc_versions/throttle_web_test_v1.py
+
+11  Full BLDC, GPIO13/14/15 body      MISSING RAW
+    The available ../rc_versions/bldc_full_test_original.py has a historical
+    header mentioning GPIO13/14/15, but its executable constants are GPIO1/2/7.
+    It is therefore not the exact old-pin-map program described by the index.
+
+12  Full BLDC, GPIO1/2/7              PRESENT
+    ../rc_versions/bldc_full_test_original.py
+
+13  Simple LoRa TX strings            PRESENT
+    ../estop_versions/transmitter_string_test_original.py
+
+14  Simple LoRa RX strings            PRESENT
+    ../estop_versions/receiver_string_test_original.py
+
+15  LoRa E-stop TX v1                 LIKELY MATCH
+    ../estop_versions/transmitter_pre_fix.py
+
+16  LoRa E-stop TX v2                 LIKELY MATCH
+    ../estop_versions/transmitter_fixed_original.py
+    The two local revisions differ by eight changed lines, but the indexed
+    same-name File Library objects are unavailable for exact comparison.
+
+17  LoRa E-stop RX v1                 PARTIAL
+18  LoRa E-stop RX v2                 PARTIAL
+19  LoRa E-stop RX v3                 PARTIAL
+    Two raw local revisions exist:
+    ../estop_versions/receiver_pre_fix.py
+    ../estop_versions/receiver_fixed_original.py
+    The three indexed uploads cannot be mapped exactly without their bytes.
+
+20  Integrated BLD-750 + LoRa latch   PRESENT
+    ../rc_versions/bldc_lora_estop_latched.py
+
+21  RC connection reference           PRESENT
+    ../rc_versions/integrated_pinout_original.txt
+
+22  Steering/brake connections        PRESENT
+    ../rc_versions/steering_brake_pinout_original.txt
+
+23  Wiring architecture revision 2    MISSING RAW
+    Only description and source reference turn7file12 are present.
+
+24  GP8630N-not-found error log        MISSING RAW
+    Only description and source reference turn7file13 are present.
+
+Coverage summary
+----------------
+
+Present raw counterpart: 12 records
+Likely local match:        3 records
+Partial revision groups:  5 records
+Missing raw source:        4 records
+
+Required input for exact completion
+-----------------------------------
+
+Attach the actual source ZIP or the raw files for records 01, 02, 05, 06, 11,
+15-19, 23, and 24. They can then be hash-compared, preserved separately, and
+placed without overwriting the versions already present.

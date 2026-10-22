@@ -1,0 +1,585 @@
+{
+  "summary": {
+    "source": "LIVE HP60C existing ROS perception, OPENCV_FOR_THREADS_NUM=6",
+    "samples": 25,
+    "available": 25,
+    "unique_frames": 20,
+    "valid_metric": 0,
+    "frames_with_detections": 0,
+    "depth_always_unqualified": true,
+    "age_ms": {
+      "n": 25,
+      "mean": 148.43556568055646,
+      "min": 8.08205900102621,
+      "max": 287.64478199445875
+    },
+    "receive_fps": {
+      "n": 25,
+      "mean": 3.073571100870342,
+      "min": 2.861865321564699,
+      "max": 3.290400056977801
+    },
+    "processing_ms": {
+      "n": 25,
+      "mean": 110.57972500042524,
+      "min": 101.1301319958875,
+      "max": 127.83396900340449
+    },
+    "capture_to_gateway_ms": {
+      "n": 25,
+      "mean": 360.55370088,
+      "min": 313.650762,
+      "max": 405.712198
+    },
+    "reason_codes": [
+      "BOUNDARIES_AMBIGUOUS",
+      "CALIBRATION_UNVERIFIED",
+      "CENTERLINE_AMBIGUOUS",
+      "FRAME_TOO_OLD",
+      "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+      "MODEL_UNVERIFIED"
+    ]
+  },
+  "samples": [
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40912563036520",
+      "age_ms": 23.5167119972175,
+      "receive_fps": 2.861865321564699,
+      "processing_ms": 107.40068100130884,
+      "capture_to_gateway_ms": 374.408902,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40912563036520",
+      "age_ms": 275.3056299989112,
+      "receive_fps": 2.883547100420814,
+      "processing_ms": 107.40068100130884,
+      "capture_to_gateway_ms": 374.408902,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40912879525170",
+      "age_ms": 196.7857260024175,
+      "receive_fps": 2.883547100420814,
+      "processing_ms": 109.72670999763068,
+      "capture_to_gateway_ms": 387.936238,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40913208531024",
+      "age_ms": 124.41059199773008,
+      "receive_fps": 2.9081622561482807,
+      "processing_ms": 103.71879300510045,
+      "capture_to_gateway_ms": 382.721786,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40913531334204",
+      "age_ms": 60.66130399995018,
+      "receive_fps": 2.9250484819345233,
+      "processing_ms": 113.11135500000091,
+      "capture_to_gateway_ms": 375.62823,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40913847373270",
+      "age_ms": 8.91951200173935,
+      "receive_fps": 2.9533788290201692,
+      "processing_ms": 103.18257300241385,
+      "capture_to_gateway_ms": 364.144187,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40913847373270",
+      "age_ms": 260.55327500216663,
+      "receive_fps": 2.966311413652612,
+      "processing_ms": 103.18257300241385,
+      "capture_to_gateway_ms": 364.144187,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40914169946221",
+      "age_ms": 189.41309700312559,
+      "receive_fps": 2.966311413652612,
+      "processing_ms": 119.5484519994352,
+      "capture_to_gateway_ms": 364.177702,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40914492186919",
+      "age_ms": 134.4950409984449,
+      "receive_fps": 2.984628245727579,
+      "processing_ms": 107.12555899954168,
+      "capture_to_gateway_ms": 348.386636,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40914814846769",
+      "age_ms": 66.85490000381833,
+      "receive_fps": 2.996977270987671,
+      "processing_ms": 113.75325599510688,
+      "capture_to_gateway_ms": 345.121485,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40915137573205",
+      "age_ms": 8.08205900102621,
+      "receive_fps": 2.986644364480484,
+      "processing_ms": 113.40619099792093,
+      "capture_to_gateway_ms": 335.105541,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40915137573205",
+      "age_ms": 259.8935310015804,
+      "receive_fps": 2.9825833525783203,
+      "processing_ms": 113.40619099792093,
+      "capture_to_gateway_ms": 335.105541,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40915460187906",
+      "age_ms": 209.26243899884867,
+      "receive_fps": 2.9825833525783203,
+      "processing_ms": 104.6440759964753,
+      "capture_to_gateway_ms": 314.758303,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40915702075583",
+      "age_ms": 149.36056400620146,
+      "receive_fps": 3.1803318349464327,
+      "processing_ms": 106.97928000445245,
+      "capture_to_gateway_ms": 384.308635,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40916024955923",
+      "age_ms": 87.09441000246443,
+      "receive_fps": 3.176664959921359,
+      "processing_ms": 116.65519200323615,
+      "capture_to_gateway_ms": 375.376306,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40916346820289",
+      "age_ms": 35.9963599985349,
+      "receive_fps": 3.1891375288383568,
+      "processing_ms": 102.05868400225881,
+      "capture_to_gateway_ms": 356.427532,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40916346820289",
+      "age_ms": 287.64478199445875,
+      "receive_fps": 3.203409750342822,
+      "processing_ms": 102.05868400225881,
+      "capture_to_gateway_ms": 356.427532,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40916669659446",
+      "age_ms": 240.80086900357855,
+      "receive_fps": 3.1957276921541182,
+      "processing_ms": 101.1301319958875,
+      "capture_to_gateway_ms": 331.682085,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40916911525165",
+      "age_ms": 176.43449200113537,
+      "receive_fps": 3.1957276921541182,
+      "processing_ms": 114.23288399964804,
+      "capture_to_gateway_ms": 405.712198,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40917234211853",
+      "age_ms": 116.75104100140743,
+      "receive_fps": 3.1941076723399653,
+      "processing_ms": 105.86500900535611,
+      "capture_to_gateway_ms": 394.111812,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40917557085383",
+      "age_ms": 56.2850390051608,
+      "receive_fps": 3.205309544144321,
+      "processing_ms": 111.86286299925996,
+      "capture_to_gateway_ms": 383.426702,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40917879043808",
+      "age_ms": 20.318745999247767,
+      "receive_fps": 3.216421264308207,
+      "processing_ms": 127.83396900340449,
+      "capture_to_gateway_ms": 348.990514,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40917879043808",
+      "age_ms": 271.6678659999161,
+      "receive_fps": 3.24388459535292,
+      "processing_ms": 127.83396900340449,
+      "capture_to_gateway_ms": 348.990514,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40918199789925",
+      "age_ms": 237.7541050009313,
+      "receive_fps": 3.2665664271112322,
+      "processing_ms": 118.59656999877188,
+      "capture_to_gateway_ms": 313.650762,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    },
+    {
+      "available": true,
+      "source": "LIVE",
+      "frame_id": "40918441124932",
+      "age_ms": 212.62704999389825,
+      "receive_fps": 3.290400056977801,
+      "processing_ms": 109.77879799611401,
+      "capture_to_gateway_ms": 348.69029,
+      "valid": false,
+      "reason_codes": [
+        "BOUNDARIES_AMBIGUOUS",
+        "CALIBRATION_UNVERIFIED",
+        "CENTERLINE_AMBIGUOUS",
+        "FRAME_TOO_OLD",
+        "LIVE_METRIC_CALIBRATION_UNVERIFIED",
+        "MODEL_UNVERIFIED"
+      ],
+      "detections": [],
+      "depth_qualified": false,
+      "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "calibration_status": "MOUNT_CONFIGURED_UNVERIFIED"
+    }
+  ]
+}

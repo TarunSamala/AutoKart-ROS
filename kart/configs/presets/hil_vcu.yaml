@@ -1,0 +1,6 @@
+name: hil_vcu
+mode: sil_hil
+simulation: {physics_backend: internal, gazebo_role: disabled, fidelity_tier: 2}
+features: {sensor_suite: vehicle_feedback, vcu_enabled: true, independent_safety_enabled: true, rendering_enabled: false, ros_enabled: false, dashboard_enabled: true, real_actuator_outputs_enabled: false}
+expected_performance: "Real-time paced HIL; simulated plant, physical VCU when separately connected."
+dependencies: [python3, socketcan, physical_vcu_external, physical_can_external]

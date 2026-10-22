@@ -1,0 +1,10 @@
+STEERING PINOUT
+===============
+
+ESP32-S3 GPIO4  -> Steering TB6600 PUL+
+ESP32-S3 GPIO5  -> Steering TB6600 DIR+
+ESP32-S3 GPIO6  -> Steering TB6600 ENA+
+ESP32-S3 GND    -> Steering TB6600 PUL-, DIR-, and ENA-
+
+The code assumes active-low enable, 3200 pulses/motor revolution, and a 17T to
+51T gear set. Verify the exact TB6600 switch table and physical direction.

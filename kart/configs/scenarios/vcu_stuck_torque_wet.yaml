@@ -1,0 +1,11 @@
+name: vcu_stuck_torque_wet
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 1.2
+control:
+  mode: vcu
+  command_timeout_s: 0.05
+  command_stop_time_s: 0.25
+  inject_fault: "motor:torque_stuck_positive"
+  surface_friction: 0.35
+initial_state: {u_mps: 2.0}
+command: {drive: 0.8, brake: 0.0, steering_rad: 0.0}

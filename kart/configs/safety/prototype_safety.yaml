@@ -1,0 +1,20 @@
+# SIMULATION USE ONLY
+# NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+simulation_use_only: true
+vcu_rate_hz: 250.0
+independent_safety_rate_hz: 500.0
+communication:
+  maximum_age_s: 0.10
+  timeout_s: 0.15
+  counter_bits: 8
+controlled_stop:
+  target_deceleration_mps2: 2.5
+  stopped_speed_threshold_mps: 0.05
+  stopped_confirmation_s: 0.05
+  timeout_s: 5.0
+safety_envelope:
+  fixed_margin_m: 0.75
+  guaranteed_deceleration_mps2: 3.0
+  maximum_autonomous_speed_mps: 8.0
+  maximum_degraded_speed_mps: 2.0
+automatic_autonomous_restart: false

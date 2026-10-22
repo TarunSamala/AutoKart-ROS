@@ -1,0 +1,15 @@
+2026-10-16 12:01:42[INFO] [CameraHp60c.cpp] [1830] [getConfigurationParameters] according to the configuration file.
+2026-10-16 12:01:42[INFO] [CameraHp60c.cpp] [1535] [parseConfigFileParameter] moduleName:AS_CAM_HP60C
+2026-10-16 12:01:42[INFO] [CameraHp60c.cpp] [1562] [parseConfigFileParameter] Parsing config file /home/mark1/Desktop/autonomous_kart/autonomy_stack_phase1/vendor/linux_ros/linux/configurationfiles/hp60c_v2_00_20230704_configEncrypt.json
+2026-10-16 12:01:42[INFO] [CameraHp60c.cpp] [1627] [parseConfigFileParameter] configuration protocol Version: v2.x
+2026-10-16 12:01:42[INFO] [CameraHp60c.cpp] [1638] [parseConfigFileParameter] configuration Version: v2.0.0.20230704
+2026-10-16 12:01:42[INFO] [CameraHp60c.cpp] [1803] [setParamersAfterOpenCam] Camera confiParaEnable true, setting configuration parameter
+2026-10-16 12:01:43[ERROR] [XuCmdCameraHp60c.cpp] [454] [getMjpegSize] get mjpeg from xu command failed
+2026-10-16 12:01:43[INFO] [XuCmdCameraHp60c.cpp] [458] [getMjpegSize] mjpeg size:640x480
+2026-10-16 12:01:43[INFO] [CameraHp60c.cpp] [259] [startStreaming] start streaming
+2026-10-16 12:01:45[INFO] [CameraHp60c.cpp] [911] [setInternalParameter] mjpeg info: size(640x480)
+ATTEMPT 1 CALIBRATION_UNAVAILABLE
+FRAME {'attempt': 2, 'source': 'LIVE', 'rgb_shape': (480, 640, 3), 'depth_shape': (480, 640), 'aligned': True, 'rgb_sequence': 6, 'depth_sequence': 6, 'timestamp_ns': 40463200654936, 'intrinsics': {'fx': 585.2703857421875, 'fy': 585.0194702148438, 'cx': 335.9750061035156, 'cy': 239.9635772705078}, 'depth_scale_qualified': False, 'alignment_qualified': False, 'extrinsics_qualified': False}
+FRAME {'attempt': 3, 'source': 'LIVE', 'rgb_shape': (480, 640, 3), 'depth_shape': (480, 640), 'aligned': True, 'rgb_sequence': 7, 'depth_sequence': 7, 'timestamp_ns': 40463278808773, 'intrinsics': {'fx': 585.2703857421875, 'fy': 585.0194702148438, 'cx': 335.9750061035156, 'cy': 239.9635772705078}, 'depth_scale_qualified': False, 'alignment_qualified': False, 'extrinsics_qualified': False}
+FRAME {'attempt': 4, 'source': 'LIVE', 'rgb_shape': (480, 640, 3), 'depth_shape': (480, 640), 'aligned': True, 'rgb_sequence': 8, 'depth_sequence': 8, 'timestamp_ns': 40463359965635, 'intrinsics': {'fx': 585.2703857421875, 'fy': 585.0194702148438, 'cx': 335.9750061035156, 'cy': 239.9635772705078}, 'depth_scale_qualified': False, 'alignment_qualified': False, 'extrinsics_qualified': False}
+2026-10-16 12:01:45[INFO] [CameraHp60c.cpp] [278] [stopStreaming] stop streaming

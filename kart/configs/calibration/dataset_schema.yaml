@@ -1,0 +1,12 @@
+# Real data has not been supplied. This schema is a governance contract.
+required_metadata:
+  - dataset_id
+  - date
+  - kart_configuration
+  - track_surface
+  - software_version
+  - calibration_version
+  - raw_checksum
+allowed_splits: [CALIBRATION, VALIDATION, HOLDOUT]
+raw_data_policy: immutable
+digital_twin_claim_before_independent_validation: NOT_JUSTIFIED

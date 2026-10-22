@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Phase 1/2 deterministic kart configuration",
+  "type": "object",
+  "required": ["kart", "tires", "motor", "brake", "environment", "simulation"],
+  "properties": {
+    "kart": {"type": "object", "required": ["name", "mass_kg", "wheelbase_m", "front_track_m", "rear_track_m", "cg", "inertia", "max_road_wheel_angle_rad"]},
+    "tires": {"type": "object", "required": ["model", "radius_m", "friction_peak", "cornering_stiffness_n_per_rad", "longitudinal_stiffness_n"]},
+    "motor": {"type": "object", "required": ["max_wheel_force_n"]},
+    "brake": {"type": "object", "required": ["max_brake_force_n"]},
+    "environment": {"type": "object", "required": ["rolling_resistance_coefficient", "air_density_kg_per_m3", "drag_coefficient_area_m2"]},
+    "simulation": {"type": "object", "required": ["physics_dt_s", "seed"]}
+  }
+}

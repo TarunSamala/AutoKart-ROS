@@ -1,0 +1,30 @@
+# SIMULATION USE ONLY
+# NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT
+faults:
+  - id: BRAKE-CABLE-BREAK
+    subsystem: brake
+    severity: CRITICAL
+    injection_layer: mechanical_transmission
+    physical_meaning: Brake actuator movement does not transmit cable force or hydraulic pressure.
+    expected_diagnostics: [BRAKE-003]
+    required_response: emergency_stop_and_propulsion_removal
+    fmea_rows: [Brake transmission cable break]
+    safety_requirements: [SAFE-BRAKE-001]
+  - id: MOTOR-STUCK-TORQUE
+    subsystem: traction
+    severity: CRITICAL
+    injection_layer: motor_controller
+    physical_meaning: Actual positive motor torque persists after a zero command.
+    expected_diagnostics: [MOTOR-003]
+    required_response: isolate_traction_and_emergency_brake
+    fmea_rows: [Traction torque persists]
+    safety_requirements: [SAFE-TRACTION-001]
+  - id: VCU-FREEZE
+    subsystem: safety
+    severity: CRITICAL
+    injection_layer: scheduler
+    physical_meaning: The VCU periodic task stops while independent safety remains alive.
+    expected_diagnostics: [SAFETY-WDG]
+    required_response: independent_isolation_and_braking
+    fmea_rows: [VCU loop freeze]
+    safety_requirements: [SAFE-WDG-001]

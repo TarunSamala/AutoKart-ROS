@@ -1,0 +1,6 @@
+name: vcu_brake_fade
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 0.6
+control: {mode: vcu, inject_fault: "brake:fade"}
+initial_state: {u_mps: 2.0}
+command: {drive: 0.0, brake: 0.8, steering_rad: 0.0}

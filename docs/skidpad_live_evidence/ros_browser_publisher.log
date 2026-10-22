@@ -1,0 +1,1 @@
+{"perception_valid": 114, "mapping_valid": 114, "planner_hold": 117, "planner_valid": 0, "reasons": ["MAP_PAIR_OR_OBSTACLE_TIMEOUT", "OBSERVED_LOOPS_UNAVAILABLE"]}

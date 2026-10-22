@@ -1,0 +1,4 @@
+event: {type: skidpad, track: tracks/skidpad_event.yaml, left_laps: 2, right_laps: 2, cone_penalty_s: 0.2}
+start: {procedure: standing, ready_hold_s: 1.0}
+reporting: {lateral_dynamics: true, timing: true}
+safety: {vcu_required: true, independent_safety_required: true}

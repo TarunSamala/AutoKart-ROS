@@ -1,0 +1,11 @@
+MECHANICAL BRAKE PINOUT
+=======================
+
+ESP32-S3 GPIO10  -> Brake TB6600 PUL+
+ESP32-S3 GPIO11  -> Brake TB6600 DIR+
+ESP32-S3 GPIO12  -> Brake TB6600 ENA+
+ESP32-S3 GND     -> Brake TB6600 PUL-, DIR-, and ENA-
+
+Documented TB6600 switch assumption: S1 OFF, S2 OFF, S3 ON, interpreted by the
+current setup as 3200 pulses/revolution. TB6600 clone tables vary; verify the
+label on the actual driver before running the test.

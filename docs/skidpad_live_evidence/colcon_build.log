@@ -1,0 +1,1675 @@
+Starting >>> autokart_msgs
+Starting >>> autokart_description
+Starting >>> autokart_diagnostics
+Starting >>> autokart_localization
+Starting >>> autokart_planning
+Starting >>> autokart_safety_bridge
+Starting >>> autokart_scenarios
+-- The C compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- The CXX compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compiler ABI info - done
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting C compiler ABI info - done
+-- Detecting C compiler ABI info - done
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting CXX compiler ABI info
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting CXX compiler ABI info
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting CXX compiler ABI info
+-- Detecting C compile features - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features - done
+-- Detecting C compile features
+-- Detecting CXX compiler ABI info
+-- Detecting C compile features - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compiler ABI info - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Detecting CXX compile features - done
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found builtin_interfaces: 1.2.3 (/opt/ros/humble/share/builtin_interfaces/cmake)
+-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_planning
+-- Configuring done
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_scenarios
+-- Found geometry_msgs: 4.9.2 (/opt/ros/humble/share/geometry_msgs/cmake)
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_safety_bridge
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+-- Found rosidl_default_generators: 1.2.1 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_description
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/ament_index/resource_index/package_run_dependencies/autokart_planning
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/ament_index/resource_index/parent_prefix_path/autokart_planning
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/ament_index/resource_index/packages/autokart_planning
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/cmake/autokart_planningConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/cmake/autokart_planningConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planning/share/autokart_planning/package.xml
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/config
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/config/scenario_contract.yaml
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/ament_index/resource_index/package_run_dependencies/autokart_scenarios
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/ament_index/resource_index/parent_prefix_path/autokart_scenarios
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/environment/ament_prefix_path.sh
+--- stderr: autokart_planning
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_planning [1.78s]
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/ament_index/resource_index/packages/autokart_scenarios
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/cmake/autokart_scenariosConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/cmake/autokart_scenariosConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_scenarios/share/autokart_scenarios/package.xml
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_diagnostics
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_localization
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+--- stderr: autokart_scenarios
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_scenarios [1.81s]
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/ament_index/resource_index/package_run_dependencies/autokart_safety_bridge
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/ament_index/resource_index/parent_prefix_path/autokart_safety_bridge
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/ament_index/resource_index/packages/autokart_safety_bridge
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/cmake/autokart_safety_bridgeConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/cmake/autokart_safety_bridgeConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_safety_bridge/share/autokart_safety_bridge/package.xml
+--- stderr: autokart_safety_bridge
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_safety_bridge [1.84s]
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/urdf
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/urdf/autokart.urdf
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/urdf/autokart.urdf.xacro
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz/tf.rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz/safety.rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz/camera_depth.rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz/lidar.rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz/planning.rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz/vehicle_state.rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz/cone_perception.rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz/localization.rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/rviz/full_autonomy.rviz
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/ament_index/resource_index/package_run_dependencies/autokart_description
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/ament_index/resource_index/parent_prefix_path/autokart_description
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/ament_index/resource_index/packages/autokart_description
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/cmake/autokart_descriptionConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/cmake/autokart_descriptionConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_description/share/autokart_description/package.xml
+--- stderr: autokart_description
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_description [1.89s]
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/ament_index/resource_index/package_run_dependencies/autokart_diagnostics
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/ament_index/resource_index/parent_prefix_path/autokart_diagnostics
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/ament_index/resource_index/packages/autokart_diagnostics
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/cmake/autokart_diagnosticsConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/cmake/autokart_diagnosticsConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_diagnostics/share/autokart_diagnostics/package.xml
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/ament_index/resource_index/package_run_dependencies/autokart_localization
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/ament_index/resource_index/parent_prefix_path/autokart_localization
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/package.dsv
+--- stderr: autokart_diagnostics
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_diagnostics [1.94s]
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/ament_index/resource_index/packages/autokart_localization
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/cmake/autokart_localizationConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/cmake/autokart_localizationConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_localization/share/autokart_localization/package.xml
+--- stderr: autokart_localization
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_localization [1.96s]
+-- Found ament_cmake_ros: 0.10.1 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+-- Found PythonExtra: .so  
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_msgs
+[  1%] Generating C code for ROS interfaces
+[  2%] Generating Rust code for ROS interfaces
+[  2%] Generating C++ code for ROS interfaces
+[  2%] Built target ament_cmake_python_copy_autokart_msgs
+running egg_info
+creating autokart_msgs.egg-info
+writing autokart_msgs.egg-info/PKG-INFO
+writing dependency_links to autokart_msgs.egg-info/dependency_links.txt
+writing top-level names to autokart_msgs.egg-info/top_level.txt
+writing manifest file 'autokart_msgs.egg-info/SOURCES.txt'
+reading manifest file 'autokart_msgs.egg-info/SOURCES.txt'
+writing manifest file 'autokart_msgs.egg-info/SOURCES.txt'
+[  2%] Built target ament_cmake_python_build_autokart_msgs_egg
+[  2%] Built target autokart_msgs__rs
+[  3%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/motion_command__functions.c.o
+[  3%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/vehicle_state__functions.c.o
+[  4%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/wheel_state__functions.c.o
+[  5%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/wheel_states__functions.c.o
+[  6%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/vcu_state__functions.c.o
+[  6%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/safety_envelope__functions.c.o
+[  7%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/cone__functions.c.o
+[  8%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/actuator_feedback__functions.c.o
+[  9%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__functions.c.o
+[  9%] Built target autokart_msgs__cpp
+[ 10%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/cone_array__functions.c.o
+[ 10%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/gazebo_follower_state__functions.c.o
+[ 11%] Generating C++ type support for eProsima Fast-RTPS
+[ 12%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/sensor_delivery_metadata__functions.c.o
+[ 13%] Generating C++ type support dispatch for ROS interfaces
+[ 14%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/mission_debug__functions.c.o
+[ 15%] Generating C++ introspection for ROS interfaces
+[ 16%] Linking C shared library libautokart_msgs__rosidl_generator_c.so
+[ 16%] Built target autokart_msgs__rosidl_generator_c
+[ 18%] Generating C type support dispatch for ROS interfaces
+[ 18%] Generating C introspection for ROS interfaces
+[ 19%] Generating C type support for eProsima Fast-RTPS
+[ 19%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/vehicle_state__type_support.cpp.o
+[ 19%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/vcu_state__type_support.cpp.o
+[ 20%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/wheel_state__type_support.cpp.o
+[ 22%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/actuator_feedback__type_support.cpp.o
+[ 23%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/motion_command__type_support.cpp.o
+[ 21%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/wheel_states__type_support.cpp.o
+[ 24%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/safety_envelope__type_support.cpp.o
+[ 25%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/cone__type_support.cpp.o
+[ 26%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/cone_array__type_support.cpp.o
+[ 27%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/authoritative_vehicle_snapshot__type_support.cpp.o
+[ 28%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/motion_command__type_support.cpp.o
+[ 28%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/vehicle_state__type_support.cpp.o
+[ 28%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/gazebo_follower_state__type_support.cpp.o
+[ 29%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/wheel_state__type_support.cpp.o
+[ 30%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/wheel_states__type_support.cpp.o
+[ 30%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/motion_command__type_support.cpp.o
+[ 31%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/motion_command__type_support.cpp.o
+[ 32%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/vehicle_state__type_support.cpp.o
+[ 33%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/wheel_state__type_support.cpp.o
+[ 34%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/wheel_states__type_support.cpp.o
+[ 34%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/vehicle_state__type_support.cpp.o
+[ 34%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/actuator_feedback__type_support.cpp.o
+[ 35%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/actuator_feedback__type_support.cpp.o
+[ 36%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/vcu_state__type_support.cpp.o
+[ 36%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/motion_command__type_support_c.cpp.o
+[ 37%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/vehicle_state__type_support_c.cpp.o
+[ 38%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/safety_envelope__type_support.cpp.o
+[ 39%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/sensor_delivery_metadata__type_support.cpp.o
+[ 40%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/cone__type_support.cpp.o
+[ 41%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/mission_debug__type_support.cpp.o
+[ 42%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/wheel_state__type_support_c.cpp.o
+[ 43%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/cone_array__type_support.cpp.o
+[ 43%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/motion_command__type_support.c.o
+[ 43%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/authoritative_vehicle_snapshot__type_support.cpp.o
+[ 44%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/vehicle_state__type_support.c.o
+[ 45%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/gazebo_follower_state__type_support.cpp.o
+[ 46%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/wheel_state__type_support.cpp.o
+[ 47%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/wheel_state__type_support.c.o
+[ 48%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/sensor_delivery_metadata__type_support.cpp.o
+[ 49%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/wheel_states__type_support_c.cpp.o
+[ 50%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/wheel_states__type_support.c.o
+[ 50%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/vcu_state__type_support.cpp.o
+[ 51%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/mission_debug__type_support.cpp.o
+[ 51%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/actuator_feedback__type_support.c.o
+[ 51%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_c.so
+[ 51%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/actuator_feedback__type_support_c.cpp.o
+[ 52%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/vcu_state__type_support.c.o
+[ 52%] Built target autokart_msgs__rosidl_typesupport_c
+[ 53%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/safety_envelope__type_support.cpp.o
+[ 54%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/wheel_states__type_support.cpp.o
+[ 55%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/actuator_feedback__type_support.cpp.o
+[ 56%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/safety_envelope__type_support.c.o
+[ 56%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/vcu_state__type_support.cpp.o
+[ 57%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/cone__type_support.cpp.o
+[ 58%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/cone_array__type_support.cpp.o
+[ 59%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_cpp.so
+[ 60%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/cone__type_support.c.o
+[ 61%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/cone_array__type_support.c.o
+[ 61%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.c.o
+[ 61%] Built target autokart_msgs__rosidl_typesupport_cpp
+[ 62%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.cpp.o
+[ 63%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/gazebo_follower_state__type_support.c.o
+[ 63%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/gazebo_follower_state__type_support.cpp.o
+[ 64%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.c.o
+[ 65%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/vcu_state__type_support_c.cpp.o
+[ 66%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.cpp.o
+[ 67%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/safety_envelope__type_support.cpp.o
+[ 68%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/mission_debug__type_support.c.o
+[ 68%] Linking C shared library libautokart_msgs__rosidl_typesupport_introspection_c.so
+[ 68%] Built target autokart_msgs__rosidl_typesupport_introspection_c
+[ 69%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/safety_envelope__type_support_c.cpp.o
+[ 70%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/cone__type_support.cpp.o
+[ 71%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/mission_debug__type_support.cpp.o
+[ 72%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/cone_array__type_support.cpp.o
+[ 73%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/cone__type_support_c.cpp.o
+[ 74%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/authoritative_vehicle_snapshot__type_support.cpp.o
+[ 75%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/cone_array__type_support_c.cpp.o
+[ 75%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/gazebo_follower_state__type_support.cpp.o
+[ 76%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/sensor_delivery_metadata__type_support.cpp.o
+[ 77%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/mission_debug__type_support.cpp.o
+[ 78%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/gazebo_follower_state__type_support_c.cpp.o
+[ 78%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support_c.cpp.o
+[ 79%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support_c.cpp.o
+[ 80%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/mission_debug__type_support_c.cpp.o
+[ 81%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_introspection_cpp.so
+[ 81%] Built target autokart_msgs__rosidl_typesupport_introspection_cpp
+[ 82%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_fastrtps_cpp.so
+[ 82%] Built target autokart_msgs__rosidl_typesupport_fastrtps_cpp
+[ 82%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_fastrtps_c.so
+[ 82%] Built target autokart_msgs__rosidl_typesupport_fastrtps_c
+[ 82%] Built target autokart_msgs
+[ 83%] Generating Python code for ROS interfaces
+[ 83%] Built target autokart_msgs__py
+[ 85%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_wheel_state_s.c.o
+[ 85%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_wheel_states_s.c.o
+[ 86%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_actuator_feedback_s.c.o
+[ 86%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_vcu_state_s.c.o
+[ 88%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_safety_envelope_s.c.o
+[ 88%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_motion_command_s.c.o
+[ 88%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_vehicle_state_s.c.o
+[ 89%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_authoritative_vehicle_snapshot_s.c.o
+[ 90%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_cone_s.c.o
+[ 90%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_gazebo_follower_state_s.c.o
+[ 91%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_sensor_delivery_metadata_s.c.o
+[ 92%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_cone_array_s.c.o
+[ 93%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_mission_debug_s.c.o
+[ 94%] Linking C shared library rosidl_generator_py/autokart_msgs/libautokart_msgs__rosidl_generator_py.so
+[ 94%] Built target autokart_msgs__rosidl_generator_py
+[ 96%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_introspection_c.c.o
+[ 96%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o
+[ 97%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_c.c.o
+[ 99%] Linking C shared library rosidl_generator_py/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[ 99%] Linking C shared library rosidl_generator_py/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[100%] Linking C shared library rosidl_generator_py/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[100%] Built target autokart_msgs__rosidl_typesupport_c__pyext
+[100%] Built target autokart_msgs__rosidl_typesupport_introspection_c__pyext
+[100%] Built target autokart_msgs__rosidl_typesupport_fastrtps_c__pyext
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/ament_index/resource_index/rosidl_interfaces/autokart_msgs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vehicle_state.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_generator_c__visibility_control.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_states.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vcu_state.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/mission_debug.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/sensor_delivery_metadata.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/safety_envelope.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/motion_command.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_state.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/authoritative_vehicle_snapshot.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone_array.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/actuator_feedback.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__functions.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__functions.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__struct.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/gazebo_follower_state.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/environment/library_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/environment/library_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_c.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_c.so" to ""
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_fastrtps_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_c.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vehicle_state.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/safety_envelope.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_states.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/mission_debug.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_state.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/actuator_feedback.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone_array.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/gazebo_follower_state.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vcu_state.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/sensor_delivery_metadata.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/authoritative_vehicle_snapshot.hpp
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__traits.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__struct.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__builder.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/motion_command.hpp
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/dds_fastrtps
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_cpp.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_introspection_c.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_c.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_c.so" to ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_c.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_c.so" to ""
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.cpp
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_cpp.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_cpp.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_cpp.so" to ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/environment/pythonpath.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/environment/pythonpath.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_introspection_c.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/libautokart_msgs__rosidl_generator_py.so
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/__init__.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_c.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_mission_debug_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_state.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_safety_envelope.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/__init__.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_array.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_motion_command_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_actuator_feedback_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_safety_envelope_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vcu_state_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vcu_state.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_sensor_delivery_metadata_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_sensor_delivery_metadata.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_authoritative_vehicle_snapshot.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_gazebo_follower_state_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_motion_command.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_array_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vehicle_state_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_states_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_authoritative_vehicle_snapshot_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_mission_debug.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_gazebo_follower_state.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vehicle_state.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_state_s.c
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_actuator_feedback.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_states.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+Listing '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/__init__.py'...
+Listing '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/__init__.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_actuator_feedback.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_authoritative_vehicle_snapshot.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_array.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_gazebo_follower_state.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_mission_debug.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_motion_command.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_safety_envelope.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_sensor_delivery_metadata.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vcu_state.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vehicle_state.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_state.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_states.py'...
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_py.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_py.so" to ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/rust
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/rust/Cargo.toml
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/rust/build.rs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/rust/src
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/rust/src/msg.rs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/rust/src/msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/rust/src/msg/rmw.rs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/rust/src/lib.rs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/MotionCommand.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/VehicleState.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/WheelState.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/WheelStates.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/ActuatorFeedback.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/VcuState.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/SafetyEnvelope.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/Cone.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/ConeArray.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/AuthoritativeVehicleSnapshot.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/GazeboFollowerState.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/SensorDeliveryMetadata.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/MissionDebug.idl
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/MotionCommand.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/VehicleState.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/WheelState.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/WheelStates.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/ActuatorFeedback.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/VcuState.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/SafetyEnvelope.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/Cone.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/ConeArray.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/AuthoritativeVehicleSnapshot.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/GazeboFollowerState.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/SensorDeliveryMetadata.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/msg/MissionDebug.msg
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/ament_index/resource_index/package_run_dependencies/autokart_msgs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/ament_index/resource_index/parent_prefix_path/autokart_msgs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/ament_index/resource_index/packages/autokart_msgs
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_cExport.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_cExport-noconfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_cppExport.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cExport.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cExport.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cExport-noconfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cppExport.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cppExport.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_pyExport.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_pyExport-noconfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake-extras.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake_aggregate_target-extras.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgsConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgsConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/package.xml
+--- stderr: autokart_msgs
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_msgs [16.2s]
+Starting >>> autokart_perception
+Starting >>> autokart_sim_bridge
+Starting >>> autokart_control
+Starting >>> autokart_gazebo
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- The C compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found ament_cmake_pytest: 1.3.14 (/opt/ros/humble/share/ament_cmake_pytest/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+-- Found autokart_msgs: 0.1.0 (/tmp/autokart_skidpad_live_install/autokart_msgs/share/autokart_msgs/cmake)
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_control
+running egg_info
+-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)
+creating ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info
+writing ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/PKG-INFO
+writing dependency_links to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/dependency_links.txt
+writing entry points to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/entry_points.txt
+writing requirements to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/requires.txt
+writing top-level names to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/top_level.txt
+writing manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/SOURCES.txt'
+-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/config
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/config/controllers.yaml
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/ament_index/resource_index/package_run_dependencies/autokart_control
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/ament_index/resource_index/parent_prefix_path/autokart_control
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/ament_index/resource_index/packages/autokart_control
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/cmake/autokart_controlConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/cmake/autokart_controlConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_control/share/autokart_control/package.xml
+--- stderr: autokart_control
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_control [1.69s]
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+reading manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/SOURCES.txt'
+writing manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /tmp/autokart_skidpad_live_build/autokart_sim_bridge/build/lib/autokart_sim_bridge
+copying autokart_sim_bridge/__init__.py -> /tmp/autokart_skidpad_live_build/autokart_sim_bridge/build/lib/autokart_sim_bridge
+copying autokart_sim_bridge/gazebo_full_lap.py -> /tmp/autokart_skidpad_live_build/autokart_sim_bridge/build/lib/autokart_sim_bridge
+copying autokart_sim_bridge/vcu_bridge.py -> /tmp/autokart_skidpad_live_build/autokart_sim_bridge/build/lib/autokart_sim_bridge
+copying autokart_sim_bridge/gazebo_sync_probe.py -> /tmp/autokart_skidpad_live_build/autokart_sim_bridge/build/lib/autokart_sim_bridge
+running install
+running install_lib
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+creating /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge
+copying /tmp/autokart_skidpad_live_build/autokart_sim_bridge/build/lib/autokart_sim_bridge/__init__.py -> /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge
+copying /tmp/autokart_skidpad_live_build/autokart_sim_bridge/build/lib/autokart_sim_bridge/gazebo_full_lap.py -> /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge
+copying /tmp/autokart_skidpad_live_build/autokart_sim_bridge/build/lib/autokart_sim_bridge/vcu_bridge.py -> /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge
+copying /tmp/autokart_skidpad_live_build/autokart_sim_bridge/build/lib/autokart_sim_bridge/gazebo_sync_probe.py -> /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge/__init__.py to __init__.cpython-310.pyc
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge/gazebo_full_lap.py to gazebo_full_lap.cpython-310.pyc
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge/vcu_bridge.py to vcu_bridge.cpython-310.pyc
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge/gazebo_sync_probe.py to gazebo_sync_probe.cpython-310.pyc
+running install_data
+creating /tmp/autokart_skidpad_live_install/autokart_sim_bridge/share/ament_index/resource_index/packages
+copying resource/autokart_sim_bridge -> /tmp/autokart_skidpad_live_install/autokart_sim_bridge/share/ament_index/resource_index/packages
+copying package.xml -> /tmp/autokart_skidpad_live_install/autokart_sim_bridge/share/autokart_sim_bridge
+running install_egg_info
+Copying ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_sim_bridge/autokart_sim_bridge.egg-info to /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/python3.10/site-packages/autokart_sim_bridge-0.1.0-py3.10.egg-info
+running install_scripts
+-- Found diagnostic_msgs: 4.9.2 (/opt/ros/humble/share/diagnostic_msgs/cmake)
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:16 (ament_add_pytest_test)
+
+
+CMake Warning (dev) at /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake:438 (message):
+  The package name passed to `find_package_handle_standard_args` (PkgConfig)
+  does not match the name of the calling package (gazebo).  This can lead to
+  problems in calling code that expects `find_package` result variables
+  (e.g., `_FOUND`) to follow a certain pattern.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.22/Modules/FindPkgConfig.cmake:99 (find_package_handle_standard_args)
+  /usr/lib/x86_64-linux-gnu/cmake/gazebo/gazebo-config.cmake:72 (include)
+  CMakeLists.txt:11 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") 
+-- Checking for module 'bullet>=2.82'
+--   Found bullet, version 3.05
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_perception
+Installing gazebo_full_lap script to /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/autokart_sim_bridge
+Installing gazebo_sync_probe script to /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/autokart_sim_bridge
+Installing vcu_bridge script to /tmp/autokart_skidpad_live_install/autokart_sim_bridge/lib/autokart_sim_bridge
+writing list of installed files to '/tmp/autokart_skidpad_live_build/autokart_sim_bridge/install.log'
+--- stderr: autokart_sim_bridge
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+---
+Finished <<< autokart_sim_bridge [2.02s]
+Built target ament_cmake_python_copy_autokart_perception_ros
+Built target ament_cmake_python_copy_autokart_perception
+-- Found fcl: /usr/include (found suitable version "0.7.0", minimum required is "0.5.0") 
+-- Found assimp: /usr/include (found version "5.2.0") 
+-- Found DART: /usr/include (Required is at least version "6.6") found components: dart 
+running egg_info
+running egg_info
+creating autokart_perception_ros.egg-info
+writing autokart_perception_ros.egg-info/PKG-INFO
+writing dependency_links to autokart_perception_ros.egg-info/dependency_links.txt
+writing top-level names to autokart_perception_ros.egg-info/top_level.txt
+writing manifest file 'autokart_perception_ros.egg-info/SOURCES.txt'
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found suitable version "1.74.0", minimum required is "1.40.0") found components: thread system filesystem program_options regex iostreams date_time 
+creating autokart_perception.egg-info
+writing autokart_perception.egg-info/PKG-INFO
+writing dependency_links to autokart_perception.egg-info/dependency_links.txt
+writing top-level names to autokart_perception.egg-info/top_level.txt
+writing manifest file 'autokart_perception.egg-info/SOURCES.txt'
+-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found version "3.12.4") 
+-- Looking for ignition-math6 -- found version 6.16.0
+-- Searching for dependencies of ignition-math6
+-- Looking for OGRE...
+-- OGRE_PREFIX_WATCH changed.
+-- Checking for module 'OGRE'
+--   Found OGRE, version 1.9.0
+reading manifest file 'autokart_perception_ros.egg-info/SOURCES.txt'
+writing manifest file 'autokart_perception_ros.egg-info/SOURCES.txt'
+reading manifest file 'autokart_perception.egg-info/SOURCES.txt'
+writing manifest file 'autokart_perception.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_autokart_perception_ros_egg
+-- Found Ogre Ghadamon (1.9.0)
+Built target ament_cmake_python_build_autokart_perception_egg
+-- Found OGRE: optimized;/usr/lib/x86_64-linux-gnu/libOgreMain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreMain.so
+-- Looking for OGRE_Paging...
+-- Found OGRE_Paging: optimized;/usr/lib/x86_64-linux-gnu/libOgrePaging.so;debug;/usr/lib/x86_64-linux-gnu/libOgrePaging.so
+-- Looking for OGRE_Terrain...
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/environment/pythonpath.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/environment/pythonpath.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/boundaries.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/interfaces.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/centerline.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/training.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/lab_api.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/__init__.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/webui.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/mount.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/__main__.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/live_mission.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/evaluation.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/gates.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/application.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/temporal.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/recording.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/calibration.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/depth.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/pipeline.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/safety.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/curvature.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/gabriel.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/detector.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/synthetic.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/types.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/data
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/data/perception.yaml
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/data/coneslayer_manifest.json
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/sdk.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/release_audit.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/shared_core.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/camera.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/visualization.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/live_render.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/geometry.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/dataset_sources.py
+-- Found OGRE_Terrain: optimized;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so;debug;/usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+-- Looking for OGRE_Property...
+-- Found OGRE_Property: optimized;/usr/lib/x86_64-linux-gnu/libOgreProperty.so;debug;/usr/lib/x86_64-linux-gnu/libOgreProperty.so
+-- Looking for OGRE_RTShaderSystem...
+-- Found OGRE_RTShaderSystem: optimized;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so;debug;/usr/lib/x86_64-linux-gnu/libOgreRTShaderSystem.so
+-- Looking for OGRE_Volume...
+-- Found OGRE_Volume: optimized;/usr/lib/x86_64-linux-gnu/libOgreVolume.so;debug;/usr/lib/x86_64-linux-gnu/libOgreVolume.so
+-- Looking for OGRE_Overlay...
+-- Found OGRE_Overlay: optimized;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so;debug;/usr/lib/x86_64-linux-gnu/libOgreOverlay.so
+Listing '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/__init__.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/__main__.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/application.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/boundaries.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/calibration.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/camera.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/centerline.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/curvature.py'...
+Listing '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/data'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/dataset_sources.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/depth.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/detector.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/evaluation.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/gabriel.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/gates.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/geometry.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/interfaces.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/lab_api.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/live_mission.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/live_render.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/mount.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/pipeline.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/recording.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/release_audit.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/safety.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/sdk.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/shared_core.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/synthetic.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/temporal.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/training.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/types.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/visualization.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception/webui.py'...
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros/__init__.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros/node.py
+Listing '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros/__init__.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_perception/local/lib/python3.10/dist-packages/autokart_perception_ros/node.py'...
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/lib/autokart_perception/perception_node
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/launch
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/launch/perception_replay.launch.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/ament_index/resource_index/package_run_dependencies/autokart_perception
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/ament_index/resource_index/parent_prefix_path/autokart_perception
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/ament_index/resource_index/packages/autokart_perception
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/cmake/autokart_perceptionConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/cmake/autokart_perceptionConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_perception/share/autokart_perception/package.xml
+--- stderr: autokart_perception
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:16 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_perception [2.74s]
+Starting >>> autokart_mapping
+Starting >>> autokart_dashboard_gateway
+-- Looking for ignition-math6 -- found version 6.16.0
+-- Looking for ignition-transport8 -- found version 8.2.1
+-- Searching for dependencies of ignition-transport8
+-- Found Protobuf: /usr/lib/x86_64-linux-gnu/libprotobuf.so (found suitable version "3.12.4", minimum required is "3") 
+-- Config-file not installed for ZeroMQ -- checking for pkg-config
+-- Checking for module 'libzmq >= 4'
+--   Found libzmq , version 4.3.4
+-- Found ZeroMQ: TRUE (Required is at least version "4") 
+-- Checking for module 'uuid'
+--   Found uuid, version 2.37.2
+-- Found UUID: TRUE  
+-- Looking for ignition-msgs5 -- found version 5.8.1
+-- Searching for dependencies of ignition-msgs5
+-- Looking for ignition-math6 -- found version 6.16.0
+-- Checking for module 'tinyxml2'
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+--   Found tinyxml2, version 9.0.0
+-- Looking for ignition-msgs5 -- found version 5.8.1
+-- Looking for ignition-common3 -- found version 3.14.0
+-- Searching for dependencies of ignition-common3
+-- Looking for dlfcn.h - found
+-- Detecting CXX compiler ABI info - done
+-- Looking for libdl - found
+-- Found DL: TRUE  
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found tinyobjloader: /usr/lib/x86_64-linux-gnu/cmake/tinyobjloader/tinyobjloader-config.cmake (found version "2.0.0") 
+-- Searching for <ignition-common3> component [graphics]
+-- Looking for ignition-common3-graphics -- found version 3.14.0
+-- Searching for dependencies of ignition-common3-graphics
+-- Looking for ignition-math6 -- found version 6.16.0
+-- Looking for ignition-fuel_tools4 -- found version 4.4.0
+-- Searching for dependencies of ignition-fuel_tools4
+-- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.81.0")  
+-- Checking for module 'jsoncpp'
+--   Found jsoncpp, version 1.9.5
+-- Found JSONCPP: TRUE  
+-- Checking for module 'libzip'
+--   Found libzip, version 1.7.3
+-- Found ZIP: TRUE  
+-- Looking for ignition-common3 -- found version 3.14.0
+-- Looking for ignition-math6 -- found version 6.16.0
+-- Looking for ignition-msgs5 -- found version 5.8.1
+-- Found gazebo_ros: 3.9.0 (/opt/ros/humble/share/gazebo_ros/cmake)
+-- Found rmw_implementation_cmake: 6.1.4 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found Threads: TRUE  
+-- Gazebo version: 11.10
+-- Checking for module 'tbb'
+--   Found tbb, version 2021.5.0
+-- Found ament_cmake_pytest: 1.3.14 (/opt/ros/humble/share/ament_cmake_pytest/cmake)
+-- Found nav_msgs: 4.9.2 (/opt/ros/humble/share/nav_msgs/cmake)
+-- Found sensor_msgs: 4.9.2 (/opt/ros/humble/share/sensor_msgs/cmake)
+-- Found tf2_ros: 0.25.23 (/opt/ros/humble/share/tf2_ros/cmake)
+-- Found ament_cmake_pytest: 1.3.14 (/opt/ros/humble/share/ament_cmake_pytest/cmake)
+running egg_info
+creating ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info
+writing ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/PKG-INFO
+writing dependency_links to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/dependency_links.txt
+writing entry points to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/entry_points.txt
+writing requirements to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/requires.txt
+writing top-level names to ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/top_level.txt
+writing manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+reading manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+writing manifest file '../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/core.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/camera_feed.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/__init__.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+copying autokart_dashboard_gateway/gateway.py -> /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway
+running install
+running install_lib
+creating /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway
+copying /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway/core.py -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway
+copying /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway/camera_feed.py -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway
+copying /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway/__init__.py -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway
+copying /tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway/gateway.py -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway/core.py to core.cpython-310.pyc
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway/camera_feed.py to camera_feed.cpython-310.pyc
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway/__init__.py to __init__.cpython-310.pyc
+byte-compiling /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway/gateway.py to gateway.cpython-310.pyc
+running install_data
+creating /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/share/ament_index/resource_index/packages
+copying resource/autokart_dashboard_gateway -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/share/ament_index/resource_index/packages
+copying package.xml -> /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/share/autokart_dashboard_gateway
+running install_egg_info
+Copying ../../../../../../../../tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info to /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway-0.1.0-py3.10.egg-info
+running install_scripts
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_mapping
+Installing dashboard_gateway script to /tmp/autokart_skidpad_live_install/autokart_dashboard_gateway/lib/autokart_dashboard_gateway
+writing list of installed files to '/tmp/autokart_skidpad_live_build/autokart_dashboard_gateway/install.log'
+Built target ament_cmake_python_copy_autokart_mapping
+Finished <<< autokart_dashboard_gateway [1.91s]
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:48 (ament_add_pytest_test)
+
+
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_gazebo
+running egg_info
+creating autokart_mapping.egg-info
+writing autokart_mapping.egg-info/PKG-INFO
+writing dependency_links to autokart_mapping.egg-info/dependency_links.txt
+writing top-level names to autokart_mapping.egg-info/top_level.txt
+writing manifest file 'autokart_mapping.egg-info/SOURCES.txt'
+[ 25%] Building CXX object CMakeFiles/autokart_gazebo_follower.dir/src/gazebo_follower_plugin.cpp.o
+[ 50%] Building CXX object CMakeFiles/autokart_gazebo_sensor_delivery.dir/src/gazebo_sensor_delivery_plugin.cpp.o
+reading manifest file 'autokart_mapping.egg-info/SOURCES.txt'
+writing manifest file 'autokart_mapping.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_autokart_mapping_egg
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/pythonpath.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/pythonpath.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping/__init__.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping/node.py
+Listing '/tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping/__init__.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_mapping/local/lib/python3.10/dist-packages/autokart_mapping/node.py'...
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/lib/autokart_mapping/mapping_node
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/ament_index/resource_index/package_run_dependencies/autokart_mapping
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/ament_index/resource_index/parent_prefix_path/autokart_mapping
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/ament_index/resource_index/packages/autokart_mapping
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/cmake/autokart_mappingConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/cmake/autokart_mappingConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_mapping/share/autokart_mapping/package.xml
+--- stderr: autokart_mapping
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_mapping [2.52s]
+Starting >>> autokart_planner
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found ament_cmake_pytest: 1.3.14 (/opt/ros/humble/share/ament_cmake_pytest/cmake)
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_planner
+Built target ament_cmake_python_copy_autokart_planner
+running egg_info
+creating autokart_planner.egg-info
+writing autokart_planner.egg-info/PKG-INFO
+writing dependency_links to autokart_planner.egg-info/dependency_links.txt
+writing top-level names to autokart_planner.egg-info/top_level.txt
+writing manifest file 'autokart_planner.egg-info/SOURCES.txt'
+reading manifest file 'autokart_planner.egg-info/SOURCES.txt'
+writing manifest file 'autokart_planner.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_autokart_planner_egg
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/pythonpath.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/pythonpath.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/__init__.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/mission.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/node.py
+Listing '/tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/__init__.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/mission.py'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_planner/local/lib/python3.10/dist-packages/autokart_planner/node.py'...
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/lib/autokart_planner/planner_node
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/ament_index/resource_index/package_run_dependencies/autokart_planner
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/ament_index/resource_index/parent_prefix_path/autokart_planner
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/ament_index/resource_index/packages/autokart_planner
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/cmake/autokart_plannerConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/cmake/autokart_plannerConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_planner/share/autokart_planner/package.xml
+--- stderr: autokart_planner
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_planner [2.65s]
+Starting >>> autokart_bringup
+Starting >>> autokart_controller
+-- The C compiler identification is GNU 11.4.0
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting CXX compiler ABI info - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_bringup
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/gazebo_sim.launch.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/cone_track.launch.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/fast_sim.launch.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/cone_track.launch.cpython-310.pyc
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/full_stack.launch.cpython-310.pyc
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/skidpad.launch.cpython-310.pyc
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/gazebo_sim.launch.cpython-310.pyc
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/__pycache__/fast_sim.launch.cpython-310.pyc
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/skidpad.launch.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/full_stack.launch.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/launch/rc03_rc05_diagnostics.launch.py
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/config
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/config/topics.yaml
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/ament_index/resource_index/package_run_dependencies/autokart_bringup
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/ament_index/resource_index/parent_prefix_path/autokart_bringup
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/ament_index/resource_index/packages/autokart_bringup
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/cmake/autokart_bringupConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/cmake/autokart_bringupConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_bringup/share/autokart_bringup/package.xml
+Finished <<< autokart_bringup [1.22s]
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/autokart_skidpad_live_build/autokart_controller
+Built target ament_cmake_python_copy_autokart_controller
+running egg_info
+creating autokart_controller.egg-info
+writing autokart_controller.egg-info/PKG-INFO
+writing dependency_links to autokart_controller.egg-info/dependency_links.txt
+writing top-level names to autokart_controller.egg-info/top_level.txt
+writing manifest file 'autokart_controller.egg-info/SOURCES.txt'
+reading manifest file 'autokart_controller.egg-info/SOURCES.txt'
+writing manifest file 'autokart_controller.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_autokart_controller_egg
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/environment/pythonpath.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/environment/pythonpath.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller/__init__.py
+Listing '/tmp/autokart_skidpad_live_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller'...
+Compiling '/tmp/autokart_skidpad_live_install/autokart_controller/local/lib/python3.10/dist-packages/autokart_controller/__init__.py'...
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/ament_index/resource_index/package_run_dependencies/autokart_controller
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/ament_index/resource_index/parent_prefix_path/autokart_controller
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/ament_index/resource_index/packages/autokart_controller
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/cmake/autokart_controllerConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/cmake/autokart_controllerConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_controller/share/autokart_controller/package.xml
+Finished <<< autokart_controller [1.83s]
+[ 75%] Linking CXX shared library libautokart_gazebo_follower.so
+[ 75%] Built target autokart_gazebo_follower
+[100%] Linking CXX shared library libautokart_gazebo_sensor_delivery.so
+[100%] Built target autokart_gazebo_sensor_delivery
+[Processing: autokart_gazebo]
+-- Install configuration: ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/lib/libautokart_gazebo_follower.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_gazebo/lib/libautokart_gazebo_follower.so" to ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/lib/libautokart_gazebo_sensor_delivery.so
+-- Set runtime path of "/tmp/autokart_skidpad_live_install/autokart_gazebo/lib/libautokart_gazebo_sensor_delivery.so" to ""
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/worlds
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/worlds/README.md
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/models
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/models/README.md
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/config
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/config/bridge.yaml
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/ament_index/resource_index/package_run_dependencies/autokart_gazebo
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/ament_index/resource_index/parent_prefix_path/autokart_gazebo
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/environment/ament_prefix_path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/environment/ament_prefix_path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/environment/path.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/environment/path.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/local_setup.bash
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/local_setup.sh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/local_setup.zsh
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/local_setup.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/package.dsv
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/ament_index/resource_index/packages/autokart_gazebo
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/cmake/autokart_gazeboConfig.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/cmake/autokart_gazeboConfig-version.cmake
+-- Installing: /tmp/autokart_skidpad_live_install/autokart_gazebo/share/autokart_gazebo/package.xml
+--- stderr: autokart_gazebo
+CMake Warning (dev) at /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake:438 (message):
+  The package name passed to `find_package_handle_standard_args` (PkgConfig)
+  does not match the name of the calling package (gazebo).  This can lead to
+  problems in calling code that expects `find_package` result variables
+  (e.g., `_FOUND`) to follow a certain pattern.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.22/Modules/FindPkgConfig.cmake:99 (find_package_handle_standard_args)
+  /usr/lib/x86_64-linux-gnu/cmake/gazebo/gazebo-config.cmake:72 (include)
+  CMakeLists.txt:11 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:48 (ament_add_pytest_test)
+
+
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CATKIN_INSTALL_INTO_PREFIX_ROOT
+
+
+---
+Finished <<< autokart_gazebo [40.5s]
+
+Summary: 16 packages finished [56.9s]
+  13 packages had stderr output: autokart_control autokart_description autokart_diagnostics autokart_gazebo autokart_localization autokart_mapping autokart_msgs autokart_perception autokart_planner autokart_planning autokart_safety_bridge autokart_scenarios autokart_sim_bridge

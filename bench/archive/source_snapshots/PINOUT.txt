@@ -1,0 +1,5 @@
+SOURCE SNAPSHOT PINOUT NOTICE
+==============================
+
+The ZIP contains historical wiring notes and code with older assignments. Use
+bench/PINOUT.txt for the current active wiring map.

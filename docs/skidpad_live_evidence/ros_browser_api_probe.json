@@ -1,0 +1,46 @@
+{
+  "source": "SIMULATED",
+  "camera_samples": 25,
+  "fps": {
+    "count": 25,
+    "mean": 4.366382636204328,
+    "min": 4.324788189191538,
+    "max": 4.451321704824789
+  },
+  "frame_age_ms": {
+    "count": 25,
+    "mean": 101.5683192005963,
+    "min": 11.155902000609785,
+    "max": 218.48124700045446
+  },
+  "capture_to_gateway_ms": {
+    "count": 25,
+    "mean": 230.19479784,
+    "min": 217.060534,
+    "max": 248.711234
+  },
+  "processing_ms": {
+    "count": 25,
+    "mean": 6.284427038626745,
+    "min": 4.969731999153737,
+    "max": 7.777968996379059
+  },
+  "depth_always_unqualified": true,
+  "observed_frames": 230,
+  "latest_observed": {
+    "sequence": 230,
+    "cone_count": 6,
+    "tracked_count": 0,
+    "delaunay_edges": 9,
+    "gabriel_edges": 9,
+    "gates": 3,
+    "vehicle_authorized": false
+  },
+  "status": {
+    "source": "SIMULATION",
+    "odometry": "STALE",
+    "mapping": "CURRENT",
+    "planning": "CURRENT",
+    "vehicle_authorized": false
+  }
+}

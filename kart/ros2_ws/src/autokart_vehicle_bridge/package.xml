@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>autokart_vehicle_bridge</name>
+  <version>0.1.0</version>
+  <description>Real USB-serial bridge between ROS 2 and vcu_firmware/ (ESP32-S3). Single owner of the VCU
+    command link and single writer of CMD/ARM/DIS/RST. NO-GO: not run against hardware yet.</description>
+  <maintainer email="simulation@example.invalid">AutoKart</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>autokart_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>builtin_interfaces</exec_depend>
+  <exec_depend>python3-serial</exec_depend>
+  <test_depend>python3-pytest</test_depend>
+  <export><build_type>ament_python</build_type></export>
+</package>

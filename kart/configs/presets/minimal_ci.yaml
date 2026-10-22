@@ -1,0 +1,6 @@
+name: minimal_ci
+mode: engineering
+simulation: {physics_backend: internal, gazebo_role: disabled, fidelity_tier: 0}
+features: {sensor_suite: none, vcu_enabled: true, independent_safety_enabled: true, rendering_enabled: false, ros_enabled: false, dashboard_enabled: false, real_actuator_outputs_enabled: false}
+expected_performance: "Very high simulation rate; deterministic unit and contract tests."
+dependencies: [python3, pyyaml, pydantic]

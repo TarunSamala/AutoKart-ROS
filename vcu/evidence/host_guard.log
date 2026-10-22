@@ -1,0 +1,5 @@
+make: Entering directory '/home/mark1/Desktop/autonomous_kart/vcu'
+cc -std=c11 -O2 -Wall -Wextra -Werror -pedantic -I. guard.c tests/test_guard.c -lm -o tests/test_guard
+./tests/test_guard
+VCU guard: adversarial host checks passed
+make: Leaving directory '/home/mark1/Desktop/autonomous_kart/vcu'

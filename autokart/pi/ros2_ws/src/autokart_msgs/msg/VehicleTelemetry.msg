@@ -1,0 +1,21 @@
+std_msgs/Header header
+uint8 state                         # 0 SAFE, 1 ARMED, 2 FAULT
+string state_name
+uint32 fault
+bool estop_ok
+bool steer_pwm_ok
+bool brake_pwm_ok
+bool axle_motion_seen
+bool dac_ok
+bool en
+bool brk
+float32 dac_v
+int32 axle_counts
+float32 speed_mps
+float32 steer_deg
+bool steer_valid
+float32 brake_deg
+bool brake_valid
+float32 link_age_ms
+string fw_version
+bool protocol_ok

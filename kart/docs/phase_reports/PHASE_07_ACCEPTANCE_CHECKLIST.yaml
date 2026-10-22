@@ -1,0 +1,597 @@
+schema_version: 2
+phase: 7
+generated_date: 2026-07-29
+status_vocabulary: [PASS, FAIL, NOT_EXECUTED_EXTERNAL_DEPENDENCY, BLOCKED_BY_SOFTWARE, BLOCKED_BY_HARDWARE, PARTIAL]
+evidence_policy: PASS requires an executed automated test; scenario names are deterministic run IDs.
+
+mandatory_software:
+  - id: VCU-ROUTING
+    requirement: VCU outputs physically command steering, brake, and motor models in VCU mode.
+    implementation: {files: [kart_sim/scenario.py, kart_sim/vcu.py, kart_sim/dynamic_kart.py]}
+    tests: {names: [test_vcu_scenario_routes_outputs_and_timeout_brakes], commands: ["python3 -m pytest tests/integration/test_vcu_scenario.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_command_timeout], assertions: [VCU state and final command recorded, hydraulic pressure physically rises]}
+    blocker: null
+  - id: VCU-BYPASS
+    requirement: Direct actuator writes and autonomous direct_test mode are rejected.
+    implementation: {files: [kart_sim/scenario.py]}
+    tests: {names: [test_vcu_mode_rejects_direct_actuator_override_and_autonomy_rejects_direct_mode], commands: ["python3 -m pytest tests/integration/test_vcu_bypass_prevention.py -q"]}
+    status: PASS
+    evidence: {run_ids: [bypass_attempt], assertions: [direct write rejected, autonomous direct mode rejected]}
+    blocker: null
+  - id: VCU-SCHEDULER
+    requirement: VCU execution is deterministic, periodic, and independently overridden at physics rate.
+    implementation: {files: [kart_sim/scenario.py, kart_sim/scheduler.py]}
+    tests: {names: [test_scheduler_is_fixed_step_and_deterministic, test_vcu_freeze_and_physical_estop_override_actuators], commands: ["./scripts/test.sh"]}
+    status: PASS
+    evidence: {run_ids: [vcu_task_freeze], assertions: [configured VCU sample-and-hold, physics-rate independent override]}
+    blocker: null
+  - id: VCU-STATE-GUARDS
+    requirement: Autonomous entry requires every explicit guard and invalid transitions are rejected.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_autonomous_entry_requires_every_explicit_guard_and_direct_transition_is_rejected], commands: ["python3 -m pytest tests/unit/test_vcu_state_guards.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_state_guards], assertions: [each guard independently rejected, direct READY-to-AUTONOMOUS transition rejected]}
+    blocker: null
+  - id: VCU-DEGRADED-SERVICE
+    requirement: Degraded and service states cannot create unrestricted propulsion authority.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_service_and_degraded_states_do_not_create_propulsion_authority], commands: ["python3 -m pytest tests/unit/test_vcu_state_guards.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_service_degraded], assertions: [service timeout, no autonomous entry, degraded speed limit]}
+    blocker: null
+  - id: CMD-INTEGRITY
+    requirement: CRC-16 protected fields, authorization, finiteness, and timestamps are validated.
+    implementation: {files: [kart_sim/communication.py, kart_sim/vcu.py]}
+    tests: {names: [test_crc16_ccitt_vector_and_motion_command_field_protection, test_crc_authorization_future_numeric_duplicate_and_stale_reject_without_drive], commands: ["python3 -m pytest tests/unit/test_communication_health_diagnostics.py tests/unit/test_vcu_command_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_crc_command], assertions: [CCITT vector 0x29B1, changed protected field changes CRC, invalid command has no drive]}
+    blocker: null
+  - id: CMD-SEQUENCE
+    requirement: Duplicate, reversed, excessive-gap, and valid wraparound sequence behavior is deterministic.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_sequence_wrap_is_accepted_but_reverse_and_large_gap_are_rejected], commands: ["python3 -m pytest tests/unit/test_vcu_command_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_sequence], assertions: [255-to-0 accepted, reverse rejected, excessive gap rejected]}
+    blocker: null
+  - id: CMD-TIMEOUT
+    requirement: A stale command removes propulsion and physically initiates controlled braking.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_vcu_scenario_routes_outputs_and_timeout_brakes], commands: ["python3 -m pytest tests/integration/test_vcu_scenario.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_command_timeout], assertions: [COMM-STALE, drive zero, controlled stop, pressure rise]}
+    blocker: null
+  - id: INDEPENDENT-OVERRIDE
+    requirement: Independent safety overrides a frozen VCU and latches isolation and brake fallback.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_vcu_freeze_and_physical_estop_override_actuators, test_independent_safety_task_freeze_and_estop_with_stuck_torque_latch_physical_override], commands: ["python3 -m pytest tests/integration/test_vcu_scenario.py tests/integration/test_phase7_estop_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_task_freeze, vcu_safety_task_freeze], assertions: [motor disabled, contactor opening requested, fallback brake pressure rises, independent state latched]}
+    blocker: null
+
+  - id: CS-NOMINAL
+    requirement: Nominal controlled stop reaches a measured hold and SAFE.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_nominal_controlled_stop_reaches_measured_hold_and_safe], commands: ["python3 -m pytest tests/integration/test_controlled_stop_scenarios.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_controlled_stop_nominal], assertions: [torque zero, current low, pressure hold, vehicle and wheels stopped, COMPLETE then SAFE]}
+    blocker: null
+  - id: CS-COMMAND-TIMEOUT
+    requirement: Command timeout physically stops the kart.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_vcu_scenario_routes_outputs_and_timeout_brakes], commands: ["python3 -m pytest tests/integration/test_vcu_scenario.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_command_timeout], assertions: [stale rejected, drive zero, brake pressure rises]}
+    blocker: null
+  - id: CS-CORNER
+    requirement: Corner stop holds achieved steering without abrupt neutralization and physically stops.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_controlled_stop_in_corner_holds_achieved_steering_then_stops], commands: ["python3 -m pytest tests/integration/test_controlled_stop_scenarios.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_controlled_stop_corner], assertions: [bounded steering step, no false steering DTC, drive zero, SAFE after measured stop]}
+    blocker: null
+  - id: CS-WET
+    requirement: Wet surface lengthens stopping and lowers the envelope without false brake-hardware diagnosis.
+    implementation: {files: [kart_sim/four_wheel.py, kart_sim/scenario.py, kart_sim/vcu.py]}
+    tests: {names: [test_wet_surface_changes_physics_and_safety_envelope_without_brake_fault], commands: ["python3 -m pytest tests/integration/test_phase7_estop_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_dry_surface_stop, vcu_wet_surface_stop], assertions: [wet limit lower, wet final distance longer, no BRAKE DTC]}
+    blocker: null
+  - id: CS-REDUCED-BRAKE
+    requirement: Reduced brake capability is detected and speed or stop state is escalated.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_brake_leak_fade_and_pressure_sensor_are_distinguished], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_brake_partial_cable, vcu_brake_fade], assertions: [reduced pressure or torque, BRAKE-005 or BRAKE-004, degraded speed <= 2 mps or emergency]}
+    blocker: null
+  - id: CS-FALSE-ZERO
+    requirement: One false-zero wheel signal cannot declare a moving vehicle stopped.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_stop_completion_requires_redundant_fresh_motion_torque_current_and_hold], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_stop_feedback], assertions: [one nonzero valid wheel prevents completion]}
+    blocker: null
+  - id: CS-ALL-SPEED-SENSORS-FROZEN
+    requirement: All false-zero wheel signals cannot override independent motion evidence.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_false_zero_wheels_cannot_declare_stop_while_vehicle_moves], commands: ["python3 -m pytest tests/integration/test_controlled_stop_scenarios.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_false_zero_stop], assertions: [SAFE appears only after independent vehicle estimate is below threshold]}
+    blocker: null
+  - id: CS-ROLLING-RESTART
+    requirement: Motion after initial stop revokes hold and renews braking.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_rolling_restart_revokes_hold_and_stop_timeout_fails], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_rolling_restart], assertions: [HOLD returns to DECELERATE, rolling restart counter increments]}
+    blocker: null
+  - id: CS-TIMEOUT
+    requirement: Stop timeout enters FAILED and escalates physically.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_controlled_stop_timeout_escalates_with_physical_brake_failure], commands: ["python3 -m pytest tests/integration/test_controlled_stop_scenarios.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_stop_timeout], assertions: [CONTROLLED_STOP_FAILED, EMERGENCY_STOP, motor disable, contactor open, emergency brake]}
+    blocker: null
+  - id: CS-GRADE-HOLD
+    requirement: Brake hold prevents rollback on the represented grade.
+    implementation: {files: [kart_sim/four_wheel.py, kart_sim/scenario.py]}
+    tests: {names: [test_remote_estop_split_friction_and_grade_hold], commands: ["python3 -m pytest tests/integration/test_phase7_estop_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_grade_hold], assertions: [SAFE, speed below threshold, pressure above hold threshold]}
+    blocker: null
+  - id: CS-TORQUE-PERSISTENCE
+    requirement: Positive actual motor torque prevents successful stop and causes emergency isolation.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/powertrain.py]}
+    tests: {names: [test_stuck_positive_torque_is_detected_and_physically_isolated], commands: ["python3 -m pytest tests/integration/test_vcu_scenario.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_motor_stuck_torque], assertions: [MOTOR-003, disable, isolation request, emergency brake, torque decay monitored]}
+    blocker: null
+  - id: CS-PRESSURE-MISSING
+    requirement: Missing brake pressure cannot produce false successful stop.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_stop_completion_requires_redundant_fresh_motion_torque_current_and_hold, test_controlled_stop_timeout_escalates_with_physical_brake_failure], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py tests/integration/test_controlled_stop_scenarios.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_stop_feedback, vcu_stop_timeout], assertions: [zero pressure blocks completion, physical failure escalates]}
+    blocker: null
+
+  - id: RG-MOVING
+    requirement: Reset is rejected while vehicle or any valid wheel is moving.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [vehicle_moving and wheel_motion_or_invalid reasons]}
+    blocker: null
+  - id: RG-ESTOP
+    requirement: Reset is rejected while physical or remote E-stop remains active.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason, test_independent_safety_latch_has_separate_guarded_reset], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [both E-stop reasons, independent latch reset requires resolved source]}
+    blocker: null
+  - id: RG-TORQUE
+    requirement: Reset is rejected while torque or excessive motor current persists.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [motor_torque_present, motor_current_present]}
+    blocker: null
+  - id: RG-CONTACTOR
+    requirement: Reset is rejected for inconsistent contactor isolation feedback.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [contactor_feedback_inconsistent]}
+    blocker: null
+  - id: RG-STEERING
+    requirement: Reset is rejected for invalid or disagreeing steering feedback.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [steering_feedback_invalid, steering_disagreement]}
+    blocker: null
+  - id: RG-BRAKE
+    requirement: Reset is rejected for invalid brake feedback or missing hold.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [brake_feedback_invalid, brake_hold_missing]}
+    blocker: null
+  - id: RG-INDEPENDENT-SAFETY
+    requirement: Reset is rejected until independent safety and watchdog are healthy.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason, test_independent_safety_latch_has_separate_guarded_reset], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [independent_safety_unhealthy, watchdog_unhealthy, separate latch guards]}
+    blocker: null
+  - id: RG-AUTHORIZATION
+    requirement: Unauthorized reset source is rejected.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [unauthorized reason]}
+    blocker: null
+  - id: RG-STALE
+    requirement: Stale or future reset request is rejected.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [reset_request_stale_or_future]}
+    blocker: null
+  - id: RG-SELF-TEST
+    requirement: Accepted critical reset enters SELF_TEST and self-test failure returns to lockout.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_valid_reset_requires_self_test_safe_ready_and_never_reuses_old_command], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_path], assertions: [SELF_TEST entered, failed health produces FAULT_LOCKOUT]}
+    blocker: null
+  - id: RG-VALID
+    requirement: Repaired, stopped, authorized reset follows SELF_TEST to SAFE to READY.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_valid_reset_requires_self_test_safe_ready_and_never_reuses_old_command], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_path], assertions: [authorized reset, SELF_TEST, SAFE, READY]}
+    blocker: null
+  - id: RG-NO-AUTO-RESTART
+    requirement: Reset clears old sequence state and cannot directly return to autonomous operation.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_valid_reset_requires_self_test_safe_ready_and_never_reuses_old_command], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_path], assertions: [last sequence cleared, invalid direct autonomous transition, fresh request required]}
+    blocker: null
+  - id: RG-POWER-THERMAL-REPAIR
+    requirement: Invalid power, excessive thermal state, cooldown, or missing repair acknowledgement blocks reset.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_reset_guard_matrix_reports_each_unsafe_reason], commands: ["python3 -m pytest tests/unit/test_controlled_stop_reset.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_reset_matrix], assertions: [power_invalid, thermal_invalid, cooldown_incomplete, repair_not_acknowledged]}
+    blocker: null
+
+  - id: ST-NOMINAL
+    requirement: Normal dynamic steering response does not falsely trigger a steering fault.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_controlled_stop_in_corner_holds_achieved_steering_then_stops], commands: ["python3 -m pytest tests/integration/test_controlled_stop_scenarios.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_controlled_stop_corner], assertions: [nonzero steering response, no STEER DTC]}
+    blocker: null
+  - id: ST-ACTUATOR-JAM
+    requirement: Actuator jam is distinguished by absent actuator and road-wheel motion and causes a physical stop response.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_steering_jam_feedback_triggers_physical_controlled_stop], commands: ["python3 -m pytest tests/integration/test_vcu_scenario.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_steering_jam], assertions: [STEER-001, drive zero, pressure rise]}
+    blocker: null
+  - id: ST-ROAD-WHEEL-JAM
+    requirement: Road-wheel jam produces linkage-to-wheel disagreement and removes propulsion.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_steering_linkage_runaway_sensor_and_power_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_road_wheel_jam], assertions: [linkage moves while wheel stays fixed, STEER-002, drive zero]}
+    blocker: null
+  - id: ST-LINKAGE-BREAK
+    requirement: Shaft motion without road-linkage motion is detected and causes stopping.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_steering_linkage_runaway_sensor_and_power_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_linkage_break], assertions: [shaft/linkage divergence, STEER-004, drive zero, pressure rise]}
+    blocker: null
+  - id: ST-RUNAWAY
+    requirement: Uncommanded physical steering motion causes emergency response.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_steering_linkage_runaway_sensor_and_power_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_steering_runaway], assertions: [uncommanded wheel motion, STEER-003, EMERGENCY_STOP]}
+    blocker: null
+  - id: ST-SENSORS
+    requirement: Primary freeze, secondary drift, and offset jump cause dual-sensor disagreement response.
+    implementation: {files: [kart_sim/scenario.py, kart_sim/vcu.py]}
+    tests: {names: [test_steering_linkage_runaway_sensor_and_power_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_steering_primary_freeze, vcu_steering_sensor_drift, vcu_steering_offset_jump], assertions: [STEER-002 in each case, physical stop output]}
+    blocker: null
+  - id: ST-POWER
+    requirement: Steering power loss produces absent motion, a DTC, and stopping response.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_steering_linkage_runaway_sensor_and_power_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_steering_power_loss], assertions: [shaft remains fixed, STEER-001]}
+    blocker: null
+  - id: ST-MECHANICAL-LIMIT
+    requirement: Excessive request is bounded at VCU and mechanical limits and diagnosed.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/actuators.py]}
+    tests: {names: [test_excessive_steering_request_is_bounded_by_vcu_and_mechanical_limits, test_steering_mechanical_limits_bound_command_and_physical_motion], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py tests/unit/test_phase4_subsystems.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_steering_mechanical_limit], assertions: [VCU <= 0.6 rad, wheel <= physical limit, STEER-LIMIT-001]}
+    blocker: null
+  - id: ST-HIGH-SPEED
+    requirement: High-speed steering failure invokes the emergency stability policy.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_high_speed_steering_fault_uses_emergency_policy], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_high_speed_steering_jam], assertions: [STEER-001, EMERGENCY_STOP, motor disable, full emergency brake]}
+    blocker: null
+
+  - id: BR-NOMINAL
+    requirement: Healthy brake chain produces actuator motion, pressure, torque, and deceleration without a false transmission DTC.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/dynamic_kart.py]}
+    tests: {names: [test_brake_chain_derives_pressure_and_torque_then_releases], commands: ["python3 -m pytest tests/unit/test_phase4_subsystems.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_brake_chain], assertions: [position, pressure, torque, release]}
+    blocker: null
+  - id: BR-STALL-MISSED-STEPS
+    requirement: Actuator stall and missed steps are distinguished from cable break.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_brake_leak_fade_and_pressure_sensor_are_distinguished, test_stepper_stall_keeps_command_and_actual_position_distinct], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py tests/unit/test_phase4_subsystems.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_brake_stall], assertions: [no actuator travel, missed steps, BRAKE-001 not BRAKE-003]}
+    blocker: null
+  - id: BR-CABLE-BREAK
+    requirement: Complete cable break acts inside the mechanical chain and causes emergency escalation.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_cable_break_is_physical_and_escalates_from_position_pressure_mismatch], commands: ["python3 -m pytest tests/integration/test_vcu_scenario.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_brake_cable_break], assertions: [actuator travels, cable force zero, pressure and torque absent, BRAKE-003, torque zero]}
+    blocker: null
+  - id: BR-PARTIAL-CABLE
+    requirement: Partial force transmission reduces pressure, lengthens stop, and lowers permitted speed.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_brake_leak_fade_and_pressure_sensor_are_distinguished], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_brake_partial_cable, vcu_brake_partial_nominal], assertions: [25 percent tension model, lower pressure, longer distance, BRAKE-005, speed limit <= 2 mps]}
+    blocker: null
+  - id: BR-LEAK
+    requirement: Hydraulic leak is physically represented and produces transmission-chain escalation.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_brake_leak_fade_and_pressure_sensor_are_distinguished], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_hydraulic_leak], assertions: [actuator travels, pressure and torque zero, BRAKE-003]}
+    blocker: null
+  - id: BR-SENSOR-DISTINCTION
+    requirement: Pressure and position sensor failures do not blindly become cable-break or actuator-stall diagnoses.
+    implementation: {files: [kart_sim/scenario.py, kart_sim/vcu.py]}
+    tests: {names: [test_brake_leak_fade_and_pressure_sensor_are_distinguished], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_pressure_sensor_fault, vcu_brake_position_sensor_fault], assertions: [physical pressure or position evidence retained, BRAKE-SENSOR-001 or BRAKE-SENSOR-002, no false chain classification]}
+    blocker: null
+  - id: BR-NO-APPLY-POWER
+    requirement: No-apply and brake power loss cause emergency feedback-chain response.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_brake_leak_fade_and_pressure_sensor_are_distinguished], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_brake_stall, vcu_brake_power_loss], assertions: [no actuator travel, BRAKE-001, stopping capability loss]}
+    blocker: null
+  - id: BR-NO-RELEASE-DRAG
+    requirement: Residual pressure after release inhibits propulsion and locks out.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_brake_leak_fade_and_pressure_sensor_are_distinguished], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_brake_release_failure], assertions: [BRAKE-RELEASE-001, FAULT_LOCKOUT, motor disabled]}
+    blocker: null
+  - id: BR-FADE
+    requirement: Pressure with insufficient brake torque is diagnosed as brake effectiveness loss.
+    implementation: {files: [kart_sim/actuators.py, kart_sim/vcu.py]}
+    tests: {names: [test_brake_leak_fade_and_pressure_sensor_are_distinguished], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_brake_fade], assertions: [high pressure, reduced torque, BRAKE-004, drive zero]}
+    blocker: null
+  - id: BR-SPLIT-FRICTION
+    requirement: Split friction creates yaw without a false brake hardware diagnosis.
+    implementation: {files: [kart_sim/four_wheel.py, kart_sim/scenario.py]}
+    tests: {names: [test_remote_estop_split_friction_and_grade_hold], commands: ["python3 -m pytest tests/integration/test_phase7_estop_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_split_friction_stop], assertions: [nonzero yaw response, drive zero, no BRAKE DTC]}
+    blocker: null
+
+  - id: TR-NOMINAL-REMOVAL
+    requirement: Nominal torque decays after zero request without a false stuck-torque DTC.
+    implementation: {files: [kart_sim/powertrain.py, kart_sim/vcu.py]}
+    tests: {names: [test_nominal_torque_removal_decays_without_false_stuck_torque], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_command_timeout], assertions: [positive torque observed, final requested and actual torque zero, no MOTOR-003]}
+    blocker: null
+  - id: TR-STUCK-TORQUE-001
+    requirement: Uncommanded positive torque after zero request causes isolation and emergency braking.
+    implementation: {files: [kart_sim/powertrain.py, kart_sim/vcu.py]}
+    tests: {names: [test_stuck_positive_torque_is_detected_and_physically_isolated], commands: ["python3 -m pytest tests/integration/test_vcu_scenario.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_motor_stuck_torque], assertions: [physical torque and current, MOTOR-003, disable, contactor open, pressure rise, torque decay]}
+    blocker: null
+  - id: TR-WRONG-SIGN-LOSS
+    requirement: Wrong torque sign and missing torque are diagnosed and change final outputs.
+    implementation: {files: [kart_sim/powertrain.py, kart_sim/vcu.py]}
+    tests: {names: [test_traction_wrong_sign_loss_chain_and_current_bias_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_wrong_torque_sign, vcu_torque_loss], assertions: [MOTOR-004 emergency disable, MOTOR-005 controlled brake]}
+    blocker: null
+  - id: TR-CONTROLLER
+    requirement: Disabled/reset controller produces a no-torque response and controlled stop.
+    implementation: {files: [kart_sim/powertrain.py, kart_sim/vcu.py]}
+    tests: {names: [test_traction_wrong_sign_loss_chain_and_current_bias_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_controller_reset], assertions: [actual torque absent, MOTOR-005, brake response]}
+    blocker: null
+  - id: TR-CURRENT-SENSOR
+    requirement: Current sensor bias alone does not produce a stuck-torque diagnosis.
+    implementation: {files: [kart_sim/scenario.py, kart_sim/vcu.py]}
+    tests: {names: [test_traction_wrong_sign_loss_chain_and_current_bias_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_current_sensor_bias], assertions: [actual torque remains commanded, no MOTOR-003]}
+    blocker: null
+  - id: TR-MOTOR-SPEED
+    requirement: Loss of motor-speed feedback produces controlled degradation/stop.
+    implementation: {files: [kart_sim/scenario.py, kart_sim/vcu.py]}
+    tests: {names: [test_traction_wrong_sign_loss_chain_and_current_bias_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_motor_speed_sensor_loss], assertions: [MOTOR-SENSOR-001, controlled stop]}
+    blocker: null
+  - id: TR-CHAIN
+    requirement: Chain break is detected from motor-to-axle torque mismatch.
+    implementation: {files: [kart_sim/powertrain.py, kart_sim/vcu.py]}
+    tests: {names: [test_traction_wrong_sign_loss_chain_and_current_bias_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_chain_break], assertions: [actual motor torque with zero chain torque, MOTOR-005]}
+    blocker: null
+  - id: TR-THERMAL
+    requirement: Motor and controller overtemperature remove torque and cause safe transition.
+    implementation: {files: [kart_sim/dynamic_kart.py, kart_sim/powertrain.py, kart_sim/vcu.py]}
+    tests: {names: [test_traction_wrong_sign_loss_chain_and_current_bias_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_motor_overtemperature, vcu_controller_overtemperature], assertions: [temperature above shutdown, torque absent, MOTOR-005]}
+    blocker: null
+  - id: TR-UNDERVOLTAGE-BMS
+    requirement: Physical undervoltage/BMS shutdown removes torque and initiates safe response.
+    implementation: {files: [kart_sim/electrical.py, kart_sim/dynamic_kart.py, kart_sim/vcu.py]}
+    tests: {names: [test_traction_wrong_sign_loss_chain_and_current_bias_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_battery_undervoltage, vcu_bms_shutdown], assertions: [low OCV, BMS shutdown, MOTOR-005]}
+    blocker: null
+  - id: TR-WELDED-CONTACTOR
+    requirement: Stuck torque plus welded contactor diagnoses isolation feedback mismatch and locks out.
+    implementation: {files: [kart_sim/electrical.py, kart_sim/vcu.py]}
+    tests: {names: [test_stuck_torque_with_welded_contactor_reports_isolation_failure], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_stuck_torque_welded_contactor], assertions: [MOTOR-003, POWER-004, WELDED feedback, FAULT_LOCKOUT, emergency brake]}
+    blocker: null
+  - id: TR-BRAKE-CONFLICT
+    requirement: Positive propulsion is inhibited when brake remains applied.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_traction_wrong_sign_loss_chain_and_current_bias_campaign], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_brake_propulsion_conflict], assertions: [BRAKE-PROPULSION-CONFLICT, drive zero, motor disabled]}
+    blocker: null
+  - id: TR-WHEEL-SPIN-WET
+    requirement: Wheel spin and wet braking do not conceal observable uncommanded torque.
+    implementation: {files: [kart_sim/four_wheel.py, kart_sim/vcu.py]}
+    tests: {names: [test_stuck_torque_detection_survives_wheel_spin_and_wet_braking], commands: ["python3 -m pytest tests/integration/test_phase7_actuator_campaigns.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_stuck_torque_wheel_spin, vcu_stuck_torque_wet], assertions: [wheel slip present, MOTOR-003 in both, emergency brake, no false brake-chain DTC]}
+    blocker: null
+
+  - id: ESTOP-PHYSICAL
+    requirement: Physical E-stop at rest and in acceleration physically isolates and brakes and remains latched.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_physical_estop_at_rest_is_latched_and_cannot_create_propulsion, test_physical_estop_during_acceleration_and_corner_has_physical_override], commands: ["python3 -m pytest tests/integration/test_phase7_estop_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_physical_estop_at_rest, vcu_physical_estop_acceleration], assertions: [drive zero, motor disabled, contactor open, emergency pressure, latch retained]}
+    blocker: null
+  - id: ESTOP-CORNER
+    requirement: E-stop while cornering holds achieved steering instead of snapping neutral.
+    implementation: {files: [kart_sim/scenario.py]}
+    tests: {names: [test_physical_estop_during_acceleration_and_corner_has_physical_override], commands: ["python3 -m pytest tests/integration/test_phase7_estop_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_physical_estop_corner], assertions: [held measured angle, full emergency brake]}
+    blocker: null
+  - id: ESTOP-REMOTE
+    requirement: Remote/software emergency request has deterministic emergency priority.
+    implementation: {files: [kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_remote_estop_split_friction_and_grade_hold], commands: ["python3 -m pytest tests/integration/test_phase7_estop_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_remote_estop], assertions: [drive zero, full brake, actual torque zero]}
+    blocker: null
+  - id: ESTOP-STUCK-TORQUE
+    requirement: Physical E-stop overrides a physically stuck positive torque fault and monitors torque decay.
+    implementation: {files: [kart_sim/powertrain.py, kart_sim/vcu.py, kart_sim/scenario.py]}
+    tests: {names: [test_independent_safety_task_freeze_and_estop_with_stuck_torque_latch_physical_override], commands: ["python3 -m pytest tests/integration/test_phase7_estop_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_estop_stuck_torque], assertions: [independent isolation and fallback, motor disabled, final torque zero, brake pressure hold, latch]}
+    blocker: null
+  - id: WATCHDOG-WINDOWS
+    requirement: Nominal, too-fast, stuck, deadline, and expired watchdog behavior is distinct.
+    implementation: {files: [kart_sim/watchdog.py]}
+    tests: {names: [test_nominal_too_fast_stuck_deadline_and_expiry_are_distinct], commands: ["python3 -m pytest tests/unit/test_watchdog.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_watchdog], assertions: [each timing failure receives distinct status]}
+    blocker: null
+
+  - id: ENVELOPE-CLEARANCE
+    requirement: Zero/short clear distance directly lowers actual VCU speed permission.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_safety_limit_drops_immediately_recovers_slowly_and_steering_rate_is_limited, test_safety_envelope_responds_to_curvature_latency_uncertainty_and_brake_capability], commands: ["python3 -m pytest tests/unit/test_vcu_command_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_envelope], assertions: [short distance lowers output, exhausted distance produces zero]}
+    blocker: null
+  - id: ENVELOPE-CURVATURE
+    requirement: Curvature lowers permitted speed.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_safety_envelope_responds_to_curvature_latency_uncertainty_and_brake_capability], commands: ["python3 -m pytest tests/unit/test_vcu_command_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_envelope], assertions: [curved limit below straight limit]}
+    blocker: null
+  - id: ENVELOPE-LATENCY-UNCERTAINTY-BRAKE
+    requirement: Latency, localization/position uncertainty, and reduced braking capability lower speed permission.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_safety_envelope_responds_to_curvature_latency_uncertainty_and_brake_capability], commands: ["python3 -m pytest tests/unit/test_vcu_command_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_envelope], assertions: [each adverse input lowers candidate speed]}
+    blocker: null
+  - id: ENVELOPE-HYSTERESIS
+    requirement: Risk reduction is immediate and recovery is rate-limited.
+    implementation: {files: [kart_sim/vcu.py]}
+    tests: {names: [test_safety_limit_drops_immediately_recovers_slowly_and_steering_rate_is_limited], commands: ["python3 -m pytest tests/unit/test_vcu_command_envelope.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_envelope_hysteresis], assertions: [immediate drop, <= 0.5 mps2 recovery]}
+    blocker: null
+  - id: HEALTH-FUNCTIONS
+    requirement: Sensor, localization, and perception health use age, validity, uncertainty, coverage, and redundancy.
+    implementation: {files: [kart_sim/safety_health.py]}
+    tests: {names: [test_function_health_uses_age_quality_and_redundancy, test_autonomous_entry_requires_every_explicit_guard_and_direct_transition_is_rejected], commands: ["python3 -m pytest tests/unit/test_communication_health_diagnostics.py tests/unit/test_vcu_state_guards.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_health], assertions: [valid/degraded/invalid aggregation, stale rejection, localization and perception contract guards]}
+    blocker: null
+  - id: FAULT-MANAGEMENT
+    requirement: Faults retain severity, occurrence, latch, reset, DTC metadata, and bounded observable snapshots.
+    implementation: {files: [kart_sim/fault_manager.py, kart_sim/safety_diagnostics.py, kart_sim/vcu.py]}
+    tests: {names: [test_fault_manager_latches_counts_and_retains_history_after_reset, test_critical_fault_captures_observable_snapshot_and_dtc_metadata], commands: ["python3 -m pytest tests/unit/test_fault_manager.py tests/unit/test_communication_health_diagnostics.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_fault_manager], assertions: [history retained, active latch cleared only on authorization, MOTOR-003 snapshot contains measured torque]}
+    blocker: null
+  - id: CONFIG-SCHEMA
+    requirement: Simulation-only safety configuration rejects unsafe timing, speed, and restart combinations.
+    implementation: {files: [kart_sim/safety_config.py, configs/safety/prototype_safety.yaml]}
+    tests: {names: [test_safety_configuration_validates_and_prohibits_auto_restart], commands: ["python3 -m pytest tests/unit/test_safety_config.py -q"]}
+    status: PASS
+    evidence: {run_ids: [unit_safety_config], assertions: [reference accepted, automatic restart and contradictory limits rejected]}
+    blocker: null
+  - id: SAFETY-INVARIANTS-METRICS
+    requirement: Safety telemetry derives detection/action/torque/brake/stop metrics and contains no positive-drive emergency invariant violation.
+    implementation: {files: [kart_sim/safety_metrics.py, kart_sim/vcu.py]}
+    tests: {names: [test_metrics_capture_detection_action_torque_brake_stop_distance_and_invariants], commands: ["python3 -m pytest tests/integration/test_phase7_safety_metrics.py -q"]}
+    status: PASS
+    evidence: {run_ids: [vcu_controlled_stop_nominal], assertions: [derived timestamps and distance, zero invariant violations]}
+    blocker: null
+  - id: DETERMINISM-REPLAY
+    requirement: Scenario replay and critical campaign outputs are deterministic.
+    implementation: {files: [kart_sim/scenario.py, kart_sim/benchmark.py]}
+    tests: {names: [test_empty_scenario_replays_bit_for_bit, test_critical_campaign_is_deterministic_and_records_oracle_evidence], commands: ["python3 -m pytest tests/integration/test_scenario_replay.py tests/integration/test_fault_benchmark_campaign.py -q"]}
+    status: PASS
+    evidence: {run_ids: [replay_pair, critical_smoke], assertions: [byte-identical telemetry, oracle evidence and no invariant violations]}
+    blocker: null
+
+external_hardware_evidence:
+  - id: HW-PHYSICAL-ESTOP
+    requirement: Validate the independent physical E-stop loop on real hardware.
+    implementation: {files: [docs/REAL_TEST_PLAN.md]}
+    tests: {names: [], commands: ["Execute the approved low-energy E-stop bench procedure in docs/REAL_TEST_PLAN.md"]}
+    status: NOT_EXECUTED_EXTERNAL_DEPENDENCY
+    evidence: {run_ids: [], assertions: []}
+    blocker: Physical kart and independently instrumented E-stop bench are unavailable.
+  - id: HW-ACTUATOR-TIMING
+    requirement: Measure steering, brake, motor-disable, and contactor response timing on hardware.
+    implementation: {files: [docs/REAL_TEST_PLAN.md, docs/ACTUATOR_PLAUSIBILITY.md]}
+    tests: {names: [], commands: ["Execute instrumented steering/brake/traction bench characterization"]}
+    status: NOT_EXECUTED_EXTERNAL_DEPENDENCY
+    evidence: {run_ids: [], assertions: []}
+    blocker: Physical actuators, VCU, contactor, and measurement instrumentation are unavailable.
+  - id: HW-INDEPENDENT-WATCHDOG
+    requirement: Validate that the independent hardware watchdog acts when the real VCU freezes.
+    implementation: {files: [docs/INDEPENDENT_SAFETY_LAYER.md, docs/HIL_SAFETY_PLAN.md]}
+    tests: {names: [], commands: ["Execute watchdog freeze test on an isolated low-energy bench"]}
+    status: NOT_EXECUTED_EXTERNAL_DEPENDENCY
+    evidence: {run_ids: [], assertions: []}
+    blocker: Independent safety hardware is unavailable.
+
+summary:
+  mandatory_software_total: 79
+  mandatory_software_pass: 79
+  mandatory_software_fail: 0
+  mandatory_software_not_executed: 0
+  external_hardware_not_executed: 3

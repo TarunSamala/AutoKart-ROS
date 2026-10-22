@@ -1,0 +1,54 @@
+autokart_bringup	kart/ros2_ws/src/autokart_bringup	(ros.ament_cmake)
+autokart_control	kart/ros2_ws/src/autokart_control	(ros.ament_cmake)
+autokart_controller	kart/ros2_ws/src/autokart_nodes/autokart_controller	(ros.ament_cmake)
+autokart_dashboard_gateway	kart/ros2_ws/src/autokart_dashboard_gateway	(ros.ament_python)
+autokart_description	kart/ros2_ws/src/autokart_description	(ros.ament_cmake)
+autokart_diagnostics	kart/ros2_ws/src/autokart_diagnostics	(ros.ament_cmake)
+autokart_gazebo	kart/ros2_ws/src/autokart_gazebo	(ros.ament_cmake)
+autokart_localization	kart/ros2_ws/src/autokart_localization	(ros.ament_cmake)
+autokart_mapping	kart/ros2_ws/src/autokart_nodes/autokart_mapping	(ros.ament_cmake)
+autokart_msgs	kart/ros2_ws/src/autokart_msgs	(ros.ament_cmake)
+autokart_perception	kart/ros2_ws/src/autokart_nodes/autokart_perception	(ros.ament_cmake)
+autokart_planner	kart/ros2_ws/src/autokart_nodes/autokart_planner	(ros.ament_cmake)
+autokart_planning	kart/ros2_ws/src/autokart_planning	(ros.ament_cmake)
+autokart_safety_bridge	kart/ros2_ws/src/autokart_safety_bridge	(ros.ament_cmake)
+autokart_scenarios	kart/ros2_ws/src/autokart_scenarios	(ros.ament_cmake)
+autokart_sim_bridge	kart/ros2_ws/src/autokart_sim_bridge	(ros.ament_python)
+autokart_bringup
+autokart_control
+autokart_controller
+autokart_dashboard_gateway
+autokart_description
+autokart_diagnostics
+autokart_gazebo
+autokart_localization
+autokart_mapping
+autokart_msgs
+autokart_perception
+autokart_planner
+autokart_planning
+autokart_safety_bridge
+autokart_scenarios
+autokart_sim_bridge
+# Host-received status from the NOOP-only ESP32-S3 bench firmware.
+# This is NOT production vehicle state or actuator feedback.
+builtin_interfaces/Time receipt_time
+	int32 sec
+	uint32 nanosec
+string source
+uint16 protocol_version
+uint64 boot_id
+uint64 vcu_uptime_ms
+uint64 last_accepted_sequence
+bool agent_online
+uint8 controller_state
+uint32 fault_bits
+uint64 last_command_age_ms
+bool has_accepted_command
+bool packet_valid
+bool stale
+string reason
+bool vehicle_authorized
+autokart_diagnostics bench_vcu_status
+b317790e2e6b81240d96c844bfd4289e278c7a9ac4d2dbe4e995af83ef5300c7  kart/ros2_ws/src/autokart_diagnostics/scripts/bench_vcu_status
+b317790e2e6b81240d96c844bfd4289e278c7a9ac4d2dbe4e995af83ef5300c7  /tmp/autokart_vcu_ros_final_install/autokart_diagnostics/lib/autokart_diagnostics/bench_vcu_status

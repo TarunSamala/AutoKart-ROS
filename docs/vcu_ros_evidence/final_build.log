@@ -1,0 +1,106 @@
+Starting >>> autokart_description
+Finished <<< autokart_description [0.78s]
+Starting >>> autokart_localization
+Finished <<< autokart_localization [0.75s]
+Starting >>> autokart_msgs
+Finished <<< autokart_msgs [11.1s]
+Starting >>> autokart_planning
+Finished <<< autokart_planning [0.82s]
+Starting >>> autokart_safety_bridge
+Finished <<< autokart_safety_bridge [0.80s]
+Starting >>> autokart_scenarios
+Finished <<< autokart_scenarios [0.74s]
+Starting >>> autokart_control
+Finished <<< autokart_control [0.79s]
+Starting >>> autokart_diagnostics
+Finished <<< autokart_diagnostics [0.77s]
+Starting >>> autokart_gazebo
+--- stderr: autokart_gazebo
+CMake Warning (dev) at /usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake:438 (message):
+  The package name passed to `find_package_handle_standard_args` (PkgConfig)
+  does not match the name of the calling package (gazebo).  This can lead to
+  problems in calling code that expects `find_package` result variables
+  (e.g., `_FOUND`) to follow a certain pattern.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.22/Modules/FindPkgConfig.cmake:99 (find_package_handle_standard_args)
+  /usr/lib/x86_64-linux-gnu/cmake/gazebo/gazebo-config.cmake:72 (include)
+  CMakeLists.txt:11 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:48 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_gazebo [31.7s]
+Starting >>> autokart_perception
+--- stderr: autokart_perception
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:16 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_perception [1.74s]
+Starting >>> autokart_sim_bridge
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+--- stderr: autokart_sim_bridge
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'test_suite'
+  warnings.warn(msg)
+---
+Finished <<< autokart_sim_bridge [1.23s]
+Starting >>> autokart_dashboard_gateway
+Finished <<< autokart_dashboard_gateway [1.14s]
+Starting >>> autokart_mapping
+--- stderr: autokart_mapping
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_mapping [1.60s]
+Starting >>> autokart_planner
+--- stderr: autokart_planner
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:9 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_planner [1.57s]
+Starting >>> autokart_controller
+--- stderr: autokart_controller
+CMake Warning at /opt/ros/humble/share/ament_cmake_pytest/cmake/ament_add_pytest_test.cmake:79 (message):
+  The Python module 'pytest' was not found, pytests cannot be run.  On Linux,
+  install the 'python3-pytest' package.  On other platforms, install 'pytest'
+  using pip.
+Call Stack (most recent call first):
+  CMakeLists.txt:14 (ament_add_pytest_test)
+
+
+---
+Finished <<< autokart_controller [1.81s]
+Starting >>> autokart_bringup
+Finished <<< autokart_bringup [0.85s]
+
+Summary: 16 packages finished [58.3s]
+  6 packages had stderr output: autokart_controller autokart_gazebo autokart_mapping autokart_perception autokart_planner autokart_sim_bridge

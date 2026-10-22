@@ -1,0 +1,22 @@
+schema_version: 1
+name: jetson_orin_nano_super
+qualification_status: NOT_EXECUTED_EXTERNAL_DEPENDENCY
+cpu: NVIDIA Jetson Orin Nano Super CPU, exact mode MEASUREMENT REQUIRED
+gpu: NVIDIA Ampere, clocks and power mode MEASUREMENT REQUIRED
+ram_gib: 8
+rendering_backend: EGL/offscreen, deployment validation required
+physics_hz: 1000
+gazebo_follower_hz: 100
+ros_executor_threads: 4
+recorder: bounded representative payload evidence
+dashboard: remote or disabled
+sensor_fidelity:
+  rgb: {width: 640, height: 360, rate_hz: 20}
+  depth: {width: 320, height: 180, rate_hz: 15}
+  lidar: {samples: 360, rate_hz: 10}
+  imu: {source: internal, rate_hz: 200}
+performance_gates:
+  minimum_sustained_rtf: MEASUREMENT_REQUIRED
+  maximum_sensor_queue_depth: 4
+  vcu_deadline_misses: 0
+  independent_safety_deadline_misses: 0

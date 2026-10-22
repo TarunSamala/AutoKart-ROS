@@ -1,0 +1,6 @@
+name: vcu_bms_shutdown
+kart_config: karts/prototype_dynamic.yaml
+duration_s: 0.7
+control: {mode: vcu, inject_fault: "battery:bms_shutdown"}
+initial_state: {u_mps: 1.0}
+command: {drive: 0.6, brake: 0.0, steering_rad: 0.0}

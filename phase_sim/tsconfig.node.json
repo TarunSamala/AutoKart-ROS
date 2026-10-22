@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "noEmit": true
+  },
+  "include": [
+    "vite.config.ts",
+    "vite.dashboard.config.ts",
+    "vite.lab.config.ts"
+  ]
+}

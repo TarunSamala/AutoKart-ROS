@@ -1,0 +1,8 @@
+# SIMULATION USE ONLY — NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT.
+name: straight_acceleration
+kart_config: karts/prototype.yaml
+duration_s: 3.0
+command:
+  drive: 0.60
+  brake: 0.0
+  steering_rad: 0.0

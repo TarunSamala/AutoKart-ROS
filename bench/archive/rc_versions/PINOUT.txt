@@ -1,0 +1,9 @@
+ARCHIVED RC PINOUT NOTICE
+=========================
+
+Pin assignments changed across these revisions. In particular, some older BLDC
+comments referenced GPIO13/14/15 while later integrated LoRa builds use those
+pins for radio SPI and use GPIO1/2/7 for BLD EN/BRK/F-R.
+
+The original pinout text files are preserved in this folder. For current wiring
+use bench/PINOUT.txt and the active subsystem PINOUT.txt.

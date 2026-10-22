@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <world name="autokart_cone_track">
+    <gravity>0 0 -9.80665</gravity><physics name="deterministic" type="ode"><max_step_size>.001</max_step_size><real_time_update_rate>1000</real_time_update_rate></physics>
+    <scene><ambient>.46 .48 .50 1</ambient><background>.42 .64 .88 1</background><shadows>true</shadows></scene>
+    <light name="sun" type="directional"><cast_shadows>true</cast_shadows><diffuse>.96 .91 .82 1</diffuse><direction>-.5 .15 -1</direction></light>
+    <model name="ground"><static>true</static><link name="ground"><collision name="ground"><geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry><surface><friction><ode><mu>1</mu><mu2>.95</mu2></ode></friction></surface></collision><visual name="asphalt"><geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry><material><ambient>.11 .11 .12 1</ambient><diffuse>.17 .17 .18 1</diffuse></material></visual></link></model>
+    <model name="grass_infield"><static>true</static><pose>6 10 .008 0 0 0</pose><link name="grass"><visual name="grass"><geometry><cylinder><radius>7</radius><length>.012</length></cylinder></geometry><material><ambient>.06 .28 .04 1</ambient><diffuse>.08 .38 .05 1</diffuse></material></visual></link></model>
+    <model name="timing_line"><static>true</static><pose>0 0 .014 0 0 0</pose><link name="line"><visual name="line"><geometry><box><size>.15 4 .018</size></box></geometry><material><ambient>1 .55 .02 1</ambient></material></visual></link></model>
+    <!-- Cone instances are generated deterministically from configs/tracks/cone_track.yaml. -->
+  </world>
+</sdf>

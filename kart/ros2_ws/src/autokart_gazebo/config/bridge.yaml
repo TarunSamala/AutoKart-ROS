@@ -1,0 +1,14 @@
+# /clock is intentionally absent here. In visual_sensor_follower mode the
+# dedicated follower publishes internal authoritative time; bridging Gazebo
+# clock would create a duplicate time authority.
+- ros_topic_name: /sensors/lidar/scan
+  gz_topic_name: /world/autokart/model/autokart/link/lidar_link/sensor/lidar/scan
+  ros_type_name: sensor_msgs/msg/LaserScan
+  gz_type_name: gz.msgs.LaserScan
+  direction: GZ_TO_ROS
+- ros_topic_name: /sensors/imu
+  gz_topic_name: /world/autokart/model/autokart/link/imu_link/sensor/imu/imu
+  ros_type_name: sensor_msgs/msg/Imu
+  gz_type_name: gz.msgs.IMU
+  direction: GZ_TO_ROS
+# There is intentionally no ROS/Gazebo actuator-command bridge.

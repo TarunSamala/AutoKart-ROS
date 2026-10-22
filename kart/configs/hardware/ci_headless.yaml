@@ -1,0 +1,22 @@
+schema_version: 1
+name: ci_headless
+qualification_status: contract_tests_only
+cpu: CI-provided
+gpu: optional
+ram_gib: 4
+rendering_backend: no rendered sensors unless runner advertises GPU
+physics_hz: 1000
+gazebo_follower_hz: 100
+ros_executor_threads: 2
+recorder: metadata only
+dashboard: disabled
+sensor_fidelity:
+  rgb: {enabled: false, width: 0, height: 0, rate_hz: 0}
+  depth: {enabled: false, width: 0, height: 0, rate_hz: 0}
+  lidar: {enabled: false, samples: 0, rate_hz: 0}
+  imu: {enabled: false, source: internal, rate_hz: 0}
+performance_gates:
+  minimum_sustained_rtf: NOT_APPLICABLE_CONTRACT_ONLY
+  maximum_sensor_queue_depth: 0
+  vcu_deadline_misses: 0
+  independent_safety_deadline_misses: 0
