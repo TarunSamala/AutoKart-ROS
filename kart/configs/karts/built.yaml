@@ -1,0 +1,59 @@
+# SIMULATION USE ONLY — NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT.
+#
+# "built" kart profile: the newly-built kart, measured wheelbase 1.1176 m and
+# front track 1.0668 m. All other measured dimensions are carried over from
+# the "shared" profile pending confirmation (per the task's own note), and all
+# ASSUMED values below the fold are unchanged from "shared" for the same
+# reason. See docs/my_track_spec/RECON.md section 8 for provenance.
+kart:
+  name: built
+  # --- ASSUMED (no physical measurement yet) ---
+  mass_kg: 160.0
+  cg:
+    x_m: 0.0 # ASSUMED at the wheelbase midpoint
+    y_m: 0.0
+    z_m: 0.30 # ASSUMED
+  inertia:
+    yaw_kg_m2: 95.4 # ASSUMED: rectangular-plate approximation, mass*(length^2+width^2)/12
+  # --- MEASURED ---
+  wheelbase_m: 1.1176
+  front_track_m: 1.0668
+  rear_track_m: 1.1811
+  # --- carried over from "shared", unconfirmed for this kart ---
+  length_m: 2.400
+  width_m: 1.181
+  height_m: 1.118
+  ground_clearance_m: 0.381
+  rear_overhang_m: 0.40
+  front_extent_m: 2.00
+  max_road_wheel_angle_rad: 0.3490658504
+  mechanical_max_road_wheel_angle_rad: 0.4363323130
+tires:
+  # --- ASSUMED (no physical measurement yet) ---
+  model: linear_friction_circle
+  radius_m: 0.14
+  width_m: 0.10
+  friction_peak: 1.0
+  cornering_stiffness_n_per_rad: 8500.0
+  longitudinal_stiffness_n: 9000.0
+motor:
+  max_wheel_force_n: 850.0
+brake:
+  max_brake_force_n: 400.0
+actuator_lag:
+  steering:
+    rate_limit_radps: 0.6981317008
+    lag_s: 0.12
+  brake:
+    dead_time_s: 0.15
+    ramp_rate_per_s: 50.0
+environment:
+  rolling_resistance_coefficient: 0.015
+  air_density_kg_per_m3: 1.225
+  drag_coefficient_area_m2: 0.55
+  grade_rad: 0.0
+  surface_friction_scale: 1.0
+simulation:
+  physics_dt_s: 0.001
+  seed: 20260729
+  vehicle_backend: planar_bicycle

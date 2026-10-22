@@ -12,7 +12,14 @@ kart:
     z_m: 0.30
   inertia:
     yaw_kg_m2: 35.0
+  length_m: 1.9
+  width_m: 0.95
+  height_m: 0.6
+  ground_clearance_m: 0.05
+  rear_overhang_m: 0.4
+  front_extent_m: 1.5
   max_road_wheel_angle_rad: 0.5585053606 # 32 degrees; configuration boundary expressed in radians
+  mechanical_max_road_wheel_angle_rad: 0.5585053606 # no separate mechanical end-stop modeled for this provisional prototype
 tires:
   model: linear_friction_circle
   radius_m: 0.14

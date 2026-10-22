@@ -30,6 +30,12 @@ class PlanarBicycleKart:
         self.config = config
         self.state = state or PlanarKartState()
         self.last_forces = ForceBreakdown(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        # Actuator-lag filter state (see ActuatorLagConfig): the steering angle and
+        # brake fraction actually reaching the tyres this step, after rate limiting,
+        # first-order lag, and brake dead time.
+        self._steer_actual_rad = 0.0
+        self._brake_actual = 0.0
+        self._brake_dead_time_remaining_s = config.actuator_lag.brake.dead_time_s
 
     def _axle_distances(self) -> tuple[float, float]:
         # CG x is measured from the wheelbase midpoint; a: CG to front, b: CG to rear.
@@ -37,6 +43,30 @@ class PlanarBicycleKart:
         a_m = wheelbase / 2 - self.config.kart.cg.x_m
         b_m = wheelbase - a_m
         return a_m, b_m
+
+    def _update_actuator_lag(self, command: VehicleCommand, dt: float) -> None:
+        kart, lag = self.config.kart, self.config.actuator_lag
+        steer_cfg, brake_cfg = lag.steering, lag.brake
+
+        target_steer_rad = max(-kart.max_road_wheel_angle_rad, min(kart.max_road_wheel_angle_rad, command.steering_rad))
+        if steer_cfg.lag_s > 0.0:
+            alpha = dt / (steer_cfg.lag_s + dt)
+            lagged_rad = self._steer_actual_rad + alpha * (target_steer_rad - self._steer_actual_rad)
+        else:
+            lagged_rad = target_steer_rad
+        max_steer_step = steer_cfg.rate_limit_radps * dt
+        self._steer_actual_rad += max(-max_steer_step, min(max_steer_step, lagged_rad - self._steer_actual_rad))
+
+        target_brake = max(0.0, min(1.0, command.brake))
+        max_brake_step = brake_cfg.ramp_rate_per_s * dt
+        if target_brake <= 1e-9:
+            # Releasing the brake resets the dead time, so the next press incurs it again.
+            self._brake_dead_time_remaining_s = brake_cfg.dead_time_s
+            self._brake_actual = max(0.0, self._brake_actual - max_brake_step)
+        elif self._brake_dead_time_remaining_s > 0.0:
+            self._brake_dead_time_remaining_s = max(0.0, self._brake_dead_time_remaining_s - dt)
+        else:
+            self._brake_actual += max(0.0, min(max_brake_step, target_brake - self._brake_actual))
 
     def step(self, command: VehicleCommand, dt_s: float | None = None) -> PlanarKartState:
         command.validated()
@@ -46,7 +76,8 @@ class PlanarBicycleKart:
         s, cfg = self.state, self.config
         mass = cfg.kart.mass_kg
         speed = max(abs(s.u_mps), LOW_SPEED_MPS)
-        steering = max(-cfg.kart.max_road_wheel_angle_rad, min(cfg.kart.max_road_wheel_angle_rad, command.steering_rad))
+        self._update_actuator_lag(command, dt)
+        steering = self._steer_actual_rad
         a_m, b_m = self._axle_distances()
 
         alpha_front = atan2(s.v_mps + a_m * s.yaw_rate_radps, speed) - steering
@@ -60,7 +91,7 @@ class PlanarBicycleKart:
 
         direction = copysign(1.0, s.u_mps) if abs(s.u_mps) >= LOW_SPEED_MPS else 0.0
         drive_n = command.drive * cfg.motor.max_wheel_force_n
-        brake_n = command.brake * cfg.brake.max_brake_force_n * direction
+        brake_n = self._brake_actual * cfg.brake.max_brake_force_n * direction
         rolling_n = cfg.environment.rolling_resistance_coefficient * mass * GRAVITY_MPS2 * direction
         aerodynamic_n = 0.5 * cfg.environment.air_density_kg_per_m3 * cfg.environment.drag_coefficient_area_m2 * s.u_mps * abs(s.u_mps)
         grade_n = mass * GRAVITY_MPS2 * sin(cfg.environment.grade_rad)

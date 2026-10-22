@@ -1,0 +1,70 @@
+# SIMULATION USE ONLY — NOT APPROVED FOR DIRECT VEHICLE DEPLOYMENT.
+#
+# "shared" kart profile: dimensions below the fold line are measured, taken
+# from the kart's dimension sheet. Everything above the fold line (mass, tyre
+# model, actuator dynamics, drive/brake force limits) is ASSUMED — no physical
+# measurement exists yet — and must be replaced once that measurement is made.
+# See docs/my_track_spec/RECON.md section 8 for the full provenance.
+kart:
+  name: shared
+  # --- ASSUMED (no physical measurement yet) ---
+  mass_kg: 160.0
+  cg:
+    x_m: 0.0 # ASSUMED at the wheelbase midpoint
+    y_m: 0.0
+    z_m: 0.30 # ASSUMED
+  inertia:
+    yaw_kg_m2: 95.4 # ASSUMED: rectangular-plate approximation, mass*(length^2+width^2)/12
+  # --- MEASURED (dimension sheet) ---
+  wheelbase_m: 1.422
+  front_track_m: 1.0648
+  rear_track_m: 1.1811
+  length_m: 2.400
+  width_m: 1.181
+  height_m: 1.118
+  ground_clearance_m: 0.381
+  # ASSUMED split of length_m referenced to the rear axle (the sheet gives only
+  # the total length, not where the rear axle sits within it).
+  rear_overhang_m: 0.40
+  front_extent_m: 2.00
+  # Software steering clamp = 20 deg (ASSUMED to match the task's stated software limit).
+  max_road_wheel_angle_rad: 0.3490658504
+  # Mechanical end-stop = 25 deg (ASSUMED to match the task's stated mechanical limit).
+  mechanical_max_road_wheel_angle_rad: 0.4363323130
+tires:
+  # --- ASSUMED (no physical measurement yet) ---
+  model: linear_friction_circle
+  radius_m: 0.14
+  width_m: 0.10
+  friction_peak: 1.0
+  cornering_stiffness_n_per_rad: 8500.0
+  longitudinal_stiffness_n: 9000.0
+motor:
+  # ASSUMED drive force limit.
+  max_wheel_force_n: 850.0
+brake:
+  # ASSUMED: sized so unloaded peak deceleration ~= mass_kg * 2.5 m/s^2 (ignoring
+  # rolling/aero resistance), per the task's stated brake a_max target.
+  max_brake_force_n: 400.0
+actuator_lag:
+  steering:
+    # ASSUMED steering actuator rate = 40 deg/s, lag time constant = 0.12 s.
+    rate_limit_radps: 0.6981317008
+    lag_s: 0.12
+  brake:
+    # ASSUMED brake dead time = 0.15 s; ramp to full commanded effort in ~0.02 s
+    # after the dead time elapses (fast relative to dead time, so the simple
+    # stopping-distance formula v*tau + v^2/(2a) with tau ~= dead_time_s holds).
+    dead_time_s: 0.15
+    ramp_rate_per_s: 50.0
+environment:
+  # ASSUMED (carried over from the provisional prototype profile).
+  rolling_resistance_coefficient: 0.015
+  air_density_kg_per_m3: 1.225
+  drag_coefficient_area_m2: 0.55
+  grade_rad: 0.0
+  surface_friction_scale: 1.0
+simulation:
+  physics_dt_s: 0.001
+  seed: 20260729
+  vehicle_backend: planar_bicycle

@@ -29,9 +29,26 @@ class KartConfig(BaseModel):
     wheelbase_m: Positive
     front_track_m: Positive
     rear_track_m: Positive
+    # Overall footprint, referenced to the rear axle: rear_overhang_m + front_extent_m == length_m.
+    length_m: Positive
+    width_m: Positive
+    height_m: Positive
+    ground_clearance_m: Positive
+    rear_overhang_m: Positive
+    front_extent_m: Positive
     cg: CgConfig
     inertia: InertiaConfig
+    # Software steering clamp actually enforced by the dynamics step (see vehicle.py).
     max_road_wheel_angle_rad: Positive
+    # Mechanical end-stop, documentation only: must be >= the software limit above.
+    mechanical_max_road_wheel_angle_rad: Positive
+
+    def model_post_init(self, __context: object) -> None:
+        if abs(self.rear_overhang_m + self.front_extent_m - self.length_m) > 1e-6:
+            raise ValueError("rear_overhang_m + front_extent_m must equal length_m")
+        if self.mechanical_max_road_wheel_angle_rad < self.max_road_wheel_angle_rad:
+            raise ValueError("mechanical_max_road_wheel_angle_rad must be >= max_road_wheel_angle_rad")
+
 
 class TireConfig(BaseModel):
     model: Literal["linear_friction_circle"]
@@ -172,6 +189,29 @@ class EnvironmentConfig(BaseModel):
     surface_friction_scale: Positive = 1.0
 
 
+class SteeringLagConfig(BaseModel):
+    """Simple first-order lag + slew-rate limit on the steering command, applied in
+    PlanarBicycleKart.step() ahead of the tyre-force calculation. Defaults are
+    effectively instantaneous so existing configs that omit this block are unaffected."""
+
+    rate_limit_radps: Positive = 1000.0
+    lag_s: NonNegative = 0.0
+
+
+class BrakeLagConfig(BaseModel):
+    """Dead-time + ramp-rate on the brake command, applied in PlanarBicycleKart.step()
+    ahead of the tyre-force calculation. Defaults are effectively instantaneous so
+    existing configs that omit this block are unaffected."""
+
+    dead_time_s: NonNegative = 0.0
+    ramp_rate_per_s: Positive = 1000.0
+
+
+class ActuatorLagConfig(BaseModel):
+    steering: SteeringLagConfig = SteeringLagConfig()
+    brake: BrakeLagConfig = BrakeLagConfig()
+
+
 class SimulationConfig(BaseModel):
     physics_dt_s: confloat(gt=0, le=0.02)
     seed: int = 1
@@ -185,6 +225,7 @@ class FullKartConfig(BaseModel):
     brake: BrakeConfig
     steering: SteeringConfig = SteeringConfig()
     brake_system: BrakeSystemConfig = BrakeSystemConfig()
+    actuator_lag: ActuatorLagConfig = ActuatorLagConfig()
     battery: BatteryConfig = BatteryConfig()
     power_domains: PowerDomainsConfig = PowerDomainsConfig()
     rear_axle: RearAxleConfig = RearAxleConfig()
