@@ -121,7 +121,7 @@ function resizeCanvases() {
 window.addEventListener('resize', () => { resizeCanvases(); draw(); });
 
 async function loadReplayList() {
-  const known = ['shared_6.json', 'built_1.json'];
+  const known = ['shared_6.json', 'built_1.json', 'generic_demo.json'];
   const sel = el('replaySelect');
   sel.innerHTML = '';
   for (const name of known) {
