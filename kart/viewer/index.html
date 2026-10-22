@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>my_track replay viewer</title>
+<style>
+  :root {
+    --bg: #0e1116; --panel: #161b22; --border: #2a313c; --text: #e6edf3; --muted: #8b949e;
+    --accent: #4da3ff; --good: #3fb950; --warn: #d29922; --crit: #f85149;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f8fa; --panel: #ffffff; --border: #d0d7de; --text: #1f2328; --muted: #656d76;
+    --accent: #0969da; --good: #1a7f37; --warn: #9a6700; --crit: #cf222e;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: -apple-system, Segoe UI, Roboto, sans-serif; }
+  .mono { font-family: "SF Mono", Consolas, monospace; font-variant-numeric: tabular-nums; }
+  #topbar { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: var(--panel); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  #topbar select, #topbar button, #topbar input[type=range] { background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; }
+  #topbar button { cursor: pointer; }
+  #badge { padding: 2px 8px; border-radius: 10px; font-size: 12px; background: var(--border); }
+  #scrubber { flex: 1; min-width: 120px; }
+  #layout { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px; }
+  #world-panel { flex: 2; min-width: 320px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 8px; }
+  #side-panel { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 8px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+  #overlays label { display: block; font-size: 12px; margin: 2px 0; }
+  .gauges { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 13px; }
+  .gauges .v { color: var(--accent); }
+  #stateChip { display: inline-block; padding: 2px 10px; border-radius: 10px; background: var(--border); font-size: 12px; }
+  canvas { display: block; width: 100%; }
+  #worldCanvas { height: 480px; background: #0a0c10; border-radius: 6px; }
+  :root[data-theme="light"] #worldCanvas { background: #eef1f4; }
+  #stripCanvas { height: 110px; background: transparent; }
+  table { width: 100%; font-size: 12px; border-collapse: collapse; }
+  table th, table td { text-align: right; padding: 2px 6px; border-bottom: 1px solid var(--border); }
+  table th:first-child, table td:first-child { text-align: left; }
+  tr.current { background: var(--accent); color: #fff; }
+  #tableWrap { max-height: 220px; overflow-y: auto; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<div id="topbar">
+  <strong>my_track</strong>
+  <select id="replaySelect"></select>
+  <span id="badge">REPLAY</span>
+  <button id="playBtn">&#9654; Play</button>
+  <select id="speedSelect">
+    <option value="1">1x</option><option value="2">2x</option><option value="5">5x</option><option value="10">10x</option>
+  </select>
+  <input type="range" id="scrubber" min="0" max="0" value="0">
+  <span id="timeLabel" class="mono muted">t=0.0s</span>
+  <button id="themeBtn">Theme</button>
+</div>
+<div id="layout">
+  <div id="world-panel">
+    <canvas id="worldCanvas"></canvas>
+    <div class="card" style="margin-top:8px">
+      <div id="stripLabel" class="muted" style="font-size:12px">Speed (m/s) and steering (deg) vs time</div>
+      <canvas id="stripCanvas"></canvas>
+    </div>
+  </div>
+  <div id="side-panel">
+    <div class="card">
+      <div><span id="stateChip">-</span> <span id="sectionLabel" class="muted"></span></div>
+      <div class="gauges mono" style="margin-top:8px">
+        <div>speed <span class="v" id="gSpeed">-</span> m/s (<span id="gSpeedKmh">-</span> km/h)</div>
+        <div>target <span class="v" id="gTarget">-</span> m/s</div>
+        <div>steer cmd <span class="v" id="gSteerCmd">-</span> deg</div>
+        <div>steer act <span class="v" id="gSteerAct">-</span> deg</div>
+        <div>brake <span class="v" id="gBrake">-</span> %</div>
+        <div>throttle <span class="v" id="gThrottle">-</span> %</div>
+        <div>gates <span class="v" id="gGates">-</span></div>
+        <div>map cones <span class="v" id="gMapCones">-</span></div>
+        <div>clearance <span class="v" id="gClearance">-</span> m</div>
+        <div>distance <span class="v" id="gDist">-</span> m</div>
+        <div>decel <span class="v" id="gDecel">-</span> m/s2</div>
+        <div>frame age <span class="v" id="gFrameAge">-</span> ms</div>
+      </div>
+    </div>
+    <div class="card" id="overlays">
+      <strong style="font-size:13px">Overlays</strong>
+      <label><input type="checkbox" id="ovCones" checked> Cones</label>
+      <label><input type="checkbox" id="ovKart" checked> Kart footprint</label>
+      <label><input type="checkbox" id="ovTrail" checked> Trail</label>
+      <label><input type="checkbox" id="ovWedge" checked> Camera wedge</label>
+      <label><input type="checkbox" id="ovDetour" checked> Detour offset</label>
+      <div class="muted" style="font-size:11px;margin-top:6px">
+        Gates/Delaunay/Gabriel/centreline/swept-footprint overlays are NOT implemented --
+        the current telemetry doesn't carry that per-frame data out of the mission controller.
+        See docs/MY_TRACK.md.
+      </div>
+    </div>
+    <div class="card">
+      <strong style="font-size:13px">Metrics</strong>
+      <div id="metricsBox" class="mono" style="font-size:12px"></div>
+    </div>
+    <div class="card">
+      <strong style="font-size:13px">Per-second table (click to jump)</strong>
+      <div id="tableWrap"><table id="rowTable"><thead><tr><th>t</th><th>dist</th><th>v</th><th>state</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </div>
+</div>
+<script>
+const COLOURS = { blue: '#2f6fed', yellow: '#e6c200', large_orange: '#ff7a1a', orange: '#ff7a1a' };
+let replay = null, frames = [], frameIndex = 0, playing = false, speedMult = 1, lastTick = 0;
+
+const el = (id) => document.getElementById(id);
+const worldCanvas = el('worldCanvas'), worldCtx = worldCanvas.getContext('2d');
+const stripCanvas = el('stripCanvas'), stripCtx = stripCanvas.getContext('2d');
+
+function resizeCanvases() {
+  for (const c of [worldCanvas, stripCanvas]) {
+    const rect = c.getBoundingClientRect();
+    c.width = Math.max(1, Math.floor(rect.width * devicePixelRatio));
+    c.height = Math.max(1, Math.floor(rect.height * devicePixelRatio));
+  }
+}
+window.addEventListener('resize', () => { resizeCanvases(); draw(); });
+
+async function loadReplayList() {
+  const known = ['shared_6.json', 'built_1.json'];
+  const sel = el('replaySelect');
+  sel.innerHTML = '';
+  for (const name of known) {
+    const opt = document.createElement('option');
+    opt.value = 'replays/' + name; opt.textContent = name.replace('.json', '');
+    sel.appendChild(opt);
+  }
+  await loadReplay(sel.value);
+}
+
+async function loadReplay(path) {
+  const resp = await fetch(path);
+  replay = await resp.json();
+  frames = replay.frames;
+  frameIndex = 0;
+  el('scrubber').max = String(frames.length - 1);
+  el('scrubber').value = '0';
+  renderMetrics();
+  renderTable();
+  resizeCanvases();
+  draw();
+}
+
+function renderMetrics() {
+  const m = replay.metrics;
+  el('metricsBox').innerHTML = `outcome: <span class="v">${m.outcome}</span><br>` +
+    `collisions: ${m.collisions}<br>min clearance: ${m.min_clearance_m} m<br>` +
+    `max speed: ${m.max_speed_mps} m/s<br>max steer: ${m.max_steer_deg} deg<br>` +
+    `stop gap: ${m.stop_gap_to_finish_m} m`;
+}
+
+function renderTable() {
+  const tbody = el('rowTable').querySelector('tbody');
+  tbody.innerHTML = '';
+  let lastSecond = null;
+  frames.forEach((f, i) => {
+    const sec = Math.floor(f.t);
+    if (sec === lastSecond) return;
+    lastSecond = sec;
+    const tr = document.createElement('tr');
+    tr.dataset.index = i;
+    tr.innerHTML = `<td>${f.t.toFixed(1)}</td><td>${f.dist_m.toFixed(1)}</td><td>${f.speed_mps.toFixed(2)}</td><td>${f.state}</td>`;
+    tr.addEventListener('click', () => { frameIndex = i; el('scrubber').value = String(i); draw(); });
+    tbody.appendChild(tr);
+  });
+}
+
+function currentFrame() { return frames[frameIndex] || frames[frames.length - 1]; }
+
+function worldToCanvas(x, y, bounds, w, h) {
+  const pad = 20;
+  const sx = (w - 2 * pad) / (bounds.maxX - bounds.minX || 1);
+  const sy = (h - 2 * pad) / (bounds.maxY - bounds.minY || 1);
+  const s = Math.min(sx, sy);
+  const px = pad + (x - bounds.minX) * s;
+  const py = h - (pad + (y - bounds.minY) * s);
+  return [px, py, s];
+}
+
+function computeBounds() {
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  for (const c of replay.cones) { minX = Math.min(minX, c.x); maxX = Math.max(maxX, c.x); minY = Math.min(minY, c.y); maxY = Math.max(maxY, c.y); }
+  for (const f of frames) { minX = Math.min(minX, f.x); maxX = Math.max(maxX, f.x); minY = Math.min(minY, f.y); maxY = Math.max(maxY, f.y); }
+  return { minX: minX - 2, maxX: maxX + 2, minY: minY - 2, maxY: maxY + 2 };
+}
+
+function draw() {
+  if (!replay) return;
+  const f = currentFrame();
+  const w = worldCanvas.width, h = worldCanvas.height;
+  worldCtx.clearRect(0, 0, w, h);
+  const bounds = computeBounds();
+  const toC = (x, y) => worldToCanvas(x, y, bounds, w, h);
+
+  if (el('ovCones').checked) {
+    for (const cone of replay.cones) {
+      const [px, py] = toC(cone.x, cone.y);
+      worldCtx.beginPath();
+      worldCtx.arc(px, py, 3 * devicePixelRatio, 0, Math.PI * 2);
+      worldCtx.fillStyle = COLOURS[cone.colour] || '#999';
+      worldCtx.fill();
+    }
+  }
+
+  if (el('ovTrail').checked) {
+    worldCtx.beginPath();
+    for (let i = 0; i <= frameIndex; i++) {
+      const [px, py] = toC(frames[i].x, frames[i].y);
+      if (i === 0) worldCtx.moveTo(px, py); else worldCtx.lineTo(px, py);
+    }
+    worldCtx.strokeStyle = 'rgba(77,163,255,0.6)';
+    worldCtx.lineWidth = 1.5 * devicePixelRatio;
+    worldCtx.stroke();
+  }
+
+  const heading = (f.heading_deg || 0) * Math.PI / 180;
+  const [kx, ky, scale] = toC(f.x, f.y);
+  const geo = replay.kart_geometry;
+
+  if (el('ovWedge').checked) {
+    const hfov = replay.camera.hfov_deg * Math.PI / 180;
+    const range = replay.camera.range_m * scale;
+    worldCtx.save();
+    worldCtx.translate(kx, ky);
+    worldCtx.rotate(-heading);
+    worldCtx.beginPath();
+    worldCtx.moveTo(geo.front_extent_m * scale * 0.9, 0);
+    worldCtx.arc(geo.front_extent_m * scale * 0.9, 0, range, -hfov / 2, hfov / 2);
+    worldCtx.closePath();
+    worldCtx.fillStyle = 'rgba(255,255,255,0.06)';
+    worldCtx.fill();
+    worldCtx.restore();
+  }
+
+  if (el('ovKart').checked) {
+    worldCtx.save();
+    worldCtx.translate(kx, ky);
+    worldCtx.rotate(-heading);
+    const rearPx = geo.rear_overhang_m * scale, frontPx = geo.front_extent_m * scale, halfW = geo.half_width_m * scale;
+    worldCtx.beginPath();
+    worldCtx.rect(-rearPx, -halfW, rearPx + frontPx, 2 * halfW);
+    worldCtx.fillStyle = 'rgba(77,163,255,0.85)';
+    worldCtx.fill();
+    worldCtx.strokeStyle = '#fff'; worldCtx.lineWidth = 1; worldCtx.stroke();
+    worldCtx.restore();
+  }
+
+  if (el('ovDetour').checked && f.detour_offset_m) {
+    worldCtx.fillStyle = 'var(--warn)';
+    worldCtx.font = `${11 * devicePixelRatio}px monospace`;
+    worldCtx.fillText(`detour ${f.detour_offset_m.toFixed(2)} m`, kx + 10, ky - 10);
+  }
+
+  drawStrip();
+  updateGauges(f);
+  highlightTableRow();
+  el('timeLabel').textContent = `t=${f.t.toFixed(1)}s`;
+}
+
+function drawStrip() {
+  const w = stripCanvas.width, h = stripCanvas.height;
+  stripCtx.clearRect(0, 0, w, h);
+  if (frames.length < 2) return;
+  const maxV = Math.max(...frames.map(r => r.speed_mps)) || 1;
+  const maxSteer = Math.max(...frames.map(r => Math.abs(r.steer_deg || 0))) || 1;
+  stripCtx.beginPath();
+  frames.forEach((r, i) => {
+    const x = (i / (frames.length - 1)) * w;
+    const y = h - (r.speed_mps / maxV) * h * 0.9 - 5;
+    if (i === 0) stripCtx.moveTo(x, y); else stripCtx.lineTo(x, y);
+  });
+  stripCtx.strokeStyle = '#4da3ff'; stripCtx.lineWidth = 1.5; stripCtx.stroke();
+  stripCtx.beginPath();
+  frames.forEach((r, i) => {
+    const x = (i / (frames.length - 1)) * w;
+    const y = h / 2 - ((r.steer_deg || 0) / maxSteer) * h * 0.45;
+    if (i === 0) stripCtx.moveTo(x, y); else stripCtx.lineTo(x, y);
+  });
+  stripCtx.strokeStyle = '#d29922'; stripCtx.lineWidth = 1.5; stripCtx.stroke();
+  const cx = (frameIndex / (frames.length - 1)) * w;
+  stripCtx.beginPath(); stripCtx.moveTo(cx, 0); stripCtx.lineTo(cx, h);
+  stripCtx.strokeStyle = 'rgba(255,255,255,0.4)'; stripCtx.lineWidth = 1; stripCtx.stroke();
+}
+
+function updateGauges(f) {
+  el('stateChip').textContent = f.state;
+  el('sectionLabel').textContent = 'section ' + f.section;
+  el('gSpeed').textContent = f.speed_mps.toFixed(2);
+  el('gSpeedKmh').textContent = f.speed_kmh.toFixed(1);
+  el('gTarget').textContent = f.speed_target_mps.toFixed(2);
+  el('gSteerCmd').textContent = f.steer_cmd_deg.toFixed(1);
+  el('gSteerAct').textContent = f.steer_deg.toFixed(1);
+  el('gBrake').textContent = f.brake_pct.toFixed(1);
+  el('gThrottle').textContent = f.throttle_pct.toFixed(1);
+  el('gGates').textContent = f.gates;
+  el('gMapCones').textContent = f.map_cones;
+  el('gClearance').textContent = (f.clearance_m ?? 0).toFixed(2);
+  el('gDist').textContent = f.dist_m.toFixed(2);
+  el('gDecel').textContent = (f.decel_mps2 ?? 0).toFixed(2);
+  el('gFrameAge').textContent = (f.frame_age_ms ?? 0).toFixed(0);
+}
+
+function highlightTableRow() {
+  const rows = el('rowTable').querySelectorAll('tbody tr');
+  const t = currentFrame().t;
+  rows.forEach(r => r.classList.toggle('current', Math.abs(Number(r.children[0].textContent) - t) < 0.5));
+}
+
+el('scrubber').addEventListener('input', (e) => { frameIndex = Number(e.target.value); draw(); });
+el('playBtn').addEventListener('click', () => {
+  playing = !playing;
+  el('playBtn').innerHTML = playing ? '&#9646;&#9646; Pause' : '&#9654; Play';
+  if (playing) { lastTick = performance.now(); requestAnimationFrame(tick); }
+});
+el('speedSelect').addEventListener('change', (e) => { speedMult = Number(e.target.value); });
+el('replaySelect').addEventListener('change', (e) => loadReplay(e.target.value));
+el('themeBtn').addEventListener('click', () => {
+  const root = document.documentElement;
+  root.setAttribute('data-theme', root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+});
+
+function tick(now) {
+  if (!playing) return;
+  const dt = (now - lastTick) / 1000 * speedMult;
+  lastTick = now;
+  const rowsPerSecond = 10; // telemetry is 10 Hz
+  frameIndex = Math.min(frames.length - 1, frameIndex + Math.round(dt * rowsPerSecond));
+  el('scrubber').value = String(frameIndex);
+  draw();
+  if (frameIndex >= frames.length - 1) { playing = false; el('playBtn').innerHTML = '&#9654; Play'; return; }
+  requestAnimationFrame(tick);
+}
+
+loadReplayList();
+</script>
+</body>
+</html>
