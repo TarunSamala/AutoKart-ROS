@@ -13,7 +13,7 @@ why that is scoped out.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from math import cos, sin, sqrt
+from math import cos, hypot, sin, sqrt
 
 import numpy as np
 
@@ -112,8 +112,14 @@ class MissionController:
         self._ramped_target_mps = 0.0
         self.speed_pid.reset()
 
-    def _plan(self, tracks: list[TrackedCone], pose: tuple[float, float, float], speed_mps: float, odometry_m: float, world_cluster_centroid) -> PlanResult:
+    def _plan(self, tracks: list[TrackedCone], pose: tuple[float, float, float], speed_mps: float, odometry_m: float) -> PlanResult:
         cfg = self.config.algorithm
+        xe_m, ye_m, pe_rad = pose
+        c, s = cos(pe_rad), sin(pe_rad)
+
+        def to_world(x_body_m: float, y_body_m: float) -> tuple[float, float]:
+            return xe_m + c * x_body_m - s * y_body_m, ye_m + s * x_body_m + c * y_body_m
+
         points = body_frame_points(tracks, pose, cfg)
         if len(points) < 3:
             return self._blind(odometry_m, gates=0)
@@ -159,11 +165,24 @@ class MissionController:
             ramp_height_m = (-side_sign * half_lane_m + side_sign * clearance_to_centreline_m) / 2
             free_width_m = half_lane_m + clearance_to_centreline_m - 2 * cfg.cone_radius_m
             admitted, chosen_ramp_m, chosen_lead_m = False, None, None
-            if free_width_m >= self.half_width_m * 2 + 2 * 0.25:
+
+            cluster_centre_world_xy = to_world(float(cx.mean()), float(cy.mean()))
+            existing_lock = next(
+                (lock for lock in self.locks if hypot(lock.cluster_centre_world_xy[0] - cluster_centre_world_xy[0],
+                                                        lock.cluster_centre_world_xy[1] - cluster_centre_world_xy[1]) < 2.0),
+                None,
+            )
+            if existing_lock is not None:
+                # A detour already admitted for this cluster is reused verbatim
+                # rather than re-searched: re-searching as the kart gets closer
+                # (and the geometry gets less favourable) can flip admission
+                # off mid-maneuver and snap the path back toward the obstacle.
+                admitted, chosen_ramp_m, chosen_lead_m = True, existing_lock.ramp_length_m, existing_lock.lead_distance_m
+            elif free_width_m >= self.half_width_m * 2 + 2 * 0.25:
                 for ramp_m in cfg.detour_ramp_lengths_m:
                     lead_m = 0.0
                     while x_min_m - lead_m - ramp_m >= -0.2:
-                        ramp_offset, ramp_start_x_m = self._ramp(xs, x_min_m, x_max_m, lead_m, ramp_m, ramp_height_m)
+                        ramp_offset, _ = self._ramp(xs, x_min_m, x_max_m, lead_m, ramp_m, ramp_height_m)
                         candidate_ys = ys + ramp_offset
                         heading = np.arctan2(np.gradient(candidate_ys), np.gradient(xs))
                         swept_ok = True
@@ -179,7 +198,7 @@ class MissionController:
                                 break
                         if swept_ok:
                             admitted, chosen_ramp_m, chosen_lead_m = True, ramp_m, lead_m
-                            new_lock = DetourLock(world_cluster_centroid(component), ramp_m, lead_m)
+                            new_lock = DetourLock(cluster_centre_world_xy, ramp_m, lead_m)
                             break
                         lead_m += cfg.detour_lead_step_m
                     if admitted:
@@ -216,8 +235,8 @@ class MissionController:
         return PlanResult(False, gates, None, False, False, 0.0, False, None, False, True, None, None)
 
     def step(self, *, tracks: list[TrackedCone], pose: tuple[float, float, float], speed_mps: float, odometry_m: float,
-              dt_s: float, timestamp_s: float, world_cluster_centroid) -> MissionCommand:
-        plan = self._plan(tracks, pose, speed_mps, odometry_m, world_cluster_centroid)
+              dt_s: float, timestamp_s: float) -> MissionCommand:
+        plan = self._plan(tracks, pose, speed_mps, odometry_m)
         if plan.new_lock is not None:
             self.locks.append(plan.new_lock)
 

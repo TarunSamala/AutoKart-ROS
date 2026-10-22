@@ -11,10 +11,6 @@ def controller() -> MissionController:
     )
 
 
-def no_centroid(_component):
-    return (0.0, 0.0)
-
-
 def gate_tracks(xs: tuple[float, ...] = (1.0, 2.0, 3.0, 4.0, 5.0)) -> list[TrackedCone]:
     tracks = []
     track_id = 1
@@ -27,14 +23,14 @@ def gate_tracks(xs: tuple[float, ...] = (1.0, 2.0, 3.0, 4.0, 5.0)) -> list[Track
 def test_mission_starts_ready_and_moves_to_run_on_first_step() -> None:
     mc = controller()
     assert mc.state == "READY"
-    cmd = mc.step(tracks=gate_tracks(), pose=(0.0, 0.0, 0.0), speed_mps=0.0, odometry_m=0.0, dt_s=0.05, timestamp_s=0.05, world_cluster_centroid=no_centroid)
+    cmd = mc.step(tracks=gate_tracks(), pose=(0.0, 0.0, 0.0), speed_mps=0.0, odometry_m=0.0, dt_s=0.05, timestamp_s=0.05)
     assert mc.state == "RUN"
     assert cmd.state == "RUN"
 
 
 def test_blind_creep_when_too_few_cones_near_the_start() -> None:
     mc = controller()
-    cmd = mc.step(tracks=[], pose=(0.0, 0.0, 0.0), speed_mps=0.0, odometry_m=1.0, dt_s=0.05, timestamp_s=0.05, world_cluster_centroid=no_centroid)
+    cmd = mc.step(tracks=[], pose=(0.0, 0.0, 0.0), speed_mps=0.0, odometry_m=1.0, dt_s=0.05, timestamp_s=0.05)
     assert cmd.valid is False
     assert cmd.target_speed_mps == pytest.approx(mc.config.blind_creep_speed_mps)
     assert cmd.state == "RUN"
@@ -43,14 +39,14 @@ def test_blind_creep_when_too_few_cones_near_the_start() -> None:
 def test_path_lost_after_two_seconds_with_no_usable_gates_past_the_blind_distance() -> None:
     mc = controller()
     for step in range(60):  # 3.0 s at dt=0.05, well past blind_creep_distance_m=6.0 odometry
-        cmd = mc.step(tracks=[], pose=(0.0, 0.0, 0.0), speed_mps=0.0, odometry_m=7.0, dt_s=0.05, timestamp_s=step * 0.05, world_cluster_centroid=no_centroid)
+        cmd = mc.step(tracks=[], pose=(0.0, 0.0, 0.0), speed_mps=0.0, odometry_m=7.0, dt_s=0.05, timestamp_s=step * 0.05)
     assert cmd.path_lost is True
     assert cmd.state == "CONTROLLED_STOP"
 
 
 def test_valid_plan_with_a_clear_corridor_steers_straight_and_targets_cruise_speed() -> None:
     mc = controller()
-    cmd = mc.step(tracks=gate_tracks(), pose=(0.0, 0.0, 0.0), speed_mps=0.3, odometry_m=1.0, dt_s=0.05, timestamp_s=0.05, world_cluster_centroid=no_centroid)
+    cmd = mc.step(tracks=gate_tracks(), pose=(0.0, 0.0, 0.0), speed_mps=0.3, odometry_m=1.0, dt_s=0.05, timestamp_s=0.05)
     assert cmd.valid is True
     assert cmd.gates > 0
     assert abs(cmd.steering_rad) < 0.05  # straight corridor centred on the kart

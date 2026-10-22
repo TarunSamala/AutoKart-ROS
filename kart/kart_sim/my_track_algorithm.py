@@ -39,6 +39,11 @@ class AlgorithmConfig:
     finish_min_odometry_m: float = 40.0
     finish_pair_min_m: float = 0.2
     finish_pair_max_m: float = 0.6
+    # The real finish cones sit at the same station (~0 m forward gap); the
+    # draft's own 0.7 m tolerance was loose enough to false-positive on two
+    # adjacent same-side boundary cones (~1.0 m station spacing) that happen
+    # to land within the lateral-gap band on a curve. Tightened here.
+    finish_pair_max_forward_gap_m: float = 0.3
     nominal_lane_width_m: float = 3.0
     fallback_gate_min_existing_dist_m: float = 0.8
     centreline_min_gates: int = 2
@@ -114,7 +119,7 @@ def detect_finish(points: list[tuple[float, float, str, int]], odometry_m: float
             forward_gap_m = abs(xa - xb)
             if (
                 config.finish_pair_min_m <= lateral_gap_m <= config.finish_pair_max_m
-                and forward_gap_m < 0.7
+                and forward_gap_m < config.finish_pair_max_forward_gap_m
                 and xa > 0.5 and xb > 0.5
                 and abs(ya + yb) / 2 > 1.1
             ):
