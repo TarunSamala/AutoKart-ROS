@@ -1,0 +1,1120 @@
+{
+ "rev": 7,
+ "corridor_m": 3.0,
+ "length_m": 50.0,
+ "spacing_m": 1.0,
+ "sections": {
+  "A": [
+   0,
+   4
+  ],
+  "B": [
+   4,
+   14
+  ],
+  "C": [
+   14,
+   24
+  ],
+  "D": [
+   24,
+   34
+  ],
+  "E": [
+   34,
+   44
+  ],
+  "F": [
+   44,
+   50
+  ]
+ },
+ "start_pose": {
+  "x": 0.0,
+  "y": 0.0,
+  "heading_deg": 0.0,
+  "note": "rear axle on start line, station 0"
+ },
+ "cones": [
+  {
+   "id": "OL-A01",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 0.5,
+   "lat": 1.5,
+   "x": 0.5,
+   "y": 1.5
+  },
+  {
+   "id": "OR-A01",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 0.5,
+   "lat": -1.5,
+   "x": 0.5,
+   "y": -1.5
+  },
+  {
+   "id": "OL-A02",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 1.5,
+   "lat": 1.5,
+   "x": 1.5,
+   "y": 1.5
+  },
+  {
+   "id": "OR-A02",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 1.5,
+   "lat": -1.5,
+   "x": 1.5,
+   "y": -1.5
+  },
+  {
+   "id": "OL-A03",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 2.5,
+   "lat": 1.5,
+   "x": 2.5,
+   "y": 1.5
+  },
+  {
+   "id": "OR-A03",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 2.5,
+   "lat": -1.5,
+   "x": 2.5,
+   "y": -1.5
+  },
+  {
+   "id": "OL-A04",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 3.5,
+   "lat": 1.5,
+   "x": 3.5,
+   "y": 1.5
+  },
+  {
+   "id": "OR-A04",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 3.5,
+   "lat": -1.5,
+   "x": 3.5,
+   "y": -1.5
+  },
+  {
+   "id": "OL-C01",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 14.5,
+   "lat": 1.5,
+   "x": 14.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C01",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 14.5,
+   "lat": -1.5,
+   "x": 14.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-C02",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 15.5,
+   "lat": 1.5,
+   "x": 15.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C02",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 15.5,
+   "lat": -1.5,
+   "x": 15.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-C03",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 16.5,
+   "lat": 1.5,
+   "x": 16.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C03",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 16.5,
+   "lat": -1.5,
+   "x": 16.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-C04",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 17.5,
+   "lat": 1.5,
+   "x": 17.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C04",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 17.5,
+   "lat": -1.5,
+   "x": 17.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-C05",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 18.5,
+   "lat": 1.5,
+   "x": 18.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C05",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 18.5,
+   "lat": -1.5,
+   "x": 18.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-C06",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 19.5,
+   "lat": 1.5,
+   "x": 19.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C06",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 19.5,
+   "lat": -1.5,
+   "x": 19.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-C07",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 20.5,
+   "lat": 1.5,
+   "x": 20.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C07",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 20.5,
+   "lat": -1.5,
+   "x": 20.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-C08",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 21.5,
+   "lat": 1.5,
+   "x": 21.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C08",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 21.5,
+   "lat": -1.5,
+   "x": 21.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-C09",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 22.5,
+   "lat": 1.5,
+   "x": 22.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C09",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 22.5,
+   "lat": -1.5,
+   "x": 22.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-C10",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 23.5,
+   "lat": 1.5,
+   "x": 23.275,
+   "y": 3.224
+  },
+  {
+   "id": "OR-C10",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 23.5,
+   "lat": -1.5,
+   "x": 23.275,
+   "y": 0.224
+  },
+  {
+   "id": "OL-E01",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 34.5,
+   "lat": 1.5,
+   "x": 34.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E01",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 34.5,
+   "lat": -1.5,
+   "x": 34.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-E02",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 35.5,
+   "lat": 1.5,
+   "x": 35.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E02",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 35.5,
+   "lat": -1.5,
+   "x": 35.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-E03",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 36.5,
+   "lat": 1.5,
+   "x": 36.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E03",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 36.5,
+   "lat": -1.5,
+   "x": 36.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-E04",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 37.5,
+   "lat": 1.5,
+   "x": 37.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E04",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 37.5,
+   "lat": -1.5,
+   "x": 37.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-E05",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 38.5,
+   "lat": 1.5,
+   "x": 38.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E05",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 38.5,
+   "lat": -1.5,
+   "x": 38.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-E06",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 39.5,
+   "lat": 1.5,
+   "x": 39.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E06",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 39.5,
+   "lat": -1.5,
+   "x": 39.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-E07",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 40.5,
+   "lat": 1.5,
+   "x": 40.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E07",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 40.5,
+   "lat": -1.5,
+   "x": 40.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-E08",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 41.5,
+   "lat": 1.5,
+   "x": 41.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E08",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 41.5,
+   "lat": -1.5,
+   "x": 41.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-E09",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 42.5,
+   "lat": 1.5,
+   "x": 42.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E09",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 42.5,
+   "lat": -1.5,
+   "x": 42.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-E10",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 43.5,
+   "lat": 1.5,
+   "x": 43.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-E10",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 43.5,
+   "lat": -1.5,
+   "x": 43.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-F01",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 44.5,
+   "lat": 1.5,
+   "x": 44.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-F01",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 44.5,
+   "lat": -1.5,
+   "x": 44.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-F02",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 45.5,
+   "lat": 1.5,
+   "x": 45.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-F02",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 45.5,
+   "lat": -1.5,
+   "x": 45.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-F03",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 46.5,
+   "lat": 1.5,
+   "x": 46.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-F03",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 46.5,
+   "lat": -1.5,
+   "x": 46.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-F04",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 47.5,
+   "lat": 1.5,
+   "x": 47.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-F04",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 47.5,
+   "lat": -1.5,
+   "x": 47.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-F05",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 48.5,
+   "lat": 1.5,
+   "x": 48.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-F05",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 48.5,
+   "lat": -1.5,
+   "x": 48.051,
+   "y": -1.5
+  },
+  {
+   "id": "OL-F06",
+   "color": "ORANGE",
+   "role": "straight boundary L",
+   "station": 49.5,
+   "lat": 1.5,
+   "x": 49.051,
+   "y": 1.5
+  },
+  {
+   "id": "OR-F06",
+   "color": "ORANGE",
+   "role": "straight boundary R",
+   "station": 49.5,
+   "lat": -1.5,
+   "x": 49.051,
+   "y": -1.5
+  },
+  {
+   "id": "B-B01",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 4.5,
+   "lat": 1.5,
+   "x": 4.485,
+   "y": 1.502
+  },
+  {
+   "id": "Y-B01",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 4.5,
+   "lat": -1.5,
+   "x": 4.515,
+   "y": -1.498
+  },
+  {
+   "id": "B-B02",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 5.5,
+   "lat": 1.5,
+   "x": 5.386,
+   "y": 1.536
+  },
+  {
+   "id": "Y-B02",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 5.5,
+   "lat": -1.5,
+   "x": 5.612,
+   "y": -1.456
+  },
+  {
+   "id": "B-B03",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 6.5,
+   "lat": 1.5,
+   "x": 6.231,
+   "y": 1.641
+  },
+  {
+   "id": "Y-B03",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 6.5,
+   "lat": -1.5,
+   "x": 6.752,
+   "y": -1.314
+  },
+  {
+   "id": "B-B04",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 7.5,
+   "lat": 1.5,
+   "x": 7.06,
+   "y": 1.831
+  },
+  {
+   "id": "Y-B04",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 7.5,
+   "lat": -1.5,
+   "x": 7.871,
+   "y": -1.057
+  },
+  {
+   "id": "B-B05",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 8.5,
+   "lat": 1.5,
+   "x": 7.918,
+   "y": 2.107
+  },
+  {
+   "id": "Y-B05",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 8.5,
+   "lat": -1.5,
+   "x": 8.916,
+   "y": -0.722
+  },
+  {
+   "id": "B-B06",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 9.5,
+   "lat": 1.5,
+   "x": 8.859,
+   "y": 2.446
+  },
+  {
+   "id": "Y-B06",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 9.5,
+   "lat": -1.5,
+   "x": 9.857,
+   "y": -0.383
+  },
+  {
+   "id": "B-B07",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 10.5,
+   "lat": 1.5,
+   "x": 9.905,
+   "y": 2.781
+  },
+  {
+   "id": "Y-B07",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 10.5,
+   "lat": -1.5,
+   "x": 10.715,
+   "y": -0.107
+  },
+  {
+   "id": "B-B08",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 11.5,
+   "lat": 1.5,
+   "x": 11.024,
+   "y": 3.038
+  },
+  {
+   "id": "Y-B08",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 11.5,
+   "lat": -1.5,
+   "x": 11.545,
+   "y": 0.083
+  },
+  {
+   "id": "B-B09",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 12.5,
+   "lat": 1.5,
+   "x": 12.163,
+   "y": 3.179
+  },
+  {
+   "id": "Y-B09",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 12.5,
+   "lat": -1.5,
+   "x": 12.389,
+   "y": 0.188
+  },
+  {
+   "id": "B-B10",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 13.5,
+   "lat": 1.5,
+   "x": 13.261,
+   "y": 3.222
+  },
+  {
+   "id": "Y-B10",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 13.5,
+   "lat": -1.5,
+   "x": 13.29,
+   "y": 0.222
+  },
+  {
+   "id": "B-D01",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 24.5,
+   "lat": 1.5,
+   "x": 24.29,
+   "y": 3.222
+  },
+  {
+   "id": "Y-D01",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 24.5,
+   "lat": -1.5,
+   "x": 24.261,
+   "y": 0.222
+  },
+  {
+   "id": "B-D02",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 25.5,
+   "lat": 1.5,
+   "x": 25.387,
+   "y": 3.179
+  },
+  {
+   "id": "Y-D02",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 25.5,
+   "lat": -1.5,
+   "x": 25.161,
+   "y": 0.188
+  },
+  {
+   "id": "B-D03",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 26.5,
+   "lat": 1.5,
+   "x": 26.527,
+   "y": 3.038
+  },
+  {
+   "id": "Y-D03",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 26.5,
+   "lat": -1.5,
+   "x": 26.006,
+   "y": 0.083
+  },
+  {
+   "id": "B-D04",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 27.5,
+   "lat": 1.5,
+   "x": 27.646,
+   "y": 2.781
+  },
+  {
+   "id": "Y-D04",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 27.5,
+   "lat": -1.5,
+   "x": 26.835,
+   "y": -0.107
+  },
+  {
+   "id": "B-D05",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 28.5,
+   "lat": 1.5,
+   "x": 28.692,
+   "y": 2.446
+  },
+  {
+   "id": "Y-D05",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 28.5,
+   "lat": -1.5,
+   "x": 27.693,
+   "y": -0.383
+  },
+  {
+   "id": "B-D06",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 29.5,
+   "lat": 1.5,
+   "x": 29.633,
+   "y": 2.107
+  },
+  {
+   "id": "Y-D06",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 29.5,
+   "lat": -1.5,
+   "x": 28.634,
+   "y": -0.722
+  },
+  {
+   "id": "B-D07",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 30.5,
+   "lat": 1.5,
+   "x": 30.491,
+   "y": 1.831
+  },
+  {
+   "id": "Y-D07",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 30.5,
+   "lat": -1.5,
+   "x": 29.68,
+   "y": -1.058
+  },
+  {
+   "id": "B-D08",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 31.5,
+   "lat": 1.5,
+   "x": 31.32,
+   "y": 1.64
+  },
+  {
+   "id": "Y-D08",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 31.5,
+   "lat": -1.5,
+   "x": 30.799,
+   "y": -1.314
+  },
+  {
+   "id": "B-D09",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 32.5,
+   "lat": 1.5,
+   "x": 32.165,
+   "y": 1.536
+  },
+  {
+   "id": "Y-D09",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 32.5,
+   "lat": -1.5,
+   "x": 31.939,
+   "y": -1.456
+  },
+  {
+   "id": "B-D10",
+   "color": "BLUE",
+   "role": "bend boundary L",
+   "station": 33.5,
+   "lat": 1.5,
+   "x": 33.065,
+   "y": 1.502
+  },
+  {
+   "id": "Y-D10",
+   "color": "YELLOW",
+   "role": "bend boundary R",
+   "station": 33.5,
+   "lat": -1.5,
+   "x": 33.036,
+   "y": -1.498
+  },
+  {
+   "id": "OB1-01",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 18.0,
+   "lat": 0.7,
+   "x": 17.775,
+   "y": 2.424
+  },
+  {
+   "id": "OB1-02",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 18.0,
+   "lat": 1.05,
+   "x": 17.775,
+   "y": 2.774
+  },
+  {
+   "id": "OB1-03",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 18.7,
+   "lat": 0.7,
+   "x": 18.475,
+   "y": 2.424
+  },
+  {
+   "id": "OB1-04",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 18.7,
+   "lat": 1.05,
+   "x": 18.475,
+   "y": 2.774
+  },
+  {
+   "id": "OB1-05",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 19.4,
+   "lat": 0.7,
+   "x": 19.175,
+   "y": 2.424
+  },
+  {
+   "id": "OB1-06",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 19.4,
+   "lat": 1.05,
+   "x": 19.175,
+   "y": 2.774
+  },
+  {
+   "id": "OB2-01",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 38.0,
+   "lat": -1.05,
+   "x": 37.551,
+   "y": -1.05
+  },
+  {
+   "id": "OB2-02",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 38.0,
+   "lat": -0.7,
+   "x": 37.551,
+   "y": -0.7
+  },
+  {
+   "id": "OB2-03",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 38.7,
+   "lat": -1.05,
+   "x": 38.251,
+   "y": -1.05
+  },
+  {
+   "id": "OB2-04",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 38.7,
+   "lat": -0.7,
+   "x": 38.251,
+   "y": -0.7
+  },
+  {
+   "id": "OB2-05",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 39.4,
+   "lat": -1.05,
+   "x": 38.951,
+   "y": -1.05
+  },
+  {
+   "id": "OB2-06",
+   "color": "ORANGE",
+   "role": "obstacle",
+   "station": 39.4,
+   "lat": -0.7,
+   "x": 38.951,
+   "y": -0.7
+  },
+  {
+   "id": "START-1",
+   "color": "ORANGE",
+   "role": "start line",
+   "station": 0.0,
+   "lat": -1.5,
+   "x": 0.0,
+   "y": -1.5
+  },
+  {
+   "id": "FINISH-1",
+   "color": "ORANGE",
+   "role": "finish line",
+   "station": 50.0,
+   "lat": -1.5,
+   "x": 49.551,
+   "y": -1.5
+  },
+  {
+   "id": "START-2",
+   "color": "ORANGE",
+   "role": "start line",
+   "station": 0.0,
+   "lat": -1.15,
+   "x": 0.0,
+   "y": -1.15
+  },
+  {
+   "id": "FINISH-2",
+   "color": "ORANGE",
+   "role": "finish line",
+   "station": 50.0,
+   "lat": -1.15,
+   "x": 49.551,
+   "y": -1.15
+  },
+  {
+   "id": "START-3",
+   "color": "ORANGE",
+   "role": "start line",
+   "station": 0.0,
+   "lat": 1.15,
+   "x": 0.0,
+   "y": 1.15
+  },
+  {
+   "id": "FINISH-3",
+   "color": "ORANGE",
+   "role": "finish line",
+   "station": 50.0,
+   "lat": 1.15,
+   "x": 49.551,
+   "y": 1.15
+  },
+  {
+   "id": "START-4",
+   "color": "ORANGE",
+   "role": "start line",
+   "station": 0.0,
+   "lat": 1.5,
+   "x": 0.0,
+   "y": 1.5
+  },
+  {
+   "id": "FINISH-4",
+   "color": "ORANGE",
+   "role": "finish line",
+   "station": 50.0,
+   "lat": 1.5,
+   "x": 49.551,
+   "y": 1.5
+  }
+ ]
+}

@@ -1,6 +1,7 @@
 import type { Cone, Point } from './schema';
+import { myTrackScenario } from './myTrackLayout';
 
-export type ScenarioName = 'SKIDPAD' | 'AUTOCROSS' | 'BRAKE';
+export type ScenarioName = 'SKIDPAD' | 'AUTOCROSS' | 'BRAKE' | 'MY_TRACK';
 export type LabSettings = { seed: number; width: number; coneSpacing: number; complexity: number; dropout: number; noise: number; length: number; hairpins: number; sBends: number; slaloms: number; skidpadRadius: number; entryLength: number; exitLength: number; junctionLength: number };
 export const DEFAULT_LAB_SETTINGS: LabSettings = { seed: 43172, width: 3, coneSpacing: 1, complexity: 0.8, dropout: 0, noise: 0, length: 220, hairpins: 2, sBends: 4, slaloms: 3, skidpadRadius: 8, entryLength: 14, exitLength: 14, junctionLength: 2.4 };
 export type LabScenario = { name: ScenarioName; cones: Cone[]; guide: Point[]; start: Point & { heading: number }; obstacle?: Point & { id: string; radius_m: number }; markers: Array<Point & { id: string; label: string }> };
@@ -173,5 +174,10 @@ function brake(settings: LabSettings): LabScenario {
 export function generateScenario(name: ScenarioName, settings: LabSettings = DEFAULT_LAB_SETTINGS): LabScenario {
   if (name === 'SKIDPAD') return skidpad(settings);
   if (name === 'BRAKE') return brake(settings);
+  if (name === 'MY_TRACK') {
+    // settings (seed/noise/etc.) don't apply: MY_TRACK's cones are fixed
+    // ground truth from the shared layout, not procedurally generated.
+    return myTrackScenario();
+  }
   return autocross(settings);
 }
