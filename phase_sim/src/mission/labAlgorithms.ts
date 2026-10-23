@@ -162,6 +162,69 @@ export function myTrackBodyFramePoints(cones: Cone[], pose: { x_m: number; y_m: 
   return points;
 }
 
+interface MapCone { id: string; x_m: number; y_m: number; sightings: number; lastSeenS: number; classCounts: Map<string, number> }
+
+/** Persistent, pose-aware cone map -- ported from the `ConeMap` pattern in
+ * kart/kart_sim/hp60c.py. Round 1's `myTrackBodyFramePoints()` refit the
+ * centreline fresh every frame from only the current frame's raw
+ * observations inside the forward window, which lags through the two
+ * lateral bend-shifts on the real track (a cone that momentarily leaves the
+ * 64.4 deg FOV, or is dropped by sensor noise/dropout for one frame,
+ * disappears from the fit entirely that frame). This map instead
+ * accumulates detections in the WORLD frame across frames: a new detection
+ * within `assocRadiusM` of an existing map cone is associated and
+ * averaged into it (not replaced); a cone is "confirmed" only once seen
+ * `confirmSightings` times (so one-off false detections don't influence
+ * gates); an unseen cone expires after `expireS` so stale cones from a
+ * previous pass don't linger forever; and class is decided by majority
+ * vote across all sightings (so a single misclassified frame can't flip a
+ * boundary cone's colour). `confirmed()` is read every frame by the
+ * mission to build body-frame points for gating -- the SET of cones used
+ * for the fit is therefore stable across frames even when a single frame's
+ * raw detection list is noisy or momentarily missing a cone. */
+export class MyTrackConeMap {
+  private cones: MapCone[] = [];
+  private nextId = 1;
+
+  constructor(private assocRadiusM = 0.6, private confirmSightings = 2, private expireS = 10) {}
+
+  reset(): void { this.cones = []; this.nextId = 1; }
+
+  update(detections: Cone[], timestampS: number): void {
+    for (const d of detections) {
+      let best: MapCone | null = null, bestDist = this.assocRadiusM;
+      for (const c of this.cones) {
+        const dist = Math.hypot(c.x_m - d.x_m, c.y_m - d.y_m);
+        if (dist <= bestDist) { best = c; bestDist = dist; }
+      }
+      if (best) {
+        const n = best.sightings;
+        best.x_m = (best.x_m * n + d.x_m) / (n + 1);
+        best.y_m = (best.y_m * n + d.y_m) / (n + 1);
+        best.sightings = n + 1;
+        best.classCounts.set(d.class, (best.classCounts.get(d.class) ?? 0) + 1);
+        best.lastSeenS = timestampS;
+      } else {
+        this.cones.push({ id: `M${this.nextId++}`, x_m: d.x_m, y_m: d.y_m, sightings: 1, lastSeenS: timestampS, classCounts: new Map([[d.class, 1]]) });
+      }
+    }
+    this.cones = this.cones.filter((c) => timestampS - c.lastSeenS <= this.expireS);
+  }
+
+  /** Confirmed cones (sightings >= confirmSightings), majority-vote class,
+   * as world-frame Cone[] ready for myTrackBodyFramePoints(). */
+  confirmed(): Cone[] {
+    return this.cones.filter((c) => c.sightings >= this.confirmSightings).map((c) => {
+      let bestClass = 'ORANGE', bestCount = -1;
+      for (const [cls, count] of c.classCounts) if (count > bestCount) { bestClass = cls; bestCount = count; }
+      return { id: c.id, x_m: c.x_m, y_m: c.y_m, class: bestClass, confidence: Math.min(1, c.sightings / 5) };
+    });
+  }
+
+  /** Telemetry/test hook. */
+  size(): number { return this.cones.length; }
+}
+
 /** Delaunay candidate edges between opposite-side boundary cones, filtered by
  * width and skew. Reuses delaunayFromCones() (Delaunator) rather than
  * reimplementing triangulation -- the third parallel implementation this
@@ -459,7 +522,17 @@ export class MyTrackMission {
       const pathBody = Array.from({ length: n }, (_, i) => ({ x_m: (Math.max(fx, 0.5) * i) / (n - 1), y_m: 0 }));
       const pathWorld = pathBody.map((p) => toWorld(p.x_m, p.y_m));
       const stopGapM = fx - this.geometry.frontExtentM;
-      this.state = stopGapM < 0.1 && speedMps < 0.06 ? 'STOPPED' : 'FINISH';
+      // COMPLETE rule (per spec): stopped (speed ~0), front bumper within
+      // [0, 1.5] m BEFORE the finish line (never beyond) -> 'STOPPED'.
+      // Round 1's narrow stopGapM<0.1 window meant a kart that braked to a
+      // full stop with the bumper anywhere in (0.1, 1.5] m short of the line
+      // (a perfectly normal outcome given the 0.3 m braking margin used
+      // below) never transitioned out of 'FINISH' and sat there forever
+      // instead of reaching 'STOPPED'. A gap < 0 means the bumper already
+      // passed the line -- that is never COMPLETE, regardless of speed.
+      const speedNearZeroMps = Math.abs(speedMps) < 0.06;
+      const bumperBeforeLine = stopGapM >= 0 && stopGapM <= 1.5;
+      this.state = bumperBeforeLine && speedNearZeroMps ? 'STOPPED' : 'FINISH';
       const targetSpeedMps = this.state === 'STOPPED' ? 0 : Math.max(0, Math.min(this.cruiseSpeedMps, maxSpeedForStopDistance(stopGapM, 0.3)));
       return { state: this.state, steeringRad: 0, targetSpeedMps, brake: this.state === 'STOPPED', gates: bodyPoints.length, obstacle: false, detour: false, finishDetected: true, lateralDeviationM: 0, pathWorldXY: pathWorld, gatesList: [], blind: false };
     }

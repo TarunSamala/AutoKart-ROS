@@ -175,6 +175,36 @@ describe('Ackermann steering angles', () => {
   });
 });
 
+describe('MY_TRACK completion label (COMPLETE rule)', () => {
+  // GEOMETRY above: frontExtentM = 1.0. COMPLETE = stopped (speed ~0), front
+  // bumper within [0, 1.5] m BEFORE the finish line. Round 1's condition was
+  // `stopGapM < 0.1 && speedMps < 0.06`, which left a kart that braked to a
+  // full, genuine stop with the bumper anywhere in (0.1, 1.5] m short of the
+  // line stuck in 'FINISH' forever instead of reaching 'STOPPED'.
+  it('reaches STOPPED once truly stopped with the bumper up to 1.5 m short of the line, not only <0.1 m', () => {
+    const mission = new MyTrackMission(GEOMETRY);
+    const boundary = straightCorridor(-2, 20);
+    // fx ~= 2.225 -> stopGapM = fx - frontExtentM ~= 1.225, inside [0, 1.5]
+    // and well outside round 1's <0.1 window.
+    const finishPair: MyTrackBodyPoint[] = [pt(2.2, 1.15, 'ORANGE', 'fin1'), pt(2.25, 1.5, 'ORANGE', 'fin2')];
+    const pose = { x_m: 0, y_m: 0, yaw_rad: 0 };
+    mission.step([...boundary, ...finishPair], pose, 0.4, 45, 0); // latches finish
+    const result = mission.step([...boundary, ...finishPair], pose, 0.03, 45, 0.1); // speed ~0
+    expect(result.state).toBe('STOPPED');
+  });
+
+  it('never reports COMPLETE/STOPPED if the bumper has overshot the line (gap < 0), even at speed ~0', () => {
+    const mission = new MyTrackMission(GEOMETRY);
+    const boundary = straightCorridor(-2, 20);
+    // fx ~= 0.575 -> stopGapM = 0.575 - 1.0 = -0.425 (bumper already past the line).
+    const finishPair: MyTrackBodyPoint[] = [pt(0.55, 1.15, 'ORANGE', 'fin1'), pt(0.6, 1.5, 'ORANGE', 'fin2')];
+    const pose = { x_m: 0, y_m: 0, yaw_rad: 0 };
+    mission.step([...boundary, ...finishPair], pose, 0.4, 45, 0);
+    const result = mission.step([...boundary, ...finishPair], pose, 0.0, 45, 0.1);
+    expect(result.state).toBe('FINISH');
+  });
+});
+
 describe('lateral deviation helpers', () => {
   const frame = (lateralDeviationM?: number): MissionFrame => ({
     schema_version: 1, source: 'LAB', run_id: 'r', sequence: 0, timestamp_s: 0,

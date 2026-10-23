@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { DEFAULT_LAB_SETTINGS, type LabSettings, type ScenarioName } from '../../mission/labScenarios';
 import { decodeReplay } from '../../mission/replay';
 import type { MissionFrame } from '../../mission/schema';
+import type { KartProfile } from '../../mission/kartModel';
 
 /**
  * Lab run state shared by every page.
@@ -15,7 +16,12 @@ export type RunMode = 'SYNTHETIC' | 'REPLAY';
 export const LIVE_READ_ONLY_REASON = 'Not available in this build: the Lab has no network route to the live vehicle gateway or live perception service.';
 
 export type Recording = { name: string; file: File; frames: MissionFrame[]; loadedAt: string };
-export type RunConfig = { mode: RunMode; runId: string; scenario: ScenarioName; settings: LabSettings };
+// kartProfile: developer-owned addition (Shared/Built 3D-model toggle plumbing,
+// see MissionScene's `kartProfile` prop in mission/kartModel.ts/MissionScene.tsx).
+// No page wires a control to it yet -- this is the shared value a future
+// control sets via setRun({ kartProfile: ... }), and a page reads via
+// run.kartProfile to pass down to <MissionScene kartProfile={...} />.
+export type RunConfig = { mode: RunMode; runId: string; scenario: ScenarioName; settings: LabSettings; kartProfile: KartProfile };
 /** What the current page is actually displaying (null = page shows no data). */
 export type PageProvenance = { label: Provenance; detail: string } | null;
 
@@ -50,7 +56,7 @@ function sanitizeSettings(value: unknown): LabSettings {
 }
 
 function loadStored(): RunConfig {
-  const fallback: RunConfig = { mode: 'SYNTHETIC', runId: makeRunId(DEFAULT_LAB_SETTINGS.seed), scenario: 'SKIDPAD', settings: { ...DEFAULT_LAB_SETTINGS } };
+  const fallback: RunConfig = { mode: 'SYNTHETIC', runId: makeRunId(DEFAULT_LAB_SETTINGS.seed), scenario: 'SKIDPAD', settings: { ...DEFAULT_LAB_SETTINGS }, kartProfile: 'shared' };
   try {
     const raw = window.sessionStorage.getItem(STORAGE_KEY);
     if (!raw) return fallback;
@@ -60,6 +66,7 @@ function loadStored(): RunConfig {
       runId: typeof parsed.runId === 'string' && parsed.runId.trim() ? parsed.runId.slice(0, 120) : fallback.runId,
       scenario: SCENARIOS.includes(parsed.scenario as ScenarioName) ? parsed.scenario as ScenarioName : 'SKIDPAD',
       settings: sanitizeSettings(parsed.settings),
+      kartProfile: parsed.kartProfile === 'built' ? 'built' : 'shared',
     };
   } catch { return fallback; }
 }

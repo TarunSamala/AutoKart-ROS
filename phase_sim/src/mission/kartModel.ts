@@ -17,6 +17,50 @@ export const PROFILE_GEOMETRY: Record<KartProfile, { frontExtentM: number; rearO
 
 const BODY_PARTS = ['body', 'chassis', 'rear_axle', 'steering'] as const;
 
+/** The body/chassis/rear_axle/steering glb meshes are a SINGLE set, uniformly
+ * scaled once on the "shared" profile's 2.400 m length (see
+ * docs/my_track_spec/STL_FIT.md). For "built" (wheelbase 1.1176 m vs
+ * "shared"'s 1.422 m) this compresses them along the LOCAL FORWARD axis
+ * only (width/height untouched) so the body visually tracks the shorter
+ * wheelbase instead of reusing "shared"'s full-length body with the
+ * (correctly, shorter) built-profile wheels sitting disconnected from it. */
+export function computeBodyForwardScale(profile: KartProfile): number {
+  return PROFILE_GEOMETRY[profile].wheelbaseM / PROFILE_GEOMETRY.shared.wheelbaseM;
+}
+
+/** Where a front wheel's hub SHOULD sit, in the car group's local frame
+ * (x forward, y up, z left/right), referenced to the rear axle at the
+ * origin -- the one true source for front-wheel placement, applied
+ * explicitly below rather than trusting the glb's own baked transform.
+ * Pure function so it can be unit-tested without GLTFLoader/WebGL (which
+ * do not run in this project's vitest/jsdom environment: GLTFLoader needs
+ * `fetch` against a real dev-server path, and nothing here parses raw glb
+ * binaries in Node). */
+export function computeFrontWheelLocalPosition(profile: KartProfile, side: 'left' | 'right'): { xM: number; yM: number; zM: number } {
+  const geo = PROFILE_GEOMETRY[profile];
+  const lateralSign = side === 'left' ? 1 : -1;
+  return { xM: geo.wheelbaseM, yM: 0, zM: lateralSign * (geo.frontTrackM / 2) };
+}
+
+/** Data-only "visual model; physics uses the dimension sheet" info-panel
+ * content -- the designer's info panel (existing or future) calls this
+ * rather than this file building any UI itself. */
+export function getKartInfoPanelData(profile: KartProfile) {
+  const geo = PROFILE_GEOMETRY[profile];
+  return {
+    profile,
+    note: 'Visual model only -- physics, footprint, and clearance checks use the dimension sheet (kart/configs/karts/*.yaml), never this glTF asset.',
+    stlScaleFactor: 5.438,
+    wheelbaseM: geo.wheelbaseM,
+    frontTrackM: geo.frontTrackM,
+    rearTrackM: 1.1811,
+    lengthM: 2.4,
+    widthM: 1.181,
+    heightM: 1.118,
+    bodyForwardScale: computeBodyForwardScale(profile),
+  };
+}
+
 // The STL prep script exported vertices as (forward, left, up) = (x, y, z) --
 // i.e. Z-up, while this scene (and glTF's own convention) is Y-up. A -90 deg
 // rotation about X converts Z-up data into this scene's Y-up frame.
@@ -55,7 +99,14 @@ export function loadKartModel(car: THREE.Group, profile: KartProfile, onFrontWhe
   Promise.all(BODY_PARTS.map((part) => loadOne(`${part}.glb`)))
     .then((parts) => {
       car.remove(fallback);
+      const forwardScale = computeBodyForwardScale(profile);
       for (const part of parts) {
+        // Scale FIRST, in the mesh's own original (pre-rotation) local
+        // axes where native output X is forward (see STL_FIT.md's axis
+        // convention) -- Object3D applies scale before its own rotation,
+        // so this compresses length only, never width/height, regardless
+        // of the Y-up/Z-up quaternion applied next.
+        part.scale.set(forwardScale, 1, 1);
         part.quaternion.premultiply(Z_UP_TO_Y_UP);
         part.traverse((node) => {
           if (node instanceof THREE.Mesh) node.material = new THREE.MeshStandardMaterial({ color: 0xd8dee2, metalness: 0.15, roughness: 0.7 });
@@ -65,13 +116,20 @@ export function loadKartModel(car: THREE.Group, profile: KartProfile, onFrontWhe
       return Promise.all([loadOne(`front_wheel_${profile}_left.glb`), loadOne(`front_wheel_${profile}_right.glb`)]);
     })
     .then((wheels) => {
-      for (const wheel of wheels) {
+      const sides: Array<'left' | 'right'> = ['left', 'right'];
+      wheels.forEach((wheel, index) => {
         wheel.quaternion.premultiply(Z_UP_TO_Y_UP);
+        // Explicit, pure-function-derived placement (computeFrontWheelLocalPosition)
+        // rather than trusting the glb's own baked transform -- guarantees the
+        // wheelbase/front-track numbers below hold exactly, and is what
+        // the placement test in kartModel.test.ts exercises.
+        const pos = computeFrontWheelLocalPosition(profile, sides[index]);
+        wheel.position.set(pos.xM, pos.yM, pos.zM);
         wheel.traverse((node) => {
           if (node instanceof THREE.Mesh) node.material = new THREE.MeshStandardMaterial({ color: 0x15181c, roughness: 0.9 });
         });
         car.add(wheel);
-      }
+      });
       onFrontWheels(wheels);
     })
     .catch((error) => {

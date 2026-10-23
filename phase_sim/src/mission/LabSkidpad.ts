@@ -1,11 +1,18 @@
 import type { Cone, Gate, MissionFrame, Point } from './schema';
-import { candidatePaths, delaunayFromCones, fitCircle, gabrielFilter, gatesFromGabriel, observeCones, MyTrackMission, myTrackBodyFramePoints, type MyTrackStepResult } from './labAlgorithms';
+import { candidatePaths, delaunayFromCones, fitCircle, gabrielFilter, gatesFromGabriel, observeCones, MyTrackMission, MyTrackConeMap, myTrackBodyFramePoints, type MyTrackStepResult } from './labAlgorithms';
 import { DEFAULT_LAB_SETTINGS, generateScenario, type LabScenario, type LabSettings, type ScenarioName } from './labScenarios';
+import { PROFILE_GEOMETRY, type KartProfile } from './kartModel';
 
-// MY_TRACK rear-axle-referenced geometry, from kart/configs/karts/shared.yaml
-// (the "shared" profile). This is the SAME vehicle footprint used by
-// kartModel.ts's PROFILE_GEOMETRY.shared -- do not let the two drift apart.
-const MY_TRACK_GEOMETRY = { wheelbaseM: 1.422, frontExtentM: 2.0, rearOverhangM: 0.4, halfWidthM: 1.181 / 2 };
+// MY_TRACK rear-axle-referenced geometry -- reuses kartModel.ts's
+// PROFILE_GEOMETRY directly (per-profile wheelbase/track) rather than a
+// second hand-copied constant, so the two can't drift apart. Round 1
+// hardcoded the 'shared' numbers regardless of which profile was asked
+// for; the mission now actually drives with the requested profile's
+// wheelbase, matching the 3D kart model Shared/Built toggle.
+function myTrackGeometryFor(profile: KartProfile) {
+  const g = PROFILE_GEOMETRY[profile];
+  return { wheelbaseM: g.wheelbaseM, frontExtentM: g.frontExtentM, rearOverhangM: g.rearOverhangM, halfWidthM: g.halfWidthM };
+}
 
 const DT = 1 / 60;
 const WHEELBASE_M = 1.05;
@@ -40,13 +47,16 @@ export class LabSkidpad {
   private enteredLoop = false;
   private tracked = new Map<string, { cone: Cone; seen: number }>();
   private myTrack: MyTrackMission | null = null;
+  private myTrackConeMap: MyTrackConeMap | null = null;
   private myTrackOdometryM = 0;
   private myTrackLastResult: MyTrackStepResult | null = null;
+  private myTrackGeometry = myTrackGeometryFor('shared');
 
-  constructor(name: ScenarioName = 'SKIDPAD', settings: LabSettings = DEFAULT_LAB_SETTINGS) {
+  constructor(name: ScenarioName = 'SKIDPAD', settings: LabSettings = DEFAULT_LAB_SETTINGS, kartProfile: KartProfile = 'shared') {
     this.settings = { ...settings };
     this.scenario = generateScenario(name, settings);
-    if (this.scenario.name === 'MY_TRACK') this.myTrack = new MyTrackMission(MY_TRACK_GEOMETRY);
+    this.myTrackGeometry = myTrackGeometryFor(kartProfile);
+    if (this.scenario.name === 'MY_TRACK') { this.myTrack = new MyTrackMission(this.myTrackGeometry); this.myTrackConeMap = new MyTrackConeMap(); }
     this.reset();
   }
 
@@ -60,7 +70,7 @@ export class LabSkidpad {
     this.trail = [{ x_m: this.x, y_m: this.y }];
     this.accumulator = 0; this.lastWall = null; this.running = false;
     this.targetProgress = -Infinity; this.targetBranch = 'ENTRY'; this.wRight = 0; this.wLeft = 0; this.mission = 'RIGHT_LOOPS'; this.brakeActive = false; this.terminalBrake = false; this.enteredLoop = false; this.tracked.clear();
-    this.myTrackOdometryM = 0; this.myTrackLastResult = null; this.myTrack?.reset();
+    this.myTrackOdometryM = 0; this.myTrackLastResult = null; this.myTrack?.reset(); this.myTrackConeMap?.reset();
   }
 
   setRunning(running: boolean): void {
@@ -157,7 +167,13 @@ export class LabSkidpad {
     if (!this.myTrack) return;
     const detections = this.observe();
     const pose = { x_m: this.x, y_m: this.y, yaw_rad: this.yaw };
-    const bodyPoints = myTrackBodyFramePoints(detections, pose);
+    // Feed detections into the persistent world-frame cone map, then build
+    // gates from the map's CONFIRMED, majority-voted cones -- not from this
+    // frame's raw detections. See MyTrackConeMap's doc comment: this is the
+    // fix for round 1's lag through the lateral bend-shifts.
+    this.myTrackConeMap?.update(detections, this.elapsed);
+    const mapped = this.myTrackConeMap?.confirmed() ?? detections;
+    const bodyPoints = myTrackBodyFramePoints(mapped, pose);
     const result = this.myTrack.step(bodyPoints, pose, this.speed, this.myTrackOdometryM, this.elapsed);
     this.myTrackLastResult = result;
     this.steering = result.steeringRad;
@@ -165,7 +181,7 @@ export class LabSkidpad {
     this.speed = result.brake || this.speed > targetSpeed ? Math.max(targetSpeed, this.speed - 3.2 * DT) : Math.min(targetSpeed, this.speed + 1.3 * DT);
     const dX = this.speed * Math.cos(this.yaw) * DT, dY = this.speed * Math.sin(this.yaw) * DT;
     this.x += dX; this.y += dY;
-    this.yaw = wrap(this.yaw + (this.speed / MY_TRACK_GEOMETRY.wheelbaseM) * Math.tan(this.steering) * DT);
+    this.yaw = wrap(this.yaw + (this.speed / this.myTrackGeometry.wheelbaseM) * Math.tan(this.steering) * DT);
     this.myTrackOdometryM += Math.hypot(dX, dY);
     this.elapsed += DT; this.steps += 1;
     if (this.steps % 3 === 0) { this.trail.push({ x_m: this.x, y_m: this.y }); if (this.trail.length > 2400) this.trail.shift(); }
