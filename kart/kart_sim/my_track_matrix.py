@@ -174,10 +174,14 @@ def main() -> None:
     write_matrix_summary_md(rows, args.out / "SUMMARY.md", assumed_values=[
         "gyro_bias_x3 is a documented no-op (re-runs nominal): no separate encoder/gyro dead-reckoning "
         "estimate exists in this runner, only the kart's true pose/speed.",
-        "A residual ~12.5% real-collision rate was observed in the nominal matrix during development "
-        "(3/24 seeds), traced to Pure Pursuit tracking error against a once-computed, locked detour "
-        "offset; raising the planning margin did not reliably fix it (it only reshuffled which seeds "
-        "collide vs. abort). See docs/MY_TRACK.md for the root cause and what a real fix needs.",
+        "A residual real-collision rate was observed in the nominal matrix during development: "
+        "originally 2/24 seeds (shared seed 2, built seed 6). Root-caused to DetourLock not locking "
+        "its lateral offset (ramp_height_m) alongside the ramp length/lead it already locked, letting "
+        "the offset drift or flip sign as the kart closed in. Fixing that resolved built seed 6 (now "
+        "0 collisions); shared seed 2 still collides (now 1/24 nominal seeds), traced further to an "
+        "admission-time kinematic-feasibility gap (a late detour whose required curvature saturates "
+        "steering before completing). Raising the planning margin did not reliably fix either case (it "
+        "only reshuffled which seeds collide vs. abort). See docs/MY_TRACK.md for the full history.",
     ])
     print(f"Wrote {args.out / 'matrix.csv'} and {args.out / 'SUMMARY.md'}")
 
