@@ -95,8 +95,7 @@ class DetourLock:
     # favourable than it actually was -- shrinking or reversing the
     # already-validated offset mid-maneuver and steering the kart back
     # toward the obstacle it had just cleared. Locking this value alongside
-    # the ramp geometry (but letting it WIDEN, never shrink -- see
-    # my_track_mission.py) is the fix. See docs/MY_TRACK.md.
+    # the ramp geometry is the fix. See docs/MY_TRACK.md.
     ramp_height_m: float = 0.0
 
 

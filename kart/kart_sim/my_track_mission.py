@@ -236,6 +236,19 @@ class MissionController:
             free_width_m = half_lane_m + clearance_to_centreline_m - 2 * cfg.cone_radius_m
             admitted, chosen_ramp_m, chosen_lead_m = False, None, None
 
+            def swept_ok(height_m: float, ramp_m: float, lead_m: float) -> bool:
+                ramp_offset, _ = self._ramp(xs, x_min_m, x_max_m, lead_m, ramp_m, height_m)
+                candidate_ys = ys + ramp_offset
+                heading = np.arctan2(np.gradient(candidate_ys), np.gradient(xs))
+                for k in range(0, len(xs), 2):
+                    for px_m, py_m, _, _ in points:
+                        if px_m > xs[k] + self.front_extent_m + 1 or px_m < xs[k] - 2:
+                            continue
+                        clearance_m = footprint_clearance_m(px_m, py_m, xs[k], candidate_ys[k], heading[k], self.rear_overhang_m, self.front_extent_m, self.half_width_m) - cfg.cone_radius_m
+                        if clearance_m < cfg.footprint_margin_m:
+                            return False
+                return True
+
             cluster_centre_world_xy = to_world(float(cx.mean()), float(cy.mean()))
             existing_lock = next(
                 (lock for lock in self.locks if hypot(lock.cluster_centre_world_xy[0] - cluster_centre_world_xy[0],
@@ -257,46 +270,20 @@ class MissionController:
                 # very obstacle it was meant to clear -- this was the real
                 # cause of the residual collisions (see docs/MY_TRACK.md).
                 #
-                # The lock is still allowed to WIDEN: as the kart closes in,
-                # depth noise shrinks and the cluster's true lateral position
-                # is revealed more accurately, which can show the obstacle is
-                # further into the lane than the long-range estimate at
-                # admission time suggested. If the freshly measured offset is
-                # on the same side and bigger (more clearance) than the
-                # locked one, adopt it and persist the wider value. A
-                # same-cluster measurement that would SHRINK the offset, or
-                # flip its side, is ignored -- that is exactly the noise
-                # pattern that used to cause collisions, not a legitimate
-                # correction.
+                # (A "widen when a fresher reading calls for more clearance"
+                # variant was tried and measured WORSE on the known collision
+                # seeds: a bigger offset validated against one frame's noisy
+                # cluster can still clip a different cone a few frames later,
+                # since the noise is ongoing jitter, not a one-way
+                # convergence as range closes. Kept simple and locked.)
                 admitted, chosen_ramp_m, chosen_lead_m = True, existing_lock.ramp_length_m, existing_lock.lead_distance_m
-                locked_height_m = existing_lock.ramp_height_m
-                if locked_height_m == 0.0 or (ramp_height_m * locked_height_m > 0 and abs(ramp_height_m) > abs(locked_height_m)):
-                    widened_lock = DetourLock(existing_lock.cluster_centre_world_xy, existing_lock.ramp_length_m,
-                                               existing_lock.lead_distance_m, existing_lock.created_at_s, ramp_height_m)
-                    self.locks[self.locks.index(existing_lock)] = widened_lock
-                    existing_lock = widened_lock
-                else:
-                    ramp_height_m = locked_height_m
+                ramp_height_m = existing_lock.ramp_height_m
                 active_lock_age_s = timestamp_s - existing_lock.created_at_s
             elif free_width_m >= self.half_width_m * 2 + 2 * 0.25:
                 for ramp_m in cfg.detour_ramp_lengths_m:
                     lead_m = 0.0
                     while x_min_m - lead_m - ramp_m >= -0.2:
-                        ramp_offset, _ = self._ramp(xs, x_min_m, x_max_m, lead_m, ramp_m, ramp_height_m)
-                        candidate_ys = ys + ramp_offset
-                        heading = np.arctan2(np.gradient(candidate_ys), np.gradient(xs))
-                        swept_ok = True
-                        for k in range(0, len(xs), 2):
-                            for px_m, py_m, _, _ in points:
-                                if px_m > xs[k] + self.front_extent_m + 1 or px_m < xs[k] - 2:
-                                    continue
-                                clearance_m = footprint_clearance_m(px_m, py_m, xs[k], candidate_ys[k], heading[k], self.rear_overhang_m, self.front_extent_m, self.half_width_m) - cfg.cone_radius_m
-                                if clearance_m < cfg.footprint_margin_m:
-                                    swept_ok = False
-                                    break
-                            if not swept_ok:
-                                break
-                        if swept_ok:
+                        if swept_ok(ramp_height_m, ramp_m, lead_m):
                             admitted, chosen_ramp_m, chosen_lead_m = True, ramp_m, lead_m
                             new_lock = DetourLock(cluster_centre_world_xy, ramp_m, lead_m, timestamp_s, ramp_height_m)
                             break
