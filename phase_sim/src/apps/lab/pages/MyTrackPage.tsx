@@ -98,32 +98,65 @@ function FollowView({ frame, profile }: { frame: MissionFrame | null; profile: P
   );
 }
 
-/** Synthetic HP60C RGB-D projection: cones ahead of the kart projected into a fake 640x480
- * camera frame using a simple pinhole-angle model, since no real per-frame camera detection
- * array is exposed by MissionFrame.perception (checked: perception.cones carries world-ish
- * range/bearing, not image coordinates). Placeholder, clearly labelled as such. */
-function Hp60cFrame({ frame }: { frame: MissionFrame | null }) {
-  const vw = 320, vh = 240; // scaled 640x480
+/**
+ * HP60C RGB-D camera panel (Task 4). A pinhole-perspective projection at the real datasheet
+ * HFOV/VFOV and a 4° downward mount pitch (projectToCamera, ported from kart/kart_sim/hp60c.py
+ * -- read-only reference, not imported, since this page never calls into the sim/mission
+ * code directly). No real per-frame image-space detection array is exposed on MissionFrame
+ * (perception.cones carries body-frame range/bearing, not pixel coordinates), so this remains
+ * a synthetic rendering of the same underlying frame data, now built from the real projection
+ * math instead of ad-hoc boxes:
+ *  - cones are drawn as cone SILHOUETTES (ConeGlyph), not boxes or circles, in their true color
+ *  - a cone present in `perception.cones` (the actual detected/tracked set) is "detected":
+ *    full color + a thin tracking ring + a depth label in metres
+ *  - a cone present in the ground-truth/course set but NOT in `perception.cones`, while still
+ *    geometrically in view, is "missed": the same silhouette at low opacity with a small tick
+ *    mark -- never an empty dashed box
+ *  - cones beyond HP60C_ZMAX_M (4m) or outside the HFOV are not drawn at all
+ *  - cones beyond HP60C_FADE_FROM_M (3.5m) fade linearly to ~25% opacity at 4m ("fading with
+ *    distance" -- a deliberate choice documented here, not in the reference model)
+ *  - hovering a cone sets the shared `hoveredConeId` so the Follow View panel highlights the
+ *    same cone (lifted state, passed down from MyTrackPage)
+ */
+function Hp60cFrame({ frame, hoveredConeId, onHoverCone }: { frame: MissionFrame | null; hoveredConeId: string | null; onHoverCone: (id: string | null) => void }) {
+  const vw = 320, vh = 240; // scaled 640x480, same aspect as HP60CConfig
   if (!frame) return <div className="mt-empty" role="status">n/a — no frame</div>;
   const half = HP60C_FOV_RAD / 2;
-  const focal = (vw / 2) / Math.tan(half);
-  const boxes = (frame.visualization?.course_cones ?? frame.perception.cones)
+  const detectedIds = new Set(frame.perception.cones.map((c) => c.id));
+  const groundTruth = frame.visualization?.course_cones ?? frame.perception.ground_truth_cones ?? frame.perception.cones;
+  const horizon = projectToCamera(1000, 0, 0, vw, vh); // far-field point on the ground plane -> horizon v
+  const cones = groundTruth
     .map((cone) => ({ ...cone, body: toBodyFrame(cone, frame.vehicle) }))
-    .filter((c) => c.body.x > 0.3 && Math.abs(Math.atan2(c.body.y, c.body.x)) < half)
+    .filter((c) => c.body.x > 0.15 && Math.abs(Math.atan2(c.body.y, c.body.x)) < half && c.body.x <= HP60C_ZMAX_M)
     .map((c) => {
-      const u = vw / 2 - (c.body.y / c.body.x) * focal;
-      const sizePx = Math.max(4, Math.min(40, 10 / c.body.x * focal / 10));
-      const v = vh * 0.62;
-      return { ...c, u, v, sizePx };
-    });
+      const base = projectToCamera(c.body.x, c.body.y, 0, vw, vh);
+      const top = projectToCamera(c.body.x, c.body.y, HP60C_CONE_HEIGHT_M, vw, vh);
+      if (!base || !top) return null;
+      const glyphSize = Math.max(4, Math.min(34, base.v - top.v));
+      const fade = c.body.x <= HP60C_FADE_FROM_M ? 1 : Math.max(0.25, 1 - (c.body.x - HP60C_FADE_FROM_M) / (HP60C_ZMAX_M - HP60C_FADE_FROM_M) * 0.75);
+      const detected = detectedIds.has(c.id);
+      return { ...c, u: base.u, v: base.v, glyphSize, fade, detected };
+    })
+    .filter((c): c is NonNullable<typeof c> => c !== null);
   return (
-    <svg className="mt-svg mt-cam" viewBox={`0 0 ${vw} ${vh}`} role="img" aria-label="HP60C RGB-D camera frame, synthetic detections">
+    <svg className="mt-svg mt-cam" viewBox={`0 0 ${vw} ${vh}`} role="img" aria-label="HP60C RGB-D camera frame: pinhole projection, detected and missed cones">
       <rect x={0} y={0} width={vw} height={vh} className="mt-cam-bg" />
-      <line x1={0} y1={vh * 0.62} x2={vw} y2={vh * 0.62} className="mt-cam-horizon" />
-      {boxes.map((b) => (
-        <g key={b.id}>
-          <rect x={b.u - b.sizePx / 2} y={b.v - b.sizePx} width={b.sizePx} height={b.sizePx} className="mt-cam-box" />
-          <text x={b.u} y={b.v + 11} className="mt-cam-label">{b.body.x.toFixed(1)}m</text>
+      {horizon && <line x1={0} y1={horizon.v} x2={vw} y2={horizon.v} className="mt-cam-horizon" />}
+      {cones.map((c) => (
+        <g key={c.id} transform={`translate(${c.u} ${c.v})`} opacity={c.fade}
+          onMouseEnter={() => onHoverCone(c.id)} onMouseLeave={() => onHoverCone(null)} style={{ cursor: 'pointer' }}>
+          {c.detected ? (
+            <>
+              <ConeGlyph size={c.glyphSize} className={coneDotClass(c.class)} />
+              <TrackingRing r={c.glyphSize * 0.5} className={`mt-cam-ring ${c.id === hoveredConeId ? 'mt-cone-hover-ring' : ''}`} />
+              <text x={0} y={c.glyphSize * 0.75} className="mt-cam-label">{c.body.x.toFixed(1)}m</text>
+            </>
+          ) : (
+            <>
+              <ConeGlyph size={c.glyphSize} className={coneDotClass(c.class)} opacity={0.35} />
+              <MissTick size={c.glyphSize * 0.6} className={`mt-cam-miss-tick ${c.id === hoveredConeId ? 'mt-cone-hover-ring' : ''}`} />
+            </>
+          )}
         </g>
       ))}
     </svg>
