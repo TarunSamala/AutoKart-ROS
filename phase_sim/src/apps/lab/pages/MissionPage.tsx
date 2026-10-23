@@ -8,6 +8,7 @@ import '../../../mission/mission.css';
 import { Link } from '../router';
 import { useReportProvenance, useRun } from '../runContext';
 import { RecordingPicker } from './RecordingPicker';
+import { exportCsvAtRate, exportJsonSummary } from '../../../ui/telemetryExport';
 
 /*
  * Lab mission view (/mission and /replay).
@@ -225,6 +226,9 @@ function MissionView({ variant }: { variant: 'mission' | 'replay' }) {
         <span>W R/L <b>{fmt(raw?.planning.skidpad?.w_right)} / {fmt(raw?.planning.skidpad?.w_left)}</b></span>
         <span>{stepping ? `${stage} / ${STAGES.length} · ${STAGES[stage - 1]}` : `${fmt(data.time, 3)} s`}</span>
         {isSandbox && <button onClick={data.exportReplay} disabled={data.frames.length < 2}>SAVE RUN (.jsonl)</button>}
+        <button onClick={() => exportCsvAtRate(data.frames, 1, String(data.manifest.run_id ?? 'autokart-run'))} disabled={data.frames.length < 1}>Export 1Hz CSV</button>
+        <button onClick={() => exportCsvAtRate(data.frames, 10, String(data.manifest.run_id ?? 'autokart-run'))} disabled={data.frames.length < 1}>Export 10Hz CSV</button>
+        <button onClick={() => exportJsonSummary(data.frames, String(data.manifest.run_id ?? 'autokart-run'))} disabled={data.frames.length < 1}>Export JSON summary</button>
         {labSource === 'SIMULATION' && <button onClick={() => data.openGatewayReplay().catch((cause: Error) => setError(cause.message))}>SIM GATEWAY RECORDING</button>}
         {variant === 'replay' && <Link to="/dataset" className="lab-inline-link">Inspect frames in Dataset</Link>}
       </div>
