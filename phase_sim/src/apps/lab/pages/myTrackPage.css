@@ -1,6 +1,8 @@
 /* /mytrack page: light theme matching kart/viewer/index.html, scoped under .mt-page.ui-root. */
 .mt-page { width: 100%; max-width: 1280px; margin: 0 auto; padding: 14px 16px 40px; font-family: var(--ui-sans); color: var(--ui-text); }
-.mt-page h1 { margin: 0; font-size: 20px; letter-spacing: .02em; }
+/* color pinned explicitly: styles.css's global `h1, h2 { color: var(--ink) }` otherwise wins
+   the color property on specificity in some builds (see lab.css's .lab-doc h1 for the same fix). */
+.mt-page h1 { margin: 0; font-size: 20px; letter-spacing: .02em; color: var(--ui-text); }
 .mt-sub { color: var(--ui-muted); font-size: 11.5px; }
 
 .mt-topbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; padding: 10px 12px; background: var(--ui-panel); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); box-shadow: var(--ui-shadow); }

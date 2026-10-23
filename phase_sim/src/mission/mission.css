@@ -66,7 +66,7 @@ body:has(.mission-shell){min-width:0;background:var(--ui-bg)}
 .mc-world-label.kart{color:#9af2d0;border-color:#4aa78c;background:#103f3adc;font-size:10px}
 .mc-world-top{position:absolute;top:0;left:0;right:0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:15px 17px 8px;pointer-events:none;background:linear-gradient(#071923db,#07192300)}
 .mc-world-title small,.mc-floating>small,.mc-card>small{display:block;color:#69dcb6;font:800 9px 'JetBrains Mono',monospace;letter-spacing:.14em}
-.mc-world-title h1{margin:3px 0;font-size:19px;letter-spacing:.02em}
+.mc-world-title h1{margin:3px 0;font-size:19px;letter-spacing:.02em;color:var(--ui-text)}
 .mc-world-controls{display:flex;gap:6px;align-items:center;pointer-events:auto}
 .mc-world-controls button,.mc-world-controls select{background:#102a35d9;color:#dbeae9;border:1px solid #31535e;border-radius:5px;min-height:29px;font-size:9px;font-weight:800;letter-spacing:.04em;padding:5px 8px}
 .mc-world-controls select{max-width:135px}

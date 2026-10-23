@@ -97,9 +97,14 @@ body:has(.lab-app){min-width:0;background:var(--ui-bg)}
 .lab-loading{padding:24px 16px;color:var(--lab-muted)}
 .lab-page{min-width:0}
 .lab-doc{width:100%;max-width:1280px;margin:0 auto;padding:18px 16px 40px}
-.lab-doc h1{font-size:24px;margin:2px 0 10px;line-height:1.2}
-.lab-doc h2{font-size:16px;margin:0 0 10px}
-.lab-doc h3{font-size:14px;margin:0 0 8px}
+/* Explicit color (not just inherited): the legacy demo app's global styles.css (imported
+   unconditionally by main.tsx for the /demo page) sets an unscoped `h1, h2 { color: var(--ink) }`
+   rule that otherwise wins on source order in some builds and reads near-white against the
+   light theme's panel background -- a pre-existing cross-app leak, fixed here by pinning the
+   Lab's own heading color at equal-or-higher specificity rather than editing styles.css. */
+.lab-doc h1{font-size:24px;margin:2px 0 10px;line-height:1.2;color:var(--ui-text)}
+.lab-doc h2{font-size:16px;margin:0 0 10px;color:var(--ui-text)}
+.lab-doc h3{font-size:14px;margin:0 0 8px;color:var(--ui-text)}
 .lab-doc p{max-width:90ch}
 .lab-eyebrow{margin:0;font:800 10.5px 'JetBrains Mono Variable',monospace;letter-spacing:.12em;color:var(--ui-muted)}
 .lab-card{background:var(--lab-panel);border:1px solid var(--lab-line);border-radius:8px;padding:14px 16px;margin:0 0 14px;min-width:0}
