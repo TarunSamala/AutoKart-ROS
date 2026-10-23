@@ -13,6 +13,27 @@
       "runtimeArgs": ["--prefix", "phase_sim", "run", "dev:lab"],
       "port": 5191,
       "env": {"AUTOKART_LAB_PORT": "5191"}
+    },
+    {
+      "name": "phase_sim_designer",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "phase_sim", "run", "dev:lab"],
+      "port": 5192,
+      "env": {"AUTOKART_LAB_PORT": "5192"}
+    },
+    {
+      "name": "phase_sim_developer",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "phase_sim", "run", "dev:lab"],
+      "port": 5193,
+      "env": {"AUTOKART_LAB_PORT": "5193"}
+    },
+    {
+      "name": "phase_sim_validator",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "phase_sim", "run", "dev:lab"],
+      "port": 5194,
+      "env": {"AUTOKART_LAB_PORT": "5194"}
     }
   ]
 }
