@@ -1,0 +1,29 @@
+# SYNTHETIC profile. wheelbase_m and counts_per_m below are SYNTHETIC TEST
+# VALUES chosen to make the generated samples self-consistent -- they are NOT
+# measurements of the real kart and must never be copied into a live config.
+# algorithm_package_path is left empty on purpose (no hardcoded paths): set it
+# at launch time to the directory that CONTAINS the autokart_localization
+# Python package, e.g.
+#   ros2 launch autokart_odometry odometry.launch.py \
+#     --ros-args ... (or override in a copy of this file):
+#   algorithm_package_path: /path/to/kart/ros2_ws/src/autokart_localization
+# Without it the node fails closed (ALGORITHM_PATH_NOT_CONFIGURED on
+# /odom/status, no /odom, no TF) -- there is no local copy of the algorithm.
+autokart_odometry:
+  ros__parameters:
+    source: "synthetic"
+    algorithm_package_path: ""
+    wheelbase_m: 1.0          # SYNTHETIC TEST VALUE, not measured
+    counts_per_m: 100.0       # SYNTHETIC TEST VALUE, exercises the reused update_counts() path
+    encoder_forward_sign: 1
+    position_variance_m2: 0.25
+    yaw_variance_rad2: 0.25
+    speed_variance_m2ps2: 0.25
+    yaw_rate_variance_rad2ps2: 0.25
+    odom_frame_id: "odom"
+    base_frame_id: "base_link"
+    publish_tf: true
+    input_timeout_s: 0.3
+    synthetic_rate_hz: 50.0
+    synthetic_speed_mps: 1.0
+    synthetic_steering_rad: 0.1

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>autokart_odometry</name>
+  <version>0.1.0</version>
+  <description>Wheel-encoder + observed-steering odometry: wraps the existing autokart_localization WheelOdometry (bicycle model), publishes nav_msgs/Odometry on /odom and the single odom-&gt;base_link TF. No IMU fusion. Standalone, portable node from the autokart_ros_nodes library.</description>
+  <maintainer email="harrishkesavan@gmail.com">AutoKart</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>autokart_msgs</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+  <test_depend>tf2_ros</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

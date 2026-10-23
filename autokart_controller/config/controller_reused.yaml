@@ -1,0 +1,25 @@
+# Reuses the real, already-tested kart_sim.autonomy.PurePursuitController/LongitudinalPidController
+# (see DEPENDENCIES.md). Every path below is a placeholder: fill in the actual deployment path
+# before treating output as using the qualified implementation, same convention as
+# autokart_hp60c's config/hp60c_live.yaml.
+autokart_controller:
+  ros__parameters:
+    pursuit_backend: "reused"
+    # Path to the directory CONTAINING the kart_sim/ package (i.e. kart/, the parent of
+    # kart/kart_sim/__init__.py), e.g. "/home/mark1/Desktop/autonomous_kart/kart"
+    # Deliberately not hardcoded here: set per-deployment at launch time.
+    kart_sim_package_path: ""
+    wheelbase_m: 1.0                      # UNVERIFIED nominal, never measured on this vehicle
+    maximum_steering_rad: 0.6             # UNVERIFIED nominal mechanical limit
+    maximum_steering_rate_radps: 3.0
+    lookahead_m: 1.5
+    speed_lookahead_gain_s: 0.15
+    maximum_speed_mps: 5.0
+    path_max_age_s: 0.5
+    pose_max_age_s: 0.15
+    odom_topic: "/autokart/odom"
+    path_topic: "/autokart_planner/path"
+    safety_envelope_topic: "/autokart_planner/safety_envelope"
+    speed_profile_topic: "/autokart_planner/speed_profile"
+    actuator_feedback_topic: "/vehicle/actuator_feedback"
+    source: "SIMULATED"

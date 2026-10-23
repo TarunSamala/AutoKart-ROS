@@ -1,0 +1,19 @@
+# LIVE hardware configuration. Every value below is a placeholder or a
+# structural default from the public MPU-6500 datasheet, not a verified
+# calibration. No Raspberry Pi, no I2C bus, no MPU-6500 is attached in this
+# development environment -- this backend's read path is NOT RUN here (see
+# reports/VALIDATOR_REPORT.md and DEPENDENCIES.md). Do not treat a successful
+# `colcon build`/software test pass with this file as hardware qualification.
+autokart_imu:
+  ros__parameters:
+    backend: "mpu6500"
+    frame_id: "imu_link"
+    i2c_bus_num: 1        # VERIFY: actual I2C bus number on the target Raspberry Pi
+    i2c_address: 0x68     # MPU-6500 default address (AD0 pin low); 0x69 if AD0 is pulled high -- VERIFY wiring
+    gyro_fs_dps: 500       # VERIFY: desired full-scale range vs expected kart yaw rates
+    accel_fs_g: 4          # VERIFY: desired full-scale range vs expected kart accelerations
+    calibration_samples: 100  # stationary-bias window at startup -- the vehicle MUST be stationary and
+                              # level during this window, which this node cannot itself verify (no wheel
+                              # speed / IMU-independent stillness signal available to it)
+    gyro_variance_rad2ps2: 0.0004   # placeholder, NOT measured against this physical sensor
+    accel_variance_m2ps4: 0.01      # placeholder, NOT measured against this physical sensor

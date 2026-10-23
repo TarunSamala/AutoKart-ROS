@@ -1,0 +1,12 @@
+autokart_imu:
+  ros__parameters:
+    backend: "synthetic"
+    frame_id: "imu_link"
+    calibration_samples: 100
+    gyro_variance_rad2ps2: 0.0004
+    accel_variance_m2ps4: 0.01
+    synthetic_period_s: 0.005
+    synthetic_rotation_radps_z: 0.0
+    synthetic_rotation_after_sample: 0
+    synthetic_saturate_after: 0
+    synthetic_nonmonotonic_after: 0

@@ -1,0 +1,25 @@
+autokart_vcu_bridge:
+  ros__parameters:
+    backend: "synthetic"
+    # algorithm_package_path left unset: this profile demonstrates the fully
+    # portable, zero-external-dependency configuration (CORE_LOGIC_UNAVAILABLE
+    # fallback -- throttle always 0 mV, brake always 100%). To exercise the
+    # real, reused core.py control law against the synthetic VCU simulation
+    # instead, override this parameter at launch time, e.g.:
+    #   ros2 launch autokart_vcu_bridge vcu_bridge.launch.py \
+    #     config_file:=.../vcu_bridge_synthetic.yaml \
+    #     --ros-args -p algorithm_package_path:=/path/to/kart/ros2_ws/src/autokart_vehicle_bridge
+    algorithm_package_path: ""
+    tick_hz: 20.0
+    throttle_v_max: 2.0
+    throttle_run_v: 2.0
+    volts_per_mps: 1.0
+    cmd_timeout_s: 0.25
+    safety_timeout_s: 0.3
+    steer_zero_raw: 2048
+    steer_rad_per_raw: 0.001534
+    brake_zero_raw: 2048
+    brake_rad_per_raw: 0.001534
+    candidate_topic: "/autokart/controller/motion_command_candidate"
+    safety_armed_topic: "/vcu_bridge/safety_armed"
+    request_topic: "/vcu_bridge/request"

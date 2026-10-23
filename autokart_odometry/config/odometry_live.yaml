@@ -1,0 +1,23 @@
+# LIVE configuration: consumes node 04's /vehicle/actuator_feedback.
+# wheelbase_m is deliberately 0.0 -> the node FAILS CLOSED (INVALID_CONFIG)
+# until a measured value is entered. No nominal/guessed physical constant is
+# supplied here. counts_per_m stays 0 (speed mode) because ActuatorFeedback
+# carries no axle counts; calibrated-counts mode needs a raw-counts input this
+# library does not yet provide (see CONTRACT.md).
+# NOT RUN in this session: no VCU, no AS5047P/AS5600, no lifted-axle or push test.
+autokart_odometry:
+  ros__parameters:
+    source: "actuator_feedback"
+    algorithm_package_path: ""   # set per deployment: dir containing autokart_localization/
+    wheelbase_m: 0.0             # MEASURE (front-to-rear axle distance, metres)
+    counts_per_m: 0.0
+    encoder_forward_sign: 1      # VERIFY with forward hand-push trials
+    position_variance_m2: 0.25   # placeholder, NOT measured
+    yaw_variance_rad2: 0.25      # placeholder, NOT measured
+    speed_variance_m2ps2: 0.25   # placeholder, NOT measured
+    yaw_rate_variance_rad2ps2: 0.25  # placeholder, NOT measured
+    odom_frame_id: "odom"
+    base_frame_id: "base_link"
+    publish_tf: true             # see CONTRACT.md: duplicate odom->base_link writer hazard
+    input_timeout_s: 0.3
+    feedback_topic: "/vehicle/actuator_feedback"

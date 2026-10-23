@@ -1,0 +1,6 @@
+autokart_hp60c:
+  ros__parameters:
+    backend: "synthetic"
+    rgb_frame_id: "hp60c_rgb_optical_frame"
+    depth_frame_id: "hp60c_depth_optical_frame"
+    depth_scale_m_per_unit: 0.001

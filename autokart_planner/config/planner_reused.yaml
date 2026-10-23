@@ -1,0 +1,26 @@
+# Reuses the real, already-tested autokart_perception.curvature/shared_core algorithms (see
+# DEPENDENCIES.md). Every path below is a placeholder: fill in the actual deployment path before
+# treating output as using the qualified algorithm, same convention as autokart_hp60c's
+# config/hp60c_live.yaml.
+autokart_planner:
+  ros__parameters:
+    algorithm_backend: "reused"
+    # Path to the checked-out autokart_perception algorithm package's "src" directory (parent of
+    # the autokart_perception/ Python package), e.g.
+    # "/home/mark1/Desktop/autonomous_kart/autonomy_stack_phase1/phase_01_perception/src"
+    # Deliberately not hardcoded here: set per-deployment at launch time.
+    algorithm_package_path: ""
+    vehicle_geometry_yaml_path: ""
+    footprint_width_m: 0.0
+    a_lat_max_mps2: 2.0      # UNVERIFIED nominal placeholder, never measured on this vehicle
+    a_brake_min_mps2: 0.0    # 0.0 = unconfigured -> fails closed; set to a MEASURED value only
+    t_total_latency_s: 0.0
+    d_margin_m: 1.0
+    speed_limit_mps: 1.0
+    curvature_eps_m_inv: 0.001
+    path_max_age_s: 0.5
+    odom_max_age_s: 0.15
+    odom_topic: "/autokart/odom"
+    reference_path_topic: "/autokart_planner/reference_path"
+    obstacles_topic: "/autokart_planner/obstacles"
+    source: "SIMULATED"

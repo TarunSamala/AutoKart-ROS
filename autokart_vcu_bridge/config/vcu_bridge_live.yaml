@@ -1,0 +1,32 @@
+# LIVE hardware configuration. Every path/calibration value below is a
+# placeholder or carried over unverified from docs/VCU_PROTOCOL.md /
+# kart/ros2_ws's own vcu_bridge config -- not re-measured in this session.
+# No ESP32-S3/VCU is attached in this development environment -- this
+# backend's serial read/write path is NOT RUN here (see
+# reports/VALIDATOR_REPORT.md and DEPENDENCIES.md).
+autokart_vcu_bridge:
+  ros__parameters:
+    backend: "serial"
+    # Path to the checked-out autokart_vehicle_bridge package's parent ("src")
+    # directory, e.g.
+    # "/home/mark1/Desktop/autonomous_kart/kart/ros2_ws/src/autokart_vehicle_bridge"
+    # Deliberately not hardcoded here: set per-deployment at launch time.
+    algorithm_package_path: ""
+    serial_port: "/dev/ttyACM0"
+    serial_baud: 115200
+    tick_hz: 20.0
+    throttle_v_max: 2.0       # absolute hard cap, mirrors vcu_firmware THROTTLE_MAX_MV (2000 mV)
+    throttle_run_v: 2.0       # MEASURE: motor start voltage
+    volts_per_mps: 1.0        # MEASURE: feed-forward volts needed per m/s
+    cmd_timeout_s: 0.25
+    safety_timeout_s: 0.3
+    steer_zero_raw: 2048      # MEASURE: AS5600 zero offset for steering
+    steer_rad_per_raw: 0.001534   # MEASURE
+    brake_zero_raw: 2048      # MEASURE: AS5600 zero offset for brake position readout
+    brake_rad_per_raw: 0.001534   # MEASURE
+    candidate_topic: "/autokart/controller/motion_command_candidate"
+    safety_armed_topic: "/vcu_bridge/safety_armed"   # placeholder: no upstream safety supervisor
+                                                      # (node 10 / autokart_safety) is wired to this; see
+                                                      # DEVELOPER_REPORT.md. With nothing publishing
+                                                      # here, this input fails closed (false).
+    request_topic: "/vcu_bridge/request"
