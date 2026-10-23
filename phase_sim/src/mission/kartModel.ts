@@ -10,9 +10,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 export type KartProfile = 'shared' | 'built';
 
 // Dimension sheet (kart/configs/karts/{shared,built}.yaml), rear-axle-referenced.
-const PROFILE_GEOMETRY: Record<KartProfile, { frontExtentM: number; rearOverhangM: number; halfWidthM: number; wheelbaseM: number }> = {
-  shared: { frontExtentM: 2.0, rearOverhangM: 0.4, halfWidthM: 1.181 / 2, wheelbaseM: 1.422 },
-  built: { frontExtentM: 2.0, rearOverhangM: 0.4, halfWidthM: 1.181 / 2, wheelbaseM: 1.1176 },
+export const PROFILE_GEOMETRY: Record<KartProfile, { frontExtentM: number; rearOverhangM: number; halfWidthM: number; wheelbaseM: number; frontTrackM: number }> = {
+  shared: { frontExtentM: 2.0, rearOverhangM: 0.4, halfWidthM: 1.181 / 2, wheelbaseM: 1.422, frontTrackM: 1.0648 },
+  built: { frontExtentM: 2.0, rearOverhangM: 0.4, halfWidthM: 1.181 / 2, wheelbaseM: 1.1176, frontTrackM: 1.0668 },
 };
 
 const BODY_PARTS = ['body', 'chassis', 'rear_axle', 'steering'] as const;

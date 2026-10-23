@@ -1,0 +1,331 @@
+{
+  "pose": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "num_body_points": 32,
+  "num_obstacle_indices": 4,
+  "num_boundary_points": 28,
+  "num_real_gates": 27,
+  "num_fallback_gates": 0,
+  "num_all_gates": 27,
+  "sample_xs": [
+    0.0,
+    2.0,
+    5.0,
+    10.0,
+    15.0,
+    18.0
+  ],
+  "sample_ys": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "tracks": [
+    {
+      "x_m": -2.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 0
+    },
+    {
+      "x_m": -2.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 1
+    },
+    {
+      "x_m": -1.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 2
+    },
+    {
+      "x_m": -1.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 3
+    },
+    {
+      "x_m": 0.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 4
+    },
+    {
+      "x_m": 0.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 5
+    },
+    {
+      "x_m": 1.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 6
+    },
+    {
+      "x_m": 1.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 7
+    },
+    {
+      "x_m": 2.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 8
+    },
+    {
+      "x_m": 2.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 9
+    },
+    {
+      "x_m": 3.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 10
+    },
+    {
+      "x_m": 3.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 11
+    },
+    {
+      "x_m": 4.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 12
+    },
+    {
+      "x_m": 4.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 13
+    },
+    {
+      "x_m": 5.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 14
+    },
+    {
+      "x_m": 5.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 15
+    },
+    {
+      "x_m": 6.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 16
+    },
+    {
+      "x_m": 6.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 17
+    },
+    {
+      "x_m": 7.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 18
+    },
+    {
+      "x_m": 7.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 19
+    },
+    {
+      "x_m": 8.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 20
+    },
+    {
+      "x_m": 8.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 21
+    },
+    {
+      "x_m": 9.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 22
+    },
+    {
+      "x_m": 9.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 23
+    },
+    {
+      "x_m": 10.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 24
+    },
+    {
+      "x_m": 10.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 25
+    },
+    {
+      "x_m": 11.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 26
+    },
+    {
+      "x_m": 11.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 27
+    },
+    {
+      "x_m": 12.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 28
+    },
+    {
+      "x_m": 12.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 29
+    },
+    {
+      "x_m": 13.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 30
+    },
+    {
+      "x_m": 13.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 31
+    },
+    {
+      "x_m": 14.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 32
+    },
+    {
+      "x_m": 14.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 33
+    },
+    {
+      "x_m": 15.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 34
+    },
+    {
+      "x_m": 15.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 35
+    },
+    {
+      "x_m": 16.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 36
+    },
+    {
+      "x_m": 16.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 37
+    },
+    {
+      "x_m": 17.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 38
+    },
+    {
+      "x_m": 17.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 39
+    },
+    {
+      "x_m": 18.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 40
+    },
+    {
+      "x_m": 18.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 41
+    },
+    {
+      "x_m": 19.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 42
+    },
+    {
+      "x_m": 19.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 43
+    },
+    {
+      "x_m": 20.0,
+      "y_m": 1.0,
+      "colour": "blue",
+      "track_id": 44
+    },
+    {
+      "x_m": 20.0,
+      "y_m": -1.0,
+      "colour": "yellow",
+      "track_id": 45
+    },
+    {
+      "x_m": 8.0,
+      "y_m": 0.45,
+      "colour": "large_orange",
+      "track_id": 46
+    },
+    {
+      "x_m": 8.3,
+      "y_m": 0.8,
+      "colour": "large_orange",
+      "track_id": 47
+    },
+    {
+      "x_m": 8.5,
+      "y_m": 0.55,
+      "colour": "large_orange",
+      "track_id": 48
+    },
+    {
+      "x_m": 8.2,
+      "y_m": 0.5,
+      "colour": "large_orange",
+      "track_id": 49
+    }
+  ]
+}

@@ -1,6 +1,11 @@
-import type { Cone, MissionFrame, Point } from './schema';
-import { candidatePaths, delaunayFromCones, fitCircle, gabrielFilter, gatesFromGabriel, observeCones } from './labAlgorithms';
+import type { Cone, Gate, MissionFrame, Point } from './schema';
+import { candidatePaths, delaunayFromCones, fitCircle, gabrielFilter, gatesFromGabriel, observeCones, MyTrackMission, myTrackBodyFramePoints, type MyTrackStepResult } from './labAlgorithms';
 import { DEFAULT_LAB_SETTINGS, generateScenario, type LabScenario, type LabSettings, type ScenarioName } from './labScenarios';
+
+// MY_TRACK rear-axle-referenced geometry, from kart/configs/karts/shared.yaml
+// (the "shared" profile). This is the SAME vehicle footprint used by
+// kartModel.ts's PROFILE_GEOMETRY.shared -- do not let the two drift apart.
+const MY_TRACK_GEOMETRY = { wheelbaseM: 1.422, frontExtentM: 2.0, rearOverhangM: 0.4, halfWidthM: 1.181 / 2 };
 
 const DT = 1 / 60;
 const WHEELBASE_M = 1.05;
@@ -34,10 +39,14 @@ export class LabSkidpad {
   private terminalBrake = false;
   private enteredLoop = false;
   private tracked = new Map<string, { cone: Cone; seen: number }>();
+  private myTrack: MyTrackMission | null = null;
+  private myTrackOdometryM = 0;
+  private myTrackLastResult: MyTrackStepResult | null = null;
 
   constructor(name: ScenarioName = 'SKIDPAD', settings: LabSettings = DEFAULT_LAB_SETTINGS) {
     this.settings = { ...settings };
     this.scenario = generateScenario(name, settings);
+    if (this.scenario.name === 'MY_TRACK') this.myTrack = new MyTrackMission(MY_TRACK_GEOMETRY);
     this.reset();
   }
 
@@ -51,6 +60,7 @@ export class LabSkidpad {
     this.trail = [{ x_m: this.x, y_m: this.y }];
     this.accumulator = 0; this.lastWall = null; this.running = false;
     this.targetProgress = -Infinity; this.targetBranch = 'ENTRY'; this.wRight = 0; this.wLeft = 0; this.mission = 'RIGHT_LOOPS'; this.brakeActive = false; this.terminalBrake = false; this.enteredLoop = false; this.tracked.clear();
+    this.myTrackOdometryM = 0; this.myTrackLastResult = null; this.myTrack?.reset();
   }
 
   setRunning(running: boolean): void {
@@ -143,7 +153,27 @@ export class LabSkidpad {
     return { center, radius_m: (outer.radius_m + inner.radius_m) / 2 };
   }
 
+  private stepMyTrack(): void {
+    if (!this.myTrack) return;
+    const detections = this.observe();
+    const pose = { x_m: this.x, y_m: this.y, yaw_rad: this.yaw };
+    const bodyPoints = myTrackBodyFramePoints(detections, pose);
+    const result = this.myTrack.step(bodyPoints, pose, this.speed, this.myTrackOdometryM, this.elapsed);
+    this.myTrackLastResult = result;
+    this.steering = result.steeringRad;
+    const targetSpeed = result.targetSpeedMps;
+    this.speed = result.brake || this.speed > targetSpeed ? Math.max(targetSpeed, this.speed - 3.2 * DT) : Math.min(targetSpeed, this.speed + 1.3 * DT);
+    const dX = this.speed * Math.cos(this.yaw) * DT, dY = this.speed * Math.sin(this.yaw) * DT;
+    this.x += dX; this.y += dY;
+    this.yaw = wrap(this.yaw + (this.speed / MY_TRACK_GEOMETRY.wheelbaseM) * Math.tan(this.steering) * DT);
+    this.myTrackOdometryM += Math.hypot(dX, dY);
+    this.elapsed += DT; this.steps += 1;
+    if (this.steps % 3 === 0) { this.trail.push({ x_m: this.x, y_m: this.y }); if (this.trail.length > 2400) this.trail.shift(); }
+    if (result.state === 'STOPPED') this.running = false;
+  }
+
   private step(): void {
+    if (this.scenario.name === 'MY_TRACK') { this.stepMyTrack(); return; }
     if (this.scenario.name === 'SKIDPAD' && this.mission === 'STOP') { this.running = false; return; }
     const plan = this.pipeline(this.observe());
     const target = plan.selected?.points.at(-1) ?? null;
@@ -200,7 +230,35 @@ export class LabSkidpad {
     }
   }
 
+  private getMyTrackFrame(): MissionFrame {
+    const result = this.myTrackLastResult;
+    const vehicle = {
+      x_m: this.x, y_m: this.y, yaw_rad: this.yaw, speed_mps: this.speed, measured_steering_rad: this.steering,
+      requested_steering_rad: this.steps === 0 ? null : this.steering,
+      target_speed_mps: this.steps === 0 ? null : result?.targetSpeedMps ?? null,
+      brake_command: this.steps === 0 ? null : result?.brake ? 1 : 0,
+      brake_feedback: result?.brake ? 1 : 0,
+    };
+    const detections = this.steps === 0 ? [] : this.observe();
+    for (const cone of detections) this.tracked.set(cone.id, { cone, seen: this.elapsed });
+    const tracked = [...this.tracked.values()].filter((item) => this.elapsed - item.seen < 0.8).map((item) => ({ ...item.cone, track_age_s: this.elapsed - item.seen }));
+    const gates: Gate[] = (result?.gatesList ?? []).map((g, index) => ({ id: `MT${index + 1}`, midpoint: g.midpoint, width_m: g.widthM, valid: true, reason: 'MY_TRACK GATE' }));
+    const selectedPath = result?.pathWorldXY ?? [];
+    return {
+      schema_version: 1, source: 'LAB', run_id: `lab-my_track-${this.settings.seed}`, scenario: 'MY_TRACK', sequence: this.steps, timestamp_s: this.elapsed,
+      vehicle,
+      perception: { cones: detections, tracked_cones: tracked, ground_truth_cones: this.scenario.cones, sensor_range_m: this.steps === 0 ? undefined : 19, sensor_fov_rad: SENSOR_FOV_RAD, obstacles: [] },
+      visualization: { course_cones: this.scenario.cones, trail: this.trail.slice(), special_markers: this.scenario.markers },
+      planning: { delaunay_edges: [], gabriel_edges: [], gates, candidate_paths: [], selected_path: selectedPath, lookahead: selectedPath.at(-1) ?? null,
+        skidpad: { state: result?.state ?? this.myTrack?.state ?? 'READY' } },
+      safety: { state: result?.state === 'STOPPED' ? 'STOPPED' : result?.detour ? 'DETOUR' : 'SANDBOX ONLY', priority: 'LAB_AUTONOMY' },
+      metrics: { cross_track_error_m: result?.lateralDeviationM ?? null },
+      lateralDeviationM: result?.lateralDeviationM ?? undefined,
+    };
+  }
+
   getFrame(): MissionFrame {
+    if (this.scenario.name === 'MY_TRACK') return this.getMyTrackFrame();
     const vehicle = { x_m: this.x, y_m: this.y, yaw_rad: this.yaw, speed_mps: this.speed, measured_steering_rad: this.steering, requested_steering_rad: this.steps === 0 ? null : this.steering, target_speed_mps: this.steps === 0 ? null : this.terminalBrake ? 0 : this.scenario.name === 'BRAKE' ? 4.2 : TARGET_SPEED_MPS, brake_command: this.steps === 0 ? null : this.brakeActive || this.terminalBrake ? 1 : 0, brake_feedback: this.brakeActive || this.terminalBrake ? 1 : 0 };
     const detections = this.steps === 0 ? [] : this.observe();
     for (const cone of detections) this.tracked.set(cone.id, { cone, seen: this.elapsed });

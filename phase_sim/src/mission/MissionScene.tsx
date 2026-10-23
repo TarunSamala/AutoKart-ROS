@@ -1,11 +1,16 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import type { Cone, Edge, MissionFrame, Point } from './schema';
-import { loadKartModel } from './kartModel';
+import { loadKartModel, PROFILE_GEOMETRY, type KartProfile } from './kartModel';
+import { computeAckermannAngles } from './labAlgorithms';
 
 export type Layer = 'groundTruth' | 'tracked' | 'detections' | 'delaunay' | 'gabriel' | 'gates' | 'boundaries' | 'candidates' | 'selected' | 'safety' | 'sensor';
 export type Selection = { kind: string; id: string };
-type Props = { frame: MissionFrame | null; layers: Record<Layer, boolean>; cameraMode: string; selection: Selection; onSelect: (selection: Selection) => void; animationStage?: number };
+// kartProfile is a developer-owned addition: it defaults to 'shared' and is
+// NOT wired to any UI control here (the Shared/Built toggle UI belongs to
+// the designer's MyTrackPage.tsx, which this file must not touch). Whatever
+// state holds the user's profile selection should pass it down as this prop.
+type Props = { frame: MissionFrame | null; layers: Record<Layer, boolean>; cameraMode: string; selection: Selection; onSelect: (selection: Selection) => void; animationStage?: number; kartProfile?: KartProfile };
 export const VISUAL_COLORS = { BLUE: 0x428dff, YELLOW: 0xffd451, ORANGE: 0xff923e, UNKNOWN: 0xa8bac3, DELAUNAY: 0x56d8ed, ACCEPTED: 0x54e2aa, REJECTED: 0xff6674, CANDIDATE: 0xf2f6f5, SELECTED: 0xff61ca } as const;
 export const CONE_CLASS_COLORS: Record<string, number> = { BLUE: VISUAL_COLORS.BLUE, LEFT: VISUAL_COLORS.BLUE, YELLOW: VISUAL_COLORS.YELLOW, RIGHT: VISUAL_COLORS.YELLOW, ORANGE: VISUAL_COLORS.ORANGE, SPECIAL: VISUAL_COLORS.ORANGE, START: VISUAL_COLORS.ORANGE, FINISH: VISUAL_COLORS.ORANGE, ENTRY: VISUAL_COLORS.ORANGE, EXIT: VISUAL_COLORS.ORANGE };
 const point3 = (p: Point, y = 0.1) => new THREE.Vector3(p.x_m, y + (p.z_m ?? 0), -p.y_m);
@@ -47,12 +52,12 @@ type SceneState = {
   drag: { x: number; y: number; startX: number; startY: number; button: number } | null; focus: THREE.Vector3; mode: string;
   course: THREE.InstancedMesh; courseBase: THREE.InstancedMesh; detections: THREE.InstancedMesh; detectionBase: THREE.InstancedMesh;
   graph: Record<'delaunay' | 'accepted' | 'rejected' | 'gates' | 'boundaryLeft' | 'boundaryRight' | 'candidates' | 'selected' | 'trail' | 'guide' | 'distance' | 'branchValid' | 'branchInvalid' | 'leftArc' | 'rightArc' | 'angle', Lines>;
-  car: THREE.Group; frontWheels: THREE.Object3D[]; lookahead: THREE.Mesh; obstacle: THREE.Mesh; stop: THREE.Mesh; envelope: THREE.Mesh;
+  car: THREE.Group; frontWheels: THREE.Object3D[]; kartProfile: KartProfile; lookahead: THREE.Mesh; obstacle: THREE.Mesh; stop: THREE.Mesh; envelope: THREE.Mesh;
   fov: THREE.Mesh; fovRange: number; fovAngle: number; disk: THREE.Mesh; rings: THREE.Mesh[]; labels: Array<{ element: HTMLDivElement; point: THREE.Vector3 }>;
   frame: MissionFrame | null; selection: Selection; animationStage: number; stageStarted: number; courseCenter: THREE.Vector3;
 };
 
-export function MissionScene({ frame, layers, cameraMode, selection, onSelect, animationStage = 0 }: Props) {
+export function MissionScene({ frame, layers, cameraMode, selection, onSelect, animationStage = 0, kartProfile = 'shared' }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const state = useRef<SceneState | null>(null);
   const callback = useRef(onSelect);
@@ -111,7 +116,7 @@ export function MissionScene({ frame, layers, cameraMode, selection, onSelect, a
     const disk = new THREE.Mesh(new THREE.CircleGeometry(1, 48), new THREE.MeshBasicMaterial({ color: VISUAL_COLORS.ACCEPTED, transparent: true, opacity: 0.15, side: THREE.DoubleSide, depthWrite: false })); disk.rotation.x = -Math.PI / 2; content.add(disk);
     const rings = [0, 1].map(() => { const mesh = new THREE.Mesh(new THREE.RingGeometry(1, 1.035, 80), new THREE.MeshBasicMaterial({ color: 0xb191f2, side: THREE.DoubleSide, transparent: true, opacity: 0.68 })); mesh.rotation.x = -Math.PI / 2; content.add(mesh); return mesh; });
     const raycaster = new THREE.Raycaster(); raycaster.params.Line!.threshold = 0.34;
-    const current: SceneState = { scene, renderer, perspective, top, content, raycaster, pointer: new THREE.Vector2(), orbit: { az: 1.14, el: 1.0, distance: 56, pan: new THREE.Vector3() }, drag: null, focus: new THREE.Vector3(), mode: 'algorithm', course, courseBase, detections, detectionBase, graph, car, frontWheels, lookahead, obstacle, stop, envelope, fov, fovRange: -1, fovAngle: -1, disk, rings, labels: [], frame: null, selection: { kind: 'kart', id: 'vehicle' }, animationStage: 0, stageStarted: performance.now(), courseCenter: new THREE.Vector3() };
+    const current: SceneState = { scene, renderer, perspective, top, content, raycaster, pointer: new THREE.Vector2(), orbit: { az: 1.14, el: 1.0, distance: 56, pan: new THREE.Vector3() }, drag: null, focus: new THREE.Vector3(), mode: 'algorithm', course, courseBase, detections, detectionBase, graph, car, frontWheels, kartProfile: 'shared' as KartProfile, lookahead, obstacle, stop, envelope, fov, fovRange: -1, fovAngle: -1, disk, rings, labels: [], frame: null, selection: { kind: 'kart', id: 'vehicle' }, animationStage: 0, stageStarted: performance.now(), courseCenter: new THREE.Vector3() };
     state.current = current;
     const resize = new ResizeObserver(() => { const width = Math.max(1, element.clientWidth), height = Math.max(1, element.clientHeight), aspect = width / height; perspective.aspect = aspect; perspective.updateProjectionMatrix(); top.left = -current.orbit.distance * aspect / 2; top.right = current.orbit.distance * aspect / 2; top.top = current.orbit.distance / 2; top.bottom = -current.orbit.distance / 2; top.updateProjectionMatrix(); renderer.setSize(width, height); });
     resize.observe(element);
@@ -146,6 +151,15 @@ export function MissionScene({ frame, layers, cameraMode, selection, onSelect, a
 
   useEffect(() => {
     const current = state.current; if (!current) return;
+    if (current.kartProfile !== kartProfile) {
+      // Live profile swap: clear whatever is currently in `car` (real model
+      // parts or the footprint fallback) and reload the other profile's
+      // wheelbase/track/wheel glb assets, not just at mount.
+      current.kartProfile = kartProfile;
+      [...current.car.children].forEach((child) => { current.car.remove(child); dispose(child); });
+      current.frontWheels.length = 0;
+      loadKartModel(current.car, kartProfile, (wheels) => { current.frontWheels.length = 0; current.frontWheels.push(...wheels); });
+    }
     current.frame = frame; current.selection = selection; current.mode = cameraMode;
     if (current.animationStage !== animationStage) { current.animationStage = animationStage; current.stageStarted = performance.now(); }
     const clear = () => { Object.values(current.graph).forEach((pool) => updateLines(pool, [])); [current.course, current.courseBase, current.detections, current.detectionBase].forEach((mesh) => { mesh.count = 0; }); current.labels.forEach(({ element }) => element.remove()); current.labels = []; current.lookahead.visible = current.obstacle.visible = current.stop.visible = current.envelope.visible = current.fov.visible = current.disk.visible = false; current.rings.forEach((ring) => { ring.visible = false; }); };
@@ -180,7 +194,19 @@ export function MissionScene({ frame, layers, cameraMode, selection, onSelect, a
     }
     // LAB never renders its scenario centreline; only observed planner output is shown.
     frame.visualization?.special_markers?.forEach((marker) => addLabel(marker.label, marker, 'special'));
-    current.car.position.copy(point3(frame.vehicle, 0.17)); current.car.rotation.y = frame.vehicle.yaw_rad; current.car.scale.setScalar(frame.source === 'LAB' ? 1.22 : 1); current.frontWheels.forEach((wheel) => { wheel.rotation.y = -(frame.vehicle.measured_steering_rad ?? 0); });
+    current.car.position.copy(point3(frame.vehicle, 0.17)); current.car.rotation.y = frame.vehicle.yaw_rad; current.car.scale.setScalar(frame.source === 'LAB' ? 1.22 : 1);
+    // Real Ackermann steering: the two front wheels get DIFFERENT angles
+    // (inner > outer), not one shared angle, from the current profile's
+    // wheelbase/front-track geometry -- see computeAckermannAngles() in
+    // labAlgorithms.ts. frontWheels[0]/[1] are left/right in that order
+    // because loadKartModel() always loads them as Promise.all([left, right]).
+    {
+      const geometry = PROFILE_GEOMETRY[current.kartProfile];
+      const delta = frame.vehicle.measured_steering_rad ?? 0;
+      const { leftRad, rightRad } = computeAckermannAngles(delta, geometry.wheelbaseM, geometry.frontTrackM);
+      if (current.frontWheels[0]) current.frontWheels[0].rotation.y = -leftRad;
+      if (current.frontWheels[1]) current.frontWheels[1].rotation.y = -rightRad;
+    }
     const obstacle = frame.perception.obstacles?.[0];
     if (layers.safety && obstacle) { current.obstacle.visible = true; current.obstacle.position.copy(point3(obstacle, 0.48)); current.obstacle.scale.set(obstacle.radius_m * 2, 1, obstacle.radius_m * 2); current.obstacle.userData.id = obstacle.id; updateLines(current.graph.distance, [[frame.vehicle, obstacle]]); addLabel(`${obstacle.id} · ${obstacle.distance_m?.toFixed(1) ?? '—'} m`, obstacle, 'obstacle'); const stopDistance = frame.safety.obstacle?.stopping_distance_m; if (stopDistance != null) { const distance = Math.max(0.5, stopDistance); current.envelope.visible = true; current.envelope.position.copy(point3(frame.vehicle, 0.065)).add(new THREE.Vector3(Math.cos(frame.vehicle.yaw_rad) * distance / 2, 0, -Math.sin(frame.vehicle.yaw_rad) * distance / 2)); current.envelope.rotation.z = 0; current.envelope.rotation.y = frame.vehicle.yaw_rad; current.envelope.scale.set(distance, 2.3, 1); (current.envelope.material as THREE.MeshBasicMaterial).color.setHex(frame.safety.obstacle?.brake_trigger ? VISUAL_COLORS.REJECTED : VISUAL_COLORS.ACCEPTED); } }
     if (layers.safety && frame.safety.obstacle?.predicted_stop) { current.stop.visible = true; current.stop.position.copy(point3(frame.safety.obstacle.predicted_stop, 0.08)); addLabel('PREDICTED STOP', frame.safety.obstacle.predicted_stop, 'obstacle'); }
@@ -193,7 +219,7 @@ export function MissionScene({ frame, layers, cameraMode, selection, onSelect, a
     const closest = nearest[0] <= nearest[1] ? centers[0]?.[0] : centers[1]?.[0];
     if (closest && Math.min(...nearest) < 18) updateLines(current.graph.angle, [[closest, frame.vehicle]]);
     if (skidpad?.branches?.length) { const valid: Array<[Point, Point]> = [], invalid: Array<[Point, Point]> = []; skidpad.branches.forEach((branch) => { const segments = polySegments(branch.points); (branch.valid ? valid : invalid).push(...segments); if (branch.points.length) addLabel(`${branch.name} ${branch.selected ? '✓ SELECTED' : branch.valid ? 'AVAILABLE' : 'REJECTED'}`, branch.points.at(-1)!, branch.selected ? 'lookahead' : branch.valid ? 'gate' : 'obstacle'); }); updateLines(current.graph.branchValid, valid); updateLines(current.graph.branchInvalid, invalid); }
-  }, [frame, layers, cameraMode, selection, animationStage]);
+  }, [frame, layers, cameraMode, selection, animationStage, kartProfile]);
 
   return <div className="mission-scene" ref={host} aria-label="Mission Control 3D digital twin" />;
 }
