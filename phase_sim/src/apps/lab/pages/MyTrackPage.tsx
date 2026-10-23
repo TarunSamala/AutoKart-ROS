@@ -307,7 +307,7 @@ export function MyTrackPage() {
       <div className="mt-grid">
         <Panel title="Track overview" className="mt-span-2"><TrackOverview frame={frame} history={history} /></Panel>
         <Panel title="Follow view" meta={`${profile} · wheelbase ${PROFILE_DIMS[profile].wheelbase_m}m`}><FollowView frame={frame} profile={profile} hoveredConeId={hoveredConeId} onHoverCone={setHoveredConeId} /></Panel>
-        <Panel title="HP60C RGB-D frame" meta="pinhole projection, HFOV 64.4° / VFOV 51.7°, 4° pitch"><Hp60cFrame frame={frame} hoveredConeId={hoveredConeId} onHoverCone={setHoveredConeId} /></Panel>
+        <Panel title="HP60C RGB-D frame" meta="pinhole projection"><Hp60cFrame frame={frame} hoveredConeId={hoveredConeId} onHoverCone={setHoveredConeId} /></Panel>
 
         <Panel title="Vehicle and controller" className="mt-span-2">
           <div className="mt-stats">

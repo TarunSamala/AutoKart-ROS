@@ -72,8 +72,9 @@ body:has(.lab-app){min-width:0;background:var(--ui-bg)}
    together as one unit if the viewport is narrow; each cluster scrolls independently rather
    than the previous flat 17-tab strip. NOT IMPLEMENTED routes are pulled out into one
    dropdown (.lab-unavailable-menu) instead of showing as individual disabled tabs. */
-.lab-pages-groups{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
-.lab-nav-group{display:flex;align-items:center;gap:5px;min-width:0}
+.lab-pages-groups{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0;max-width:100%}
+.lab-nav-group{display:flex;align-items:center;gap:5px;min-width:0;max-width:100%}
+.lab-nav-group .lab-pages-strip{overflow-x:auto;max-width:100%;scrollbar-width:thin}
 .lab-group-label{font:800 8px 'JetBrains Mono Variable',monospace;letter-spacing:.08em;color:var(--ui-muted);white-space:nowrap;text-transform:uppercase}
 .lab-unavailable-menu{position:relative}
 .lab-unavailable-toggle{background:none;border:1px solid var(--ui-border);border-radius:5px;color:var(--ui-muted);font:800 9.5px 'JetBrains Mono Variable',monospace;letter-spacing:.05em;padding:4px 8px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
