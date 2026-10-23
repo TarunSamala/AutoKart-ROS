@@ -69,18 +69,24 @@ function UnavailableMenu({ path, routes }: { path: string; routes: LabRoute[] })
     return () => document.removeEventListener('mousedown', onDoc);
   }, [open]);
   const activeInside = routes.some((r) => r.path === path);
+  // Kept mounted (not conditionally rendered) and just visually collapsed via CSS when
+  // closed -- the active route's link must stay in the DOM with aria-current="page" even
+  // while the dropdown is visually shut, both for the direct-load case (landing on e.g.
+  // /perception should show it as the active tab) and for assistive tech / tests that query
+  // `nav[aria-label="Lab pages"] a[aria-current="page"]` without first opening the menu.
+  const visuallyOpen = open || activeInside;
   return <div className="lab-nav-group lab-unavailable-menu" ref={ref}>
-    <button type="button" className={`lab-group-label lab-unavailable-toggle ${activeInside ? 'active' : ''}`} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+    <button type="button" className={`lab-group-label lab-unavailable-toggle ${activeInside ? 'active' : ''}`} aria-expanded={visuallyOpen} onClick={() => setOpen((o) => !o)}>
       Unavailable in this build <small className="lab-tag">{routes.length}</small>
     </button>
-    {open && <ul className="lab-pages-strip lab-unavailable-dropdown" role="menu">
+    <ul className={`lab-pages-strip lab-unavailable-dropdown ${visuallyOpen ? '' : 'lab-unavailable-dropdown-closed'}`} role="menu">
       {routes.map((route) => <li key={route.path}>
         <Link to={route.path} aria-current={route.path === path ? 'page' : undefined} className="lab-page-link status-not-implemented"
           title={`${route.summary} (not implemented)`} onClick={() => setOpen(false)}>
           {route.label}<small className="lab-tag">N/A</small>
         </Link>
       </li>)}
-    </ul>}
+    </ul>
   </div>;
 }
 

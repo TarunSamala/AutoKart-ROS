@@ -80,6 +80,9 @@ body:has(.lab-app){min-width:0;background:var(--ui-bg)}
 .lab-unavailable-toggle.active,.lab-unavailable-toggle:hover{border-color:var(--lab-line);color:var(--ui-text)}
 .lab-unavailable-dropdown{position:absolute;top:calc(100% + 4px);left:0;z-index:40;flex-direction:column!important;background:var(--ui-panel);border:1px solid var(--lab-line);border-radius:6px;padding:6px;box-shadow:0 8px 18px rgba(0,0,0,.25);min-width:170px}
 .lab-unavailable-dropdown li{list-style:none}
+/* Kept mounted (not conditionally rendered) so the active NOT IMPLEMENTED route's link stays
+   in the DOM with aria-current="page" even while visually collapsed; see UnavailableMenu. */
+.lab-unavailable-dropdown-closed{display:none}
 
 /* Theme toggle (Task 2): a plain button next to the authority badge; affects the whole app
    via the data-theme attribute it sets on <html> (src/ui/ThemeToggle.tsx). */
