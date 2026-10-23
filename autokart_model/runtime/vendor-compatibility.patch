@@ -1,0 +1,56 @@
+diff --git a/linux/CMakeLists.txt b/linux/CMakeLists.txt
+--- a/linux/CMakeLists.txt
++++ b/linux/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required(VERSION 2.8)
++cmake_minimum_required(VERSION 3.10)
+ project(ascamera_demo)
+ 
+ set(CMAKE_CXX_STANDARD 11)
+@@ -16,12 +16,22 @@ execute_process(COMMAND bash scripts/gettarget.sh WORKING_DIRECTORY ${CMAKE_SOU
+ string(REGEX REPLACE "\n$" "" gcc_target "${gcc_target}")
+ message("default compiler:" ${gcc_target}-g++)
+ 
++if (${gcc_target} MATCHES "^x86_64")
++set(sdk_lib_target "x86_64-linux-gnu")
++elseif (${gcc_target} MATCHES "^aarch64")
++set(sdk_lib_target "aarch64-linux-gnu")
++elseif (${gcc_target} MATCHES "^(arm|armv7)")
++set(sdk_lib_target "arm-linux-gnueabihf")
++else()
++message(FATAL_ERROR "Unsupported compiler target: ${gcc_target}")
++endif()
++
+ # ARM 
+ # SET(CROSS_COMPILE arm-linux-gnueabihf)
+ # SET(CROSS_COMPILE aarch64-linux-gnu)
+ 
+ # if (${gcc_target} MATCHES "x86_64" AND NOT DEFINED CROSS_COMPILE)
+-find_package(OpenCV QUIET)
++find_package(OpenCV QUIET COMPONENTS core imgproc highgui imgcodecs)
+ if (OpenCV_FOUND)
+ message(STATUS "Found OpenCV version: ${OpenCV_VERSION}")
+ message(STATUS "Found OpenCV include folder: ${OpenCV_INCLUDE_DIRS}")
+@@ -62,8 +72,9 @@ include_directories(${OpenCV_INCLUDE_DIRS})
+ 
+ if (CROSS_COMPILE)
+-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/lib/${CROSS_COMPILE}/)
++string(REGEX REPLACE "-$" "" sdk_lib_target "${CROSS_COMPILE}")
++link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/lib/${sdk_lib_target}/)
+ else()
+-link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/lib/${gcc_target}/)
++link_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/lib/${sdk_lib_target}/)
+ endif()
+ 
+ # add to be built executable files
+diff --git a/linux/include/Camera.h b/linux/include/Camera.h
+--- a/linux/include/Camera.h
++++ b/linux/include/Camera.h
+@@ -17,7 +17,6 @@
+ #include "common.h"
+ #ifdef CFG_OPENCV_ON
+ #include "opencv2/opencv.hpp"
+-#include "opencv2/highgui/highgui_c.h"
+ #include "opencv2/core/core.hpp"
+ #include "opencv2/imgproc/imgproc.hpp"
+ #endif

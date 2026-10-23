@@ -1,0 +1,30 @@
+# Zero-external-dependency configuration: BuiltinPursuitBackend (see pursuit_backends.py), no
+# kart_sim package needed. This is the default used by controller.launch.py.
+#
+# wheelbase_m, maximum_steering_rad, maximum_steering_rate_radps: this repository has NOT measured
+# this kart's wheelbase or mechanical steering travel limit (see ../../../PROJECT_INDEX.md:
+# "as-built wiring ... remain unknown or unverified"). These values are copied from the existing
+# kart/ros2_ws autokart_controller's own code defaults (same numbers, same caveat there) -- never
+# independently re-guessed, but not elevated to "measured" either. See reports/SENIOR_REVIEWER_REPORT.md.
+autokart_controller:
+  ros__parameters:
+    pursuit_backend: "builtin"
+    kart_sim_package_path: ""
+    wheelbase_m: 1.0                      # UNVERIFIED nominal, never measured on this vehicle
+    maximum_steering_rad: 0.6             # UNVERIFIED nominal mechanical limit (~34.4 deg)
+    maximum_steering_rate_radps: 3.0      # UNVERIFIED nominal
+    lookahead_m: 1.5
+    speed_lookahead_gain_s: 0.15
+    maximum_speed_mps: 5.0
+    path_max_age_s: 0.5
+    pose_max_age_s: 0.15
+    odom_topic: "/odom"
+    path_topic: "/autokart_planner/path"
+    safety_envelope_topic: "/autokart_planner/safety_envelope"
+    speed_profile_topic: "/autokart_planner/speed_profile"
+    actuator_feedback_topic: "/vehicle/actuator_feedback"
+    source: "UNVERIFIED"
+
+    physical_limits_verified: false
+    candidate_ttl_s: 0.1
+    feedback_max_age_s: 0.15

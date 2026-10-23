@@ -1,0 +1,6 @@
+builtin_interfaces/Time measurement_time
+builtin_interfaces/Time delivery_time
+string frame_id
+autokart_msgs/WheelState[] wheels
+float64 rear_axle_angle_rad
+float64 rear_axle_angular_velocity_radps

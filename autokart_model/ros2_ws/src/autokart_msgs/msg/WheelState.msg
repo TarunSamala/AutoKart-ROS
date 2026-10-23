@@ -1,0 +1,10 @@
+string wheel_id
+float64 angle_rad
+float64 angular_velocity_radps
+float64 normal_load_n
+float64 longitudinal_force_n
+float64 lateral_force_n
+float64 slip_ratio
+float64 slip_angle_rad
+string surface_id
+bool valid

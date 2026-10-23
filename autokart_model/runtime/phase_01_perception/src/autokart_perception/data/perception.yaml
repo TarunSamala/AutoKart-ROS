@@ -1,0 +1,61 @@
+# schema_version: bump whenever a key is added, removed, or changes meaning/units below.
+# Owner: autokart_perception (autonomy_stack_phase1/phase_01_perception). Not yet enforced at
+# load time (validate_config() in sdk.py does not check it); tools/validate_config_schema.py
+# reports a mismatch read-only.
+schema_version: 1
+confidence: 0.54               # unitless [0,1]; detector score threshold
+nms_iou: 0.5                   # unitless [0,1]; NMS IoU threshold
+max_frame_age_ms: 150
+max_processing_ms: 150
+max_inference_ms: 150
+min_valid_depth_pct: 1.0
+depth_min_m: 0.3
+depth_max_m: 4.0
+min_depth_pixels: 12
+max_depth_mad_m: 0.25
+cone_radius_uncertainty_m: 0.15
+max_ground_contact_offset_m: 0.5
+min_track_width_m: 2.0
+max_track_width_m: 3.8
+min_gate_quality: 0.3
+max_cone_sigma_m: 0.6
+left_boundary_color: blue
+right_boundary_color: yellow
+min_boundary_lateral_m: 0.25
+min_boundary_spacing_m: 0.15
+max_boundary_heading_deg: 45
+max_gate_forward_delta_m: 0.8
+gate_ambiguity_margin: 0.06
+max_abs_curvature_m_inv: 2.0
+min_centerline_gates: 2
+max_lateral_jump_m: 2.0
+# Operator-reported tape measurements for the current kart mount, 2026-10-19.
+# These are NOT a surveyed camera-to-base_link calibration. Pitch is disputed:
+# 17.8 deg was measured by the operator; an older ground-plane fit was 11.4 deg.
+# Zero X/Y defines a temporary origin directly below the optical center. It is
+# NOT a measured translation to kart base_link. Yaw/roll are nominal zero.
+# Optical axes: x right, y down, z forward; local axes: X forward, Y left, Z up.
+#
+# DUPLICATE SOURCE WARNING: height_m, camera_to_front_bumper_horizontal_m and bumper_width_m
+# below are also carried, independently, by kart/ros2_ws/src/autokart_bringup/config/
+# vehicle_geometry.yaml -- the single source of truth for ROS-side consumers (autokart_safety_
+# bridge, autokart_planner, the URDF). This perception package is deliberately ROS-independent
+# (it also runs standalone, outside kart/ros2_ws, via its own __main__.py), so it cannot import
+# that ROS package's config at load time; a loader-level fix to remove this duplication was not
+# attempted this turn (it would need to resolve one path both a ROS and a non-ROS runtime can
+# read, without breaking either). Until then: update BOTH files together, or
+# tools/validate_config_schema.py will flag a mismatch read-only.
+operator_measurements:
+  camera_to_front_bumper_horizontal_m: 1.0668   # m; owner: operator tape measurement (2026-10-19)
+  bumper_width_m: 1.016                         # m; owner: operator tape measurement (2026-10-19)
+camera_to_kart: null
+camera_mount:
+  height_reference: optical_center
+  height_m: 0.8382            # m; owner: operator tape measurement (2026-10-19)
+  x_forward_m: 0.0            # m; temporary origin, not a measured translation (see note above)
+  y_left_m: 0.0                # m; temporary origin, not a measured translation (see note above)
+  pitch_down_deg: 17.8          # deg; DISPUTED -- see comment above; owner: operator / tools/depth_check.py --fit-pitch
+  roll_deg: 0.0
+  yaw_left_deg: 0.0
+max_heading_change_deg: 45
+max_width_change_m: 1.0

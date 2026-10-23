@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>autokart_perception_adapter</name>
+  <version>0.1.0</version>
+  <description>Standalone YOLO26s + RGB/depth-fusion cone perception node, consuming camera topics (e.g. from autokart_hp60c) rather than opening a camera itself. Node 02 in the autokart_ros_nodes library.</description>
+  <maintainer email="harrishkesavan@gmail.com">AutoKart</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>autokart_msgs</exec_depend>
+  <exec_depend>message_filters</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

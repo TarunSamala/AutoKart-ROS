@@ -1,0 +1,38 @@
+# Zero-external-dependency configuration: BuiltinAlgorithmBackend (see algorithms.py), no camera-
+# team algorithm package needed. This is the default used by planner.launch.py.
+#
+# a_lat_max_mps2, a_brake_min_mps2, t_total_latency_s: this repository has NOT measured peak
+# lateral grip or a guaranteed minimum braking deceleration for this kart (see
+# ../../../PROJECT_INDEX.md: "stopping performance remain unknown or unverified"). Leaving
+# a_brake_min_mps2/t_total_latency_s at 0.0 makes the node fail closed until an operator
+# explicitly configures a measured value. a_lat_max_mps2 below is an UNVERIFIED nominal
+# placeholder (conservative-looking, not measured) -- see reports/SENIOR_REVIEWER_REPORT.md.
+autokart_planner:
+  ros__parameters:
+    algorithm_backend: "builtin"
+    algorithm_package_path: ""
+    vehicle_geometry_yaml_path: ""
+    footprint_width_m: 0.0   # 0.0 => derive from the bundled vehicle-geometry copy (see geometry_params.py)
+    a_lat_max_mps2: 2.0      # UNVERIFIED nominal placeholder, never measured on this vehicle
+    a_brake_min_mps2: 0.0    # 0.0 = unconfigured -> BRAKE_CAPABILITY_UNQUALIFIED (fails closed)
+    t_total_latency_s: 0.0   # 0.0 = unconfigured
+    d_margin_m: 1.0          # commissioning default, see CONTRACT.md
+    speed_limit_mps: 1.0
+    curvature_eps_m_inv: 0.001
+    path_max_age_s: 0.5
+    odom_max_age_s: 0.15
+    odom_topic: "/odom"
+    reference_path_topic: "/autokart_planner/reference_path"
+    obstacles_topic: "/autokart_planner/obstacles"
+    source: "UNVERIFIED"
+
+    front_extent_m: 0.0
+    rear_extent_m: 0.0
+    maximum_curvature_m_inv: 0.0
+    acceleration_limit_mps2: 0.0
+    physical_limits_verified: false
+    obstacles_max_age_s: 0.2
+
+    cone_radius_m: 0.0
+    cone_position_uncertainty_m: -1.0
+    cone_footprint_verified: false

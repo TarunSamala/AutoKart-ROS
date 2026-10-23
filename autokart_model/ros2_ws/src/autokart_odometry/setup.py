@@ -1,0 +1,3 @@
+from setuptools import setup,find_packages
+from glob import glob
+setup(name='autokart_odometry',version='0.1.0',packages=find_packages(),data_files=[('share/ament_index/resource_index/packages',['resource/autokart_odometry']),('share/autokart_odometry',['package.xml']),('share/autokart_odometry/config',glob('config/*')),('share/autokart_odometry/launch',glob('launch/*'))],install_requires=['setuptools'],zip_safe=True,maintainer='AutoKart',maintainer_email='autokart@example.invalid',description='Timestamp aligned wheel inertial odometry',license='Apache-2.0',entry_points={'console_scripts':['odometry_node=autokart_odometry.node:main']})

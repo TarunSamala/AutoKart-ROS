@@ -1,0 +1,14 @@
+builtin_interfaces/Time measurement_time
+builtin_interfaces/Time delivery_time
+float64 steering_actuator_position_rad
+float64 road_wheel_angle_rad
+float64 brake_actuator_position_m
+float64 brake_pressure_pa
+float64 motor_torque_nm
+float64 motor_speed_radps
+float64 motor_current_a
+float64 motor_voltage_v
+float64 battery_voltage_v
+float64 battery_current_a
+float64[] temperatures_c
+bool valid

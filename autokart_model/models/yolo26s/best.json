@@ -1,0 +1,13 @@
+{
+  "format": "ultralytics_yolo26_end2end_onnx",
+  "model_sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+  "source_checkpoint_sha256": "834abec3531b654d02d70b8879356cd44f572dacc12e8757f78bfcb3671d9281",
+  "input_size": 640,
+  "output_shape": [1, 300, 6],
+  "output_columns": ["x1", "y1", "x2", "y2", "score", "class_id"],
+  "classes": ["blue", "large_orange", "orange", "unknown", "yellow"],
+  "stage": "experimental",
+  "status": "EXPERIMENTAL_HP60C_VALIDATION_PENDING",
+  "source": "My Drive/AutoKart/YOLO26s_Only/yolo26s",
+  "vehicle_authorization": "DISABLED"
+}

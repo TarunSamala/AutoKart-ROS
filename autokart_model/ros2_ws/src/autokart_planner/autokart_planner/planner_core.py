@@ -1,0 +1,224 @@
+"""ROS-independent planner core: path-candidate validity, per-point curvature-capped speed
+profile, obstacle clearance, and the braking stop envelope.
+
+Scope boundary (read this before changing anything here): this module is deliberately
+**planner-proper only** -- curvature, speed profile, collision clearance, stop envelope. It has
+no mission state machine (no SKIDPAD/BRAKING_TEST progress FSM, no gate-crossing logic). That FSM
+lives in `kart/ros2_ws/src/autokart_nodes/autokart_planner/autokart_planner/mission.py` and is
+being extracted into a separate standalone node (06/07) by another agent in this session -- see
+`../README.md` and `../../AUDIT_PHASE0.md`. This module does not import anything from that file
+and does not depend on its internal shape, so it is unaffected by however that extraction turns
+out. A caller (this package's own `node.py`, or a future mission node) supplies an already-chosen
+reference path; this module only evaluates whether following it is currently safe and at what
+speed.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from math import hypot, isfinite, sqrt
+
+from .algorithms import AlgorithmBackend, AlgorithmBackendError
+
+DEFAULT_MAX_ODOM_AGE_NS = 150_000_000  # 150 ms, matches this repo's other nodes' pose-freshness gate
+DEFAULT_MAX_PATH_AGE_NS = 500_000_000  # 500 ms
+
+
+def _closest_point_on_polyline(x: float, y: float, points: list):
+    """Point-to-polyline distance (standard computational geometry: nearest point on any of the
+    polyline's segments), returning ``(distance_m, arc_length_m_to_closest_point)``.
+
+    Written fresh rather than reused from `mission.py`'s private `_polyline_closest` helper: that
+    helper lives inside the mission-FSM module another agent in this session may be restructuring
+    (see the module docstring above), and this is textbook point-segment distance math, not a
+    tuned or domain-specific algorithm the mission statement asks us to preserve verbatim.
+    """
+    best_distance, best_arc = float("inf"), 0.0
+    cumulative = 0.0
+    for (ax, ay), (bx, by) in zip(points, points[1:]):
+        dx, dy = bx - ax, by - ay
+        seg_len = hypot(dx, dy)
+        if seg_len <= 0:
+            continue
+        fraction = max(0.0, min(1.0, ((x - ax) * dx + (y - ay) * dy) / (seg_len * seg_len)))
+        px, py = ax + fraction * dx, ay + fraction * dy
+        distance = hypot(x - px, y - py)
+        arc = cumulative + fraction * seg_len
+        if distance < best_distance:
+            best_distance, best_arc = distance, arc
+        cumulative += seg_len
+    return best_distance, best_arc
+
+
+def _path_length(points) -> float:
+    return sum(hypot(bx - ax, by - ay) for (ax, ay), (bx, by) in zip(points, points[1:]))
+
+
+@dataclass
+class PlannerCore:
+    algorithm: AlgorithmBackend
+    a_lat_max_mps2: float
+    a_brake_min_mps2: float
+    t_total_latency_s: float
+    d_margin_m: float
+    footprint_width_m: float
+    speed_limit_mps: float
+    front_extent_m: float = 0.0
+    rear_extent_m: float = 0.0
+    maximum_curvature_m_inv: float = 0.0
+    acceleration_limit_mps2: float = 1.0
+    curvature_eps_m_inv: float = 1e-3
+    max_path_age_ns: int = DEFAULT_MAX_PATH_AGE_NS
+    _sequence: int = field(default=0, init=False, repr=False)
+
+    def reject(self, reason: str, stamp_ns: int, *, decision: str = "HOLD") -> dict:
+        self._sequence += 1
+        return {
+            "valid": False, "reason_codes": [reason], "decision": decision,
+            "path_odom": [], "speed_profile": [], "curvature_profile": [],
+            "sample_time_ns": stamp_ns, "sequence": self._sequence,
+            "maximum_speed_mps": 0.0, "clear_distance_m": 0.0,
+            "stopping_distance_m": None, "limiting_reason": reason,
+        }
+
+    def evaluate(self, *, path_points: list, path_stamp_ns: int, now_ns: int,
+                 pose_x: float, pose_y: float, pose_speed_mps: float, pose_fresh: bool,
+                 obstacles: list) -> dict:
+        if not pose_fresh:
+            return self.reject("ODOM_MISSING_OR_STALE", path_stamp_ns)
+        if now_ns < path_stamp_ns:
+            return self.reject("PATH_TIMESTAMP_INVALID", path_stamp_ns)
+        if now_ns - path_stamp_ns > self.max_path_age_ns:
+            return self.reject("PATH_EXPIRED", path_stamp_ns)
+        if not isinstance(path_points, (list, tuple)) or any(
+                not isinstance(point, (list, tuple)) or len(point) != 2 or
+                any(not isinstance(v, (int, float)) or isinstance(v, bool) for v in point)
+                for point in path_points):
+            return self.reject("PATH_MALFORMED", path_stamp_ns)
+        if len(path_points) < 2:
+            return self.reject("PATH_TOO_SHORT", path_stamp_ns)
+        if not all(isfinite(c) for p in path_points for c in p):
+            return self.reject("PATH_NONFINITE", path_stamp_ns)
+        if any(hypot(b[0]-a[0], b[1]-a[1]) <= 1e-9 for a,b in zip(path_points,path_points[1:])):
+            return self.reject("PATH_ZERO_LENGTH_SEGMENT", path_stamp_ns)
+        if not isfinite(self.maximum_curvature_m_inv) or self.maximum_curvature_m_inv <= 0:
+            return self.reject("STEERING_CURVATURE_LIMIT_UNQUALIFIED", path_stamp_ns)
+        if not isfinite(pose_speed_mps) or pose_speed_mps < 0:
+            return self.reject("ODOM_SPEED_INVALID", path_stamp_ns)
+        if not (isfinite(self.a_lat_max_mps2) and self.a_lat_max_mps2 > 0):
+            return self.reject("LATERAL_LIMIT_UNQUALIFIED", path_stamp_ns)
+        if not (isfinite(self.footprint_width_m) and self.footprint_width_m > 0):
+            return self.reject("FOOTPRINT_WIDTH_UNQUALIFIED", path_stamp_ns)
+        if not (isfinite(self.curvature_eps_m_inv) and self.curvature_eps_m_inv > 0):
+            # A misconfigured curvature_eps_m_inv<=0 would otherwise divide by exactly zero at any
+            # perfectly straight path point (kappa=0) inside the speed-profile comprehension below
+            # -- an uncaught ZeroDivisionError that would crash this evaluate() call (and, in the
+            # ROS node, the subscription callback that invoked it). Found by this review with a
+            # reproduction test before this guard existed; see test_planner_core.py.
+            return self.reject("CURVATURE_EPSILON_UNQUALIFIED", path_stamp_ns)
+
+        if not all(isfinite(v) for v in (pose_x, pose_y, self.speed_limit_mps,
+                                          self.front_extent_m, self.rear_extent_m, self.acceleration_limit_mps2)):
+            return self.reject("NONFINITE_INPUT", path_stamp_ns)
+        if self.speed_limit_mps < 0 or min(self.front_extent_m, self.rear_extent_m) < 0 or self.acceleration_limit_mps2 <= 0:
+            return self.reject("VEHICLE_LIMIT_INVALID", path_stamp_ns)
+        try:
+            kappas = self.algorithm.curvature_profile(path_points)
+        except AlgorithmBackendError as exc:
+            return self.reject(f"CURVATURE_BACKEND_ERROR:{exc}", path_stamp_ns)
+
+        if len(kappas) != len(path_points) or not all(isfinite(k) for k in kappas):
+            return self.reject("CURVATURE_PROFILE_INVALID", path_stamp_ns)
+        if any(abs(k) > self.maximum_curvature_m_inv for k in kappas):
+            return self.reject("STEERING_CURVATURE_EXCEEDED", path_stamp_ns)
+        speed_profile = [
+            min(self.speed_limit_mps, sqrt(self.a_lat_max_mps2 / max(abs(k), self.curvature_eps_m_inv)))
+            for k in kappas
+        ]
+
+        try:
+            stopping_distance_m = self.algorithm.stopping_distance(
+                pose_speed_mps, a_brake_min_mps2=self.a_brake_min_mps2,
+                t_total_latency_s=self.t_total_latency_s, d_margin_m=self.d_margin_m)
+        except AlgorithmBackendError as exc:
+            return self.reject(f"STOPPING_DISTANCE_BACKEND_ERROR:{exc}", path_stamp_ns)
+
+        clear_distance_m, blocking_reason = self._clearance(path_points, pose_x, pose_y, obstacles)
+        if blocking_reason == "INVALID_OBSTACLE":
+            return self.reject("INVALID_OBSTACLE", path_stamp_ns)
+
+        if clear_distance_m < stopping_distance_m:
+            self._sequence += 1
+            reason = blocking_reason or "STOP_ENVELOPE_VIOLATED"
+            return {
+                "valid": False, "reason_codes": [reason], "decision": "STOP_CANDIDATE",
+                "path_odom": [], "speed_profile": [0.0] * len(path_points),
+                "curvature_profile": kappas, "sample_time_ns": path_stamp_ns, "sequence": self._sequence,
+                "maximum_speed_mps": 0.0, "clear_distance_m": clear_distance_m,
+                "stopping_distance_m": stopping_distance_m, "limiting_reason": reason,
+            }
+
+        # The terminal sample and every sample beyond the first swept collision are stopped.
+        # Solve the latency-aware envelope at every sample, then propagate acceleration bounds.
+        _, pose_arc = _closest_point_on_polyline(pose_x, pose_y, path_points)
+        arcs = [0.0]
+        for a, b in zip(path_points, path_points[1:]):
+            arcs.append(arcs[-1] + hypot(b[0]-a[0], b[1]-a[1]))
+        stop_arc = min(arcs[-1], pose_arc + clear_distance_m)
+        for i, arc in enumerate(arcs):
+            remaining = max(0.0, stop_arc - arc - self.d_margin_m)
+            at = self.a_brake_min_mps2 * self.t_total_latency_s
+            stop_cap = max(0.0, sqrt(at*at + 2*self.a_brake_min_mps2*remaining) - at)
+            speed_profile[i] = min(speed_profile[i], stop_cap)
+        speed_profile[-1] = 0.0
+        for i in range(len(arcs)-2, -1, -1):
+            speed_profile[i] = min(speed_profile[i], sqrt(speed_profile[i+1]**2 +
+                                  2*self.a_brake_min_mps2*(arcs[i+1]-arcs[i])))
+        for i in range(1, len(arcs)):
+            speed_profile[i] = min(speed_profile[i], sqrt(speed_profile[i-1]**2 +
+                                  2*self.acceleration_limit_mps2*(arcs[i]-arcs[i-1])))
+        self._sequence += 1
+        return {
+            "valid": True, "reason_codes": [], "decision": "PATH_CANDIDATE",
+            "path_odom": path_points, "speed_profile": speed_profile, "curvature_profile": kappas,
+            "sample_time_ns": path_stamp_ns, "sequence": self._sequence,
+            "maximum_speed_mps": max(speed_profile) if speed_profile else 0.0,
+            "clear_distance_m": clear_distance_m, "stopping_distance_m": stopping_distance_m,
+            "limiting_reason": "",
+        }
+
+    def _clearance(self, path_points: list, pose_x: float, pose_y: float, obstacles: list):
+        """Returns (clear_distance_m, reason). ``reason`` is ``"CORRIDOR_BLOCKED"`` when a
+        forward obstacle intersects the footprint-expanded path, ``"INVALID_OBSTACLE"`` when an
+        obstacle entry is malformed/non-finite, or ``None`` when the path is clear (in which case
+        ``clear_distance_m`` is the remaining path length ahead of the vehicle)."""
+        _, pose_arc = _closest_point_on_polyline(pose_x, pose_y, path_points)
+        total_length = _path_length(path_points)
+        nearest_block_arc = None
+        # A disk enclosing the entire body at base_link safely bounds every body orientation.
+        # Sweeping it continuously along each segment includes front/rear overhang and corners.
+        body_radius = hypot(self.footprint_width_m / 2.0, max(self.front_extent_m, self.rear_extent_m))
+        for obstacle in obstacles:
+            try:
+                ox, oy, radius = (float(obstacle[key]) for key in ("x_m", "y_m", "radius_m"))
+            except (KeyError, TypeError, ValueError):
+                return 0.0, "INVALID_OBSTACLE"
+            if not all(isfinite(v) for v in (ox, oy, radius)) or radius < 0:
+                return 0.0, "INVALID_OBSTACLE"
+            cumulative = 0.0
+            expanded = radius + body_radius
+            for (ax, ay), (bx, by) in zip(path_points, path_points[1:]):
+                length = hypot(bx-ax, by-ay)
+                if length <= 0:
+                    continue
+                along = ((ox-ax)*(bx-ax)+(oy-ay)*(by-ay))/length
+                perpendicular2 = max(0.0, (ox-ax)**2+(oy-ay)**2-along**2)
+                if perpendicular2 <= expanded**2:
+                    half = sqrt(max(0.0, expanded**2-perpendicular2))
+                    entry, exit = max(0.0, along-half), min(length, along+half)
+                    if entry <= exit and cumulative+exit >= pose_arc:
+                        contact = max(pose_arc, cumulative+entry)
+                        nearest_block_arc = contact if nearest_block_arc is None else min(nearest_block_arc, contact)
+                cumulative += length
+        if nearest_block_arc is not None:
+            return max(0.0, nearest_block_arc - pose_arc), "CORRIDOR_BLOCKED"
+        return max(0.0, total_length - pose_arc), None

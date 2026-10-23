@@ -1,0 +1,5 @@
+autokart_perception_adapter:
+  ros__parameters:
+    backend: "synthetic"
+    input_mode: "standalone_timer"
+    standalone_period_s: 0.1

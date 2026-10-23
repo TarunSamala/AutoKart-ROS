@@ -1,0 +1,27 @@
+# LIVE profile: same as synthetic, but intended for a workspace where
+# autokart_hp60c and autokart_safety (or equivalents) are actually running,
+# so heartbeat_topics resolve to real publishers. Extend heartbeat_topics
+# per-deployment with whatever other status topics exist in that workspace
+# (e.g. /autokart/dashboard_gateway health, other perception/mapping/planner
+# status topics) -- this node discovers each topic's message type
+# dynamically from the ROS graph, so no new message-type-specific code is
+# needed to add one.
+autokart_system_monitor:
+  ros__parameters:
+    heartbeat_topics:
+      - "/hp60c/status"
+      - "/perception/status"
+      - "/imu/status"
+      - "/vehicle/status"
+      - "/vehicle/odometry_status"
+      - "/mapping/status"
+      - "/mission/state"
+      - "/planning/status"
+      - "/control/status"
+      - "/safety/status"
+    heartbeat_timeout_s: 2.0
+    resource_backend: "psutil"
+    cpu_warn_pct: 90.0
+    ram_warn_pct: 90.0
+    publish_rate_hz: 1.0
+    topic_discovery_period_s: 2.0

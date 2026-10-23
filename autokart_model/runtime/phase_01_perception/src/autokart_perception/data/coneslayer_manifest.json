@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "model_name": "coneslayer-simplified.onnx",
+  "architecture": "YOLOv7-tiny",
+  "input_width": 416,
+  "input_height": 416,
+  "input_pixel_format": "BGR8",
+  "output_classes": ["orange"],
+  "model_sha256": "67c8dd8922fa793a0577297c8936de1fc5decaebfb7c79c1f9a7aa1542f93faf",
+  "model_size_bytes": 24080902,
+  "source_revision": "ce7400b9bebb634227b09f88a53e37a54fac2479",
+  "license": "GPL-3.0",
+  "qualification": "IDENTITY_VERIFIED_HP60C_ACCURACY_UNVERIFIED"
+}

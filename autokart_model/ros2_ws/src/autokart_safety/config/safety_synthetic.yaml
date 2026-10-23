@@ -1,0 +1,16 @@
+# Synthetic/dev profile: no vcu_safety_package_path is set, so the real core
+# dependency is deliberately absent. The node still builds and launches, but
+# fails closed -- /autokart/safety/status reports state=UNAVAILABLE,
+# arm_allowed=false forever, and no /autokart/vcu/request is ever published.
+# This is what makes the package buildable/launchable with zero external
+# dependency, matching autokart_hp60c's "synthetic" profile convention. It is
+# NOT a claim that arming logic was exercised -- see config/safety_live.yaml
+# and reports/VALIDATOR_REPORT.md for what "core available" testing requires.
+autokart_safety:
+  ros__parameters:
+    vcu_safety_package_path: ""
+    overspeed_mps: 2.5
+    stop_ineffective_s: 4.0
+    calibration_verified: false
+    vehicle_config_verified: false
+    braking_verified: false

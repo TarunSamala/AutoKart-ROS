@@ -1,0 +1,3 @@
+/home/mark1/Desktop/autonomous_kart/autonomy_stack_phase1/vendor/linux_ros/linux/build-hp60c-x86_64-linux-gnu/CMakeFiles/ascamera.dir
+/home/mark1/Desktop/autonomous_kart/autonomy_stack_phase1/vendor/linux_ros/linux/build-hp60c-x86_64-linux-gnu/CMakeFiles/edit_cache.dir
+/home/mark1/Desktop/autonomous_kart/autonomy_stack_phase1/vendor/linux_ros/linux/build-hp60c-x86_64-linux-gnu/CMakeFiles/rebuild_cache.dir

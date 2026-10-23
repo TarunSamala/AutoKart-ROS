@@ -1,0 +1,24 @@
+# LIVE profile: points at the real, already-reviewed autokart_vcu_safety core.
+# vcu_safety_package_path is deliberately left blank here -- set it per
+# deployment at launch time, e.g.
+#   "$AUTOKART_ROOT/kart/ros2_ws/src/autokart_vcu_safety"
+# (the ROS package directory that CONTAINS the nested autokart_vcu_safety/
+# Python package, i.e. the parent of autokart_vcu_safety/core.py -- NOT
+# kart/ros2_ws/src itself, which is one level too high and resolves to an
+# empty namespace package with no .core submodule). Never hardcode a path
+# into source; see DEPENDENCIES.md.
+#
+# calibration_verified, vehicle_config_verified and braking_verified are
+# read-only: this node never sets them. They stay false until a person
+# completes docs/BENCH_TESTS.md in the main repository and the operator
+# deploying this node explicitly sets them true in a config override. Leaving
+# them false here (the safe default) means this node will refuse to ever
+# authorize ARM, by design.
+autokart_safety:
+  ros__parameters:
+    vcu_safety_package_path: ""
+    overspeed_mps: 2.5
+    stop_ineffective_s: 4.0
+    calibration_verified: false
+    vehicle_config_verified: false
+    braking_verified: false

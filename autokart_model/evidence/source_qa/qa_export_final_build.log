@@ -1,0 +1,1233 @@
+Starting >>> autokart_msgs
+--- output: autokart_msgs
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+-- Found builtin_interfaces: 1.2.3 (/opt/ros/humble/share/builtin_interfaces/cmake)
+-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found geometry_msgs: 4.9.2 (/opt/ros/humble/share/geometry_msgs/cmake)
+-- Found rosidl_default_generators: 1.2.1 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+-- Found ament_cmake_ros: 0.10.1 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+-- Found PythonExtra: .so  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_msgs
+[  1%] Generating C code for ROS interfaces
+[  2%] Generating Rust code for ROS interfaces
+[  2%] Generating C++ code for ROS interfaces
+[  2%] Built target ament_cmake_python_copy_autokart_msgs
+running egg_info
+creating autokart_msgs.egg-info
+writing autokart_msgs.egg-info/PKG-INFO
+writing dependency_links to autokart_msgs.egg-info/dependency_links.txt
+writing top-level names to autokart_msgs.egg-info/top_level.txt
+writing manifest file 'autokart_msgs.egg-info/SOURCES.txt'
+reading manifest file 'autokart_msgs.egg-info/SOURCES.txt'
+writing manifest file 'autokart_msgs.egg-info/SOURCES.txt'
+[  2%] Built target ament_cmake_python_build_autokart_msgs_egg
+[  2%] Built target autokart_msgs__rs
+[  2%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/bench_vcu_status__functions.c.o
+[  3%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/motion_command__functions.c.o
+[  4%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/wheel_state__functions.c.o
+[  5%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/vehicle_state__functions.c.o
+[  6%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/actuator_feedback__functions.c.o
+[  6%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/wheel_states__functions.c.o
+[  7%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/vcu_state__functions.c.o
+[  8%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/safety_envelope__functions.c.o
+[  8%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/cone__functions.c.o
+[  9%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/cone_array__functions.c.o
+[ 10%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__functions.c.o
+[ 11%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/sensor_delivery_metadata__functions.c.o
+[ 11%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/gazebo_follower_state__functions.c.o
+[ 12%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_c.dir/rosidl_generator_c/autokart_msgs/msg/detail/mission_debug__functions.c.o
+[ 12%] Built target autokart_msgs__cpp
+[ 13%] Generating C++ type support dispatch for ROS interfaces
+[ 14%] Generating C++ introspection for ROS interfaces
+[ 15%] Generating C++ type support for eProsima Fast-RTPS
+[ 16%] Linking C shared library libautokart_msgs__rosidl_generator_c.so
+[ 16%] Built target autokart_msgs__rosidl_generator_c
+[ 18%] Generating C type support for eProsima Fast-RTPS
+[ 18%] Generating C type support dispatch for ROS interfaces
+[ 19%] Generating C introspection for ROS interfaces
+[ 19%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/bench_vcu_status__type_support.cpp.o
+[ 20%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/vehicle_state__type_support.cpp.o
+[ 21%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/wheel_state__type_support.cpp.o
+[ 22%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/wheel_states__type_support.cpp.o
+[ 22%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/actuator_feedback__type_support.cpp.o
+[ 23%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/motion_command__type_support.cpp.o
+[ 24%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/vcu_state__type_support.cpp.o
+[ 25%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/safety_envelope__type_support.cpp.o
+[ 25%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/cone__type_support.cpp.o
+[ 26%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/cone_array__type_support.cpp.o
+[ 27%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/authoritative_vehicle_snapshot__type_support.cpp.o
+[ 28%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/gazebo_follower_state__type_support.cpp.o
+[ 28%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/sensor_delivery_metadata__type_support.cpp.o
+[ 29%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/autokart_msgs/msg/mission_debug__type_support.cpp.o
+[ 29%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/bench_vcu_status__type_support.cpp.o
+[ 29%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/bench_vcu_status__type_support.cpp.o
+[ 30%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/motion_command__type_support.cpp.o
+[ 31%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/vehicle_state__type_support.cpp.o
+[ 31%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/wheel_state__type_support.cpp.o
+[ 32%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/wheel_states__type_support.cpp.o
+[ 33%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/actuator_feedback__type_support.cpp.o
+[ 33%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/bench_vcu_status__type_support.c.o
+[ 34%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/motion_command__type_support.c.o
+[ 35%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/vcu_state__type_support.cpp.o
+[ 35%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/bench_vcu_status__type_support.cpp.o
+[ 35%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/safety_envelope__type_support.cpp.o
+[ 36%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/vehicle_state__type_support.c.o
+[ 38%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/cone__type_support.cpp.o
+[ 38%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/motion_command__type_support.cpp.o
+[ 39%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/motion_command__type_support.cpp.o
+[ 40%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/vehicle_state__type_support.cpp.o
+[ 41%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/cone_array__type_support.cpp.o
+[ 42%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/vehicle_state__type_support.cpp.o
+[ 42%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/wheel_state__type_support.c.o
+[ 43%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/wheel_state__type_support.cpp.o
+[ 44%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/authoritative_vehicle_snapshot__type_support.cpp.o
+[ 45%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_cpp.so
+[ 45%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/wheel_states__type_support.cpp.o
+[ 45%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/gazebo_follower_state__type_support.cpp.o
+[ 45%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/bench_vcu_status__type_support_c.cpp.o
+[ 46%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/wheel_states__type_support.c.o
+[ 46%] Built target autokart_msgs__rosidl_typesupport_cpp
+[ 47%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/wheel_state__type_support.cpp.o
+[ 48%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/sensor_delivery_metadata__type_support.cpp.o
+[ 49%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/actuator_feedback__type_support.c.o
+[ 50%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/autokart_msgs/msg/mission_debug__type_support.cpp.o
+[ 51%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/vcu_state__type_support.c.o
+[ 52%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_c.so
+[ 53%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/actuator_feedback__type_support.cpp.o
+[ 53%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/safety_envelope__type_support.c.o
+[ 53%] Built target autokart_msgs__rosidl_typesupport_c
+[ 54%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/motion_command__type_support_c.cpp.o
+[ 55%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/cone__type_support.c.o
+[ 56%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/cone_array__type_support.c.o
+[ 57%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.c.o
+[ 57%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/gazebo_follower_state__type_support.c.o
+[ 57%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/wheel_states__type_support.cpp.o
+[ 58%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/actuator_feedback__type_support.cpp.o
+[ 59%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.c.o
+[ 60%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/vehicle_state__type_support_c.cpp.o
+[ 60%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/wheel_state__type_support_c.cpp.o
+[ 61%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/wheel_states__type_support_c.cpp.o
+[ 62%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/autokart_msgs/msg/detail/mission_debug__type_support.c.o
+[ 63%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/vcu_state__type_support.cpp.o
+[ 64%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/actuator_feedback__type_support_c.cpp.o
+[ 65%] Linking C shared library libautokart_msgs__rosidl_typesupport_introspection_c.so
+[ 66%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/safety_envelope__type_support.cpp.o
+[ 66%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/cone__type_support.cpp.o
+[ 66%] Built target autokart_msgs__rosidl_typesupport_introspection_c
+[ 67%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/vcu_state__type_support_c.cpp.o
+[ 68%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/vcu_state__type_support.cpp.o
+[ 69%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/safety_envelope__type_support.cpp.o
+[ 70%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/cone_array__type_support.cpp.o
+[ 70%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/cone__type_support.cpp.o
+[ 71%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.cpp.o
+[ 72%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/cone_array__type_support.cpp.o
+[ 73%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/authoritative_vehicle_snapshot__type_support.cpp.o
+[ 74%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/gazebo_follower_state__type_support.cpp.o
+[ 74%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/safety_envelope__type_support_c.cpp.o
+[ 75%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/gazebo_follower_state__type_support.cpp.o
+[ 76%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/cone__type_support_c.cpp.o
+[ 76%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/sensor_delivery_metadata__type_support.cpp.o
+[ 77%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/autokart_msgs/msg/detail/dds_fastrtps/mission_debug__type_support.cpp.o
+[ 78%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/cone_array__type_support_c.cpp.o
+[ 79%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support_c.cpp.o
+[ 79%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.cpp.o
+[ 79%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/gazebo_follower_state__type_support_c.cpp.o
+[ 80%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/autokart_msgs/msg/detail/mission_debug__type_support.cpp.o
+[ 81%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support_c.cpp.o
+[ 82%] Building CXX object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/autokart_msgs/msg/detail/mission_debug__type_support_c.cpp.o
+[ 83%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_fastrtps_cpp.so
+[ 83%] Built target autokart_msgs__rosidl_typesupport_fastrtps_cpp
+[ 85%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_introspection_cpp.so
+[ 85%] Linking CXX shared library libautokart_msgs__rosidl_typesupport_fastrtps_c.so
+[ 85%] Built target autokart_msgs__rosidl_typesupport_fastrtps_c
+[ 85%] Built target autokart_msgs__rosidl_typesupport_introspection_cpp
+[ 85%] Built target autokart_msgs
+[ 86%] Generating Python code for ROS interfaces
+[ 86%] Built target autokart_msgs__py
+[ 86%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_bench_vcu_status_s.c.o
+[ 88%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_vehicle_state_s.c.o
+[ 88%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_motion_command_s.c.o
+[ 89%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_wheel_state_s.c.o
+[ 88%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_wheel_states_s.c.o
+[ 90%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_actuator_feedback_s.c.o
+[ 91%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_vcu_state_s.c.o
+[ 92%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_cone_array_s.c.o
+[ 92%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_cone_s.c.o
+[ 93%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_gazebo_follower_state_s.c.o
+[ 94%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_safety_envelope_s.c.o
+[ 95%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_authoritative_vehicle_snapshot_s.c.o
+[ 95%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_sensor_delivery_metadata_s.c.o
+[ 96%] Building C object CMakeFiles/autokart_msgs__rosidl_generator_py.dir/rosidl_generator_py/autokart_msgs/msg/_mission_debug_s.c.o
+[ 97%] Linking C shared library rosidl_generator_py/autokart_msgs/libautokart_msgs__rosidl_generator_py.so
+[ 97%] Built target autokart_msgs__rosidl_generator_py
+[ 97%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o
+[ 97%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_introspection_c.c.o
+[ 97%] Building C object CMakeFiles/autokart_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_c.c.o
+[100%] Linking C shared library rosidl_generator_py/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[100%] Linking C shared library rosidl_generator_py/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[100%] Linking C shared library rosidl_generator_py/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[100%] Built target autokart_msgs__rosidl_typesupport_introspection_c__pyext
+[100%] Built target autokart_msgs__rosidl_typesupport_fastrtps_c__pyext
+[100%] Built target autokart_msgs__rosidl_typesupport_c__pyext
+-- Install configuration: ""
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/ament_index/resource_index/rosidl_interfaces/autokart_msgs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vehicle_state.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_generator_c__visibility_control.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_states.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vcu_state.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/mission_debug.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/sensor_delivery_metadata.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/safety_envelope.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/motion_command.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/bench_vcu_status.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_state.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/authoritative_vehicle_snapshot.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone_array.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/actuator_feedback.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__functions.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__functions.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__struct.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/gazebo_follower_state.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/environment/library_path.sh
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/environment/library_path.dsv
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_c.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_c.so" to ""
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_fastrtps_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_c.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vehicle_state.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/safety_envelope.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_states.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/mission_debug.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/wheel_state.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/actuator_feedback.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone_array.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/bench_vcu_status.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/gazebo_follower_state.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/vcu_state.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/sensor_delivery_metadata.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/authoritative_vehicle_snapshot.hpp
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__traits.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__struct.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__builder.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/cone.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/motion_command.hpp
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/dds_fastrtps
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_fastrtps_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_cpp.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_introspection_c.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_c.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_c.so" to ""
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_c.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_c.so" to ""
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg
+-- Up-to-date: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone_array__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vcu_state__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/sensor_delivery_metadata__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_states__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/gazebo_follower_state__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/wheel_state__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/motion_command__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/vehicle_state__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/safety_envelope__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/cone__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/actuator_feedback__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/bench_vcu_status__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__rosidl_typesupport_introspection_cpp.hpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/authoritative_vehicle_snapshot__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/include/autokart_msgs/autokart_msgs/msg/detail/mission_debug__type_support.cpp
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_cpp.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_cpp.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_typesupport_cpp.so" to ""
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/environment/pythonpath.sh
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/environment/pythonpath.dsv
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/top_level.txt
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/PKG-INFO
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_introspection_c.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/libautokart_msgs__rosidl_generator_py.so
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/__init__.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_c.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/_autokart_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_mission_debug_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_state.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_safety_envelope.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/__init__.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_array.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_motion_command_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_actuator_feedback_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_safety_envelope_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_bench_vcu_status_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vcu_state_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vcu_state.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_sensor_delivery_metadata_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_sensor_delivery_metadata.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_authoritative_vehicle_snapshot.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_gazebo_follower_state_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_motion_command.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_array_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vehicle_state_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_bench_vcu_status.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_states_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_authoritative_vehicle_snapshot_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_mission_debug.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_gazebo_follower_state.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vehicle_state.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_state_s.c
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_actuator_feedback.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_states.py
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+Listing '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/__init__.py'...
+Listing '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/__init__.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_actuator_feedback.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_authoritative_vehicle_snapshot.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_bench_vcu_status.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_cone_array.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_gazebo_follower_state.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_mission_debug.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_motion_command.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_safety_envelope.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_sensor_delivery_metadata.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vcu_state.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_vehicle_state.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_state.py'...
+Compiling '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/msg/_wheel_states.py'...
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/local/lib/python3.10/dist-packages/autokart_msgs/autokart_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_py.so
+-- Set runtime path of "/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/lib/libautokart_msgs__rosidl_generator_py.so" to ""
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/rust
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/rust/Cargo.toml
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/rust/build.rs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/rust/src
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/rust/src/msg.rs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/rust/src/msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/rust/src/msg/rmw.rs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/rust/src/lib.rs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/BenchVcuStatus.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/MotionCommand.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/VehicleState.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/WheelState.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/WheelStates.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/ActuatorFeedback.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/VcuState.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/SafetyEnvelope.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/Cone.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/ConeArray.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/AuthoritativeVehicleSnapshot.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/GazeboFollowerState.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/SensorDeliveryMetadata.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/MissionDebug.idl
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/BenchVcuStatus.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/MotionCommand.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/VehicleState.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/WheelState.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/WheelStates.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/ActuatorFeedback.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/VcuState.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/SafetyEnvelope.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/Cone.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/ConeArray.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/AuthoritativeVehicleSnapshot.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/GazeboFollowerState.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/SensorDeliveryMetadata.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/msg/MissionDebug.msg
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/ament_index/resource_index/package_run_dependencies/autokart_msgs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/ament_index/resource_index/parent_prefix_path/autokart_msgs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/environment/ament_prefix_path.sh
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/environment/ament_prefix_path.dsv
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/environment/path.sh
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/environment/path.dsv
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/local_setup.bash
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/local_setup.sh
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/local_setup.zsh
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/local_setup.dsv
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/package.dsv
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/ament_index/resource_index/packages/autokart_msgs
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_cExport.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_cExport-noconfig.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_cppExport.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cExport.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cExport.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cExport-noconfig.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cppExport.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cppExport.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_pyExport.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/export_autokart_msgs__rosidl_generator_pyExport-noconfig.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake-extras.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/ament_cmake_export_targets-extras.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/rosidl_cmake_aggregate_target-extras.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgsConfig.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/cmake/autokart_msgsConfig-version.cmake
+-- Installing: /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_msgs/share/autokart_msgs/package.xml
+---
+Finished <<< autokart_msgs [18.0s]
+Starting >>> autokart_system_monitor
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+--- output: autokart_system_monitor
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+creating ../../build/autokart_system_monitor/autokart_system_monitor.egg-info
+writing ../../build/autokart_system_monitor/autokart_system_monitor.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_system_monitor/autokart_system_monitor.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_system_monitor/autokart_system_monitor.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_system_monitor/autokart_system_monitor.egg-info/requires.txt
+writing top-level names to ../../build/autokart_system_monitor/autokart_system_monitor.egg-info/top_level.txt
+writing manifest file '../../build/autokart_system_monitor/autokart_system_monitor.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_system_monitor/autokart_system_monitor.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_system_monitor/autokart_system_monitor.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor
+copying autokart_system_monitor/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor
+copying autokart_system_monitor/evidence.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor
+copying autokart_system_monitor/resource_backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor
+copying autokart_system_monitor/monitor_core.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor
+copying autokart_system_monitor/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor/evidence.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor/resource_backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor/monitor_core.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/build/lib/autokart_system_monitor/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor/evidence.py to evidence.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor/resource_backends.py to resource_backends.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor/monitor_core.py to monitor_core.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/share/ament_index/resource_index/packages
+copying resource/autokart_system_monitor -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/share/autokart_system_monitor
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/share/autokart_system_monitor/launch
+copying launch/system_monitor.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/share/autokart_system_monitor/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/share/autokart_system_monitor/config
+copying config/system_monitor_synthetic.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/share/autokart_system_monitor/config
+copying config/system_monitor_live.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/share/autokart_system_monitor/config
+running install_egg_info
+Copying ../../build/autokart_system_monitor/autokart_system_monitor.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/python3.10/site-packages/autokart_system_monitor-0.1.0-py3.10.egg-info
+running install_scripts
+Installing system_monitor_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_system_monitor/lib/autokart_system_monitor
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_system_monitor/install.log'
+---
+--- stderr: autokart_system_monitor
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+---
+Finished <<< autokart_system_monitor [1.76s]
+Starting >>> autokart_controller
+--- output: autokart_controller
+running egg_info
+creating ../../build/autokart_controller/autokart_controller.egg-info
+writing ../../build/autokart_controller/autokart_controller.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_controller/autokart_controller.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_controller/autokart_controller.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_controller/autokart_controller.egg-info/requires.txt
+writing top-level names to ../../build/autokart_controller/autokart_controller.egg-info/top_level.txt
+writing manifest file '../../build/autokart_controller/autokart_controller.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_controller/autokart_controller.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_controller/autokart_controller.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/build/lib/autokart_controller
+copying autokart_controller/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/build/lib/autokart_controller
+copying autokart_controller/pursuit_backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/build/lib/autokart_controller
+copying autokart_controller/controller_core.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/build/lib/autokart_controller
+copying autokart_controller/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/build/lib/autokart_controller
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/build/lib/autokart_controller/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/build/lib/autokart_controller/pursuit_backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/build/lib/autokart_controller/controller_core.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/build/lib/autokart_controller/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller/pursuit_backends.py to pursuit_backends.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller/controller_core.py to controller_core.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/share/ament_index/resource_index/packages
+copying resource/autokart_controller -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/share/autokart_controller
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/share/autokart_controller/launch
+copying launch/controller.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/share/autokart_controller/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/share/autokart_controller/config
+copying config/controller_builtin.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/share/autokart_controller/config
+copying config/controller_reused.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/share/autokart_controller/config
+running install_egg_info
+Copying ../../build/autokart_controller/autokart_controller.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/python3.10/site-packages/autokart_controller-0.1.0-py3.10.egg-info
+running install_scripts
+Installing controller_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_controller/lib/autokart_controller
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_controller/install.log'
+---
+Finished <<< autokart_controller [1.58s]
+Starting >>> autokart_dashboard_gateway
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+--- output: autokart_dashboard_gateway
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+creating ../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info
+writing ../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/requires.txt
+writing top-level names to ../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/top_level.txt
+writing manifest file '../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway_node
+copying autokart_dashboard_gateway_node/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway_node
+copying autokart_dashboard_gateway_node/readonly.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway_node
+copying autokart_dashboard_gateway_node/adapter.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway_node
+copying autokart_dashboard_gateway_node/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway_node
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway_node
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway_node/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway_node
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway_node/readonly.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway_node
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway_node/adapter.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway_node
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/build/lib/autokart_dashboard_gateway_node/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway_node
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway_node/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway_node/readonly.py to readonly.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway_node/adapter.py to adapter.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway_node/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/share/ament_index/resource_index/packages
+copying resource/autokart_dashboard_gateway -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/share/autokart_dashboard_gateway
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/share/autokart_dashboard_gateway/launch
+copying launch/dashboard_gateway.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/share/autokart_dashboard_gateway/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/share/autokart_dashboard_gateway/config
+copying config/dashboard_gateway_synthetic.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/share/autokart_dashboard_gateway/config
+copying config/dashboard_gateway_live.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/share/autokart_dashboard_gateway/config
+running install_egg_info
+Copying ../../build/autokart_dashboard_gateway/autokart_dashboard_gateway.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/python3.10/site-packages/autokart_dashboard_gateway-0.1.0-py3.10.egg-info
+running install_scripts
+Installing dashboard_gateway_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_dashboard_gateway/lib/autokart_dashboard_gateway
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_dashboard_gateway/install.log'
+---
+--- stderr: autokart_dashboard_gateway
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+---
+Finished <<< autokart_dashboard_gateway [1.55s]
+Starting >>> autokart_hp60c
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+--- output: autokart_hp60c
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+creating ../../build/autokart_hp60c/autokart_hp60c.egg-info
+writing ../../build/autokart_hp60c/autokart_hp60c.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_hp60c/autokart_hp60c.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_hp60c/autokart_hp60c.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_hp60c/autokart_hp60c.egg-info/requires.txt
+writing top-level names to ../../build/autokart_hp60c/autokart_hp60c.egg-info/top_level.txt
+writing manifest file '../../build/autokart_hp60c/autokart_hp60c.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_hp60c/autokart_hp60c.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_hp60c/autokart_hp60c.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_hp60c/build/lib/autokart_hp60c
+copying autokart_hp60c/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_hp60c/build/lib/autokart_hp60c
+copying autokart_hp60c/backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_hp60c/build/lib/autokart_hp60c
+copying autokart_hp60c/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_hp60c/build/lib/autokart_hp60c
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/lib/python3.10/site-packages/autokart_hp60c
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_hp60c/build/lib/autokart_hp60c/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/lib/python3.10/site-packages/autokart_hp60c
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_hp60c/build/lib/autokart_hp60c/backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/lib/python3.10/site-packages/autokart_hp60c
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_hp60c/build/lib/autokart_hp60c/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/lib/python3.10/site-packages/autokart_hp60c
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/lib/python3.10/site-packages/autokart_hp60c/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/lib/python3.10/site-packages/autokart_hp60c/backends.py to backends.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/lib/python3.10/site-packages/autokart_hp60c/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/share/ament_index/resource_index/packages
+copying resource/autokart_hp60c -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/share/autokart_hp60c
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/share/autokart_hp60c/launch
+copying launch/hp60c.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/share/autokart_hp60c/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/share/autokart_hp60c/config
+copying config/hp60c_synthetic.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/share/autokart_hp60c/config
+copying config/hp60c_live.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/share/autokart_hp60c/config
+running install_egg_info
+Copying ../../build/autokart_hp60c/autokart_hp60c.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/lib/python3.10/site-packages/autokart_hp60c-0.1.0-py3.10.egg-info
+running install_scripts
+Installing hp60c_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_hp60c/lib/autokart_hp60c
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_hp60c/install.log'
+---
+--- stderr: autokart_hp60c
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+---
+Finished <<< autokart_hp60c [1.71s]
+Starting >>> autokart_imu
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+--- output: autokart_imu
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+creating ../../build/autokart_imu/autokart_imu.egg-info
+writing ../../build/autokart_imu/autokart_imu.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_imu/autokart_imu.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_imu/autokart_imu.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_imu/autokart_imu.egg-info/requires.txt
+writing top-level names to ../../build/autokart_imu/autokart_imu.egg-info/top_level.txt
+writing manifest file '../../build/autokart_imu/autokart_imu.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_imu/autokart_imu.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_imu/autokart_imu.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_imu/build/lib/autokart_imu
+copying autokart_imu/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_imu/build/lib/autokart_imu
+copying autokart_imu/backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_imu/build/lib/autokart_imu
+copying autokart_imu/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_imu/build/lib/autokart_imu
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/lib/python3.10/site-packages/autokart_imu
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_imu/build/lib/autokart_imu/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/lib/python3.10/site-packages/autokart_imu
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_imu/build/lib/autokart_imu/backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/lib/python3.10/site-packages/autokart_imu
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_imu/build/lib/autokart_imu/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/lib/python3.10/site-packages/autokart_imu
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/lib/python3.10/site-packages/autokart_imu/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/lib/python3.10/site-packages/autokart_imu/backends.py to backends.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/lib/python3.10/site-packages/autokart_imu/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/share/ament_index/resource_index/packages
+copying resource/autokart_imu -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/share/autokart_imu
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/share/autokart_imu/launch
+copying launch/imu.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/share/autokart_imu/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/share/autokart_imu/config
+copying config/imu_synthetic.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/share/autokart_imu/config
+copying config/imu_live.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/share/autokart_imu/config
+running install_egg_info
+Copying ../../build/autokart_imu/autokart_imu.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/lib/python3.10/site-packages/autokart_imu-0.1.0-py3.10.egg-info
+running install_scripts
+Installing imu_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_imu/lib/autokart_imu
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_imu/install.log'
+---
+--- stderr: autokart_imu
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+---
+Finished <<< autokart_imu [1.52s]
+Starting >>> autokart_mapping
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+--- output: autokart_mapping
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+creating ../../build/autokart_mapping/autokart_mapping.egg-info
+writing ../../build/autokart_mapping/autokart_mapping.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_mapping/autokart_mapping.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_mapping/autokart_mapping.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_mapping/autokart_mapping.egg-info/requires.txt
+writing top-level names to ../../build/autokart_mapping/autokart_mapping.egg-info/top_level.txt
+writing manifest file '../../build/autokart_mapping/autokart_mapping.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_mapping/autokart_mapping.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_mapping/autokart_mapping.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/build/lib/autokart_mapping
+copying autokart_mapping/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/build/lib/autokart_mapping
+copying autokart_mapping/engine.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/build/lib/autokart_mapping
+copying autokart_mapping/algorithm.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/build/lib/autokart_mapping
+copying autokart_mapping/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/build/lib/autokart_mapping
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/build/lib/autokart_mapping/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/build/lib/autokart_mapping/engine.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/build/lib/autokart_mapping/algorithm.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/build/lib/autokart_mapping/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping/engine.py to engine.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping/algorithm.py to algorithm.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/share/ament_index/resource_index/packages
+copying resource/autokart_mapping -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/share/autokart_mapping
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/share/autokart_mapping/launch
+copying launch/mapping.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/share/autokart_mapping/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/share/autokart_mapping/config
+copying config/mapping.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/share/autokart_mapping/config
+running install_egg_info
+Copying ../../build/autokart_mapping/autokart_mapping.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/python3.10/site-packages/autokart_mapping-0.1.0-py3.10.egg-info
+running install_scripts
+Installing mapping_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mapping/lib/autokart_mapping
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mapping/install.log'
+---
+--- stderr: autokart_mapping
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+---
+Finished <<< autokart_mapping [1.57s]
+Starting >>> autokart_mission
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+--- output: autokart_mission
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+creating ../../build/autokart_mission/autokart_mission.egg-info
+writing ../../build/autokart_mission/autokart_mission.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_mission/autokart_mission.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_mission/autokart_mission.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_mission/autokart_mission.egg-info/requires.txt
+writing top-level names to ../../build/autokart_mission/autokart_mission.egg-info/top_level.txt
+writing manifest file '../../build/autokart_mission/autokart_mission.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_mission/autokart_mission.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_mission/autokart_mission.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission
+copying autokart_mission/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission
+copying autokart_mission/stop_verification.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission
+copying autokart_mission/algorithm.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission
+copying autokart_mission/braking_fsm.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission
+copying autokart_mission/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission/stop_verification.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission/algorithm.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission/braking_fsm.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/build/lib/autokart_mission/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission/stop_verification.py to stop_verification.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission/algorithm.py to algorithm.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission/braking_fsm.py to braking_fsm.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/share/ament_index/resource_index/packages
+copying resource/autokart_mission -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/share/autokart_mission
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/share/autokart_mission/launch
+copying launch/mission.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/share/autokart_mission/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/share/autokart_mission/config
+copying config/mission_skidpad.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/share/autokart_mission/config
+copying config/mission_braking_test.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/share/autokart_mission/config
+running install_egg_info
+Copying ../../build/autokart_mission/autokart_mission.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/python3.10/site-packages/autokart_mission-0.1.0-py3.10.egg-info
+running install_scripts
+Installing mission_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_mission/lib/autokart_mission
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_mission/install.log'
+---
+--- stderr: autokart_mission
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+---
+Finished <<< autokart_mission [1.60s]
+Starting >>> autokart_odometry
+--- output: autokart_odometry
+running egg_info
+creating ../../build/autokart_odometry/autokart_odometry.egg-info
+writing ../../build/autokart_odometry/autokart_odometry.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_odometry/autokart_odometry.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_odometry/autokart_odometry.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_odometry/autokart_odometry.egg-info/requires.txt
+writing top-level names to ../../build/autokart_odometry/autokart_odometry.egg-info/top_level.txt
+writing manifest file '../../build/autokart_odometry/autokart_odometry.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_odometry/autokart_odometry.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_odometry/autokart_odometry.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_odometry/build/lib/autokart_odometry
+copying autokart_odometry/core.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_odometry/build/lib/autokart_odometry
+copying autokart_odometry/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_odometry/build/lib/autokart_odometry
+copying autokart_odometry/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_odometry/build/lib/autokart_odometry
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/lib/python3.10/site-packages/autokart_odometry
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_odometry/build/lib/autokart_odometry/core.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/lib/python3.10/site-packages/autokart_odometry
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_odometry/build/lib/autokart_odometry/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/lib/python3.10/site-packages/autokart_odometry
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_odometry/build/lib/autokart_odometry/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/lib/python3.10/site-packages/autokart_odometry
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/lib/python3.10/site-packages/autokart_odometry/core.py to core.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/lib/python3.10/site-packages/autokart_odometry/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/lib/python3.10/site-packages/autokart_odometry/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/share/ament_index/resource_index/packages
+copying resource/autokart_odometry -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/share/autokart_odometry
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/share/autokart_odometry/config
+copying config/odometry.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/share/autokart_odometry/config
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/share/autokart_odometry/launch
+copying launch/odometry.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/share/autokart_odometry/launch
+running install_egg_info
+Copying ../../build/autokart_odometry/autokart_odometry.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/lib/python3.10/site-packages/autokart_odometry-0.1.0-py3.10.egg-info
+running install_scripts
+Installing odometry_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_odometry/lib/autokart_odometry
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_odometry/install.log'
+---
+Finished <<< autokart_odometry [1.63s]
+Starting >>> autokart_perception_adapter
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+--- output: autokart_perception_adapter
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+creating ../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info
+writing ../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info/requires.txt
+writing top-level names to ../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info/top_level.txt
+writing manifest file '../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/build/lib/autokart_perception_adapter
+copying autokart_perception_adapter/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/build/lib/autokart_perception_adapter
+copying autokart_perception_adapter/backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/build/lib/autokart_perception_adapter
+copying autokart_perception_adapter/depth_obstacles.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/build/lib/autokart_perception_adapter
+copying autokart_perception_adapter/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/build/lib/autokart_perception_adapter
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/build/lib/autokart_perception_adapter/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/build/lib/autokart_perception_adapter/backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/build/lib/autokart_perception_adapter/depth_obstacles.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/build/lib/autokart_perception_adapter/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter/backends.py to backends.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter/depth_obstacles.py to depth_obstacles.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/share/ament_index/resource_index/packages
+copying resource/autokart_perception_adapter -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/share/autokart_perception_adapter
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/share/autokart_perception_adapter/launch
+copying launch/perception_adapter.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/share/autokart_perception_adapter/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/share/autokart_perception_adapter/config
+copying config/synthetic.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/share/autokart_perception_adapter/config
+copying config/topics_live.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/share/autokart_perception_adapter/config
+running install_egg_info
+Copying ../../build/autokart_perception_adapter/autokart_perception_adapter.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/python3.10/site-packages/autokart_perception_adapter-0.1.0-py3.10.egg-info
+running install_scripts
+Installing perception_adapter_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_perception_adapter/lib/autokart_perception_adapter
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_perception_adapter/install.log'
+---
+--- stderr: autokart_perception_adapter
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+---
+Finished <<< autokart_perception_adapter [1.45s]
+Starting >>> autokart_planner
+--- output: autokart_planner
+running egg_info
+creating ../../build/autokart_planner/autokart_planner.egg-info
+writing ../../build/autokart_planner/autokart_planner.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_planner/autokart_planner.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_planner/autokart_planner.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_planner/autokart_planner.egg-info/requires.txt
+writing top-level names to ../../build/autokart_planner/autokart_planner.egg-info/top_level.txt
+writing manifest file '../../build/autokart_planner/autokart_planner.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_planner/autokart_planner.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_planner/autokart_planner.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner
+copying autokart_planner/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner
+copying autokart_planner/planner_core.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner
+copying autokart_planner/algorithms.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner
+copying autokart_planner/geometry_params.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner
+copying autokart_planner/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner/planner_core.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner/algorithms.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner/geometry_params.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/build/lib/autokart_planner/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner/planner_core.py to planner_core.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner/algorithms.py to algorithms.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner/geometry_params.py to geometry_params.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/share/ament_index/resource_index/packages
+copying resource/autokart_planner -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/share/autokart_planner
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/share/autokart_planner/launch
+copying launch/planner.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/share/autokart_planner/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/share/autokart_planner/config
+copying config/planner_builtin.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/share/autokart_planner/config
+copying config/planner_reused.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/share/autokart_planner/config
+running install_egg_info
+Copying ../../build/autokart_planner/autokart_planner.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/python3.10/site-packages/autokart_planner-0.1.0-py3.10.egg-info
+running install_scripts
+Installing planner_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_planner/lib/autokart_planner
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_planner/install.log'
+---
+Finished <<< autokart_planner [1.85s]
+Starting >>> autokart_safety
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+--- output: autokart_safety
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+creating ../../build/autokart_safety/autokart_safety.egg-info
+writing ../../build/autokart_safety/autokart_safety.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_safety/autokart_safety.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_safety/autokart_safety.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_safety/autokart_safety.egg-info/requires.txt
+writing top-level names to ../../build/autokart_safety/autokart_safety.egg-info/top_level.txt
+writing manifest file '../../build/autokart_safety/autokart_safety.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_safety/autokart_safety.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_safety/autokart_safety.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_safety/build/lib/autokart_safety
+copying autokart_safety/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_safety/build/lib/autokart_safety
+copying autokart_safety/adapter.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_safety/build/lib/autokart_safety
+copying autokart_safety/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_safety/build/lib/autokart_safety
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/lib/python3.10/site-packages/autokart_safety
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_safety/build/lib/autokart_safety/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/lib/python3.10/site-packages/autokart_safety
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_safety/build/lib/autokart_safety/adapter.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/lib/python3.10/site-packages/autokart_safety
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_safety/build/lib/autokart_safety/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/lib/python3.10/site-packages/autokart_safety
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/lib/python3.10/site-packages/autokart_safety/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/lib/python3.10/site-packages/autokart_safety/adapter.py to adapter.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/lib/python3.10/site-packages/autokart_safety/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/share/ament_index/resource_index/packages
+copying resource/autokart_safety -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/share/autokart_safety
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/share/autokart_safety/launch
+copying launch/safety.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/share/autokart_safety/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/share/autokart_safety/config
+copying config/safety_synthetic.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/share/autokart_safety/config
+copying config/safety_live.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/share/autokart_safety/config
+running install_egg_info
+Copying ../../build/autokart_safety/autokart_safety.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/lib/python3.10/site-packages/autokart_safety-0.1.0-py3.10.egg-info
+running install_scripts
+Installing safety_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_safety/lib/autokart_safety
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_safety/install.log'
+---
+--- stderr: autokart_safety
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+---
+Finished <<< autokart_safety [1.64s]
+Starting >>> autokart_vcu_bridge
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+--- output: autokart_vcu_bridge
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+creating ../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info
+writing ../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info/PKG-INFO
+writing dependency_links to ../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info/dependency_links.txt
+writing entry points to ../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info/entry_points.txt
+writing requirements to ../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info/requires.txt
+writing top-level names to ../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info/top_level.txt
+writing manifest file '../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info/SOURCES.txt'
+reading manifest file '../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info/SOURCES.txt'
+writing manifest file '../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_vcu_bridge/build/lib/autokart_vcu_bridge
+copying autokart_vcu_bridge/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_vcu_bridge/build/lib/autokart_vcu_bridge
+copying autokart_vcu_bridge/backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_vcu_bridge/build/lib/autokart_vcu_bridge
+copying autokart_vcu_bridge/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_vcu_bridge/build/lib/autokart_vcu_bridge
+running install
+running install_lib
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/lib/python3.10/site-packages/autokart_vcu_bridge
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_vcu_bridge/build/lib/autokart_vcu_bridge/__init__.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/lib/python3.10/site-packages/autokart_vcu_bridge
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_vcu_bridge/build/lib/autokart_vcu_bridge/backends.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/lib/python3.10/site-packages/autokart_vcu_bridge
+copying /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_vcu_bridge/build/lib/autokart_vcu_bridge/node.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/lib/python3.10/site-packages/autokart_vcu_bridge
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/lib/python3.10/site-packages/autokart_vcu_bridge/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/lib/python3.10/site-packages/autokart_vcu_bridge/backends.py to backends.cpython-310.pyc
+byte-compiling /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/lib/python3.10/site-packages/autokart_vcu_bridge/node.py to node.cpython-310.pyc
+running install_data
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/share/ament_index/resource_index/packages
+copying resource/autokart_vcu_bridge -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/share/ament_index/resource_index/packages
+copying package.xml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/share/autokart_vcu_bridge
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/share/autokart_vcu_bridge/launch
+copying launch/vcu_bridge.launch.py -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/share/autokart_vcu_bridge/launch
+creating /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/share/autokart_vcu_bridge/config
+copying config/vcu_bridge_synthetic.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/share/autokart_vcu_bridge/config
+copying config/vcu_bridge_live.yaml -> /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/share/autokart_vcu_bridge/config
+running install_egg_info
+Copying ../../build/autokart_vcu_bridge/autokart_vcu_bridge.egg-info to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/lib/python3.10/site-packages/autokart_vcu_bridge-0.1.0-py3.10.egg-info
+running install_scripts
+Installing vcu_bridge_node script to /home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/install/autokart_vcu_bridge/lib/autokart_vcu_bridge
+writing list of installed files to '/home/mark1/Desktop/autonomous_kart/_autokart_integration/takeover_20261022/qa_export_final_20261022/build/autokart_vcu_bridge/install.log'
+---
+--- stderr: autokart_vcu_bridge
+/home/mark1/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+---
+Finished <<< autokart_vcu_bridge [1.65s]
+
+Summary: 13 packages finished [37.6s]
+  9 packages had stderr output: autokart_dashboard_gateway autokart_hp60c autokart_imu autokart_mapping autokart_mission autokart_perception_adapter autokart_safety autokart_system_monitor autokart_vcu_bridge

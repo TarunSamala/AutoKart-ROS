@@ -1,0 +1,1 @@
+ROS 2 Humble: rclpy, sensor_msgs, autokart_msgs, launch, launch_ros. Optional live dependency: smbus2 and configured I2C permissions. Python standard library handles synthetic samples, clocks and advisory lock. No new pip install or hardware access was performed.

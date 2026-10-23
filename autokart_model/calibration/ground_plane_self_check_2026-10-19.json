@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "qualified": false,
+  "verification": "NOT_VERIFIED_EVIDENCE_ONLY",
+  "frames_analysed": 20,
+  "frames_with_plane": 20,
+  "reported_mount": {
+    "x_forward_m": 0.0,
+    "y_left_m": 0.0,
+    "height_m": 0.8382,
+    "pitch_down_deg": 17.8,
+    "roll_deg": 0.0,
+    "yaw_left_deg": 0.0
+  },
+  "tolerance": {
+    "height_m": 0.05,
+    "pitch_deg": 2.0,
+    "roll_deg": 2.0
+  },
+  "estimate": {
+    "height_m": 0.8201320272639145,
+    "pitch_down_deg": 11.395733592951952,
+    "roll_deg": 1.4641029919880355
+  },
+  "frame_to_frame_std": {
+    "height_m": 0.002505108581293416,
+    "pitch_down_deg": 0.07648507813555017,
+    "roll_deg": 0.0888484693582783
+  },
+  "delta_vs_reported": {
+    "height_m": -0.018067972736085403,
+    "pitch_deg": -6.404266407048048,
+    "roll_deg": 1.4641029919880355
+  },
+  "pitch_consistent": false,
+  "roll_consistent": true,
+  "height_consistent": true,
+  "implied_depth_scale_factor_if_height_correct": 1.0220305659765085,
+  "verdict": "INCONSISTENT_WITH_REPORTED",
+  "note": "Pitch/roll are independent of depth scale. A height mismatch cannot be attributed to depth scale versus the tape measurement without an independent reference.",
+  "source": "LIVE_HP60C",
+  "camera_errors": {
+    "FRAME_TIMEOUT": 2,
+    "CALIBRATION_UNAVAILABLE": 1
+  }
+}

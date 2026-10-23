@@ -1,0 +1,8 @@
+autokart_vcu_bridge:
+  ros__parameters:
+    backend: "serial"
+    hardware_enabled: false
+    algorithm_package_path: ""  # configure existing protocol package only for deliberate read-only live access
+    serial_port: "/dev/ttyACM0"
+    serial_baud: 115200
+    tick_hz: 20.0

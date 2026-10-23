@@ -1,0 +1,17 @@
+std_msgs/Header header
+float64 simulation_time_s
+float64 gazebo_simulation_time_s
+float64 clock_offset_s
+uint64 sequence
+uint32 reset_epoch
+uint64 applied_updates
+geometry_msgs/Pose pose
+geometry_msgs/Twist twist
+string[] joint_names
+float64[] joint_positions_rad
+float64[] joint_velocities_radps
+bool follower_valid
+bool follower_frozen
+float64 state_age_s
+string pose_source
+string joint_source

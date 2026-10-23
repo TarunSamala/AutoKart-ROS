@@ -1,0 +1,335 @@
+{
+  "generated_at": "2026-10-22",
+  "scope": "stationary non-actuating artifact validation",
+  "onnx": [
+    {
+      "path": "ConeNet/v1_ARECE_20261014/exports/onnx/best.onnx",
+      "sha256": "0554f1fb28d19a4defac6b65b33e790ac2398e2f577fe353d01cbe28743aa103",
+      "status": "PASS",
+      "inputs": [
+        {
+          "name": "images",
+          "shape": [
+            1,
+            3,
+            640,
+            640
+          ],
+          "type": "tensor(float)"
+        }
+      ],
+      "outputs": [
+        [
+          1,
+          9,
+          8400
+        ]
+      ],
+      "zero_input_smoke_ms": 225.84078799991403,
+      "note": "Structural check and zero-input CPU load smoke only; not an accuracy or deployment benchmark."
+    },
+    {
+      "path": "ConeNet/v2_FSOCO_Drive_20261014/exports/onnx/best.onnx",
+      "sha256": "a463c42f8d8a4f313c8ce5fe48a5d82d455dbb56aaf3a3b98d8f641d8ec1ab56",
+      "status": "PASS",
+      "inputs": [
+        {
+          "name": "images",
+          "shape": [
+            1,
+            3,
+            640,
+            640
+          ],
+          "type": "tensor(float)"
+        }
+      ],
+      "outputs": [
+        [
+          1,
+          9,
+          8400
+        ]
+      ],
+      "zero_input_smoke_ms": 129.7784540001885,
+      "note": "Structural check and zero-input CPU load smoke only; not an accuracy or deployment benchmark."
+    },
+    {
+      "path": "ConeNet/v2_FSOCO_Drive_20261014/exports/onnx/conenet_v2_best.onnx",
+      "sha256": "a463c42f8d8a4f313c8ce5fe48a5d82d455dbb56aaf3a3b98d8f641d8ec1ab56",
+      "status": "PASS",
+      "inputs": [
+        {
+          "name": "images",
+          "shape": [
+            1,
+            3,
+            640,
+            640
+          ],
+          "type": "tensor(float)"
+        }
+      ],
+      "outputs": [
+        [
+          1,
+          9,
+          8400
+        ]
+      ],
+      "zero_input_smoke_ms": 81.82195399785996,
+      "note": "Structural check and zero-input CPU load smoke only; not an accuracy or deployment benchmark."
+    },
+    {
+      "path": "ConeNet/v2_Local_20261014_150936/exports/onnx/model.onnx",
+      "sha256": "80d8c6e84dc312d5e47d8983618253ea6d1cab6f8fb2dd73af1cb00c33f07224",
+      "status": "PASS",
+      "inputs": [
+        {
+          "name": "images",
+          "shape": [
+            1,
+            3,
+            640,
+            640
+          ],
+          "type": "tensor(float)"
+        }
+      ],
+      "outputs": [
+        [
+          1,
+          9,
+          8400
+        ]
+      ],
+      "zero_input_smoke_ms": 78.91450800161692,
+      "note": "Structural check and zero-input CPU load smoke only; not an accuracy or deployment benchmark."
+    },
+    {
+      "path": "ConeSlayer/pinned_ce7400b/exports/onnx/coneslayer-simplified.onnx",
+      "sha256": "67c8dd8922fa793a0577297c8936de1fc5decaebfb7c79c1f9a7aa1542f93faf",
+      "status": "PASS",
+      "inputs": [
+        {
+          "name": "images",
+          "shape": [
+            1,
+            3,
+            416,
+            416
+          ],
+          "type": "tensor(float)"
+        }
+      ],
+      "outputs": [
+        [
+          1,
+          10647,
+          6
+        ],
+        [
+          1,
+          3,
+          52,
+          52,
+          6
+        ],
+        [
+          1,
+          3,
+          26,
+          26,
+          6
+        ],
+        [
+          1,
+          3,
+          13,
+          13,
+          6
+        ]
+      ],
+      "zero_input_smoke_ms": 111.94906699893181,
+      "note": "Structural check and zero-input CPU load smoke only; not an accuracy or deployment benchmark."
+    },
+    {
+      "path": "YOLO26n/HighAccuracy_FromFSOCO/exports/onnx/best.onnx",
+      "sha256": "ac32a0f84a17cc9655ffb8f8b86d74da6fbf874fef673bdd637a0bc36eb3a298",
+      "status": "PASS",
+      "inputs": [
+        {
+          "name": "images",
+          "shape": [
+            1,
+            3,
+            640,
+            640
+          ],
+          "type": "tensor(float)"
+        }
+      ],
+      "outputs": [
+        [
+          1,
+          300,
+          6
+        ]
+      ],
+      "zero_input_smoke_ms": 113.45712600086699,
+      "note": "Structural check and zero-input CPU load smoke only; not an accuracy or deployment benchmark."
+    },
+    {
+      "path": "YOLO26s/FSOCO_20261015/exports/onnx/best.onnx",
+      "sha256": "425a89cef2eda9db9c84fbf30cad187e510510b95d7b7e9904003fd22cec1158",
+      "status": "PASS",
+      "inputs": [
+        {
+          "name": "images",
+          "shape": [
+            1,
+            3,
+            640,
+            640
+          ],
+          "type": "tensor(float)"
+        }
+      ],
+      "outputs": [
+        [
+          1,
+          300,
+          6
+        ]
+      ],
+      "zero_input_smoke_ms": 285.24688499965123,
+      "note": "Structural check and zero-input CPU load smoke only; not an accuracy or deployment benchmark."
+    }
+  ],
+  "pytorch": [
+    {
+      "path": "ConeNet/v1_ARECE_20261014/weights/best.pt",
+      "sha256": "e929a38e26e3d46d3c32387805ef2f33fd50569773a5cb75aa0f48a2b5ec5b74",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "ConeNet/v1_ARECE_20261014/weights/drive_conenet_v1_best.pt",
+      "sha256": "e929a38e26e3d46d3c32387805ef2f33fd50569773a5cb75aa0f48a2b5ec5b74",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "ConeNet/v1_ARECE_20261014/weights/last.pt",
+      "sha256": "b5416aed4960a3ae364695c472254226536a9b3c6e070836e48d4dabaa2a247f",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "ConeNet/v2_FSOCO_Drive_20261014/weights/best.pt",
+      "sha256": "20c4243bbfe9166fa4f193c49c7a146eb40b7a849161163149ee48e8e4998dde",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "ConeNet/v2_FSOCO_Drive_20261014/weights/last_completed.pt",
+      "sha256": "f4ccbbf00e8fef04fa7889269a51f2849bc00696b52a7b8d704041aa3bce59f7",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "ConeNet/v2_FSOCO_Drive_20261014/weights/last_resume.pt",
+      "sha256": "b4d20c4f5a17a79b449984fe8825380031fdc8605def095714b533adddc22ed4",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "ConeNet/v2_Local_20261014_150936/weights/model.pt",
+      "sha256": "a6fb15996a1dbf8e66a98690464e2dea17aacbed88637bc9145b86d4b7196ed9",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "YOLO11n/Ultralytics_Pretrained_Base/weights/yolo11n.pt",
+      "sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "YOLO26n/HighAccuracy_FromFSOCO/weights/best.pt",
+      "sha256": "ef9103aee36550699409d67b159cb068717523ac42a8d579d449b30092f8dfe2",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "YOLO26n/HighAccuracy_FromFSOCO/weights/best_interim.pt",
+      "sha256": "bcd77152ba35a3333c22810b1fd289eabf5631f0afebc8160dbae1740b29823e",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "YOLO26n/HighAccuracy_FromFSOCO/weights/last_completed.pt",
+      "sha256": "d4182a6f6ae9127f574d70d996dd3fabc9d500768660229efb3476433d11b257",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "YOLO26n/HighAccuracy_FromFSOCO/weights/last_resume.pt",
+      "sha256": "df5f6142e3f03df82d3ec5c6c2c422e256d4e1a7f4695a3899d11fa81c433a8a",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "YOLO26s/FSOCO_20261015/weights/best.pt",
+      "sha256": "834abec3531b654d02d70b8879356cd44f572dacc12e8757f78bfcb3671d9281",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "YOLO26s/FSOCO_20261015/weights/best_interim.pt",
+      "sha256": "d76be8ee5d023fa76b07cab2356da14177a389e19d4336a4521cb03c7d2acac7",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "YOLO26s/FSOCO_20261015/weights/last_completed.pt",
+      "sha256": "c25734e2d443ad8f392c2c7d3ec51b02ff2d8d820de991fe4064e57a7ccf53c6",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    },
+    {
+      "path": "YOLO26s/FSOCO_20261015/weights/last_resume.pt",
+      "sha256": "a46c53cc83ce5a0d1676fc6583b14d8ce79cff161b1b4bcc499b5c2ded43ac69",
+      "status": "PASS",
+      "loaded_type": "DetectionModel",
+      "note": "Deserialization/model construction only; no inference or accuracy claim."
+    }
+  ],
+  "ncnn": {
+    "path": "YOLO26n/HighAccuracy_FromFSOCO/exports/ncnn/best_ncnn_model",
+    "status": "PASS_STATIC_COMPLETE",
+    "required_files": {
+      "model.ncnn.param": true,
+      "model.ncnn.bin": true,
+      "metadata.yaml": true,
+      "model_ncnn.py": true
+    },
+    "runtime_load": "NOT_EXECUTED_NCNN_PYTHON_NOT_INSTALLED",
+    "note": "Static completeness is not a Raspberry Pi latency or accuracy result."
+  }
+}

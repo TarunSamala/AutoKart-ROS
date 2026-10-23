@@ -1,0 +1,25 @@
+[INFO] [launch]: All log files can be found below /home/mark1/.ros/log/2026-10-22-18-45-14-649895-Jarvis-329637
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [hp60c_node-1]: process started with pid [329641]
+[INFO] [perception_adapter_node-2]: process started with pid [329643]
+[INFO] [imu_node-3]: process started with pid [329645]
+[INFO] [vcu_bridge_node-4]: process started with pid [329647]
+[INFO] [odometry_node-5]: process started with pid [329649]
+[INFO] [mapping_node-6]: process started with pid [329651]
+[INFO] [mission_node-7]: process started with pid [329653]
+[INFO] [planner_node-8]: process started with pid [329655]
+[INFO] [controller_node-9]: process started with pid [329657]
+[INFO] [safety_node-10]: process started with pid [329659]
+[INFO] [dashboard_gateway_node-11]: process started with pid [329661]
+[INFO] [system_monitor_node-12]: process started with pid [329663]
+[system_monitor_node-12] [INFO] [1792674915.793348907] [autokart_system_monitor]: system_monitor: subscribed to /perception/diagnostics (autokart_msgs/msg/MissionDebug)
+[system_monitor_node-12] [INFO] [1792674915.795615720] [autokart_system_monitor]: system_monitor: subscribed to /imu/status (autokart_msgs/msg/SensorDeliveryMetadata)
+[system_monitor_node-12] [INFO] [1792674915.797431357] [autokart_system_monitor]: system_monitor: subscribed to /vehicle/status (autokart_msgs/msg/SensorDeliveryMetadata)
+[system_monitor_node-12] [INFO] [1792674915.799378170] [autokart_system_monitor]: system_monitor: subscribed to /vehicle/odometry_status (std_msgs/msg/String)
+[system_monitor_node-12] [INFO] [1792674915.801248008] [autokart_system_monitor]: system_monitor: subscribed to /mapping/status (autokart_msgs/msg/MissionDebug)
+[system_monitor_node-12] [INFO] [1792674915.802741490] [autokart_system_monitor]: system_monitor: subscribed to /planning/status (autokart_msgs/msg/MissionDebug)
+[system_monitor_node-12] [INFO] [1792674915.804356369] [autokart_system_monitor]: system_monitor: subscribed to /control/status (autokart_msgs/msg/MissionDebug)
+[system_monitor_node-12] [INFO] [1792674915.806075858] [autokart_system_monitor]: system_monitor: subscribed to /safety/status (autokart_msgs/msg/MissionDebug)
+[imu_node-3] [INFO] [1792674916.825166724] [autokart_imu]: autokart_imu stationary bias estimated over 100 samples: (0.00027688618576276753, -0.00039065317432460464, 0.015772971674391623) rad/s (assumes the sensor was stationary at startup -- not independently verified in this environment, see CONTRACT.md)
+[system_monitor_node-12] [INFO] [1792674917.812624691] [autokart_system_monitor]: system_monitor: subscribed to /hp60c/status (autokart_msgs/msg/SensorDeliveryMetadata)
+[system_monitor_node-12] [INFO] [1792674917.818104934] [autokart_system_monitor]: system_monitor: subscribed to /mission/state (autokart_msgs/msg/MissionDebug)

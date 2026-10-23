@@ -1,0 +1,17 @@
+# LIVE configuration: consumes autokart_hp60c's topics. Every path below is a
+# placeholder -- fill in and verify before treating output as metric-qualified
+# (see the master architecture doc's node 02 acceptance gate and this node's
+# own CONTRACT.md / DEPENDENCIES.md).
+autokart_perception_adapter:
+  ros__parameters:
+    backend: "algorithm"
+    input_mode: "topics"
+    rgb_topic: "/hp60c/rgb/image_raw"
+    depth_topic: "/hp60c/depth/image_raw"
+    camera_info_topic: "/hp60c/rgb/camera_info"
+    source_label: "LIVE"
+    # Path to the checked-out autokart_perception algorithm package's "src" directory.
+    algorithm_package_path: ""
+    model_path: ""
+    model_manifest: ""
+    calibration_artifact: ""

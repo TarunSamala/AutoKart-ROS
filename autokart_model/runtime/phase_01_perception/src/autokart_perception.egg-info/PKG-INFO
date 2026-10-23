@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: autokart-perception
+Version: 0.2.0
+Summary: AutoKart metric cone geometry and optional RGB-D perception SDK
+Requires-Python: >=3.10
+Requires-Dist: numpy>=1.23
+Requires-Dist: scipy>=1.9
+Requires-Dist: PyYAML>=6
+Provides-Extra: perception
+Requires-Dist: opencv-python>=4.8; extra == "perception"
+Provides-Extra: hardware
+Requires-Dist: opencv-python>=4.8; extra == "hardware"
+Provides-Extra: control
+Requires-Dist: auto-kart-simulator>=0.1.0; extra == "control"
+Provides-Extra: ros
+Provides-Extra: test
+Requires-Dist: pytest>=7; extra == "test"
+Provides-Extra: train
+Requires-Dist: ultralytics<9,>=8.3; extra == "train"
+Requires-Dist: torch>=2.2; extra == "train"
+Requires-Dist: onnx>=1.16; extra == "train"

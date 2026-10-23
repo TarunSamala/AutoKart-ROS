@@ -1,0 +1,252 @@
+You can begin AI testing now, but a full moving autonomous test should only happen after the perception, control, communication, and safety gates below pass individually.
+
+## 1. Required computing hardware
+
+- Raspberry Pi 4B or laptop running ROS 2 Humble
+- ESP32-S3 running the agreed VCU firmware
+- Reliable USB connection between ROS computer and ESP32
+- Powered USB connection for HP60C
+- Adequate cooling and stable power for the ROS computer
+- Wi-Fi/Ethernet only for monitoring—not as the primary safety path
+
+For initial development, use the laptop. Move to the Raspberry Pi after measuring CPU load, frame rate, and latency.
+
+## 2. Required ROS and AI software
+
+Copy from the other laptop:
+
+- Complete ROS 2 workspace
+- autokart_msgs
+- HP60C ROS driver
+- autokart_perception
+- Trained cone model: .onnx, .pt, or deployed engine
+- Model manifest and label map
+- Model preprocessing configuration
+- Camera calibration artifact
+- Mapping and midpoint packages
+- Planner
+- Pure Pursuit controller
+- VCU bridge
+- Safety supervisor
+- Launch files
+- Parameter YAML files
+- Package dependency list
+- Exact Git commit hashes
+
+The current repository already has wrappers for:
+
+- [HP60C](/home/satvara/Github/AutoKart-ROS/autokart_hp60c)
+- [Perception](/home/satvara/Github/AutoKart-ROS/autokart_perception_adapter)
+- [Mapping](/home/satvara/Github/AutoKart-ROS/autokart_mapping)
+- [Planner](/home/satvara/Github/AutoKart-ROS/autokart_planner)
+- [Controller](/home/satvara/Github/AutoKart-ROS/autokart_controller)
+- [VCU bridge](/home/satvara/Github/AutoKart-ROS/autokart_vcu_bridge)
+- [Obstacle stop](/home/satvara/Github/AutoKart-ROS/autokart_obstacle_stop)
+
+## 3. Camera and perception requirements
+
+- HP60C RGB frames
+- RAW16 depth frames
+- Matching RGB/depth timestamps
+- Correct CameraInfo
+- Verified depth scale
+- Verified RGB-to-depth registration
+- Trained cone model
+- Left/right cone class definitions
+- Detection confidence threshold
+- Robust cone-foot/ground-contact extraction
+- Camera-to-base_link transform
+- Camera height, pitch, roll, yaw and XYZ offsets
+- Measured cone-base dimensions
+- Per-detection position uncertainty
+- End-to-end perception latency measurement
+
+Today's camera acquisition test passed, but metric cone calibration is not yet qualified.
+
+## 4. Vehicle geometry required
+
+At minimum:
+
+- Verified wheelbase
+- Kart maximum physical width
+- Front-bumper offset from base_link
+- Front and rear overhang
+- Loaded rear tyre circumference
+- 14T-to-44T drivetrain ratio verification
+- Maximum road-wheel steering angle
+- Maximum steering rate
+- Cone radius/base dimensions
+- Collision safety margin
+
+The 30–40 cm obstacle gap must be measured from the front bumper to the nearest cone edge.
+
+## 5. Steering requirements
+
+- R86mini/NEMA34 installed
+- AS5600 steering encoder installed
+- Physical centre calibration
+- Left/right direction verified
+- ROS positive-left convention confirmed
+- Stepper pulse settings confirmed
+- Motor-angle-to-road-wheel-angle lookup
+- Left and right mechanical limits
+- Backlash measurement
+- Loaded steering test
+- Stuttering/slipping resolved
+- Closed-loop steering error monitoring
+
+Steering commands cannot rely only on issued step pulses—the AS5600 must confirm achieved position.
+
+## 6. BLDC and odometry requirements
+
+- BLD-750 terminal truth table verified
+- EN, BRK and F/R polarity verified
+- GP8630N measured-output calibration
+- Requested voltage versus measured voltage table
+- Forward/reverse direction confirmed
+- AS5047P SPI diagnostics healthy
+- AS5047P mounted on the 14T sprocket
+- Encoder unwrap and direction validated
+- Axle RPM calculation validated
+- Loaded tyre circumference measured
+- Wheel-speed comparison against an external reference
+- BLDC command timeout and safe reset behaviour
+
+The existing 5 V-requested/3.3 V-measured DAC issue must be resolved before autonomous traction.
+
+## 7. Brake requirements
+
+- NEMA23 and TB6600 installed
+- Brake AS5600 installed and calibrated
+- Released position calibrated
+- Fully applied position calibrated
+- Intermediate travel points measured
+- Apply and release direction verified
+- Binding and return behaviour tested
+- At least 20 repeated apply/release cycles
+- Brake response latency measured
+- Minimum repeated deceleration measured
+- Stopping distance measured at each approved speed
+- Power-loss behaviour understood
+- Brake commands confirmed by encoder feedback
+
+A requested brake angle is not proof that braking happened.
+
+## 8. VCU communication requirements
+
+- One defined ROS-to-VCU protocol
+- Only one process owns the serial port
+- Command sequence number
+- Command timestamp and expiry
+- Command CRC/integrity check
+- VCU boot/session identifier
+- Steering target
+- Speed target
+- Brake request
+- Arm/disarm state
+- Sensor validity
+- Telemetry acknowledgement
+- Local ESP32 command timeout
+- Safe outputs after USB disconnect, Pi crash or malformed command
+
+Target rates:
+
+- Pi → VCU: approximately 50 Hz
+- VCU telemetry: approximately 50 Hz
+- Command expiry: approximately 100 ms, pending measurement
+
+## 9. Safety equipment and personnel
+
+- Independent physical emergency stop
+- Independent traction-inhibit path
+- Remote LoRa E-stop tested separately
+- Person beside the physical E-stop
+- Driver/operator ready to intervene
+- Kart initially raised with drive wheels clear
+- Clear test area with barriers
+- No spectators inside the test area
+- Low initial speed
+- Battery disconnect accessible
+- Fire extinguisher appropriate for the battery system
+- Laptop/telemetry operator separate from the safety operator
+
+LoRa or ROS software must not be the only emergency-stop mechanism.
+
+## 10. Required ROS data flow
+
+All these stages should be visible:
+
+text
+/hp60c/rgb/image_raw
+/hp60c/depth/image_raw
+/hp60c/rgb/camera_info
+        ↓
+/perception/cones
+        ↓
+/autokart_mapping/status
+        ↓
+/autokart_planner/reference_path
+        ↓
+/autokart_planner/safety_envelope
+        ↓
+/autokart_controller/motion_command_candidate
+        ↓
+/autokart/obstacle_stop/motion_command_candidate
+        ↓
+VCU bridge
+        ↓
+ESP32-S3
+
+
+Feedback should include:
+
+text
+/vcu/state
+/vehicle/actuator_feedback
+/system/health
+
+
+## 11. Logging required
+
+Record every test using rosbag2, including:
+
+- RGB and depth
+- CameraInfo
+- Cone detections
+- Metric cone positions
+- Midpoint path
+- Odometry
+- IMU
+- Encoder feedback
+- Steering target and measured angle
+- Target and measured speed
+- Brake target and measured angle
+- Planner speed profile
+- Safety state
+- VCU commands and telemetry
+- E-stop state
+- Timestamps and frame age
+
+Also record:
+
+- Git commit hashes
+- Model hash
+- Calibration hash
+- Firmware hash
+- Kart configuration
+- Operator
+- Test surface
+- Tyre pressure
+- Battery voltage
+
+## 12. Mandatory test sequence
+
+1. Camera-only test.
+2. AI inference with no actuators.
+3. Metric cone-position test.
+4. Recorded replay test.
+5. Left/right cone and midpoint test.
+6. Middle-obstacle detection test.
+7. Planner dry run—commands displayed but not transmitted.
+8. VCU communication test with actuator power disconnected.
+9. Wheels-li

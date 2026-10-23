@@ -1,0 +1,9 @@
+<launch>
+    <arg name="argPath" default="$(find ascamera_nodelet)/configurationfiles"/>
+    <node pkg="nodelet" type="nodelet" name="manager_nodelet" args="manager" output="screen"/>
+    <node pkg="nodelet" type="nodelet" name="changA_nodelet" args="load ascamera_nodelet manager_nodelet" output="screen">
+        <!-- confiPath: configuration file path -->
+        <param name = "confiPath" type="str" value="$(arg argPath)"/>
+	    <param name = "pub_tfTree" type="boolean" value="true"/>
+    </node>
+</launch>

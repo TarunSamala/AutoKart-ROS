@@ -1,0 +1,1 @@
+ROS 2 Humble rclpy, sensor_msgs, nav_msgs, geometry_msgs, std_msgs, autokart_msgs, tf2_ros, launch, launch_ros; Python standard library. No hardware dependency. Existing localization publisher must be disabled; do not launch robot_localization as another final odom/TF writer. Export script bundles source/config/docs/tests and requires the ROS dependencies at destination.

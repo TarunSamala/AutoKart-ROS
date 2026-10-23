@@ -1,0 +1,1 @@
+ROS 2 Humble rclpy, std_msgs, autokart_msgs, builtin_interfaces, launch/launch_ros. Optional pyserial and existing autokart_vehicle_bridge.protocol via algorithm_package_path for live read-only adapter. No physical USB opened and no firmware changed. No qualified motion transport is implemented because inspected firmware lacks the required safe session and unit contracts.

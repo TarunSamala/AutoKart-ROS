@@ -1,0 +1,8 @@
+autokart_odometry:
+  ros__parameters:
+    calibration_verified: false
+    calibration_hash: ""
+    counts_per_rev: 0.0
+    circumference_m: 0.0
+    wheelbase_m: 0.0
+    imu_axes_aligned: false

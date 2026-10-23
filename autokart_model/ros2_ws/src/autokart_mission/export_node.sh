@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Packages autokart_mission plus its one shared-interface dependency (autokart_msgs) into a tarball
+# that can be dropped into any ROS 2 Humble workspace's src/ and built with:
+#   colcon build --packages-up-to autokart_mission
+# Does NOT bundle autokart_perception, autokart_vehicle_geometry or autokart_planner (the three
+# reused algorithm/geometry/FSM dependencies) -- see DEPENDENCIES.md.
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+  echo "usage: $0 <output_directory>" >&2
+  exit 1
+fi
+
+out_dir="$1"
+mkdir -p "$out_dir"
+
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+repo_root=$(cd -- "$script_dir/../.." && pwd)
+msgs_src="$repo_root/kart/ros2_ws/src/autokart_msgs"
+if [[ ! -d "$msgs_src" && -d "$script_dir/../autokart_msgs" ]]; then
+  msgs_src="$script_dir/../autokart_msgs"
+fi
+
+if [[ ! -d "$msgs_src" ]]; then
+  echo "ERROR: expected autokart_msgs at $msgs_src, not found. Export aborted (no undisclosed" \
+       "dependency substitution)." >&2
+  exit 1
+fi
+
+stage=$(mktemp -d)
+trap 'rm -rf "$stage"' EXIT
+
+mkdir -p "$stage/src"
+rsync -a --exclude 'build' --exclude 'install' --exclude 'log' --exclude '__pycache__' \
+  --exclude '*.pyc' "$script_dir/" "$stage/src/autokart_mission/"
+rsync -a --exclude 'build' --exclude 'install' --exclude 'log' --exclude '__pycache__' \
+  --exclude '*.pyc' "$msgs_src/" "$stage/src/autokart_msgs/"
+
+cat > "$stage/README_EXPORT.md" <<'EOF'
+# autokart_mission export bundle
+
+Contents: autokart_mission (this node) and autokart_msgs (its one shared ROS interface dependency,
+copied verbatim from the source repository).
+
+Build:
+    colcon build --packages-up-to autokart_mission
+    source install/setup.bash
+    ros2 launch autokart_mission mission.launch.py \
+      config_file:=$(ros2 pkg prefix autokart_mission)/share/autokart_mission/config/mission_skidpad.yaml
+
+This bundle does NOT include autokart_perception, autokart_vehicle_geometry or autokart_planner (the
+three reused algorithm/geometry/FSM dependencies -- see DEPENDENCIES.md inside
+src/autokart_mission/). Without all three, and without setting the three *_package_path parameters,
+the node builds and launches but fails closed (fault status on /autokart_mission/status), which is
+exactly what the bundled test/test_algorithm.py and test/test_fault_injection.py's dependency-missing
+case verify.
+EOF
+
+tarball="$out_dir/autokart_mission_export_$(date -u +%Y%m%dT%H%M%SZ).tar.gz"
+tar -czf "$tarball" -C "$stage" .
+echo "Wrote $tarball"

@@ -1,0 +1,26 @@
+# Synthetic/dev profile: no other nodes assumed running. Heartbeat topics
+# are configured (so the dynamic-subscribe/degrade-gracefully behavior is
+# exercised) but none need to actually be publishing -- every tracked key
+# simply reports "never seen" (STALE) until/unless something starts
+# publishing on it. resource_backend: psutil falls back to UNAVAILABLE
+# automatically if psutil is not installed; this node never hard-requires
+# it. Zero external dependency either way.
+autokart_system_monitor:
+  ros__parameters:
+    heartbeat_topics:
+      - "/hp60c/status"
+      - "/perception/status"
+      - "/imu/status"
+      - "/vehicle/status"
+      - "/vehicle/odometry_status"
+      - "/mapping/status"
+      - "/mission/state"
+      - "/planning/status"
+      - "/control/status"
+      - "/safety/status"
+    heartbeat_timeout_s: 2.0
+    resource_backend: "psutil"
+    cpu_warn_pct: 90.0
+    ram_warn_pct: 90.0
+    publish_rate_hz: 1.0
+    topic_discovery_period_s: 2.0

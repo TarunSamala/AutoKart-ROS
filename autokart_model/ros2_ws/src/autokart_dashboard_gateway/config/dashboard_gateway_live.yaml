@@ -1,0 +1,30 @@
+# LIVE profile: points at the real, already-tested autokart_dashboard_gateway
+# implementation. Both path parameters are deliberately left blank here --
+# set them per deployment at launch time:
+#   gateway_package_path:    ".../kart/ros2_ws/src/autokart_dashboard_gateway"
+#   perception_package_path: ".../autonomy_stack_phase1/phase_01_perception/src"
+# perception_package_path is REQUIRED even with enable_camera_feed: false --
+# gateway.py unconditionally imports camera_feed.py, which unconditionally
+# imports autokart_perception.live_render. See DEPENDENCIES.md.
+#
+# mode: "live" subscribes to real ROS topics (/vehicle/odometry, /vcu/state,
+# /safety/envelope, /autokart/safety/status, etc.) via the reused gateway's
+# own make_ros_node(). display_only: true additionally disables the two
+# request sinks (send_request/send_demo_drive_message) so this instance is
+# pure display, even with a live ROS graph behind it.
+autokart_dashboard_gateway:
+  ros__parameters:
+    gateway_package_path: ""
+    perception_package_path: ""
+    enable_camera_feed: true
+    mode: "live"
+    source: "REAL_KART"
+    run_id: "ros-live"
+    scenario: "UNKNOWN"
+    host: "127.0.0.1"
+    port: 8765
+    static_root: ""
+    display_only: true
+    fsds: false
+    replay_path: ""
+    readiness_path: ""

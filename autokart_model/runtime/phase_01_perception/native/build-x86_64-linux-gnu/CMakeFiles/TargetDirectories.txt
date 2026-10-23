@@ -1,0 +1,3 @@
+/home/mark1/Desktop/autokart_tarun/runtime/phase_01_perception/native/build-x86_64-linux-gnu/CMakeFiles/hp60c_bridge.dir
+/home/mark1/Desktop/autokart_tarun/runtime/phase_01_perception/native/build-x86_64-linux-gnu/CMakeFiles/edit_cache.dir
+/home/mark1/Desktop/autokart_tarun/runtime/phase_01_perception/native/build-x86_64-linux-gnu/CMakeFiles/rebuild_cache.dir

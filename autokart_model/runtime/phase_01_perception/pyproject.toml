@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "autokart-perception"
+version = "0.2.0"
+description = "AutoKart metric cone geometry and optional RGB-D perception SDK"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.23", "scipy>=1.9", "PyYAML>=6"]
+[project.optional-dependencies]
+perception = ["opencv-python>=4.8"]
+hardware = ["opencv-python>=4.8"]
+control = ["auto-kart-simulator>=0.1.0"]
+ros = []  # rclpy is provided by the target ROS distribution, not PyPI.
+test = ["pytest>=7"]
+train = ["ultralytics>=8.3,<9", "torch>=2.2", "onnx>=1.16"]
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.setuptools.package-data]
+autokart_perception = ["data/*.yaml", "data/*.json"]

@@ -1,0 +1,26 @@
+# Every *_package_path below is a placeholder: the node fails closed (publishes a fault status on
+# /autokart_mission/status and never claims a valid mission state) until all three are set. See
+# DEPENDENCIES.md for exactly what each path must contain and why three are needed (not one).
+autokart_mission:
+  ros__parameters:
+    algorithm_package_path: ""           # .../autonomy_stack_phase1/phase_01_perception/src
+    vehicle_geometry_package_path: ""    # .../kart/ros2_ws/src/autokart_vehicle_geometry
+    planner_package_path: ""             # .../kart/ros2_ws/src/autokart_nodes/autokart_planner
+    mission: "SKIDPAD"
+    source: "SIMULATED"
+    brake_min_mps2: 3.0
+    brake_delay_s: 0.2
+    brake_provenance: "SIMULATED"
+    brake_margin_m: 1.0
+    speed_limit_mps: 1.0
+    camera_to_bumper_m: -1.0
+    stop_gap_from_bumper_m: 1.0
+    lateral_margin_m: -1.0
+    footprint_width_m: -1.0
+    odom_topic: "/odom"
+    mapping_status_topic: "/autokart_mapping/status"
+    feedback_topic: "/vehicle/actuator_feedback"
+    obstacles_topic: "/perception/obstacles"
+    status_topic: "/autokart_mission/status"
+    status_max_age_s: 0.3
+    input_timeout_s: 0.5
