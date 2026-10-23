@@ -63,13 +63,13 @@ function TrackOverview({ frame, history }: { frame: MissionFrame | null; history
       <rect x={px(0)} y={py(CORRIDOR_M / 2)} width={LENGTH_M * scale} height={CORRIDOR_M * scale} className="mt-corridor" />
       {history.length > 1 && <polyline className="mt-trail" points={history.map((f) => `${px(f.vehicle.x_m)},${py(f.vehicle.y_m)}`).join(' ')} />}
       {path.length > 1 && <polyline className="mt-path" points={path.map((p) => `${px(p.x_m)},${py(p.y_m)}`).join(' ')} />}
-      {cones.map((cone) => <circle key={cone.id} cx={px(cone.x_m)} cy={py(cone.y_m)} r={2.2} className={coneDotClass(cone.class)} />)}
+      {cones.map((cone) => <g key={cone.id} transform={`translate(${px(cone.x_m)} ${py(cone.y_m)})`}><ConeGlyph size={5} className={coneDotClass(cone.class)} /></g>)}
       {kart && <circle cx={px(kart.x_m)} cy={py(kart.y_m)} r={3.5} className="mt-kart-dot" />}
     </svg>
   );
 }
 
-function FollowView({ frame, profile }: { frame: MissionFrame | null; profile: Profile }) {
+function FollowView({ frame, profile, hoveredConeId, onHoverCone }: { frame: MissionFrame | null; profile: Profile; hoveredConeId: string | null; onHoverCone: (id: string | null) => void }) {
   const vw = 260, vh = 220;
   const scale = 10; // px per metre
   const cx = vw / 2, cy = vh - 30;
@@ -92,7 +92,12 @@ function FollowView({ frame, profile }: { frame: MissionFrame | null; profile: P
     <svg className="mt-svg" viewBox={`0 0 ${vw} ${vh}`} role="img" aria-label="Follow view, kart-centred">
       <polygon className="mt-wedge" points={wedgePoints.map((p) => `${px(p)},${py(p)}`).join(' ')} />
       {path.length > 1 && <polyline className="mt-path" points={path.map((p) => `${px(p)},${py(p)}`).join(' ')} />}
-      {cones.map((c) => <circle key={c.id} cx={px(c.body)} cy={py(c.body)} r={2.6} className={coneDotClass(c.class)} />)}
+      {cones.map((c) => (
+        <g key={c.id} transform={`translate(${px(c.body)} ${py(c.body)})`} onMouseEnter={() => onHoverCone(c.id)} onMouseLeave={() => onHoverCone(null)} style={{ cursor: 'pointer' }}>
+          <ConeGlyph size={c.id === hoveredConeId ? 7 : 6} className={coneDotClass(c.class)} />
+          {c.id === hoveredConeId && <TrackingRing r={6} className="mt-cone-hover-ring" />}
+        </g>
+      ))}
       <polygon className="mt-footprint" points={footprint.map((p) => `${px(p)},${py(p)}`).join(' ')} />
     </svg>
   );
@@ -177,6 +182,7 @@ export function MyTrackPage() {
   const [profile, setProfile] = useState<Profile>('shared');
   const [speedMult, setSpeedMult] = useState(1);
   const [scrubbing, setScrubbing] = useState(false);
+  const [hoveredConeId, setHoveredConeId] = useState<string | null>(null);
   const configured = useRef(false);
 
   useEffect(() => {
@@ -261,12 +267,16 @@ export function MyTrackPage() {
           value={Math.min(maxTime, Math.max(minTime, data.time))} disabled={history.length < 2}
           onChange={(e) => { setScrubbing(false); if (data.mode === 'LIVE') data.setMode('PAUSE'); data.setTime(Number(e.target.value)); }} />
         <button className="mt-btn" disabled={history.length < 2 || data.mode === 'LIVE'} onClick={() => setScrubbing((s) => !s)}>{scrubbing ? '⏸' : '▶'} scrub</button>
+        <button className="mt-btn" disabled={history.length < 1} onClick={() => exportCsvAtRate(history, 1, 'mytrack')}>Export 1Hz CSV</button>
+        <button className="mt-btn" disabled={history.length < 1} onClick={() => exportCsvAtRate(history, 10, 'mytrack')}>Export 10Hz CSV</button>
+        <button className="mt-btn" disabled={history.length < 1} onClick={() => exportJsonSummary(history, 'mytrack')}>Export JSON summary</button>
+        <button className="mt-btn" disabled={history.length < 2} onClick={data.exportReplay}>Export replay .jsonl</button>
       </div>
 
       <div className="mt-grid">
         <Panel title="Track overview" className="mt-span-2"><TrackOverview frame={frame} history={history} /></Panel>
-        <Panel title="Follow view" meta={`${profile} · wheelbase ${PROFILE_DIMS[profile].wheelbase_m}m`}><FollowView frame={frame} profile={profile} /></Panel>
-        <Panel title="HP60C RGB-D frame" meta="synthetic projection"><Hp60cFrame frame={frame} /></Panel>
+        <Panel title="Follow view" meta={`${profile} · wheelbase ${PROFILE_DIMS[profile].wheelbase_m}m`}><FollowView frame={frame} profile={profile} hoveredConeId={hoveredConeId} onHoverCone={setHoveredConeId} /></Panel>
+        <Panel title="HP60C RGB-D frame" meta="pinhole projection, HFOV 64.4° / VFOV 51.7°, 4° pitch"><Hp60cFrame frame={frame} hoveredConeId={hoveredConeId} onHoverCone={setHoveredConeId} /></Panel>
 
         <Panel title="Vehicle and controller" className="mt-span-2">
           <div className="mt-stats">
