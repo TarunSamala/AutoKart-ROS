@@ -37,6 +37,17 @@ downstream as staleness rather than silence. Permanently DISARMED by constructio
 package's own README.md for the exact wiring, the two adapters it adds, the real bug it found and
 fixed, and the known, deliberate gaps it does not paper over.
 
+## Obstacle-stop experiment
+
+[`autokart_obstacle_stop`](autokart_obstacle_stop/) is the first AI-to-actuation safety experiment.
+It accepts qualified metric cones in `base_link`, stops for a cone inside a configurable forward
+collision corridor, and otherwise passes the controller's `MotionCommand` candidate to the existing
+VCU bridge. Missing/stale perception, an incorrect frame, and synthetic ground-truth input fail
+closed. It never writes serial, GPIO, PWM or DAC directly.
+
+This package is unit-tested at the decision-logic level. Live HP60C detection, camera calibration,
+ROS-to-VCU transport and physical BLDC stopping are still hardware tests, not validated claims.
+
 ## How to reuse a node (general procedure, demonstrated for node 01)
 
 1. `cd autokart_ros_nodes/<node>/ && ./export_node.sh /some/export/dir`

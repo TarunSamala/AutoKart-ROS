@@ -1,0 +1,18 @@
+autokart_obstacle_stop:
+  ros__parameters:
+    cones_topic: "/perception/cones"
+    candidate_topic: "/autokart_controller/motion_command_candidate"
+    output_topic: "/autokart/obstacle_stop/motion_command_candidate"
+    status_topic: "/autokart/obstacle_stop/status"
+    minimum_x_m: 0.10
+    stop_distance_m: 3.0
+    corridor_half_width_m: 0.75
+    minimum_confidence: 0.50
+    perception_timeout_s: 0.50
+    command_timeout_s: 0.25
+    stop_hold_s: 1.0
+    clear_frames_required: 3
+    allow_ground_truth: false
+    publish_hz: 20.0
+    command_validity_s: 0.10
+
