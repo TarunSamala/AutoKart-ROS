@@ -247,7 +247,36 @@ class MissionController:
                 # rather than re-searched: re-searching as the kart gets closer
                 # (and the geometry gets less favourable) can flip admission
                 # off mid-maneuver and snap the path back toward the obstacle.
+                # The validated lateral offset (ramp_height_m) is locked for
+                # the identical reason: blindly recomputing it fresh from the
+                # cluster's current body-frame position every frame let it
+                # shrink or flip sign as the kart closed in (new cones joining
+                # the cluster, or long-range depth noise making the
+                # obstacle's estimated lateral position look more favourable
+                # than it actually was), steering the kart back toward the
+                # very obstacle it was meant to clear -- this was the real
+                # cause of the residual collisions (see docs/MY_TRACK.md).
+                #
+                # The lock is still allowed to WIDEN: as the kart closes in,
+                # depth noise shrinks and the cluster's true lateral position
+                # is revealed more accurately, which can show the obstacle is
+                # further into the lane than the long-range estimate at
+                # admission time suggested. If the freshly measured offset is
+                # on the same side and bigger (more clearance) than the
+                # locked one, adopt it and persist the wider value. A
+                # same-cluster measurement that would SHRINK the offset, or
+                # flip its side, is ignored -- that is exactly the noise
+                # pattern that used to cause collisions, not a legitimate
+                # correction.
                 admitted, chosen_ramp_m, chosen_lead_m = True, existing_lock.ramp_length_m, existing_lock.lead_distance_m
+                locked_height_m = existing_lock.ramp_height_m
+                if locked_height_m == 0.0 or (ramp_height_m * locked_height_m > 0 and abs(ramp_height_m) > abs(locked_height_m)):
+                    widened_lock = DetourLock(existing_lock.cluster_centre_world_xy, existing_lock.ramp_length_m,
+                                               existing_lock.lead_distance_m, existing_lock.created_at_s, ramp_height_m)
+                    self.locks[self.locks.index(existing_lock)] = widened_lock
+                    existing_lock = widened_lock
+                else:
+                    ramp_height_m = locked_height_m
                 active_lock_age_s = timestamp_s - existing_lock.created_at_s
             elif free_width_m >= self.half_width_m * 2 + 2 * 0.25:
                 for ramp_m in cfg.detour_ramp_lengths_m:
@@ -269,7 +298,7 @@ class MissionController:
                                 break
                         if swept_ok:
                             admitted, chosen_ramp_m, chosen_lead_m = True, ramp_m, lead_m
-                            new_lock = DetourLock(cluster_centre_world_xy, ramp_m, lead_m, timestamp_s)
+                            new_lock = DetourLock(cluster_centre_world_xy, ramp_m, lead_m, timestamp_s, ramp_height_m)
                             break
                         lead_m += cfg.detour_lead_step_m
                     if admitted:

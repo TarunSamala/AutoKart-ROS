@@ -86,6 +86,18 @@ class DetourLock:
     ramp_length_m: float
     lead_distance_m: float
     created_at_s: float = 0.0
+    # The lateral offset validated by the swept-footprint admission check at
+    # lock time. Re-deriving this from the cluster's current body-frame
+    # position on every subsequent call (as ramp_length_m/lead_distance_m
+    # deliberately are NOT re-derived, for the same reason) let it drift or
+    # even flip sign as new cones entered the same cluster or long-range
+    # depth noise made the obstacle's estimated lateral position look more
+    # favourable than it actually was -- shrinking or reversing the
+    # already-validated offset mid-maneuver and steering the kart back
+    # toward the obstacle it had just cleared. Locking this value alongside
+    # the ramp geometry (but letting it WIDEN, never shrink -- see
+    # my_track_mission.py) is the fix. See docs/MY_TRACK.md.
+    ramp_height_m: float = 0.0
 
 
 @dataclass(frozen=True)

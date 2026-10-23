@@ -1,6 +1,6 @@
-import { Suspense, lazy, useEffect, type ReactNode } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link, usePath } from './router';
-import { FOREIGN_PATHS, LAB_ROUTES, findRoute, type LabRoute } from './routes';
+import { FOREIGN_PATHS, LAB_ROUTES, ROUTE_GROUPS, findRoute, type LabRoute } from './routes';
 import { LIVE_READ_ONLY_REASON, RunProvider, useRun, type Provenance } from './runContext';
 import { expectCore, expectSimulationGateway, useServiceStatus, type ServiceState, type Services } from './services';
 import { HomePage } from './pages/HomePage';
@@ -10,6 +10,8 @@ import { DatasetPage } from './pages/DatasetPage';
 import { ScenarioPage } from './pages/ScenarioPage';
 import { LogsPage } from './pages/LogsPage';
 import { NotImplementedPage, NOT_IMPLEMENTED } from './pages/NotImplementedPage';
+import { ThemeToggle } from '../../ui/ThemeToggle';
+import '../../ui/tokens.css';
 import './lab.css';
 
 // three.js and the client-side demo engine are only fetched when their page is opened.
@@ -50,17 +52,59 @@ function ProvenanceBanner() {
   </section>;
 }
 
-/** Single-row tab strip: every route, flat (no group headers), scrolls horizontally if it overflows. */
-function LabNavBar({ path }: { path: string }) {
-  return <nav className="lab-pages" aria-label="Lab pages">
-    <ul className="lab-pages-strip">
-      {LAB_ROUTES.map((route) => <li key={route.path} title={route.group}>
-        <Link to={route.path} aria-current={route.path === path ? 'page' : undefined} className={`lab-page-link status-${route.status.replace(' ', '-').toLowerCase()}`}
-          title={`${route.summary} (${route.status.toLowerCase()})`}>
-          {route.label}{route.status === 'NOT IMPLEMENTED' && <small className="lab-tag">N/A</small>}{route.status === 'PARTIAL' && <small className="lab-tag partial">PARTIAL</small>}
+/**
+ * Grouped nav: one cluster per `route.group` (RUN / ALGORITHM CORE / MISSION & SIM / DATA /
+ * QA & OPS, per routes.ts metadata). Routes marked `NOT IMPLEMENTED` (Perception,
+ * Depth & Calib., Benchmark, Faults) are pulled out of their normal groups and collapsed into
+ * one "Unavailable in this build" dropdown instead of each showing up as its own disabled
+ * inline tab.
+ */
+function UnavailableMenu({ path, routes }: { path: string; routes: LabRoute[] }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener('mousedown', onDoc);
+    return () => document.removeEventListener('mousedown', onDoc);
+  }, [open]);
+  const activeInside = routes.some((r) => r.path === path);
+  return <div className="lab-nav-group lab-unavailable-menu" ref={ref}>
+    <button type="button" className={`lab-group-label lab-unavailable-toggle ${activeInside ? 'active' : ''}`} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+      Unavailable in this build <small className="lab-tag">{routes.length}</small>
+    </button>
+    {open && <ul className="lab-pages-strip lab-unavailable-dropdown" role="menu">
+      {routes.map((route) => <li key={route.path}>
+        <Link to={route.path} aria-current={route.path === path ? 'page' : undefined} className="lab-page-link status-not-implemented"
+          title={`${route.summary} (not implemented)`} onClick={() => setOpen(false)}>
+          {route.label}<small className="lab-tag">N/A</small>
         </Link>
       </li>)}
-    </ul>
+    </ul>}
+  </div>;
+}
+
+function LabNavBar({ path }: { path: string }) {
+  const unavailable = LAB_ROUTES.filter((r) => r.status === 'NOT IMPLEMENTED');
+  return <nav className="lab-pages" aria-label="Lab pages">
+    <div className="lab-pages-groups">
+      {ROUTE_GROUPS.map((group) => {
+        const routes = LAB_ROUTES.filter((r) => r.group === group && r.status !== 'NOT IMPLEMENTED');
+        if (!routes.length) return null;
+        return <div key={group} className="lab-nav-group">
+          <span className="lab-group-label" aria-hidden="true">{group}</span>
+          <ul className="lab-pages-strip">
+            {routes.map((route) => <li key={route.path}>
+              <Link to={route.path} aria-current={route.path === path ? 'page' : undefined} className={`lab-page-link status-${route.status.replace(' ', '-').toLowerCase()}`}
+                title={`${route.summary} (${route.status.toLowerCase()})`}>
+                {route.label}{route.status === 'PARTIAL' && <small className="lab-tag partial">PARTIAL</small>}
+              </Link>
+            </li>)}
+          </ul>
+        </div>;
+      })}
+      {unavailable.length > 0 && <UnavailableMenu path={path} routes={unavailable} />}
+    </div>
   </nav>;
 }
 
@@ -95,6 +139,7 @@ function LabHeader({ path, route, services }: { path: string; route: LabRoute | 
         <Dot tone={provenanceLabel === 'NONE' ? 'idle' : 'ok'} label={`PROVENANCE · ACTIVE: ${provenanceLabel}${pageProvenance ? ` — ${pageProvenance.detail}` : ''}`} />
       </span>
       <LabNavBar path={path} />
+      <ThemeToggle />
       <span className="lab-authority-badge" title="VEHICLE AUTHORITY OFF · SIM-ONLY OUTPUT" aria-label="VEHICLE AUTHORITY OFF · SIM-ONLY OUTPUT">AUTH OFF</span>
     </div>
     {/* Full provenance detail kept in the DOM for assistive tech / tests; visually collapsed by default
