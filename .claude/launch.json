@@ -6,6 +6,13 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--prefix", "phase_sim"],
       "port": 5173
+    },
+    {
+      "name": "phase_sim_lab",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "phase_sim", "run", "dev:lab"],
+      "port": 5191,
+      "env": {"AUTOKART_LAB_PORT": "5191"}
     }
   ]
 }

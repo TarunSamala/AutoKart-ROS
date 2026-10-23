@@ -31,7 +31,7 @@ type RunContextValue = {
 };
 
 const STORAGE_KEY = 'autokart-lab-run-v1';
-const SCENARIOS: ScenarioName[] = ['SKIDPAD', 'AUTOCROSS', 'BRAKE'];
+const SCENARIOS: ScenarioName[] = ['SKIDPAD', 'AUTOCROSS', 'BRAKE', 'MY_TRACK'];
 
 export function makeRunId(seed: number, now = new Date()): string {
   const stamp = now.toISOString().replace(/[-:]/g, '').replace(/\..*$/, '').replace('T', '-');

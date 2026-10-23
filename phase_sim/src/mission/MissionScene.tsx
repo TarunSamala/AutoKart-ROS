@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import type { Cone, Edge, MissionFrame, Point } from './schema';
+import { loadKartModel } from './kartModel';
 
 export type Layer = 'groundTruth' | 'tracked' | 'detections' | 'delaunay' | 'gabriel' | 'gates' | 'boundaries' | 'candidates' | 'selected' | 'safety' | 'sensor';
 export type Selection = { kind: string; id: string };
@@ -46,7 +47,7 @@ type SceneState = {
   drag: { x: number; y: number; startX: number; startY: number; button: number } | null; focus: THREE.Vector3; mode: string;
   course: THREE.InstancedMesh; courseBase: THREE.InstancedMesh; detections: THREE.InstancedMesh; detectionBase: THREE.InstancedMesh;
   graph: Record<'delaunay' | 'accepted' | 'rejected' | 'gates' | 'boundaryLeft' | 'boundaryRight' | 'candidates' | 'selected' | 'trail' | 'guide' | 'distance' | 'branchValid' | 'branchInvalid' | 'leftArc' | 'rightArc' | 'angle', Lines>;
-  car: THREE.Group; frontWheels: THREE.Mesh[]; lookahead: THREE.Mesh; obstacle: THREE.Mesh; stop: THREE.Mesh; envelope: THREE.Mesh;
+  car: THREE.Group; frontWheels: THREE.Object3D[]; lookahead: THREE.Mesh; obstacle: THREE.Mesh; stop: THREE.Mesh; envelope: THREE.Mesh;
   fov: THREE.Mesh; fovRange: number; fovAngle: number; disk: THREE.Mesh; rings: THREE.Mesh[]; labels: Array<{ element: HTMLDivElement; point: THREE.Vector3 }>;
   frame: MissionFrame | null; selection: Selection; animationStage: number; stageStarted: number; courseCenter: THREE.Vector3;
 };
@@ -96,10 +97,12 @@ export function MissionScene({ frame, layers, cameraMode, selection, onSelect, a
     };
     Object.values(graph).forEach((pool) => content.add(pool.object));
     const car = new THREE.Group(); car.userData = { kind: 'kart', id: 'vehicle' }; content.add(car);
-    const body = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.28, 0.98), new THREE.MeshStandardMaterial({ color: 0xf0f4f0, metalness: 0.22 })); body.position.y = 0.16; car.add(body);
-    const nose = new THREE.Mesh(new THREE.ConeGeometry(0.33, 0.76, 3), new THREE.MeshStandardMaterial({ color: 0x58e6b2 })); nose.rotation.z = -Math.PI / 2; nose.position.set(1.04, 0.18, 0); car.add(nose);
-    const frontWheels: THREE.Mesh[] = [];
-    [-1, 1].forEach((x) => [-1, 1].forEach((z) => { const wheel = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.27, 0.15), new THREE.MeshStandardMaterial({ color: 0x071016 })); wheel.position.set(x * 0.6, 0.01, z * 0.53); car.add(wheel); if (x > 0) frontWheels.push(wheel); }));
+    // Real kart model (prepared from the OpenRC GoKart STL -- a 1:5-scale RC
+    // hobby model of a different vehicle, visual reference only; see
+    // docs/my_track_spec/STL_FIT.md). Loads async; footprint rectangle shows
+    // until it's ready, or permanently if loading fails.
+    const frontWheels: THREE.Object3D[] = [];
+    loadKartModel(car, 'shared', (wheels) => { frontWheels.length = 0; frontWheels.push(...wheels); });
     const lookahead = new THREE.Mesh(new THREE.SphereGeometry(0.33, 20, 12), new THREE.MeshBasicMaterial({ color: 0xffe47c })); content.add(lookahead);
     const obstacle = new THREE.Mesh(new THREE.BoxGeometry(1, 0.95, 1), new THREE.MeshStandardMaterial({ color: 0xff735f, transparent: true, opacity: 0.78 })); obstacle.userData = { kind: 'obstacle', id: '' }; content.add(obstacle);
     const stop = new THREE.Mesh(new THREE.RingGeometry(0.38, 0.53, 36), new THREE.MeshBasicMaterial({ color: 0xff8e69, side: THREE.DoubleSide })); stop.rotation.x = -Math.PI / 2; content.add(stop);

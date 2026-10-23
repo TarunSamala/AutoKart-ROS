@@ -58,7 +58,7 @@ export function HomePage({ services }: { services: Services }) {
           <label>Run id<input value={run.runId} maxLength={120} onChange={(event) => setRun({ runId: event.target.value })} /></label>
           <button onClick={newRunId}>New run id</button>
           <label>Scenario<select value={run.scenario} onChange={(event) => setRun({ scenario: event.target.value as ScenarioName })}>
-            <option value="SKIDPAD">SKIDPAD</option><option value="AUTOCROSS">AUTOCROSS</option><option value="BRAKE">BRAKE</option></select></label>
+            <option value="SKIDPAD">SKIDPAD</option><option value="AUTOCROSS">AUTOCROSS</option><option value="BRAKE">BRAKE</option><option value="MY_TRACK">MY_TRACK</option></select></label>
           <label>Seed<input inputMode="numeric" value={seedText} aria-invalid={seedInvalid} aria-describedby="seed-help" onChange={(event) => applySeed(event.target.value)} /></label>
           <p id="seed-help" className={seedInvalid ? 'lab-warn-text' : 'lab-note'}>{seedInvalid ? 'Seed must be an integer 0–999999; the last valid seed is kept.' : 'Integer 0–999999.'}</p>
         </div>

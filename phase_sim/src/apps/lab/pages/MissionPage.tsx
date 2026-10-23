@@ -178,7 +178,7 @@ function MissionView({ variant }: { variant: 'mission' | 'replay' }) {
           <option value="REPLAY" disabled={!canReplay}>{SOURCE_TEXT.REPLAY}{canReplay ? '' : ' (open a recording)'}</option>
         </select></label>
         {isSandbox && <label>SCENARIO<select aria-label="Scenario" value={data.labScenario} onChange={(event) => data.configureLab(event.target.value as ScenarioName, data.labSettings)}>
-          <option value="SKIDPAD">SKIDPAD</option><option value="AUTOCROSS">AUTOCROSS</option><option value="BRAKE">BRAKE</option></select></label>}
+          <option value="SKIDPAD">SKIDPAD</option><option value="AUTOCROSS">AUTOCROSS</option><option value="BRAKE">BRAKE</option><option value="MY_TRACK">MY_TRACK</option></select></label>}
         {isSandbox && <button className="mc-run" onClick={() => { setReplayStep(false); data.runLab(); }} disabled={data.mode === 'LIVE'}>▶ RUN</button>}
         {isSandbox && <button onClick={pause} disabled={data.mode !== 'LIVE'}>⏸ PAUSE</button>}
         {replaying && <button className="mc-run" onClick={() => { setReplayStep(false); data.setPlaying(!data.playing); }} disabled={data.frames.length < 2}>{data.playing ? '⏸ PAUSE' : '▶ PLAY'}</button>}

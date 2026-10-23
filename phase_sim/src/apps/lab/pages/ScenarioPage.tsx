@@ -44,7 +44,7 @@ export function scenarioFingerprint(scenario: LabScenario): string {
 export function parseFixture(text: string): { scenario: ScenarioName; settings: LabSettings } {
   const value = JSON.parse(text) as Record<string, unknown>;
   if (value.kind !== FIXTURE_KIND || value.version !== 1) throw new Error(`Not an ${FIXTURE_KIND} v1 fixture`);
-  if (!['SKIDPAD', 'AUTOCROSS', 'BRAKE'].includes(value.scenario as string)) throw new Error('Unknown scenario in fixture');
+  if (!['SKIDPAD', 'AUTOCROSS', 'BRAKE', 'MY_TRACK'].includes(value.scenario as string)) throw new Error('Unknown scenario in fixture');
   const raw = (value.settings ?? {}) as Record<string, unknown>;
   const settings = { ...DEFAULT_LAB_SETTINGS };
   for (const key of Object.keys(settings) as Array<keyof LabSettings>) if (typeof raw[key] === 'number' && Number.isFinite(raw[key])) settings[key] = raw[key] as number;
@@ -97,7 +97,7 @@ export function ScenarioPage() {
         <h2 id="scenario-settings">Settings</h2>
         <div className="lab-form">
           <label>Scenario<select value={name} onChange={(event) => setName(event.target.value as ScenarioName)}>
-            <option value="SKIDPAD">SKIDPAD</option><option value="AUTOCROSS">AUTOCROSS</option><option value="BRAKE">BRAKE</option></select></label>
+            <option value="SKIDPAD">SKIDPAD</option><option value="AUTOCROSS">AUTOCROSS</option><option value="BRAKE">BRAKE</option><option value="MY_TRACK">MY_TRACK</option></select></label>
           {fields.map((field) => <label key={field.key}>{field.label}<input type="number" min={field.min} max={field.max} step={field.step} value={settings[field.key]}
             onChange={(event) => { const value = Number(event.target.value); if (Number.isFinite(value)) setSettings({ ...settings, [field.key]: Math.min(field.max, Math.max(field.min, value)) }); }} /></label>)}
         </div>
