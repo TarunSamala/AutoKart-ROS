@@ -1,7 +1,15 @@
-/* AutoKart Algorithm Lab shell. Scoped to .lab-app; reused components keep their own CSS. */
-body:has(.lab-app){min-width:0;background:#060d16}
-.lab-app{--lab-bg:#060d16;--lab-panel:#0d1b29;--lab-panel-2:#112437;--lab-line:#24405a;--lab-ink:#e8f1fa;--lab-muted:#97adc2;--lab-accent:#7fd8ff;
-  --lab-synthetic:#d6c4ff;--lab-replay:#ffd27a;--lab-warn:#ffb36b;--lab-error:#ff8f8f;
+/* AutoKart Algorithm Lab shell. Scoped to .lab-app; reused components keep their own CSS.
+ *
+ * Round 2 (Task 1/2): the `--lab-*` custom properties below are now aliases onto the shared
+ * `--ui-*` design tokens (src/ui/tokens.css, :root-scoped, light/dark + theme toggle) instead
+ * of their own hardcoded hex values. This is what makes the theme toggle affect every page
+ * that uses these shared `.lab-*` chrome classes (Home, Delaunay, Gabriel, Gates, Paths, Demo,
+ * Dataset, Scenario, Logs, and the 4 NOT IMPLEMENTED placeholders) without touching each
+ * page's own markup. A few of the more decorative one-off accents below (tab highlight tints,
+ * figure stroke colors) are left as literals -- documented in UI_MIGRATION.md. */
+body:has(.lab-app){min-width:0;background:var(--ui-bg)}
+.lab-app{--lab-bg:var(--ui-bg);--lab-panel:var(--ui-panel);--lab-panel-2:var(--ui-panel-2);--lab-line:var(--ui-border);--lab-ink:var(--ui-text);--lab-muted:var(--ui-muted);--lab-accent:var(--ui-accent);
+  --lab-synthetic:#d6c4ff;--lab-replay:#ffd27a;--lab-warn:var(--ui-warn);--lab-error:var(--ui-crit);
   min-height:100vh;display:flex;flex-direction:column;background:var(--lab-bg);color:var(--lab-ink);font:14px/1.45 'Manrope Variable',Manrope,system-ui,sans-serif}
 .lab-app *{box-sizing:border-box}
 .lab-app code,.lab-app pre{font-family:'JetBrains Mono Variable','JetBrains Mono',monospace;font-size:.86em}
@@ -16,10 +24,10 @@ body:has(.lab-app){min-width:0;background:#060d16}
    target ~40px tall so page content starts within ~48px of the viewport top. The full
    provenance banner is kept in the DOM (tests pin its text/attributes) inside a native
    <details>, collapsed by default -- the PROVENANCE dot above gives the at-a-glance state. */
-.lab-header{flex:none;background:#0a1522;border-bottom:1px solid var(--lab-line);position:relative;z-index:30}
+.lab-header{flex:none;background:var(--ui-panel);border-bottom:1px solid var(--lab-line);position:relative;z-index:30}
 .lab-bar{display:flex;align-items:center;gap:10px;padding:5px 10px;min-height:40px}
 .lab-brand-mini{display:grid;place-items:center;width:26px;height:26px;border-radius:6px;background:#b9a2ff;color:#160d33;font-weight:900;font-size:11px;text-decoration:none;flex:none}
-.lab-bar-title{font:800 12px 'JetBrains Mono Variable',monospace;letter-spacing:.08em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22ch}
+.lab-bar-title{font:800 12px 'JetBrains Mono Variable',monospace;letter-spacing:.08em;color:var(--ui-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22ch}
 .lab-bar-dots{display:flex;align-items:center;gap:6px;flex:none}
 .lab-dot{font-size:13px;line-height:1;cursor:default}
 .lab-dot-ok{color:#5fe0ad}.lab-dot-warn{color:var(--lab-warn)}.lab-dot-bad{color:var(--lab-error)}.lab-dot-idle{color:#4a5f74}
@@ -28,28 +36,28 @@ body:has(.lab-app){min-width:0;background:#060d16}
    Closed by default (just the summary, position:absolute so it adds 0 layout height); opening
    it overlays a dropdown under the bar instead of growing the header in place. */
 .lab-provenance-details{position:absolute;left:0;right:0;top:100%;z-index:25}
-.lab-provenance-details>summary{list-style:none;cursor:pointer;font:800 8.5px 'JetBrains Mono Variable',monospace;color:#6f879d;padding:1px 10px;letter-spacing:.06em;background:#0a1522;display:inline-block;border-radius:0 0 4px 4px}
+.lab-provenance-details>summary{list-style:none;cursor:pointer;font:800 8.5px 'JetBrains Mono Variable',monospace;color:#6f879d;padding:1px 10px;letter-spacing:.06em;background:var(--ui-panel);display:inline-block;border-radius:0 0 4px 4px}
 .lab-provenance-details>summary::-webkit-details-marker{display:none}
-.lab-provenance-details[open]{background:#0a1522;box-shadow:0 8px 18px rgba(0,0,0,.4)}
-.lab-provenance-details[open] .lab-provenance{border-top:1px solid #172c40}
-.lab-provenance{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:6px 16px 8px;border-top:1px solid #172c40;background:#0b1a2a}
+.lab-provenance-details[open]{background:var(--ui-panel);box-shadow:0 8px 18px rgba(0,0,0,.4)}
+.lab-provenance-details[open] .lab-provenance{border-top:1px solid var(--ui-border)}
+.lab-provenance{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:6px 16px 8px;border-top:1px solid var(--ui-border);background:var(--ui-panel-2)}
 .lab-provenance-title{font:800 10px 'JetBrains Mono Variable',monospace;letter-spacing:.12em;color:var(--lab-muted)}
 .lab-provenance-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
-.lab-chip{padding:3px 10px;border-radius:999px;border:1px solid #3a4f66;font:800 11px 'JetBrains Mono Variable',monospace;letter-spacing:.08em;color:#8ea4b9}
+.lab-chip{padding:3px 10px;border-radius:999px;border:1px solid #3a4f66;font:800 11px 'JetBrains Mono Variable',monospace;letter-spacing:.08em;color:var(--ui-muted)}
 .lab-chip[data-provenance="SYNTHETIC"].active{background:#2c1f5c;border-color:#b9a2ff;color:var(--lab-synthetic)}
 .lab-chip[data-provenance="REPLAY"].active{background:#4a3410;border-color:#ffc04d;color:var(--lab-replay)}
 .lab-chip.disabled{opacity:.6;border-style:dashed;cursor:not-allowed}
 .lab-chip small{font-size:9px}
-.lab-provenance-detail{margin:0;flex:1 1 320px;min-width:0;color:#d5e3f0;font-size:12.5px;overflow-wrap:anywhere}
-.lab-provenance-detail b{color:#fff;letter-spacing:.04em}
+.lab-provenance-detail{margin:0;flex:1 1 320px;min-width:0;color:var(--ui-text);font-size:12.5px;overflow-wrap:anywhere}
+.lab-provenance-detail b{color:var(--ui-text);letter-spacing:.04em}
 .lab-provenance-live{margin:0;flex:1 1 100%;color:var(--lab-muted);font-size:11px}
-.lab-provenance-live b{color:#b7c6d4}
+.lab-provenance-live b{color:var(--ui-muted)}
 
 /* Page navigation: one flat, horizontally-scrolling tab strip (no group headers, no
    expand/collapse) so it fits in the same ~40px bar as the logo/title/dots. */
 .lab-pages{flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:thin}
 .lab-pages-strip{display:flex;gap:4px;margin:0;padding:0;list-style:none;flex-wrap:nowrap}
-.lab-page-link{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border:1px solid transparent;border-radius:5px;color:#cfe0ef!important;text-decoration:none;font-size:11.5px;font-weight:700;white-space:nowrap}
+.lab-page-link{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border:1px solid transparent;border-radius:5px;color:var(--ui-text)!important;text-decoration:none;font-size:11.5px;font-weight:700;white-space:nowrap}
 .lab-page-link:hover{background:#15283b;border-color:var(--lab-line)}
 .lab-page-link[aria-current="page"]{background:#2a2050;border-color:#8b74e0;color:#fff!important}
 .lab-page-link.status-not-implemented{color:#8fa3b6!important}
@@ -59,6 +67,26 @@ body:has(.lab-app){min-width:0;background:#060d16}
   .lab-bar{flex-wrap:wrap;min-height:auto}
   .lab-pages{flex-basis:100%;order:5}
 }
+
+/* Grouped nav (Task 3): one cluster per routes.ts `group`, flowing left-to-right and wrapping
+   together as one unit if the viewport is narrow; each cluster scrolls independently rather
+   than the previous flat 17-tab strip. NOT IMPLEMENTED routes are pulled out into one
+   dropdown (.lab-unavailable-menu) instead of showing as individual disabled tabs. */
+.lab-pages-groups{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
+.lab-nav-group{display:flex;align-items:center;gap:5px;min-width:0}
+.lab-group-label{font:800 8px 'JetBrains Mono Variable',monospace;letter-spacing:.08em;color:var(--ui-muted);white-space:nowrap;text-transform:uppercase}
+.lab-unavailable-menu{position:relative}
+.lab-unavailable-toggle{background:none;border:1px solid var(--ui-border);border-radius:5px;color:var(--ui-muted);font:800 9.5px 'JetBrains Mono Variable',monospace;letter-spacing:.05em;padding:4px 8px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.lab-unavailable-toggle.active,.lab-unavailable-toggle:hover{border-color:var(--lab-line);color:var(--ui-text)}
+.lab-unavailable-dropdown{position:absolute;top:calc(100% + 4px);left:0;z-index:40;flex-direction:column!important;background:var(--ui-panel);border:1px solid var(--lab-line);border-radius:6px;padding:6px;box-shadow:0 8px 18px rgba(0,0,0,.25);min-width:170px}
+.lab-unavailable-dropdown li{list-style:none}
+
+/* Theme toggle (Task 2): a plain button next to the authority badge; affects the whole app
+   via the data-theme attribute it sets on <html> (src/ui/ThemeToggle.tsx). */
+.lab-theme-toggle{flex:none;display:inline-flex;align-items:center;gap:5px;background:none;border:1px solid var(--ui-border);border-radius:5px;color:var(--ui-text);padding:4px 8px;cursor:pointer;font:800 10px 'JetBrains Mono Variable',monospace;white-space:nowrap}
+.lab-theme-toggle:hover{border-color:var(--lab-line)}
+.lab-theme-toggle-label{letter-spacing:.04em}
+@media(max-width:480px){.lab-theme-toggle-label{display:none}}
 
 /* Main */
 .lab-main{flex:1;min-width:0;display:flex;flex-direction:column}
@@ -70,7 +98,7 @@ body:has(.lab-app){min-width:0;background:#060d16}
 .lab-doc h2{font-size:16px;margin:0 0 10px}
 .lab-doc h3{font-size:14px;margin:0 0 8px}
 .lab-doc p{max-width:90ch}
-.lab-eyebrow{margin:0;font:800 10.5px 'JetBrains Mono Variable',monospace;letter-spacing:.12em;color:#8ea4b9}
+.lab-eyebrow{margin:0;font:800 10.5px 'JetBrains Mono Variable',monospace;letter-spacing:.12em;color:var(--ui-muted)}
 .lab-card{background:var(--lab-panel);border:1px solid var(--lab-line);border-radius:8px;padding:14px 16px;margin:0 0 14px;min-width:0}
 .lab-subcard{border-top:1px solid var(--lab-line);margin-top:12px;padding-top:10px}
 .lab-grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:14px}
@@ -83,50 +111,50 @@ body:has(.lab-app){min-width:0;background:#060d16}
 .lab-error{color:var(--lab-error);background:#2a1214;border:1px solid #6a2a2e;border-radius:6px;padding:8px 12px}
 .lab-wrap{overflow-wrap:anywhere;word-break:break-all}
 .lab-app button:not(.lab-link-button):not(.lab-pages-toggle){font:inherit}
-.lab-doc button:not(.lab-link-button),.lab-button-link,.lab-file-label{display:inline-flex;align-items:center;gap:6px;background:#183950;color:#fff;border:1px solid #4c839e;border-radius:5px;padding:7px 12px;cursor:pointer;font-weight:700;font-size:13px;text-decoration:none;min-height:34px}
+.lab-doc button:not(.lab-link-button),.lab-button-link,.lab-file-label{display:inline-flex;align-items:center;gap:6px;background:var(--ui-accent);color:var(--ui-accent-ink);border:1px solid var(--ui-accent);border-radius:5px;padding:7px 12px;cursor:pointer;font-weight:700;font-size:13px;text-decoration:none;min-height:34px}
 .lab-doc button:disabled{opacity:.45;cursor:default}
-.lab-button-link{color:#fff!important}
+.lab-button-link{color:var(--ui-accent-ink)!important}
 .lab-link-button{background:none;border:none;padding:0;color:var(--lab-accent);text-decoration:underline;cursor:pointer;font:inherit}
 .lab-file-label{position:relative}
-.lab-file-label input[type=file]{margin-left:6px;max-width:220px;font-size:12px;color:#cfe0ef}
+.lab-file-label input[type=file]{margin-left:6px;max-width:220px;font-size:12px;color:var(--ui-text)}
 .lab-recording-picker{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .lab-recording-picker .lab-file-label{background:none;border:none;padding:0;min-height:0;font-weight:700;cursor:default}
-.lab-recording-picker input[type=file]{font-size:12px;color:#cfe0ef;max-width:100%}
+.lab-recording-picker input[type=file]{font-size:12px;color:var(--ui-text);max-width:100%}
 .lab-recording-picker p{flex-basis:100%;margin:4px 0 0}
 .lab-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
 .lab-toolbar-meta{color:var(--lab-muted);font-size:12.5px;margin-left:auto;overflow-wrap:anywhere}
-.lab-toolbar-meta b{color:#fff}
+.lab-toolbar-meta b{color:var(--ui-text)}
 
 /* Forms */
 .lab-radio-group{border:none;margin:0;padding:0;display:grid;gap:8px}
-.lab-radio-group legend{font-weight:700;margin-bottom:6px;color:#cfe0ef}
+.lab-radio-group legend{font-weight:700;margin-bottom:6px;color:var(--ui-text)}
 .lab-radio-group label{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--lab-line);border-radius:6px;background:var(--lab-panel-2);cursor:pointer}
 .lab-radio-group label.disabled{opacity:.65;cursor:not-allowed;border-style:dashed}
 .lab-radio-group input{margin-top:3px}
 .lab-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:10px;align-items:end;margin-bottom:10px}
-.lab-form label{display:grid;gap:4px;font-size:12px;font-weight:700;color:#b9cadb}
-.lab-form input,.lab-form select{width:100%;min-height:34px;background:#0a1826;color:#fff;border:1px solid #3d5f7a;border-radius:5px;padding:6px 8px;font:inherit;font-size:13px}
+.lab-form label{display:grid;gap:4px;font-size:12px;font-weight:700;color:var(--ui-text)}
+.lab-form input,.lab-form select{width:100%;min-height:34px;background:var(--ui-panel-2);color:var(--ui-text);border:1px solid var(--ui-border);border-radius:5px;padding:6px 8px;font:inherit;font-size:13px}
 .lab-form input[aria-invalid="true"]{border-color:var(--lab-error)}
 .lab-form p{grid-column:1/-1;margin:0}
 
 /* Facts / tables */
 .lab-facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:8px 16px;margin:8px 0}
 .lab-facts-wide{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
-.lab-facts>div{min-width:0;border-bottom:1px solid #172c40;padding-bottom:4px}
-.lab-facts dt{font:800 10px 'JetBrains Mono Variable',monospace;letter-spacing:.08em;color:#8ea4b9}
+.lab-facts>div{min-width:0;border-bottom:1px solid var(--ui-border);padding-bottom:4px}
+.lab-facts dt{font:800 10px 'JetBrains Mono Variable',monospace;letter-spacing:.08em;color:var(--ui-muted)}
 .lab-facts dd{margin:2px 0 0;overflow-wrap:anywhere}
 .lab-table-wrap{overflow-x:auto;margin:10px 0 14px;border:1px solid var(--lab-line);border-radius:8px}
 .lab-table{border-collapse:collapse;width:100%;font-size:12.5px}
-.lab-table caption{text-align:left;padding:8px 10px;font-weight:800;color:#cfe0ef;background:var(--lab-panel)}
-.lab-table th{text-align:left;font:800 10px 'JetBrains Mono Variable',monospace;letter-spacing:.06em;color:#9bb2c8;background:#0b1826;padding:7px 10px;white-space:nowrap}
-.lab-table td{padding:6px 10px;border-top:1px solid #172c40;vertical-align:top;font-variant-numeric:tabular-nums}
-.lab-table tr[aria-selected="true"] td{background:#1a2d44}
+.lab-table caption{text-align:left;padding:8px 10px;font-weight:800;color:var(--ui-text);background:var(--lab-panel)}
+.lab-table th{text-align:left;font:800 10px 'JetBrains Mono Variable',monospace;letter-spacing:.06em;color:var(--ui-muted);background:var(--ui-panel-2);padding:7px 10px;white-space:nowrap}
+.lab-table td{padding:6px 10px;border-top:1px solid var(--ui-border);vertical-align:top;font-variant-numeric:tabular-nums}
+.lab-table tr[aria-selected="true"] td{background:var(--ui-panel-2)}
 .route-status{font:800 10.5px 'JetBrains Mono Variable',monospace;white-space:nowrap}
-.route-status.status-not-implemented{color:#a2b2c1}.route-status.status-partial{color:#e6c98a}.route-status.status-available{color:#cfe0ef}
-.lab-pre{background:#0a1826;border:1px solid var(--lab-line);border-radius:6px;padding:12px;overflow:auto;max-height:420px;margin:0}
+.route-status.status-not-implemented{color:#a2b2c1}.route-status.status-partial{color:#e6c98a}.route-status.status-available{color:var(--ui-text)}
+.lab-pre{background:var(--ui-panel-2);border:1px solid var(--lab-line);border-radius:6px;padding:12px;overflow:auto;max-height:420px;margin:0}
 
 /* Not implemented */
-.lab-unavailable-state{border:1px dashed #6a7d90;border-radius:8px;padding:12px 14px;background:#0f1a26;color:#dfe8f1}
+.lab-unavailable-state{border:1px dashed #6a7d90;border-radius:8px;padding:12px 14px;background:var(--ui-panel-2);color:var(--ui-text)}
 .lab-unavailable-state b{color:var(--lab-warn);letter-spacing:.05em}
 .lab-unavailable h2{margin-top:18px}
 .lab-unavailable-inline{border-style:dashed;border-color:#6a7d90}
@@ -135,22 +163,22 @@ body:has(.lab-app){min-width:0;background:#060d16}
 /* Stage figure */
 .lab-stage-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,1fr);gap:14px;align-items:start;margin-bottom:14px}
 .lab-stage-layout>.lab-card{margin:0}
-.lab-stage-layout section+section{border-top:1px solid #172c40;padding-top:10px;margin-top:4px}
-.lab-stage-layout h2 small{font:800 10px 'JetBrains Mono Variable',monospace;margin-left:6px;padding:2px 6px;border-radius:3px;background:#1c2c3c;color:#cfe0ef;vertical-align:middle}
+.lab-stage-layout section+section{border-top:1px solid var(--ui-border);padding-top:10px;margin-top:4px}
+.lab-stage-layout h2 small{font:800 10px 'JetBrains Mono Variable',monospace;margin-left:6px;padding:2px 6px;border-radius:3px;background:#1c2c3c;color:var(--ui-text);vertical-align:middle}
 .lab-stage-layout h2 small.state-INVALID{color:var(--lab-error)}.lab-stage-layout h2 small.state-EMPTY{color:#e9c45c}
 @media(max-width:900px){.lab-stage-layout{grid-template-columns:minmax(0,1fr)}}
 .lab-figure{margin:0;min-width:0}
-.lab-figure svg{display:block;width:100%;height:auto;border:1px solid var(--lab-line);border-radius:8px;background:#07121d}
+.lab-figure svg{display:block;width:100%;height:auto;border:1px solid var(--lab-line);border-radius:8px;background:var(--ui-panel-2)}
 .lab-figure figcaption{color:var(--lab-muted);font-size:12px;margin-top:6px}
-.fig-bg{fill:#07121d}.fig-grid{stroke:#14273a;stroke-width:1}.fig-axis{stroke:#3b5d78;stroke-width:1.4}
+.fig-bg{fill:var(--ui-panel-2)}.fig-grid{stroke:var(--ui-border);stroke-width:1}.fig-axis{stroke:#3b5d78;stroke-width:1.4}
 .fig-triangle{fill:#40576a;fill-opacity:.18;stroke:none}.fig-delaunay{stroke:#7fa3c0;stroke-width:1.4}
 .fig-gabriel{stroke:#66caed;stroke-width:2.4}.fig-rejected{stroke:#ff6b6b;stroke-width:1.6;stroke-dasharray:6 4}
 .fig-left{fill:none;stroke:#2676ee;stroke-width:3}.fig-right{fill:none;stroke:#e8be37;stroke-width:3}
 .fig-gate{stroke:#fff;stroke-width:2}.fig-mid{fill:#fff}
 .fig-path{fill:none;stroke:#39edb8;stroke-width:3}.fig-lookahead{stroke:#ff5ad1;stroke-width:1.5;stroke-dasharray:6 4}.fig-target{fill:none;stroke:#ff5ad1;stroke-width:2.5}
 .fig-cone-blue{fill:#399bff;stroke:#fff;stroke-width:1.2}.fig-cone-yellow{fill:#ffd645;stroke:#fff;stroke-width:1.2}.fig-cone-other{fill:#ff923e;stroke:#fff;stroke-width:1.2}
-.fig-label{fill:#cfe0ef;font:700 11px 'JetBrains Mono Variable',monospace}
-.fig-kart{fill:#36edc1}.fig-caption{fill:#9bb2c8;font-size:12px}
+.fig-label{fill:var(--ui-text);font:700 11px 'JetBrains Mono Variable',monospace}
+.fig-kart{fill:#36edc1}.fig-caption{fill:var(--ui-muted);font-size:12px}
 .lab-sim-only{border-color:#6b4a2a}.lab-sim-only h3{color:var(--lab-warn)}
 
 /* Core lab (SharedLab) inside the shell */

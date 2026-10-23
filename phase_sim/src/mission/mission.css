@@ -1,23 +1,28 @@
-body:has(.mission-shell){min-width:0;background:#07141c}
-.mission-shell{height:100vh;min-height:620px;display:flex;flex-direction:column;overflow:hidden;background:#07141c;color:#ecf4f4;font-family:Manrope,system-ui,sans-serif}
+/* Round 2 (Task 1): primary chrome (page bg, top bar, borders, primary/muted text) migrated
+ * onto the shared --ui-* tokens so the theme toggle affects /mission and /replay too. The HUD
+ * overlay's decorative accents (legend swatch colors, floating-panel per-state tints, cone
+ * dot colors) are left as literals -- same "fixed diagram accent" convention as cone colors.
+ * See phase_sim/docs/UI_MIGRATION.md. */
+body:has(.mission-shell){min-width:0;background:var(--ui-bg)}
+.mission-shell{height:100vh;min-height:620px;display:flex;flex-direction:column;overflow:hidden;background:var(--ui-bg);color:var(--ui-text);font-family:Manrope,system-ui,sans-serif}
 .mission-shell *{box-sizing:border-box}
 .mission-shell button,.mission-shell select,.mission-shell input{font:inherit}
 .mission-shell button{cursor:pointer}
-.mc-top{height:55px;flex:none;display:flex;align-items:center;gap:20px;padding:0 17px;background:#0a1c26;border-bottom:1px solid #203d49}
+.mc-top{height:55px;flex:none;display:flex;align-items:center;gap:20px;padding:0 17px;background:var(--ui-panel);border-bottom:1px solid var(--ui-border)}
 .mc-brand{display:flex;align-items:center;gap:10px;min-width:206px}
 .mc-brand>span{display:grid;place-items:center;width:34px;height:34px;border-radius:7px;background:#58e2b6;color:#09241d;font-weight:900;font-size:14px}
 .mc-brand strong{display:block;font-size:12px;letter-spacing:.13em;white-space:nowrap}
 .mc-brand small{display:block;font:700 9px 'JetBrains Mono',monospace;color:#7eb3b8;letter-spacing:.1em}
 .mc-top nav{display:flex;gap:2px;align-items:center;flex:1;overflow-x:auto;scrollbar-width:none}
 .mc-top nav::-webkit-scrollbar{display:none}
-.mc-top button,.mc-transport button,.mc-world-controls button,.mc-close,.mc-inspector-head button{background:transparent;color:#a9c4c9;border:1px solid transparent;border-radius:5px;padding:7px 9px;font-size:10px;font-weight:800;letter-spacing:.045em;white-space:nowrap}
+.mc-top button,.mc-transport button,.mc-world-controls button,.mc-close,.mc-inspector-head button{background:transparent;color:var(--ui-muted);border:1px solid transparent;border-radius:5px;padding:7px 9px;font-size:10px;font-weight:800;letter-spacing:.045em;white-space:nowrap}
 .mc-top button:hover,.mc-transport button:hover,.mc-world-controls button:hover{background:#1a3b46;color:#fff}
 .mc-top button.selected,.mc-transport button.selected,.mc-world-controls button.selected{background:#1b4944;color:#76f0c6;border-color:#3b766a}
 .mc-clock{font:800 16px 'JetBrains Mono',monospace;white-space:nowrap}
 .mc-clock small{font-size:10px;color:#769ba3}
 .mc-lab-top{height:64px;gap:14px}
 .mc-lab-controls{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
-.mc-lab-controls label{display:flex;align-items:center;gap:6px;color:#87acb4;font:800 9px 'JetBrains Mono',monospace;letter-spacing:.08em;white-space:nowrap}
+.mc-lab-controls label{display:flex;align-items:center;gap:6px;color:var(--ui-muted);font:800 9px 'JetBrains Mono',monospace;letter-spacing:.08em;white-space:nowrap}
 .mc-lab-controls select,.mc-top-source{height:34px;background:#102e39;color:#eff8f4;border:1px solid #41656d;border-radius:5px;padding:5px 8px;font:800 11px 'JetBrains Mono',monospace}
 .mc-lab-controls button{height:34px;border:1px solid #365962;border-radius:5px;background:#15313b;color:#dceeea;padding:6px 11px;font:800 10px 'JetBrains Mono',monospace;white-space:nowrap}
 .mc-lab-controls button.mc-run{background:#49cfa2;border-color:#72e8bd;color:#08281d}
@@ -32,7 +37,7 @@ body:has(.mission-shell){min-width:0;background:#07141c}
 .mc-status .mc-alert{color:#ff9287}
 .mc-error{padding:5px 16px;background:#5d2629;color:#ffe1db;font-size:12px}
 .mc-main{flex:1;min-height:0;padding:8px;display:flex}
-.mc-ros-camera,.mc-ros-live{width:280px;min-width:250px;overflow:auto;padding:10px;background:#0c2530;border:1px solid #31545d;border-radius:8px;font:700 10px 'JetBrains Mono',monospace;color:#bdd2d4}
+.mc-ros-camera,.mc-ros-live{width:280px;min-width:250px;overflow:auto;padding:10px;background:var(--ui-panel-2);border:1px solid var(--ui-border);border-radius:8px;font:700 10px 'JetBrains Mono',monospace;color:var(--ui-text)}
 .mc-ros-camera{order:-1;margin-right:8px}.mc-ros-live{margin-left:8px}
 .mc-ros-camera header{display:flex;justify-content:space-between;gap:6px;color:#84edc4}
 .mc-ros-camera header span{color:#f2c885;text-align:right}
@@ -47,8 +52,8 @@ body:has(.mission-shell){min-width:0;background:#07141c}
 .mc-depth-frame{display:block;width:100%;height:auto;margin-top:6px}
 .mc-ros-camera dl,.mc-ros-live dl{display:grid;grid-template-columns:1fr auto;gap:5px 8px;margin:9px 0 0}
 .mc-ros-camera dt,.mc-ros-live dt{color:#7eabb1}.mc-ros-camera dd,.mc-ros-live dd{margin:0;max-width:185px;text-align:right;overflow-wrap:anywhere;color:#e5f1ed}
-.mc-detections{list-style:none;margin:0;padding:0;display:grid;gap:4px}.mc-detections li{padding:4px;border:1px solid #31545d;border-radius:3px;color:#ffdc8f;overflow-wrap:anywhere}
-.mc-world{position:relative;flex:1;min-height:0;overflow:hidden;border-radius:9px;background:#0b202a;box-shadow:inset 0 0 0 1px #254650}
+.mc-detections{list-style:none;margin:0;padding:0;display:grid;gap:4px}.mc-detections li{padding:4px;border:1px solid var(--ui-border);border-radius:3px;color:#ffdc8f;overflow-wrap:anywhere}
+.mc-world{position:relative;flex:1;min-height:0;overflow:hidden;border-radius:9px;background:var(--ui-panel-2);box-shadow:inset 0 0 0 1px var(--ui-border)}
 .mission-scene,.mission-scene canvas,.mc-scene-labels{position:absolute;inset:0;width:100%;height:100%}
 .mission-scene canvas{display:block}
 .mc-scene-labels{pointer-events:none;overflow:hidden}
@@ -65,7 +70,7 @@ body:has(.mission-shell){min-width:0;background:#07141c}
 .mc-world-controls{display:flex;gap:6px;align-items:center;pointer-events:auto}
 .mc-world-controls button,.mc-world-controls select{background:#102a35d9;color:#dbeae9;border:1px solid #31535e;border-radius:5px;min-height:29px;font-size:9px;font-weight:800;letter-spacing:.04em;padding:5px 8px}
 .mc-world-controls select{max-width:135px}
-.mc-world-pipeline{position:absolute;top:65px;left:50%;transform:translateX(-50%);display:flex;align-items:stretch;gap:2px;max-width:calc(100% - 34px);overflow:auto;padding:4px;background:#061923dc;border:1px solid #31545d;border-radius:7px;box-shadow:0 4px 22px #0006;scrollbar-width:none}
+.mc-world-pipeline{position:absolute;top:65px;left:50%;transform:translateX(-50%);display:flex;align-items:stretch;gap:2px;max-width:calc(100% - 34px);overflow:auto;padding:4px;background:#061923dc;border:1px solid var(--ui-border);border-radius:7px;box-shadow:0 4px 22px #0006;scrollbar-width:none}
 .mc-world-pipeline div{min-width:73px;padding:5px 8px;border-radius:4px;color:#90b3b9;font:700 9px 'JetBrains Mono',monospace;text-align:center}
 .mc-world-pipeline div:not(:last-child)::after{content:'›';position:absolute;margin-left:10px;color:#5b8790}
 .mc-world-pipeline div.active{color:#dcfff1;background:#246454;box-shadow:0 0 14px #57e0af5e}
@@ -107,7 +112,7 @@ body:has(.mission-shell){min-width:0;background:#07141c}
 .mc-inspector dl>div,.mc-card dl>div{display:contents}
 .mc-inspector dt,.mc-card dt{color:#83a5ab;font:700 9px 'JetBrains Mono',monospace}
 .mc-inspector dd,.mc-card dd{margin:0;text-align:right;color:#e5eeee;font:700 10px 'JetBrains Mono',monospace;max-width:150px;overflow-wrap:anywhere}
-.mc-view-drawer{position:absolute;top:146px;right:15px;bottom:15px;width:min(340px,calc(100% - 30px));overflow:auto;background:#0c2530ef;border:1px solid #3b5c65;border-radius:8px;z-index:3;box-shadow:0 8px 30px #0009}
+.mc-view-drawer{position:absolute;top:146px;right:15px;bottom:15px;width:min(340px,calc(100% - 30px));overflow:auto;background:var(--ui-panel-2)ef;border:1px solid #3b5c65;border-radius:8px;z-index:3;box-shadow:0 8px 30px #0009}
 .mc-view-drawer .mc-card{border:0;background:transparent}
 .mc-view-drawer .mc-close{position:sticky;top:3px;float:right;z-index:2;font-size:20px;color:#e3eeee}
 .mc-card{padding:16px;overflow:auto}
@@ -116,17 +121,17 @@ body:has(.mission-shell){min-width:0;background:#07141c}
 .mc-card p{font-size:11px;line-height:1.55;color:#a8c0c5}
 .mc-card label{display:grid;gap:5px;margin:14px 0;color:#9dbac0;font:700 10px 'JetBrains Mono',monospace}
 .mc-card select{background:#132f3b;color:#eef6f5;border:1px solid #42636b;border-radius:5px;padding:8px}
-.mc-muted{color:#819fa6!important}
+.mc-muted{color:var(--ui-muted)!important}
 .mc-index h3{margin:16px 0 6px;font:800 10px 'JetBrains Mono',monospace}
 .mc-index button{display:flex;width:100%;justify-content:space-between;gap:8px;border:0;border-bottom:1px solid #294750;background:transparent;color:#e1f0ec;padding:6px 2px;text-align:left;cursor:pointer;font:600 9px 'JetBrains Mono',monospace}
 .mc-index button:hover{background:#1b414b}
 .mc-index button span{color:#86b9b3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mc-bottom{flex:none;padding:7px 13px 6px;background:#0a1c26;border-top:1px solid #2b4d58}
-.mc-lab-bottom{display:flex;align-items:center;gap:28px;min-height:45px;padding:9px 18px;color:#a7c9c9;font:800 10px 'JetBrains Mono',monospace}
+.mc-bottom{flex:none;padding:7px 13px 6px;background:var(--ui-panel);border-top:1px solid #2b4d58}
+.mc-lab-bottom{display:flex;align-items:center;gap:28px;min-height:45px;padding:9px 18px;color:var(--ui-muted);font:800 10px 'JetBrains Mono',monospace}
 .mc-lab-bottom b{color:#eff8f3;margin-left:5px}
 .mc-lab-bottom button,.mc-builder button.mc-run{border:1px solid #3f756c;background:#1d594a;color:#d7fff0;padding:6px 9px;border-radius:5px;font:800 9px 'JetBrains Mono',monospace;white-space:nowrap;cursor:pointer}
 .mc-lab-bottom button:first-of-type{margin-left:auto}
-.mc-lab-plots{flex:none;background:#0a1c26;padding:8px 13px;max-height:210px}
+.mc-lab-plots{flex:none;background:var(--ui-panel);padding:8px 13px;max-height:210px}
 .mc-builder-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
 .mc-builder input{width:100%;box-sizing:border-box;background:#132f3b;color:#eef6f5;border:1px solid #42636b;border-radius:5px;padding:8px;font:700 11px 'JetBrains Mono',monospace}
 .mc-builder button.mc-run{width:100%;margin-top:9px;padding:10px}
