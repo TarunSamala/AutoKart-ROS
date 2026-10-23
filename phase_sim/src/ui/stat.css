@@ -1,0 +1,9 @@
+.ui-stat { display: flex; flex-direction: column; gap: 2px; min-width: 88px; }
+.ui-stat-label { font: 800 10px var(--ui-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ui-muted); }
+.ui-stat-value { font-size: 20px; font-weight: 700; color: var(--ui-text); }
+.ui-stat-unit { font-size: 11px; font-weight: 700; margin-left: 3px; color: var(--ui-muted); }
+.ui-stat-target { font-size: 10px; color: var(--ui-muted); }
+.ui-stat[data-tone="good"] .ui-stat-value { color: var(--ui-good); }
+.ui-stat[data-tone="warn"] .ui-stat-value { color: var(--ui-warn); }
+.ui-stat[data-tone="crit"] .ui-stat-value { color: var(--ui-crit); }
+.ui-stat[data-tone="idle"] .ui-stat-value { color: var(--ui-idle); }

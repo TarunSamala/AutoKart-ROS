@@ -1,0 +1,57 @@
+/*
+ * Design tokens for the new phase_sim/src/ui/* component set.
+ *
+ * Deliberately scoped to `.ui-root` (and anything inside it), not `:root`, so dropping this
+ * file into the Lab app cannot silently recolor the existing 8 per-page stylesheets (see
+ * phase_sim/docs/REVAMP_PLAN.md — a full migration of every page onto one token set is future
+ * work, not this pass). Any new page built with the src/ui/ components wraps its content in
+ * a `.ui-root` element to pick these up.
+ *
+ * Palette follows the same light/dark convention already used for kart/viewer/index.html
+ * (:root default + :root[data-theme="light"]), so a MY_TRACK page built from these tokens
+ * reads as "the same design language" as that reference viewer. Light is the default here
+ * because the reference viewer's calm grey-green instrument-panel look is light-themed; dark
+ * is the opt-in variant, set the same way (`data-theme="dark"`).
+ */
+.ui-root {
+  --ui-bg: #eef1ec;
+  --ui-panel: #ffffff;
+  --ui-panel-2: #f5f7f3;
+  --ui-border: #ccd4c6;
+  --ui-text: #1f2822;
+  --ui-muted: #5c6a5f;
+  --ui-accent: #2f7a5c;
+  --ui-accent-ink: #ffffff;
+  --ui-good: #2e8a4e;
+  --ui-warn: #a66a12;
+  --ui-crit: #c23b3b;
+  --ui-idle: #8a9389;
+  --ui-cone-blue: #2f6fed;
+  --ui-cone-yellow: #c9a400;
+  --ui-cone-orange: #d9681c;
+  --ui-shadow: 0 1px 2px rgba(30, 40, 30, 0.08);
+  --ui-radius: 8px;
+  --ui-mono: "SF Mono", "JetBrains Mono", Consolas, monospace;
+  --ui-sans: -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  background: var(--ui-bg);
+  color: var(--ui-text);
+}
+
+.ui-root[data-theme="dark"] {
+  --ui-bg: #0e1116;
+  --ui-panel: #161b22;
+  --ui-panel-2: #1b212a;
+  --ui-border: #2a313c;
+  --ui-text: #e6edf3;
+  --ui-muted: #8b949e;
+  --ui-accent: #4da3ff;
+  --ui-accent-ink: #06141f;
+  --ui-good: #3fb950;
+  --ui-warn: #d29922;
+  --ui-crit: #f85149;
+  --ui-idle: #5d6670;
+}
+
+.ui-root * { box-sizing: border-box; }
+.ui-root .ui-mono { font-family: var(--ui-mono); font-variant-numeric: tabular-nums; }

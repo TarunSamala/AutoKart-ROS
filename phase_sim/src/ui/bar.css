@@ -1,0 +1,10 @@
+.ui-bar { display: flex; flex-direction: column; gap: 3px; min-width: 110px; }
+.ui-bar-row { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; }
+.ui-bar-label { font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--ui-muted); font-size: 10px; }
+.ui-bar-value { color: var(--ui-text); }
+.ui-bar-track { height: 6px; border-radius: 4px; background: var(--ui-panel-2); border: 1px solid var(--ui-border); overflow: hidden; }
+.ui-bar-fill { height: 100%; background: var(--ui-accent); transition: width .15s linear; }
+.ui-bar[data-tone="good"] .ui-bar-fill { background: var(--ui-good); }
+.ui-bar[data-tone="warn"] .ui-bar-fill { background: var(--ui-warn); }
+.ui-bar[data-tone="crit"] .ui-bar-fill { background: var(--ui-crit); }
+.ui-bar[data-tone="idle"] .ui-bar-fill { background: var(--ui-idle); width: 0 !important; }

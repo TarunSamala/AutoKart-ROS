@@ -1,6 +1,6 @@
-import { Suspense, lazy, useEffect, useState, type ReactNode } from 'react';
+import { Suspense, lazy, useEffect, type ReactNode } from 'react';
 import { Link, usePath } from './router';
-import { FOREIGN_PATHS, LAB_ROUTES, ROUTE_GROUPS, findRoute, type LabRoute } from './routes';
+import { FOREIGN_PATHS, LAB_ROUTES, findRoute, type LabRoute } from './routes';
 import { LIVE_READ_ONLY_REASON, RunProvider, useRun, type Provenance } from './runContext';
 import { expectCore, expectSimulationGateway, useServiceStatus, type ServiceState, type Services } from './services';
 import { HomePage } from './pages/HomePage';
@@ -15,6 +15,7 @@ import './lab.css';
 // three.js and the client-side demo engine are only fetched when their page is opened.
 const MissionPage = lazy(() => import('./pages/MissionPage').then((module) => ({ default: module.MissionPage })));
 const DemoPage = lazy(() => import('./pages/DemoPage').then((module) => ({ default: module.DemoPage })));
+const MyTrackPage = lazy(() => import('./pages/MyTrackPage').then((module) => ({ default: module.MyTrackPage })));
 
 
 
@@ -49,39 +50,59 @@ function ProvenanceBanner() {
   </section>;
 }
 
+/** Single-row tab strip: every route, flat (no group headers), scrolls horizontally if it overflows. */
 function LabNavBar({ path }: { path: string }) {
-  const [open, setOpen] = useState(false);
-  useEffect(() => setOpen(false), [path]);
-  return <nav className={`lab-pages ${open ? 'open' : ''}`} aria-label="Lab pages">
-    <button className="lab-pages-toggle" aria-expanded={open} aria-controls="lab-pages-list" onClick={() => setOpen(!open)}>
-      {open ? 'Close pages' : 'Pages'} <span aria-hidden="true">{open ? '▴' : '▾'}</span>
-    </button>
-    <div id="lab-pages-list" className="lab-pages-groups">
-      {ROUTE_GROUPS.map((group) => <div key={group} className="lab-pages-group" role="group" aria-label={group}>
-        <span className="lab-pages-group-label">{group}</span>
-        <ul>{LAB_ROUTES.filter((route) => route.group === group).map((route) => <li key={route.path}>
-          <Link to={route.path} aria-current={route.path === path ? 'page' : undefined} className={`lab-page-link status-${route.status.replace(' ', '-').toLowerCase()}`}
-            title={`${route.summary} (${route.status.toLowerCase()})`}>
-            {route.label}{route.status === 'NOT IMPLEMENTED' && <small className="lab-tag">N/A</small>}{route.status === 'PARTIAL' && <small className="lab-tag partial">PARTIAL</small>}
-          </Link>
-        </li>)}</ul>
-      </div>)}
-    </div>
+  return <nav className="lab-pages" aria-label="Lab pages">
+    <ul className="lab-pages-strip">
+      {LAB_ROUTES.map((route) => <li key={route.path} title={route.group}>
+        <Link to={route.path} aria-current={route.path === path ? 'page' : undefined} className={`lab-page-link status-${route.status.replace(' ', '-').toLowerCase()}`}
+          title={`${route.summary} (${route.status.toLowerCase()})`}>
+          {route.label}{route.status === 'NOT IMPLEMENTED' && <small className="lab-tag">N/A</small>}{route.status === 'PARTIAL' && <small className="lab-tag partial">PARTIAL</small>}
+        </Link>
+      </li>)}
+    </ul>
   </nav>;
 }
 
-function LabHeader({ path, services }: { path: string; services: Services }) {
+/**
+ * Small colored dot + title tooltip, used for the CORE/GATEWAY reachability and PROVENANCE-mode
+ * indicators. The full label is also in a visually-hidden span (not just `title`) so it's still
+ * in the DOM's text content for assistive tech and the tests that pin exact service-status text.
+ */
+function Dot({ tone, label }: { tone: 'ok' | 'warn' | 'bad' | 'idle'; label: string }) {
+  return <span className={`lab-dot lab-dot-${tone}`} title={label}>
+    <span aria-hidden="true">●</span><span className="lab-visually-hidden">{label}</span>
+  </span>;
+}
+
+function serviceTone(state: ServiceState): 'ok' | 'warn' | 'bad' | 'idle' {
+  if (state.state === 'REACHABLE') return 'ok';
+  if (state.state === 'CHECKING') return 'idle';
+  if (state.state === 'REFUSED') return 'bad';
+  return 'warn';
+}
+
+function LabHeader({ path, route, services }: { path: string; route: LabRoute | undefined; services: Services }) {
+  const { pageProvenance } = useRun();
+  const provenanceLabel = pageProvenance?.label ?? 'NONE';
   return <header className="lab-header">
-    <div className="lab-header-row">
-      <Link to="/home" className="lab-brand" aria-label="AutoKart Algorithm Lab home"><span aria-hidden="true">AK</span><b>AUTOKART ALGORITHM LAB</b></Link>
-      <ul className="lab-services" aria-label="Lab backend reachability">
-        <li className={`svc-${services.core.state.toLowerCase()}`} title={'detail' in services.core ? services.core.detail : undefined}>{serviceText('CORE :8767', services.core)}</li>
-        <li className={`svc-${services.simGateway.state.toLowerCase()}`} title={'detail' in services.simGateway ? services.simGateway.detail : undefined}>{serviceText('SIM ROS GATEWAY :8775', services.simGateway)}</li>
-      </ul>
-      <span className="lab-authority">VEHICLE AUTHORITY OFF · SIM-ONLY OUTPUT</span>
+    <div className="lab-bar">
+      <Link to="/home" className="lab-brand-mini" aria-label="AutoKart Algorithm Lab home"><span aria-hidden="true">AK</span><b className="lab-visually-hidden">AUTOKART ALGORITHM LAB</b></Link>
+      <span className="lab-bar-title">{route ? route.label : 'AutoKart Algorithm Lab'}</span>
+      <span className="lab-bar-dots" aria-label="Status">
+        <Dot tone={serviceTone(services.core)} label={serviceText('CORE :8767', services.core)} />
+        <Dot tone={serviceTone(services.simGateway)} label={serviceText('SIM ROS GATEWAY :8775', services.simGateway)} />
+        <Dot tone={provenanceLabel === 'NONE' ? 'idle' : 'ok'} label={`PROVENANCE · ACTIVE: ${provenanceLabel}${pageProvenance ? ` — ${pageProvenance.detail}` : ''}`} />
+      </span>
+      <LabNavBar path={path} />
+      <span className="lab-authority-badge" title="VEHICLE AUTHORITY OFF · SIM-ONLY OUTPUT" aria-label="VEHICLE AUTHORITY OFF · SIM-ONLY OUTPUT">AUTH OFF</span>
     </div>
-    <ProvenanceBanner />
-    <LabNavBar path={path} />
+    {/* Full provenance detail kept in the DOM for assistive tech / tests; visually collapsed by default
+        now that the dot above carries the at-a-glance state. Expand via the native <details> toggle. */}
+    <details className="lab-provenance-details">
+      <summary className="lab-provenance-summary">Provenance detail</summary>
+      <ProvenanceBanner />
+    </details>
   </header>;
 }
 
@@ -107,6 +128,7 @@ function PageFor({ route, path, services }: { route: LabRoute | undefined; path:
     case '/paths': return <CoreStagePage stage="paths" />;
     case '/mission': return <MissionPage variant="mission" />;
     case '/replay': return <MissionPage variant="replay" />;
+    case '/mytrack': return <MyTrackPage />;
     case '/demo': return <DemoPage />;
     case '/dataset': return <DatasetPage />;
     case '/scenario': return <ScenarioPage />;
@@ -128,7 +150,7 @@ function LabShell() {
   const fill = path === '/mission' || path === '/replay';
   return <div className={`lab-app ${fill ? 'lab-fill' : ''}`} data-route={path}>
     <a className="lab-skip" href="#lab-main">Skip to page content</a>
-    <LabHeader path={path} services={services} />
+    <LabHeader path={path} route={route} services={services} />
     <main id="lab-main" className="lab-main" tabIndex={-1}>
       <Suspense fallback={<p className="lab-loading" role="status">Loading page…</p>}>
         <PageFor key={path} route={route} path={path} services={services} />

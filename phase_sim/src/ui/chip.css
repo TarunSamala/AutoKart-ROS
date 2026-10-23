@@ -1,0 +1,6 @@
+.ui-chip { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 999px; font: 800 10.5px var(--ui-mono); letter-spacing: .05em; text-transform: uppercase; border: 1px solid var(--ui-border); color: var(--ui-muted); background: var(--ui-panel-2); }
+.ui-chip[data-tone="good"] { color: #ffffff; background: var(--ui-good); border-color: var(--ui-good); }
+.ui-chip[data-tone="warn"] { color: #2a1c00; background: var(--ui-warn); border-color: var(--ui-warn); }
+.ui-chip[data-tone="crit"] { color: #ffffff; background: var(--ui-crit); border-color: var(--ui-crit); }
+.ui-chip[data-tone="accent"] { color: var(--ui-accent-ink); background: var(--ui-accent); border-color: var(--ui-accent); }
+.ui-chip[data-tone="idle"] { color: var(--ui-muted); }

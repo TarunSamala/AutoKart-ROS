@@ -1,0 +1,4 @@
+.ui-toggle { display: inline-flex; border: 1px solid var(--ui-border); border-radius: 6px; overflow: hidden; background: var(--ui-panel-2); }
+.ui-toggle-opt { border: none; background: transparent; color: var(--ui-muted); font: 700 11.5px var(--ui-sans); padding: 6px 12px; cursor: pointer; }
+.ui-toggle-opt + .ui-toggle-opt { border-left: 1px solid var(--ui-border); }
+.ui-toggle-opt[aria-pressed="true"] { background: var(--ui-accent); color: var(--ui-accent-ink); }

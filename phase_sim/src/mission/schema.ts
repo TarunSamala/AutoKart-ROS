@@ -29,6 +29,8 @@ export interface MissionFrame {
     envelope?: SafetyEnvelope | null };
   metrics: { cross_track_error_m?: number | null; heading_error_rad?: number | null; planner_runtime_ms?: number | null; controller_runtime_ms?: number | null };
   diagnostics?: { perception?: StageDiagnostic; mapping?: StageDiagnostic; planning?: StageDiagnostic };
+  /** Signed metres, perpendicular distance from the rear axle to the currently planned path/centreline; +left/-right of travel. Only populated for MY_TRACK; undefined elsewhere or when no fit is available. See docs/UI_CONTRACT.md. */
+  lateralDeviationM?: number;
 }
 
 /** All sources, including LAB and replay, feed the same render contract. */

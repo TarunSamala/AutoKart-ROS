@@ -36,6 +36,8 @@ export const LAB_ROUTES: readonly LabRoute[] = [
     summary: 'Centerline, curvature profile and the sim-only controller candidate. No path variants.' },
   { path: '/mission', label: 'Mission', group: 'MISSION & SIM', status: 'AVAILABLE', backing: ['SANDBOX', 'SIM_ROS', 'REPLAY'],
     summary: '3D mission view with the SEE → … → CONTROL stage ribbon. Sandbox, ROS simulation or replay only.' },
+  { path: '/mytrack', label: 'MY_TRACK', group: 'MISSION & SIM', status: 'AVAILABLE', backing: ['SANDBOX'],
+    summary: 'MY_TRACK instrument panel: top-down overview, follow view, synthetic HP60C frame, vehicle/controller telemetry, deviation.' },
   { path: '/scenario', label: 'Scenario', group: 'MISSION & SIM', status: 'PARTIAL', backing: ['SANDBOX'],
     summary: 'Seeded course generator with fixture import/export. No free-hand cone/obstacle editing.' },
   { path: '/demo', label: 'Demo', group: 'MISSION & SIM', status: 'AVAILABLE', backing: ['SANDBOX'],

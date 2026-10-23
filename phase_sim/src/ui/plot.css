@@ -1,0 +1,8 @@
+.ui-plot { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.ui-plot-head { display: flex; justify-content: space-between; font-size: 10.5px; }
+.ui-plot-label { font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--ui-muted); }
+.ui-plot-value { color: var(--ui-text); font-weight: 700; }
+.ui-plot-svg { width: 100%; height: auto; display: block; background: var(--ui-panel-2); border: 1px solid var(--ui-border); border-radius: 5px; }
+.ui-plot-axis { stroke: var(--ui-border); stroke-width: 1; }
+.ui-plot-line { fill: none; stroke: var(--ui-accent); stroke-width: 1.6; }
+.ui-plot-empty { font-size: 11px; color: var(--ui-idle); padding: 14px 0; text-align: center; background: var(--ui-panel-2); border: 1px dashed var(--ui-border); border-radius: 5px; }

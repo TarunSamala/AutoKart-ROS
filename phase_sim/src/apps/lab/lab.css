@@ -12,18 +12,26 @@ body:has(.lab-app){min-width:0;background:#060d16}
 /* SharedLab's legacy cross-app nav (links into the root app) is replaced by the Lab nav. */
 .lab-app .lab-nav{display:none}
 
-/* Header */
+/* Header: one compact row (logo + title + status dots + nav tab strip + authority badge),
+   target ~40px tall so page content starts within ~48px of the viewport top. The full
+   provenance banner is kept in the DOM (tests pin its text/attributes) inside a native
+   <details>, collapsed by default -- the PROVENANCE dot above gives the at-a-glance state. */
 .lab-header{flex:none;background:#0a1522;border-bottom:1px solid var(--lab-line);position:relative;z-index:30}
-.lab-header-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:10px 16px 6px}
-.lab-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff!important}
-.lab-brand span{display:grid;place-items:center;width:32px;height:32px;border-radius:7px;background:#b9a2ff;color:#160d33;font-weight:900;font-size:13px}
-.lab-brand b{font-size:15px;letter-spacing:.14em}
-.lab-services{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none;font:700 10.5px 'JetBrains Mono Variable',monospace}
-.lab-services li{padding:4px 8px;border:1px solid var(--lab-line);border-radius:4px;color:var(--lab-muted);white-space:nowrap}
-.lab-services .svc-reachable{color:#cfe3f5;border-color:#3b5d7a}
-.lab-services .svc-unreachable{color:var(--lab-warn);border-color:#6b4a2a}
-.lab-services .svc-refused{color:var(--lab-error);border-color:#7a3333}
-.lab-authority{margin-left:auto;color:var(--lab-warn);font:800 10.5px 'JetBrains Mono Variable',monospace;letter-spacing:.06em}
+.lab-bar{display:flex;align-items:center;gap:10px;padding:5px 10px;min-height:40px}
+.lab-brand-mini{display:grid;place-items:center;width:26px;height:26px;border-radius:6px;background:#b9a2ff;color:#160d33;font-weight:900;font-size:11px;text-decoration:none;flex:none}
+.lab-bar-title{font:800 12px 'JetBrains Mono Variable',monospace;letter-spacing:.08em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:22ch}
+.lab-bar-dots{display:flex;align-items:center;gap:6px;flex:none}
+.lab-dot{font-size:13px;line-height:1;cursor:default}
+.lab-dot-ok{color:#5fe0ad}.lab-dot-warn{color:var(--lab-warn)}.lab-dot-bad{color:var(--lab-error)}.lab-dot-idle{color:#4a5f74}
+.lab-authority-badge{margin-left:auto;flex:none;color:var(--lab-warn);font:800 9.5px 'JetBrains Mono Variable',monospace;letter-spacing:.05em;border:1px solid #6b4a2a;border-radius:4px;padding:3px 7px;white-space:nowrap;cursor:default}
+/* Taken out of normal flow: it must not push page content below the ~40-48px header budget.
+   Closed by default (just the summary, position:absolute so it adds 0 layout height); opening
+   it overlays a dropdown under the bar instead of growing the header in place. */
+.lab-provenance-details{position:absolute;left:0;right:0;top:100%;z-index:25}
+.lab-provenance-details>summary{list-style:none;cursor:pointer;font:800 8.5px 'JetBrains Mono Variable',monospace;color:#6f879d;padding:1px 10px;letter-spacing:.06em;background:#0a1522;display:inline-block;border-radius:0 0 4px 4px}
+.lab-provenance-details>summary::-webkit-details-marker{display:none}
+.lab-provenance-details[open]{background:#0a1522;box-shadow:0 8px 18px rgba(0,0,0,.4)}
+.lab-provenance-details[open] .lab-provenance{border-top:1px solid #172c40}
 .lab-provenance{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:6px 16px 8px;border-top:1px solid #172c40;background:#0b1a2a}
 .lab-provenance-title{font:800 10px 'JetBrains Mono Variable',monospace;letter-spacing:.12em;color:var(--lab-muted)}
 .lab-provenance-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
@@ -37,24 +45,19 @@ body:has(.lab-app){min-width:0;background:#060d16}
 .lab-provenance-live{margin:0;flex:1 1 100%;color:var(--lab-muted);font-size:11px}
 .lab-provenance-live b{color:#b7c6d4}
 
-/* Page navigation */
-.lab-pages{border-top:1px solid #172c40;padding:6px 16px 8px}
-.lab-pages-toggle{display:none}
-.lab-pages-groups{display:flex;flex-wrap:wrap;gap:6px 18px}
-.lab-pages-group{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
-.lab-pages-group-label{font:800 9px 'JetBrains Mono Variable',monospace;letter-spacing:.1em;color:#6f879d;margin-right:2px}
-.lab-pages-group ul{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:0;list-style:none}
-.lab-page-link{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid transparent;border-radius:5px;color:#cfe0ef!important;text-decoration:none;font-size:12.5px;font-weight:700;white-space:nowrap}
+/* Page navigation: one flat, horizontally-scrolling tab strip (no group headers, no
+   expand/collapse) so it fits in the same ~40px bar as the logo/title/dots. */
+.lab-pages{flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:thin}
+.lab-pages-strip{display:flex;gap:4px;margin:0;padding:0;list-style:none;flex-wrap:nowrap}
+.lab-page-link{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border:1px solid transparent;border-radius:5px;color:#cfe0ef!important;text-decoration:none;font-size:11.5px;font-weight:700;white-space:nowrap}
 .lab-page-link:hover{background:#15283b;border-color:var(--lab-line)}
 .lab-page-link[aria-current="page"]{background:#2a2050;border-color:#8b74e0;color:#fff!important}
 .lab-page-link.status-not-implemented{color:#8fa3b6!important}
 .lab-tag{font:800 8.5px 'JetBrains Mono Variable',monospace;letter-spacing:.06em;padding:1px 4px;border-radius:3px;background:#2a3542;color:#a9b8c6}
 .lab-tag.partial{background:#3a3220;color:#e6c98a}
 @media(max-width:760px){
-  .lab-pages-toggle{display:inline-flex;gap:6px;align-items:center;background:#15283b;color:#fff;border:1px solid var(--lab-line);border-radius:5px;padding:7px 12px;font:inherit;font-weight:700;cursor:pointer}
-  .lab-pages-groups{display:none;flex-direction:column;gap:8px;margin-top:8px}
-  .lab-pages.open .lab-pages-groups{display:flex}
-  .lab-authority{margin-left:0}
+  .lab-bar{flex-wrap:wrap;min-height:auto}
+  .lab-pages{flex-basis:100%;order:5}
 }
 
 /* Main */
