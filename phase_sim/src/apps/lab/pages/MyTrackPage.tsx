@@ -8,6 +8,8 @@ import { Bar } from '../../../ui/Bar';
 import { Chip } from '../../../ui/Chip';
 import { Toggle } from '../../../ui/Toggle';
 import { Plot, type PlotPoint } from '../../../ui/Plot';
+import { ConeGlyph, TrackingRing, MissTick } from '../../../ui/ConeGlyph';
+import { exportCsvAtRate, exportJsonSummary } from '../../../ui/telemetryExport';
 import '../../../ui/tokens.css';
 import './myTrackPage.css';
 import { useReportProvenance } from '../runContext';
@@ -23,6 +25,35 @@ const CORRIDOR_M = MY_TRACK_LAYOUT.corridor_m; // 3.0
 const LENGTH_M = MY_TRACK_LAYOUT.length_m; // 50
 const HP60C_FOV_DEG = 64.4;
 const HP60C_FOV_RAD = (HP60C_FOV_DEG * Math.PI) / 180;
+
+/*
+ * HP60C pinhole projection constants for the camera panel (Task 4), ported from the
+ * reference Python model at kart/kart_sim/hp60c.py (HP60CConfig + _project()), not from
+ * MissionScene.tsx (untouched, read-only for this page). HFOV/VFOV/pitch are the datasheet
+ * MEASURED values from that file; mount height and cone height are its own ASSUMED/MEASURED
+ * baseline constants, carried over as-is since this page has no better source for them.
+ */
+const HP60C_VFOV_DEG = 51.7;
+const HP60C_VFOV_RAD = (HP60C_VFOV_DEG * Math.PI) / 180;
+const HP60C_PITCH_RAD = (4 * Math.PI) / 180; // mount_pitch_deg, downward
+const HP60C_MOUNT_HEIGHT_M = 0.30;
+const HP60C_CONE_HEIGHT_M = 0.325;
+const HP60C_ZMAX_M = 4.0; // zmax_m: cones beyond this are not drawn
+const HP60C_FADE_FROM_M = 3.5; // fading-with-distance band starts here, documented below
+
+/** Body-frame (x forward, y left, z up) -> camera pixel (u, v) + depth, or null if behind/out
+ * of the vertical-FOV-independent focal model. Mirrors hp60c.py's `_project`: pitch rotates
+ * the forward/up axes into depth/vertical, then pinhole-divides by depth. */
+function projectToCamera(xb: number, yb: number, z: number, widthPx: number, heightPx: number) {
+  const fx = (widthPx / 2) / Math.tan(HP60C_FOV_RAD / 2);
+  const fy = (heightPx / 2) / Math.tan(HP60C_VFOV_RAD / 2);
+  const dz = z - HP60C_MOUNT_HEIGHT_M;
+  const depth = xb * Math.cos(HP60C_PITCH_RAD) - dz * Math.sin(HP60C_PITCH_RAD);
+  const vertical = -xb * Math.sin(HP60C_PITCH_RAD) - dz * Math.cos(HP60C_PITCH_RAD);
+  const lateral = -yb;
+  if (depth < 1e-3) return null;
+  return { u: widthPx / 2 + fx * lateral / depth, v: heightPx / 2 + fy * vertical / depth, depth, fy };
+}
 
 type Profile = 'shared' | 'built';
 const PROFILE_DIMS: Record<Profile, { wheelbase_m: number; width_m: number }> = {
