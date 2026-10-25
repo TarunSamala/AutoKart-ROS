@@ -38,7 +38,7 @@ def evaluate(status: dict, cones: list[dict], *, stamp_ns: int, cone_id: int,
         return result
     gap = x - bumper_offset_m
     result.update(cone_forward_m=x, bumper_to_center_m=gap,
-                  decision="AT_OR_INSIDE_TARGET" if gap <= target_gap_m else "OBSERVE_ONLY",
+                  decision="AT_OR_INSIDE_TARGET" if gap <= target_gap_m + 1e-9 else "OBSERVE_ONLY",
                   reason="QUALIFIED_CONE")
     return result
 

@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def latest_depth_check(results_dir: Path) -> Path | None:
-    candidates = sorted(results_dir.glob("depth_check_*.json"))
-    return candidates[-1] if candidates else None
+    candidates = list(results_dir.rglob("depth_check_*.json"))
+    return max(candidates, key=lambda path: (path.stat().st_mtime_ns, path.name)) if candidates else None
 
 
 def evaluate(results_dir: Path) -> dict:

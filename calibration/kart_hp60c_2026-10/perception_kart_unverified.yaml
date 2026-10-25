@@ -2,7 +2,7 @@
 # Replaces the bench default (height 0.300 m, pitch 4 deg) for this kart. It does NOT
 # qualify anything: status stays MOUNT_CONFIGURED_UNVERIFIED until a surveyed-station
 # session (calibration_session evaluate) passes on held-out stations.
-# height 0.8382 m = reported tape value (33 in, optical centre). pitch 17.8 deg = reported.
+# height 0.83 m and pitch 18.0 deg are operator physical measurements (2026-10-25).
 # CONFLICT: the depth ground-plane self-check measured pitch 11.4 deg (height 0.820 m,
 #   roll 1.5 deg), 6.4 deg below the reported value -- see ground_plane_self_check_2026-10-19.json.
 #   Resolve with an inclinometer on the optical axis before the survey; do not pick by preference.
@@ -37,10 +37,10 @@ max_lateral_jump_m: 2.0
 camera_to_kart: null
 camera_mount:
   height_reference: optical_center
-  height_m: 0.8382
+  height_m: 0.83
   x_forward_m: 0.0
   y_left_m: 0.0
-  pitch_down_deg: 17.8
+  pitch_down_deg: 18.0
   roll_deg: 0.0
   yaw_left_deg: 0.0
 max_heading_change_deg: 45

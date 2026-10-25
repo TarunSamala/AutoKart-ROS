@@ -1,4 +1,5 @@
 import json
+import os
 
 import readiness_report as rr
 
@@ -21,6 +22,20 @@ def test_gate_camera_rate_fail_below_9hz(tmp_path, monkeypatch):
     (tmp_path / "camera_rate_20260101T000000Z.json").write_text(json.dumps({"paired_rgb_depth_hz": 2.6}))
     gate = rr.gate_camera_rate()
     assert gate["status"] == "FAIL"
+
+
+def test_gate_camera_rate_finds_latest_integrated_session_result(tmp_path, monkeypatch):
+    monkeypatch.setattr(rr, "RESULTS", tmp_path)
+    old = tmp_path / "camera_rate_20260101T000000Z.json"
+    old.write_text(json.dumps({"paired_rgb_depth_hz": 0.0}))
+    session = tmp_path / "braking_session_20260102T000000Z"
+    session.mkdir()
+    current = session / "camera_rate_20260102T000000Z.json"
+    current.write_text(json.dumps({"paired_rgb_depth_hz": 9.5}))
+    current_mtime = old.stat().st_mtime_ns + 1_000_000_000
+    os.utime(current, ns=(current_mtime, current_mtime))
+    gate = rr.gate_camera_rate()
+    assert gate["status"] == "PASS" and gate["value"] == 9.5
 
 
 def test_gate_depth_error_all_within_budget(tmp_path, monkeypatch):

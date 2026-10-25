@@ -8,8 +8,8 @@ from depth_check import budget_m, fit_pitch, projected_forward_m
 
 def test_saved_sdk_intrinsics_put_stop_point_inside_nominal_ground_view():
     view = visibility()
-    assert view["nearest_ground_forward_m"] == pytest.approx(0.99805, abs=0.001)
-    assert view["cone_base_below_axis_deg"] == pytest.approx(16.761, abs=0.01)
+    assert view["nearest_ground_forward_m"] == pytest.approx(0.98131, abs=0.001)
+    assert view["cone_base_below_axis_deg"] == pytest.approx(8.023, abs=0.01)
     assert view["cone_base_nominally_in_image"]
     assert view["cone_base_within_configured_depth_range"]
 

@@ -1,7 +1,8 @@
 # VCU + mission commissioning checklist
 
 **See also `docs/TEST_RUNBOOK.md`** for the one-page stage table (pass/abort criteria, who holds the
-manual power cut, what to paste where) and `scripts/test_session.sh` for a guided, resumable runner
+manual power cut, what to paste where) and `brake_test/run.sh` for the integrated,
+guided, resumable perception-to-VCU braking runner
 through all of it. `tools/readiness_report.py` is the single final gate: it prints `READY FOR FIRST RUN`
 only once every measured gate (camera rate, depth fit, latency, braking, model/calibration status,
 runway, `system_check.sh`, and the three verified flags) is PASS -- never before.

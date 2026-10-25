@@ -5,9 +5,10 @@
 # rather than holding its own copy. kart/ros2_ws/src/autokart_vehicle_geometry/test/test_vehicle_geometry.py
 # fails if any consumer's literal drifts from this file.
 #
-# Ignore any "diagonal" figures from earlier notes (52 in / 49.14 in) -- they were inconsistent.
-# The only diagonal anyone should use is the derived camera_to_bumper_diagonal_m computed from the
-# two measurements below (about 1.357 m) -- see autokart_vehicle_geometry/geometry.py.
+# Diagonal tape measurements are cross-checks only. Runtime geometry uses the independently measured
+# vertical camera height and horizontal floor distance from the camera ground projection to the
+# front-most bumper plane. The derived camera_to_bumper_diagonal_m is about 1.543 m; see
+# autokart_vehicle_geometry/geometry.py.
 #
 # schema_version: bump whenever a key below is added, removed, or changes meaning/units.
 # Owner: autokart_vehicle_geometry. load_geometry() does not yet reject a mismatch itself;
@@ -15,9 +16,9 @@
 schema_version: 1
 vehicle_geometry:
   camera_model: "HP60C"                         # owner: operator (nameplate)
-  camera_height_m: 0.8382                       # m; 33 in, above ground, optical centre; owner: operator tape measurement
-  camera_pitch_down_deg: 17.8                    # deg; optical axis below horizontal; owner: operator tape measurement (DISPUTED, see docs/HANDOVER_STATUS.md)
-  camera_to_front_bumper_horizontal_m: 1.0668    # m; 42 in; owner: operator tape measurement
+  camera_height_m: 0.83                         # m; optical centre above ground; owner: operator tape measurement (2026-10-25)
+  camera_pitch_down_deg: 18.0                    # deg; optical axis below horizontal; owner: operator physical measurement (2026-10-25)
+  camera_to_front_bumper_horizontal_m: 1.30      # m; camera ground projection to front bumper; owner: operator tape measurement (2026-10-25)
   bumper_width_m: 1.016                          # m; 40 in -- the only bumper width figure; never 39 in (0.9906 m); owner: operator tape measurement
-  stop_gap_from_bumper_m: 0.15                   # m; red display zone, measured from the front bumper; owner: operator decision (docs/TEST_RUNBOOK.md)
+  stop_gap_from_bumper_m: 0.40                   # m; conservative commissioning gap from front bumper; owner: operator decision (2026-10-25)
   lateral_margin_m: 0.15                         # m; per-side corridor clearance margin beyond the bumper width; owner: operator decision

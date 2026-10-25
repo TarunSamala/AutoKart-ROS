@@ -20,8 +20,11 @@ import runway_check
 
 
 def _latest(pattern: str) -> Path | None:
-    files = sorted(RESULTS.glob(pattern))
-    return files[-1] if files else None
+    # Integrated braking sessions keep their artifacts below
+    # results/braking_session_<timestamp>/. The final gate must consume the
+    # evidence produced by those sessions, not only legacy top-level files.
+    files = list(RESULTS.rglob(pattern))
+    return max(files, key=lambda path: (path.stat().st_mtime_ns, path.name)) if files else None
 
 
 def _load(path: Path | None) -> dict | None:

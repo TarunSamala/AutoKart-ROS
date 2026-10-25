@@ -1,8 +1,10 @@
 # AutoKart test runbook
 
 One page: the stages, pass/abort criteria, who holds the manual power cut, and what to paste where.
-Run the whole sequence with `scripts/test_session.sh` (guided, resumable, logs to
-`results/session_<timestamp>/`), or any stage directly with its own tool. **This kart has no E-stop
+Run the whole sequence with `brake_test/run.sh` (guided, resumable, logs to
+`results/braking_session_<timestamp>/`), or any stage directly with its own tool. The older
+`scripts/braking_test_session.sh` and `scripts/test_session.sh` commands are retained as aliases.
+**This kart has no E-stop
 input (GPIO7 has no status wire): the physical battery/supply disconnect is the only emergency stop.**
 A second person holds it, within reach, for every stage from 3 onward. Nothing in this runbook sets
 `calibration_verified`, `vehicle_config_verified`, or `braking_verified` -- only the operator does, after
@@ -10,7 +12,7 @@ reading the evidence.
 
 | # | Stage | Command | Pass criteria | Abort criteria |
 |---|---|---|---|---|
-| 0 | Software self-test | `scripts/test_session.sh` stage 0 (or run each suite directly) | All touched suites pass, 0 failures | Any failure: stop, fix or report, do not continue |
+| 0 | Software self-test | `brake_test/run.sh --stage 0` (or run each suite directly) | All touched suites pass, 0 failures | Any failure: stop, fix or report, do not continue |
 | 1 | Stationary camera rate + rejections | `tools/camera_rate_check.py --duration 20` (graph running) | Reports real numbers; compare against the 9 Hz target | Camera busy/absent: stop, do not force a second owner |
 | 2 | Depth fit | `tools/depth_check.py --fit-pitch` (tape stations 1.2, 2, 3, 4 m) | `PROVISIONAL_FIT_REVIEW`, residuals within budget | `NO_CONFIG_CHANGE_*`: more/better station data needed, not a reason to guess |
 | 3 | Encoder calibration | `tools/encoder_calibration.py` (hand push, 3 trials, VCU bridge stopped first) | 3+ trials, consistent sign, VCU SAFE throughout | Direction flips between trials, or VCU not SAFE: stop |
