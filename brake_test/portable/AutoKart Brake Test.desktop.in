@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=AutoKart Brake Test
+Comment=Launch the HP60C blue-cone BLDC brake demonstrator
+Exec="@ROOT@/brake_test/portable/launch.sh"
+Icon=camera-video
+Terminal=true
+Categories=Development;Engineering;
+StartupNotify=true

@@ -36,6 +36,26 @@ gates pass and an operator reviews the evidence.
 
 Evidence is stored under `results/braking_session_<timestamp>/`.
 
+## Portable one-click blue-cone demonstrator
+
+The proven HP60C + ESP32 blue-cone brake dashboard can be packaged for Ubuntu
+22.04 x86_64 and Ubuntu 22.04 aarch64 (Raspberry Pi 4B):
+
+```bash
+bash brake_test/portable/build_package.sh
+```
+
+Extract the resulting `dist/AutoKart-Brake-Test-Ubuntu22.04-Pi4B.tar.gz` and
+double-click `AutoKart Brake Test.desktop`. The first launch installs the
+runtime and HP60C USB rule; subsequent launches open the UI directly. See
+`brake_test/portable/PACKAGE_README.md` for the hardware and safety preflight.
+
+For the Arch development laptop, build the Distrobox-backed one-click package:
+
+```bash
+bash brake_test/portable/build_arch_package.sh
+```
+
 ## Implementation locations
 
 - Orchestrator: `brake_test/braking_test_session.sh`

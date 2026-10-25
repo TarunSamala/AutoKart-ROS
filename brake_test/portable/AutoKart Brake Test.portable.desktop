@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=AutoKart Brake Test
+Comment=Launch the HP60C blue-cone BLDC brake demonstrator
+Exec=/usr/bin/python3 -c "import os,sys; root=os.path.dirname(sys.argv[1]); app=os.path.join(root,'brake_test','portable','launch.sh'); os.execv(app,[app])" %k
+Icon=camera-video
+Terminal=true
+Categories=Development;Engineering;
+StartupNotify=true
