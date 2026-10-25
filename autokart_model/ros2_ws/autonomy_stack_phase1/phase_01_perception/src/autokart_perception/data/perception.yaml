@@ -51,10 +51,10 @@ operator_measurements:
 camera_to_kart: null
 camera_mount:
   height_reference: optical_center
-  height_m: 0.8382            # m; owner: operator tape measurement (2026-10-19)
+  height_m: 0.83              # m; owner: operator tape measurement (2026-10-25)
   x_forward_m: 0.0            # m; temporary origin, not a measured translation (see note above)
   y_left_m: 0.0                # m; temporary origin, not a measured translation (see note above)
-  pitch_down_deg: 17.8          # deg; DISPUTED -- see comment above; owner: operator / tools/depth_check.py --fit-pitch
+  pitch_down_deg: 18.0          # deg; owner: operator physical measurement (2026-10-25)
   roll_deg: 0.0
   yaw_left_deg: 0.0
 max_heading_change_deg: 45

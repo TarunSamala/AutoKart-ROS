@@ -26,20 +26,20 @@ def test_raw_values_match_the_user_measured_spec():
     # These are the exact numbers given for this kart; a change here means the physical measurement changed,
     # not a drift to silently accept.
     assert GEOMETRY.camera_model == "HP60C"
-    assert GEOMETRY.camera_height_m == pytest.approx(0.8382)
-    assert GEOMETRY.camera_pitch_down_deg == pytest.approx(17.8)
-    assert GEOMETRY.camera_to_front_bumper_horizontal_m == pytest.approx(1.0668)
+    assert GEOMETRY.camera_height_m == pytest.approx(0.83)
+    assert GEOMETRY.camera_pitch_down_deg == pytest.approx(18.0)
+    assert GEOMETRY.camera_to_front_bumper_horizontal_m == pytest.approx(1.30)
     assert GEOMETRY.bumper_width_m == pytest.approx(1.016)
-    assert GEOMETRY.stop_gap_from_bumper_m == pytest.approx(0.15)
+    assert GEOMETRY.stop_gap_from_bumper_m == pytest.approx(0.40)
 
 
 def test_derived_values_are_computed_not_hardcoded():
     g = GEOMETRY
-    assert g.camera_to_bumper_diagonal_m == pytest.approx(math.hypot(0.8382, 1.0668))
-    assert g.camera_to_bumper_diagonal_m == pytest.approx(1.357, abs=0.001)
+    assert g.camera_to_bumper_diagonal_m == pytest.approx(math.hypot(0.83, 1.30))
+    assert g.camera_to_bumper_diagonal_m == pytest.approx(1.543, abs=0.001)
     assert g.half_bumper_width_m == pytest.approx(0.508)
-    assert g.camera_forward_distance_at_stop_m == pytest.approx(1.0668 + 0.15)
-    assert g.camera_forward_distance_at_stop_m == pytest.approx(1.2168)
+    assert g.camera_forward_distance_at_stop_m == pytest.approx(1.30 + 0.40)
+    assert g.camera_forward_distance_at_stop_m == pytest.approx(1.70)
     assert g.corridor_minimum_width_m == pytest.approx(1.016 + 2 * 0.15)
 
 
@@ -51,7 +51,7 @@ def test_reloading_from_the_same_file_is_stable():
 
 def test_format_table_contains_every_value():
     table = GEOMETRY.format_table()
-    for expected in ("camera_height_m", "0.8382", "17.80", "1.0668", "1.0160", "0.1500",
+    for expected in ("camera_height_m", "0.8300", "18.00", "1.3000", "1.0160", "0.4000",
                      "camera_to_bumper_diagonal_m"):
         assert expected in table
 
@@ -106,5 +106,5 @@ def test_perception_calibration_matches_geometry():
 def test_bringup_config_is_the_only_place_the_raw_numbers_are_defined_as_yaml_floats():
     data = _load_yaml(BRINGUP_CONFIG)
     values = data["vehicle_geometry"]
-    assert float(values["camera_height_m"]) == pytest.approx(0.8382)
+    assert float(values["camera_height_m"]) == pytest.approx(0.83)
     assert float(values["bumper_width_m"]) == pytest.approx(1.016)
