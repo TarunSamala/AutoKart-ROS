@@ -1,0 +1,47 @@
+# KART HP60C mount -- OPERATOR-REPORTED, UNVERIFIED (generated 2026-10-19).
+# Replaces the bench default (height 0.300 m, pitch 4 deg) for this kart. It does NOT
+# qualify anything: status stays MOUNT_CONFIGURED_UNVERIFIED until a surveyed-station
+# session (calibration_session evaluate) passes on held-out stations.
+# height 0.83 m and pitch 18.0 deg are operator physical measurements (2026-10-25).
+# CONFLICT: the depth ground-plane self-check measured pitch 11.4 deg (height 0.820 m,
+#   roll 1.5 deg), 6.4 deg below the reported value -- see ground_plane_self_check_2026-10-19.json.
+#   Resolve with an inclinometer on the optical axis before the survey; do not pick by preference.
+# x/y 0: temporary origin on the ground directly below the optical centre (NOT base_link).
+#   The front bumper is reported 1.0668 m forward of this origin (bumper_setback_m in the safety monitor).
+confidence: 0.54
+nms_iou: 0.5
+max_frame_age_ms: 150
+max_processing_ms: 150
+max_inference_ms: 150
+min_valid_depth_pct: 1.0
+depth_min_m: 0.3
+depth_max_m: 4.0
+min_depth_pixels: 12
+max_depth_mad_m: 0.25
+cone_radius_uncertainty_m: 0.15
+max_ground_contact_offset_m: 0.5
+min_track_width_m: 2.0
+max_track_width_m: 3.8
+min_gate_quality: 0.3
+max_cone_sigma_m: 0.6
+left_boundary_color: blue
+right_boundary_color: yellow
+min_boundary_lateral_m: 0.25
+min_boundary_spacing_m: 0.15
+max_boundary_heading_deg: 45
+max_gate_forward_delta_m: 0.8
+gate_ambiguity_margin: 0.06
+max_abs_curvature_m_inv: 2.0
+min_centerline_gates: 2
+max_lateral_jump_m: 2.0
+camera_to_kart: null
+camera_mount:
+  height_reference: optical_center
+  height_m: 0.83
+  x_forward_m: 0.0
+  y_left_m: 0.0
+  pitch_down_deg: 18.0
+  roll_deg: 0.0
+  yaw_left_deg: 0.0
+max_heading_change_deg: 45
+max_width_change_m: 1.0
